@@ -16,7 +16,7 @@ namespace FarmApp.Domain.Core.Entity
         public int? CodeAthId { get; set; }//parent code id
         public string Code { get; set; }
         public string NameAth { get; set; }
-        public bool? IsDeleted { get; set; } = false;
+        public bool? IsDeleted { get; set; }
         public virtual CodeAthType CodeAth { get; set; }
         public virtual ICollection<CodeAthType> CodeAthTypes { get; set; }
         public virtual ICollection<Drug> Drugs { get; set; }
