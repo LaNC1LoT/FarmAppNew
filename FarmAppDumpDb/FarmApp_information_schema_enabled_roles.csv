@@ -1,0 +1,9 @@
+pg_monitor
+pg_read_all_settings
+pg_read_all_stats
+pg_stat_scan_tables
+pg_read_server_files
+pg_write_server_files
+pg_execute_server_program
+pg_signal_backend
+postgres

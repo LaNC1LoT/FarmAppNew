@@ -1,0 +1,13 @@
+35310,api,ApiMethods_Id_seq,1,1
+35320,dist,CodeAthTypes_Id_seq,1,1
+35332,dist,RegionTypes_Id_seq,1,7
+35339,dist,Roles_Id_seq,1,1
+35346,dist,Vendors_Id_seq,1,1
+35356,log,Logs_Id_seq,3,112
+35366,dist,Regions_Id_seq,3,19
+35383,api,ApiMethodRoles_Id_seq,1,1
+35400,dist,Users_Id_seq,1,1
+35415,dist,Pharmacies_Id_seq,1,1
+35435,tab,Stocks_Id_seq,1,1
+35447,tab,Drugs_Id_seq,1,1
+35469,tab,Sales_Id_seq,1,1

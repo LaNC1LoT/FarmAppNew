@@ -1,0 +1,10 @@
+99,pg_toast,10,
+12314,pg_temp_1,10,
+12315,pg_toast_temp_1,10,
+11,pg_catalog,10,"{postgres=UC/postgres,=U/postgres}"
+2200,public,10,"{postgres=UC/postgres,=UC/postgres}"
+13018,information_schema,10,"{postgres=UC/postgres,=U/postgres}"
+35306,api,10,
+35307,dist,10,
+35308,tab,10,
+35309,log,10,

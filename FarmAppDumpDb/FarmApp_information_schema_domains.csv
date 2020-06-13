@@ -1,0 +1,5 @@
+FarmApp,information_schema,sql_identifier,name,,,,,,FarmApp,pg_catalog,C,,,,,,,,FarmApp,pg_catalog,name,,,,,1
+FarmApp,information_schema,cardinal_number,integer,,,,,,,,,32,2,0,,,,,FarmApp,pg_catalog,int4,,,,,1
+FarmApp,information_schema,character_data,character varying,,1073741824,,,,FarmApp,pg_catalog,C,,,,,,,,FarmApp,pg_catalog,varchar,,,,,1
+FarmApp,information_schema,yes_or_no,character varying,3,12,,,,FarmApp,pg_catalog,C,,,,,,,,FarmApp,pg_catalog,varchar,,,,,1
+FarmApp,information_schema,time_stamp,timestamp with time zone,,,,,,,,,,,,2,,,CURRENT_TIMESTAMP(2),FarmApp,pg_catalog,timestamptz,,,,,1

@@ -1,0 +1,8 @@
+plpgsql,true,true,plpgsql_call_handler,plpgsql_inline_handler,plpgsql_validator,$libdir/plpgsql,
+pltcl,true,true,pltcl_call_handler,,,$libdir/pltcl,
+pltclu,false,false,pltclu_call_handler,,,$libdir/pltcl,
+plperl,true,true,plperl_call_handler,plperl_inline_handler,plperl_validator,$libdir/plperl,
+plperlu,false,false,plperlu_call_handler,plperlu_inline_handler,plperlu_validator,$libdir/plperl,
+plpythonu,false,false,plpython_call_handler,plpython_inline_handler,plpython_validator,$libdir/plpython2,
+plpython2u,false,false,plpython2_call_handler,plpython2_inline_handler,plpython2_validator,$libdir/plpython2,
+plpython3u,false,false,plpython3_call_handler,plpython3_inline_handler,plpython3_validator,$libdir/plpython3,

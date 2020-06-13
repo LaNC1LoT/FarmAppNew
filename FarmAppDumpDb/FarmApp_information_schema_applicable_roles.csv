@@ -1,0 +1,3 @@
+pg_monitor,pg_read_all_settings,NO
+pg_monitor,pg_read_all_stats,NO
+pg_monitor,pg_stat_scan_tables,NO

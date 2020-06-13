@@ -1,0 +1,2332 @@
+1,,,POST,/api/Users/authenticate,authenticate,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 124 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 06b9042d-3943-41ea-89ab-09ffd4379d90 
+",2020-04-16 08:42:52.532000,2020-04-16 14:14:29.706237,Login=ivan Password=ivan,400,"Content-Type: application/json; charset=utf-8 
+",910dc098-d1da-479c-9776-2d18374719fd,2020-04-16 14:14:29.937939,Ошибка,Метод 'authenticate' не найден!,
+2,,,POST,/api/Users/authenticate,Authenticate,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 124 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: ae4f6bbd-ad2e-4c7e-83c5-c5096cc5b50a 
+",2020-04-16 08:42:52.532000,2020-04-16 14:14:40.935222,Login=ivan Password=ivan,500,"Content-Type: application/json; charset=utf-8 
+",d01fd45e-c8b4-4446-aa13-88542c9592c0,2020-04-16 14:15:40.498620,Неизвестная ошибка!,Сообщите об этой ошибке разработчику!,"Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: L. Path '', line 0, position 0.
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonReader.ReadAndMoveToContent()
+   at Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at FarmAppServer.Controllers.UsersController.Authenticate(RequestBody requestBody) in g:\disk E\Projects\FarmApp\FarmAppServer\Controllers\UsersController.cs:line 51
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at FarmAppServer.Middlewares.ValidationMiddleware.Invoke(HttpContext context, IValidation validation, ICustomLogger logger) in g:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ValidationMiddleware.cs:line 23
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.Invoke(HttpContext context, FarmAppContext appContext, ICustomLogger logger) in g:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 34"
+3,,,POST,/api/Users/authenticate,Authenticate,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 124 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: d20b7f81-5ff4-4a10-9a65-0b2a784164f8 
+",2020-04-16 08:42:52.532000,2020-04-16 14:16:26.903268,Login=ivan Password=ivan,500,"Content-Type: application/json; charset=utf-8 
+",c70433f9-7641-4834-847b-a4cecf96ebea,2020-04-16 14:16:52.018394,Неизвестная ошибка!,Сообщите об этой ошибке разработчику!,"Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: L. Path '', line 0, position 0.
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonReader.ReadAndMoveToContent()
+   at Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at FarmAppServer.Controllers.UsersController.Authenticate(RequestBody requestBody) in g:\disk E\Projects\FarmApp\FarmAppServer\Controllers\UsersController.cs:line 51
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at FarmAppServer.Middlewares.ValidationMiddleware.Invoke(HttpContext context, IValidation validation, ICustomLogger logger) in g:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ValidationMiddleware.cs:line 23
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.Invoke(HttpContext context, FarmAppContext appContext, ICustomLogger logger) in g:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 34"
+4,,,POST,/api/Users/authenticate,Authenticate,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 124 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: f21b509b-dcc4-4666-988f-fe4597aac7fc 
+",2020-04-16 08:42:52.532000,2020-04-16 14:17:29.179633,Login=ivan Password=ivan,500,"Content-Type: application/json; charset=utf-8 
+",dd7b4c0f-776d-462d-8839-fbe5fe926cbc,2020-04-16 14:17:50.233282,Неизвестная ошибка!,Сообщите об этой ошибке разработчику!,"Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: L. Path '', line 0, position 0.
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonReader.ReadAndMoveToContent()
+   at Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at FarmAppServer.Controllers.UsersController.Authenticate(RequestBody requestBody) in g:\disk E\Projects\FarmApp\FarmAppServer\Controllers\UsersController.cs:line 51
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at FarmAppServer.Middlewares.ValidationMiddleware.Invoke(HttpContext context, IValidation validation, ICustomLogger logger) in g:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ValidationMiddleware.cs:line 23
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.Invoke(HttpContext context, FarmAppContext appContext, ICustomLogger logger) in g:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 34"
+5,,,POST,/api/Users/authenticate,,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 150 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 37ee812c-ae37-4276-b3bb-523a267d9892 
+",,2020-04-16 14:20:34.734003,"{
+  ""methodRoute"": ""Authenticate"",
+  ""requestTime"": ""2020-04-16T08:42:52.532Z"",
+  ""param"" : {
+  	""Login"" : ""ivan"",
+  	""Password"" : ""ivan""
+  }
+}",400,"Content-Type: application/json; charset=utf-8 
+",6ad6c64a-03fe-4a91-8cf8-a60fcb89d346,2020-04-16 14:20:34.734644,Ошибка,"Неверные параметры запроса JSON: After parsing a value an unexpected character was encountered: :. Path 'param', line 5, position 11.",
+6,,,POST,/api/Users/authenticate,,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 147 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 6adcf2b8-db0d-4e5b-b4e6-064c9f5b3c65 
+",,2020-04-16 14:26:03.076054,"{
+  ""MethodRoute"": ""Authenticate"",
+  ""RequestTime"": ""2020-04-16T08:42:52.532Z"",
+  ""Param"": {
+  	""Login"": ""ivan"",
+  	""Password"": ""ivan""
+  }
+}",400,"Content-Type: application/json; charset=utf-8 
+",ceb280df-8946-4957-a8e6-c521552fd9f7,2020-04-16 14:26:09.645974,Ошибка,"Неверные параметры запроса JSON: After parsing a value an unexpected character was encountered: :. Path 'Param', line 5, position 10.",
+7,,,POST,/api/Users/authenticate,,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 47 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: eca2b1a4-7714-4f3e-8865-978766953303 
+",,2020-04-16 14:30:40.557791,"{
+  ""Login"" : ""ivan"",
+  ""Password"": ""ivan""
+}",400,"Content-Type: application/json; charset=utf-8 
+",71f8d9a8-b483-4863-9bd7-efe951557a3c,2020-04-16 14:30:40.558318,Ошибка,"Неверные параметры запроса JSON: Could not find member 'Password' on object of type 'RequestBody'. Path 'Password', line 3, position 13.",
+8,,,POST,/api/Users/authenticate,,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 47 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 4d2868db-3b2c-4a58-8ff8-c2033318cc7d 
+",,2020-04-16 14:36:19.735107,"{
+  ""Login"" : ""ivan"",
+  ""Password"": ""ivan""
+}",400,"Content-Type: application/json; charset=utf-8 
+",756de31e-3021-4977-9139-57b130a03731,2020-04-16 14:36:19.735705,Ошибка,"Неверные параметры запроса JSON: Could not find member 'Password' on object of type 'RequestBody'. Path 'Password', line 3, position 13.",
+9,,,POST,/api/Users/authenticate,,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 149 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 344f609d-cfee-4661-893d-9aff3f15c80d 
+",,2020-04-16 14:39:37.791835,"{
+  ""MethodRoute"": ""Authenticate"",
+  ""RequestTime"": ""2020-04-16T08:42:52.532Z"",
+  ""Param"": {
+    ""Login"": ""ivan"",
+    ""Password"": ""ivan""
+  }
+}",400,"Content-Type: application/json; charset=utf-8 
+",8f130e97-a104-4d43-89e5-b3aad33607ae,2020-04-16 14:39:38.532744,Ошибка,"Неверные параметры запроса JSON: After parsing a value an unexpected character was encountered: :. Path 'Param', line 5, position 11.",
+10,,,POST,/api/Users/authenticate,,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 150 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 428cb234-28e0-49b4-9fbf-ebfeda634b14 
+",,2020-04-16 14:41:37.254285,"{
+  ""MethodRoute"": ""Authenticate"",
+  ""RequestTime"": ""2020-04-16T08:42:52.532Z"",
+  ""Param"": {
+    ""Login"" : ""ivan"",
+    ""Password"": ""ivan""
+  }
+}",400,"Content-Type: application/json; charset=utf-8 
+",13c541a2-3291-4280-a2aa-6144a8c03f5c,2020-04-16 14:41:37.254944,Ошибка,"Неверные параметры запроса JSON: After parsing a value an unexpected character was encountered: :. Path 'Param', line 5, position 12.",
+11,,,POST,/api/Users/authenticate,,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 153 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 9ed2cca4-9c59-44a3-bf7a-533c348416c8 
+",,2020-04-16 14:44:19.543317,"{
+  ""MethodRoute"": ""Authenticate"",
+  ""RequestTime"": ""2020-04-16T08:42:52.532Z"",
+  ""Param"": {
+    ""Login"" : ""ivan"",
+    ""Password"": ""ivan""
+  }  	
+}",400,"Content-Type: application/json; charset=utf-8 
+",b16b37a7-3f91-4f89-bbf5-b3cd17f64348,2020-04-16 14:44:19.543365,Ошибка,"Неверные параметры запроса JSON: After parsing a value an unexpected character was encountered: :. Path 'Param', line 5, position 12.",
+12,,,POST,/api/Users/authenticate,,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 128 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: d8fa47dc-1b6b-4199-abc9-a57e2a957811 
+",,2020-04-16 14:44:47.928433,"{
+  ""MethodRoute"": ""Authenticate"",
+  ""RequestTime"": ""2020-04-16T08:42:52.532Z"",
+  ""Param"": {
+    ""Login"" : ""ivan""
+  }  	
+}",400,"Content-Type: application/json; charset=utf-8 
+",20dc3fbf-a292-40dd-93ee-9fc76ea37ccb,2020-04-16 14:44:47.928488,Ошибка,"Неверные параметры запроса JSON: After parsing a value an unexpected character was encountered: :. Path 'Param', line 5, position 12.",
+13,,,POST,/api/Users/authenticate,,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 123 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 53870730-3ebb-49e5-a136-97f3d661370e 
+",,2020-04-16 14:45:22.457219,"{
+  ""MethodRoute"": ""Authenticate"",
+  ""RequestTime"": ""2020-04-16T08:42:52.532Z"",
+  ""Param"": { ""Login"" : ""ivan""
+  }  	
+}",400,"Content-Type: application/json; charset=utf-8 
+",ac56d5a2-5a57-4844-80d0-77bde3311338,2020-04-16 14:45:22.457276,Ошибка,"Неверные параметры запроса JSON: After parsing a value an unexpected character was encountered: :. Path 'Param', line 4, position 21.",
+14,,,POST,/api/Users/authenticate,,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 122 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 469370af-ff97-4114-bee1-6267866fb9b8 
+",,2020-04-16 14:45:43.791157,"{
+  ""MethodRoute"": ""Authenticate"",
+  ""RequestTime"": ""2020-04-16T08:42:52.532Z"",
+  ""Param"": { ""Login"": ""ivan""
+  }  	
+}",400,"Content-Type: application/json; charset=utf-8 
+",edcdfe19-50fe-4d52-b6cb-58c3dedabf70,2020-04-16 14:45:43.791211,Ошибка,"Неверные параметры запроса JSON: After parsing a value an unexpected character was encountered: :. Path 'Param', line 4, position 20.",
+15,,,POST,/api/Users/authenticate,,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 128 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 6d187568-6c24-4999-adb9-546531b3bace 
+",,2020-04-16 14:46:11.055003,"{
+  ""MethodRoute"": ""Authenticate"",
+  ""RequestTime"": ""2020-04-16T08:42:52.532Z"",
+  ""Param"": { 
+  	""Login"" : ""ivan""
+  }  	
+}",400,"Content-Type: application/json; charset=utf-8 
+",3abd15fe-d794-4b0f-a921-3df67c68478b,2020-04-16 14:46:11.055058,Ошибка,"Неверные параметры запроса JSON: After parsing a value an unexpected character was encountered: :. Path 'Param', line 5, position 11.",
+16,,,GET,/swagger/index.html,,"Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9 
+Accept-Encoding: gzip, deflate, br 
+Accept-Language: ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7 
+Cache-Control: max-age=0 
+Connection: close 
+Host: localhost:44308 
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36 
+upgrade-insecure-requests: 1 
+sec-fetch-dest: document 
+sec-fetch-site: same-origin 
+sec-fetch-mode: navigate 
+sec-fetch-user: ?1 
+",2020-04-16 14:46:47.461113,2020-04-16 14:46:47.460989,,400,"Content-Type: application/json; charset=utf-8 
+",f8792ce8-3c92-4ad9-9d0d-24239f2c0281,2020-04-16 14:46:47.729972,Ошибка,Метод '' не найден!,
+17,,,GET,/favicon.ico,,"Accept: image/webp,image/apng,image/*,*/*;q=0.8 
+Accept-Encoding: gzip, deflate, br 
+Accept-Language: ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7 
+Cache-Control: no-cache 
+Connection: close 
+Host: localhost:44308 
+Pragma: no-cache 
+Referer: https://localhost:44308/swagger/index.html 
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36 
+sec-fetch-dest: image 
+sec-fetch-site: same-origin 
+sec-fetch-mode: no-cors 
+",2020-04-16 14:46:47.903055,2020-04-16 14:46:47.903047,,400,"Content-Type: application/json; charset=utf-8 
+",a65d100a-71df-4dcf-a590-48d51acfc640,2020-04-16 14:46:47.920172,Ошибка,Метод '' не найден!,
+18,,,GET,/swagger/index.html,,"Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9 
+Accept-Encoding: gzip, deflate, br 
+Accept-Language: ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7 
+Cache-Control: max-age=0 
+Connection: close 
+Host: localhost:44308 
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36 
+upgrade-insecure-requests: 1 
+sec-fetch-dest: document 
+sec-fetch-site: same-origin 
+sec-fetch-mode: navigate 
+sec-fetch-user: ?1 
+",2020-04-16 14:47:00.287580,2020-04-16 14:47:00.287544,,400,"Content-Type: application/json; charset=utf-8 
+",07243abb-0b53-46a4-b8be-79e3b0015de7,2020-04-16 14:47:00.320680,Ошибка,Метод '' не найден!,
+19,,,GET,/favicon.ico,,"Accept: image/webp,image/apng,image/*,*/*;q=0.8 
+Accept-Encoding: gzip, deflate, br 
+Accept-Language: ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7 
+Cache-Control: no-cache 
+Connection: close 
+Host: localhost:44308 
+Pragma: no-cache 
+Referer: https://localhost:44308/swagger/index.html 
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36 
+sec-fetch-dest: image 
+sec-fetch-site: same-origin 
+sec-fetch-mode: no-cors 
+",2020-04-16 14:47:00.471042,2020-04-16 14:47:00.471005,,400,"Content-Type: application/json; charset=utf-8 
+",33c676de-64a1-4cec-a6d8-cdcf84fdf28d,2020-04-16 14:47:00.476335,Ошибка,Метод '' не найден!,
+20,,,GET,/swagger/index.html,,"Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9 
+Accept-Encoding: gzip, deflate, br 
+Accept-Language: ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7 
+Cache-Control: max-age=0 
+Connection: close 
+Host: localhost:44308 
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36 
+upgrade-insecure-requests: 1 
+sec-fetch-dest: document 
+sec-fetch-site: same-origin 
+sec-fetch-mode: navigate 
+sec-fetch-user: ?1 
+",2020-04-16 14:47:01.499911,2020-04-16 14:47:01.499892,,400,"Content-Type: application/json; charset=utf-8 
+",bb3f8abd-1295-4eb9-9759-4fa3bf400bc3,2020-04-16 14:47:01.508246,Ошибка,Метод '' не найден!,
+21,,,GET,/favicon.ico,,"Accept: image/webp,image/apng,image/*,*/*;q=0.8 
+Accept-Encoding: gzip, deflate, br 
+Accept-Language: ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7 
+Cache-Control: no-cache 
+Connection: close 
+Host: localhost:44308 
+Pragma: no-cache 
+Referer: https://localhost:44308/swagger/index.html 
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36 
+sec-fetch-dest: image 
+sec-fetch-site: same-origin 
+sec-fetch-mode: no-cors 
+",2020-04-16 14:47:01.594465,2020-04-16 14:47:01.594442,,400,"Content-Type: application/json; charset=utf-8 
+",cb20cb41-9edd-4df6-b41c-04b6fa7fb402,2020-04-16 14:47:01.599433,Ошибка,Метод '' не найден!,
+22,,,GET,/swagger/index.html,,"Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9 
+Accept-Encoding: gzip, deflate, br 
+Accept-Language: ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7 
+Cache-Control: max-age=0 
+Connection: close 
+Host: localhost:44308 
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36 
+upgrade-insecure-requests: 1 
+sec-fetch-dest: document 
+sec-fetch-site: same-origin 
+sec-fetch-mode: navigate 
+sec-fetch-user: ?1 
+",2020-04-16 14:47:02.261812,2020-04-16 14:47:02.261771,,400,"Content-Type: application/json; charset=utf-8 
+",3567265c-4ba4-471d-aa9c-dfb4dcaae146,2020-04-16 14:47:02.268606,Ошибка,Метод '' не найден!,
+23,,,GET,/favicon.ico,,"Accept: image/webp,image/apng,image/*,*/*;q=0.8 
+Accept-Encoding: gzip, deflate, br 
+Accept-Language: ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7 
+Cache-Control: no-cache 
+Connection: close 
+Host: localhost:44308 
+Pragma: no-cache 
+Referer: https://localhost:44308/swagger/index.html 
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36 
+sec-fetch-dest: image 
+sec-fetch-site: same-origin 
+sec-fetch-mode: no-cors 
+",2020-04-16 14:47:02.392694,2020-04-16 14:47:02.392682,,400,"Content-Type: application/json; charset=utf-8 
+",0d3a6872-d81b-4707-b1de-3ad7a64cc3bd,2020-04-16 14:47:02.398897,Ошибка,Метод '' не найден!,
+24,,,,,,,,,,500,,152284e2-7401-47de-b44c-4e1083b1b0ef,2020-04-22 19:10:41.968123,Неизвестная ошибка!,Сообщите об этой ошибке разработчику!,"System.ArgumentOutOfRangeException: Index and length must refer to a location within the string. (Parameter 'length')
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.FormatResponse(HttpResponse response, Log log) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 106
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.FinallyWriteBody(FarmAppContext ctx, Log log, Stream originalBody, MemoryStream responseBody, HttpContext context) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 75"
+25,,,GET,/api/Regions,"","Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: b0d6b79f-fac0-4dff-812b-05098d45b99f 
+",2020-04-22 19:19:07.907007,2020-04-22 19:18:42.891994,"",500,,0f161fb2-7ed9-43b0-8fcd-472e8c3501ac,2020-04-22 19:20:59.685780,Неизвестная ошибка!,Сообщите об этой ошибке разработчику!,"System.ArgumentOutOfRangeException: Index and length must refer to a location within the string. (Parameter 'length')
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.FormatResponse(HttpResponse response, Log log) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 107
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.FinallyWriteBody(FarmAppContext ctx, Log log, Stream originalBody, MemoryStream responseBody, HttpContext context) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 76"
+26,,,GET,/api/Regions,https,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 9de47274-7576-4259-a0dc-57a99f2762cf 
+",2020-04-22 19:31:38.956985,2020-04-22 19:31:38.956648,"",500,,21fe002d-5735-4345-bdd7-9c93f4f16ed3,2020-04-22 19:42:01.639934,Неизвестная ошибка!,Сообщите об этой ошибке разработчику!,"System.ArgumentOutOfRangeException: Index and length must refer to a location within the string. (Parameter 'length')
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.FormatResponse(HttpResponse response, Log log) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 107
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.FinallyWriteBody(FarmAppContext ctx, Log log, Stream originalBody, MemoryStream responseBody, HttpContext context) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 76"
+27,,,GET,/api/Regions,https,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: c8c2a1e3-4647-43ab-9693-a9297f7aae19 
+",2020-04-22 19:45:35.310042,2020-04-22 19:45:35.309685,"",500,,758bb8a4-aade-4653-a99f-77dd88c8429e,2020-04-22 19:46:15.575817,Неизвестная ошибка!,Сообщите об этой ошибке разработчику!,"System.ArgumentOutOfRangeException: Index and length must refer to a location within the string. (Parameter 'length')
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.FormatResponse(HttpResponse response, Log log) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 107
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.FinallyWriteBody(FarmAppContext ctx, Log log, Stream originalBody, MemoryStream responseBody, HttpContext context) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 76"
+111,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 7e356c89-39a0-4f8c-a374-0b7224b4fd1c 
+",2020-04-28 13:02:35.255914,2020-04-28 13:02:35.255557,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 77 
+",20c25eab-4e52-4295-bfbe-b805e8bdbcf0,2020-04-28 13:02:36.167853,OK,"[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false}]",
+28,,,GET,/api/Regions,https,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 1bb56bd8-f459-4e63-bac8-3fa04ab98f44 
+",2020-04-22 19:51:12.047935,2020-04-22 19:51:12.047592,"",500,,5b94fede-e1dd-4272-8f15-ad1ec956fa68,2020-04-22 19:52:12.162360,Неизвестная ошибка!,Сообщите об этой ошибке разработчику!,"System.ArgumentOutOfRangeException: Index and length must refer to a location within the string. (Parameter 'length')
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.FormatResponse(HttpResponse response, Log log) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 108
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.FinallyWriteBody(FarmAppContext ctx, Log log, Stream originalBody, MemoryStream responseBody, HttpContext context) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 77"
+29,,,GET,/api/Regions,https,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: dad6732b-a1dc-48be-9449-ef6d29a1d349 
+",2020-04-22 19:59:38.843238,2020-04-22 19:59:38.842792,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 1309 
+",60008625-d40e-47ba-b354-c29c2b225f59,2020-04-22 20:00:09.074121,,"{""results"":[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false},{""id"":7,""parentId"":1,""name"":""Тирасполь"",""population"":133807,""isDeleted"":false},{""id"":2,""parentId"":1,""name"":""Григориопольский район"",""population"":43410,""isDeleted"":false},{""id"":3,""parentId"":1,""name"":""Дубоссарский район"",""population"":33944,""isDeleted"":false},{""id"":4,""parentId"":1,""name"":""Каменский район"",""population"":22929,""isDeleted"":false},{""id"":5,""parentId"":1,""name"":""Рыбницкий район"",""population"":72677,""isDeleted"":false},{""id"":6,""parentId"":1,""name"":""Слободзейский район"",""population"":87080,""isDeleted"":false},{""id"":8,""parentId"":1,""name"":""Бендеры"",""population"":83200,""isDeleted"":false},{""id"":9,""parentId"":2,""name"":""Григориополь"",""population"":9381,""isDeleted"":false},{""id"":10,""parentId"":3,""name"":""Дубоссары"",""population"":15060,""isDeleted"":false},{""id"":11,""parentId"":4,""name"":""Каменка"",""population"":8871,""isDeleted"":false},{""id"":12,""parentId"":5,""name"":""Рыбница"",""population"":44400,""isDeleted"":false},{""id"":13,""parentId"":6,""name"":""Слободзея"",""population"":14618,""isDeleted"":false}],""currentPage"":1,""pageCount"":1,""pageSize"":25,""rowCount"":13,""firstRowOnPage"":1,""lastRowOnPage"":13}",
+30,,,GET,/api/Regions,https,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: bf317363-689e-4c8c-b70e-6fefb521971d 
+",2020-04-22 20:27:59.611511,2020-04-22 20:27:59.611145,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 184 
+",029bf56d-316c-4caa-bbc5-bcad85a75b96,2020-04-22 20:28:00.347520,200,"{""results"":[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false}],""currentPage"":1,""pageCount"":13,""pageSize"":1,""rowCount"":13,""firstRowOnPage"":1,""lastRowOnPage"":1}",
+31,,,GET,/api/Regions,https,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 2af9faa8-d47c-48c2-9aad-cbcd42205831 
+",2020-04-22 20:28:06.764279,2020-04-22 20:28:06.764229,"",400,"Content-Type: application/problem+json; charset=utf-8 
+Content-Length: 214 
+",06a88116-073a-421c-bcf0-1d0acfe869d9,2020-04-22 20:28:06.807792,400,"{""errors"":{""pageSize"":[""The value '' is invalid.""]},""type"":""https://tools.ietf.org/html/rfc7231#section-6.5.1"",""title"":""One or more validation errors occurred."",""status"":400,""traceId"":""|c2768749-4c95c47a1dd596c2.""}",
+32,,,GET,/api/Regions,https,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: ed7e61b2-62dc-478c-ba6c-15030e91b6f5 
+",2020-04-22 20:28:09.618759,2020-04-22 20:28:09.618705,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 1309 
+",56919bd5-3f2f-4a99-98d5-344bb769adc4,2020-04-22 20:28:09.666353,200,"{""results"":[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false},{""id"":7,""parentId"":1,""name"":""Тирасполь"",""population"":133807,""isDeleted"":false},{""id"":2,""parentId"":1,""name"":""Григориопольский район"",""population"":43410,""isDeleted"":false},{""id"":3,""parentId"":1,""name"":""Дубоссарский район"",""population"":33944,""isDeleted"":false},{""id"":4,""parentId"":1,""name"":""Каменский район"",""population"":22929,""isDeleted"":false},{""id"":5,""parentId"":1,""name"":""Рыбницкий район"",""population"":72677,""isDeleted"":false},{""id"":6,""parentId"":1,""name"":""Слободзейский район"",""population"":87080,""isDeleted"":false},{""id"":8,""parentId"":1,""name"":""Бендеры"",""population"":83200,""isDeleted"":false},{""id"":9,""parentId"":2,""name"":""Григориополь"",""population"":9381,""isDeleted"":false},{""id"":10,""parentId"":3,""name"":""Дубоссары"",""population"":15060,""isDeleted"":false},{""id"":11,""parentId"":4,""name"":""Каменка"",""population"":8871,""isDeleted"":false},{""id"":12,""parentId"":5,""name"":""Рыбница"",""population"":44400,""isDeleted"":false},{""id"":13,""parentId"":6,""name"":""Слободзея"",""population"":14618,""isDeleted"":false}],""currentPage"":1,""pageCount"":1,""pageSize"":25,""rowCount"":13,""firstRowOnPage"":1,""lastRowOnPage"":13}",
+33,,,POST,/api/Users/authenticate,https,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 49 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: b5a27d33-77dc-4398-8f97-37a8c309eac0 
+",2020-04-22 20:28:29.466428,2020-04-22 20:28:29.466381,"{
+  ""login"": ""admin"",
+  ""password"" : ""admin""
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 303 
+",d158a119-3338-4b40-87ee-438d3911330b,2020-04-22 20:28:29.736395,200,"{""id"":1,""firstName"":""admin"",""lastName"":""admin"",""userName"":""admin admin"",""token"":""eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzU3NjUwOSwiZXhwIjoxNTg3NjYyOTA5LCJpYXQiOjE1ODc1NzY1MDl9.kxo4U97werBrl4Pq-I0f3qPyhROxA27ikFdGEcGUN0s"",""role"":{""id"":1,""roleName"":""admin""}}",
+34,1,1,GET,/api/Users/,https,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzU3NjUwOSwiZXhwIjoxNTg3NjYyOTA5LCJpYXQiOjE1ODc1NzY1MDl9.kxo4U97werBrl4Pq-I0f3qPyhROxA27ikFdGEcGUN0s 
+Connection: keep-alive 
+Content-Length: 48 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: b736a1bc-6501-4ca9-b2c7-ffd821a4be6f 
+",2020-04-22 20:39:53.241210,2020-04-22 20:39:53.241162,"{
+  ""Login"": ""admin"",
+  ""Password"": ""admin""
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 473 
+",eaea9581-a699-4f8a-8a8c-3f54539639f6,2020-04-22 20:39:53.380566,200,"[{""id"":1,""firstName"":""admin"",""lastName"":""admin"",""login"":""admin"",""role"":{""id"":1,""roleName"":""admin""}},{""id"":6,""firstName"":""sam"",""lastName"":""tom"",""login"":""stom"",""role"":{""id"":2,""roleName"":""user""}},{""id"":7,""firstName"":""tom"",""lastName"":""sam"",""login"":""tsam"",""role"":{""id"":2,""roleName"":""user""}},{""id"":9,""firstName"":""tom"",""lastName"":""sam"",""login"":""tsam"",""role"":{""id"":2,""roleName"":""user""}},{""id"":5,""firstName"":""ivan"",""lastName"":""dem"",""login"":""idem"",""role"":{""id"":2,""roleName"":""user""}}]",
+112,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 637e9181-3f67-4175-9304-93e4ca9ac7a5 
+",2020-04-28 13:02:43.647500,2020-04-28 13:02:43.647446,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 87 
+",0ab0f9d2-2ed1-41e8-9d15-fd2cd08f8d6c,2020-04-28 13:02:43.753979,OK,"[{""id"":17,""parentId"":5,""name"":""Андреевка"",""population"":430,""isDeleted"":false}]",
+35,1,1,GET,/api/Users/,https,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzU3NjUwOSwiZXhwIjoxNTg3NjYyOTA5LCJpYXQiOjE1ODc1NzY1MDl9.kxo4U97werBrl4Pq-I0f3qPyhROxA27ikFdGEcGUN0s 
+Connection: keep-alive 
+Content-Length: 48 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: e7a28c3b-e9cd-4d7b-8ef4-62791eb94883 
+",2020-04-22 21:40:29.480707,2020-04-22 21:40:29.480655,"{
+  ""Login"": ""admin"",
+  ""Password"": ""admin""
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 473 
+",09fb1840-c402-404b-abbe-ece1ada390c6,2020-04-22 21:40:29.551917,200,"[{""id"":1,""firstName"":""admin"",""lastName"":""admin"",""login"":""admin"",""role"":{""id"":1,""roleName"":""admin""}},{""id"":6,""firstName"":""sam"",""lastName"":""tom"",""login"":""stom"",""role"":{""id"":2,""roleName"":""user""}},{""id"":7,""firstName"":""tom"",""lastName"":""sam"",""login"":""tsam"",""role"":{""id"":2,""roleName"":""user""}},{""id"":9,""firstName"":""tom"",""lastName"":""sam"",""login"":""tsam"",""role"":{""id"":2,""roleName"":""user""}},{""id"":5,""firstName"":""ivan"",""lastName"":""dem"",""login"":""idem"",""role"":{""id"":2,""roleName"":""user""}}]",
+36,1,1,GET,/api/Users/,https,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzU3NjUwOSwiZXhwIjoxNTg3NjYyOTA5LCJpYXQiOjE1ODc1NzY1MDl9.kxo4U97werBrl4Pq-I0f3qPyhROxA27ikFdGEcGUN0s 
+Connection: keep-alive 
+Content-Length: 48 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: f049a643-adc0-462d-a98f-87ed7c986813 
+",2020-04-23 11:53:46.449036,2020-04-23 11:53:46.448675,"{
+  ""Login"": ""admin"",
+  ""Password"": ""admin""
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 473 
+",b6982784-ef9c-4f49-8bfd-051e00b58388,2020-04-23 11:53:47.177210,80000002-0000-fd00-b63f-84710c7967bb,"[{""id"":1,""firstName"":""admin"",""lastName"":""admin"",""login"":""admin"",""role"":{""id"":1,""roleName"":""admin""}},{""id"":6,""firstName"":""sam"",""lastName"":""tom"",""login"":""stom"",""role"":{""id"":2,""roleName"":""user""}},{""id"":7,""firstName"":""tom"",""lastName"":""sam"",""login"":""tsam"",""role"":{""id"":2,""roleName"":""user""}},{""id"":9,""firstName"":""tom"",""lastName"":""sam"",""login"":""tsam"",""role"":{""id"":2,""roleName"":""user""}},{""id"":5,""firstName"":""ivan"",""lastName"":""dem"",""login"":""idem"",""role"":{""id"":2,""roleName"":""user""}}]",
+37,1,1,GET,/api/Users/,https,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzU3NjUwOSwiZXhwIjoxNTg3NjYyOTA5LCJpYXQiOjE1ODc1NzY1MDl9.kxo4U97werBrl4Pq-I0f3qPyhROxA27ikFdGEcGUN0s 
+Connection: keep-alive 
+Content-Length: 48 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 4a993378-c6e5-454f-9dab-9fe3b24fc14c 
+",2020-04-23 11:54:28.090415,2020-04-23 11:54:28.090371,"{
+  ""Login"": ""admin"",
+  ""Password"": ""admin""
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 473 
+",e938e6a9-dbe4-494e-9589-004559f18718,2020-04-23 11:54:28.166219,80000003-0000-fd00-b63f-84710c7967bb,"[{""id"":1,""firstName"":""admin"",""lastName"":""admin"",""login"":""admin"",""role"":{""id"":1,""roleName"":""admin""}},{""id"":6,""firstName"":""sam"",""lastName"":""tom"",""login"":""stom"",""role"":{""id"":2,""roleName"":""user""}},{""id"":7,""firstName"":""tom"",""lastName"":""sam"",""login"":""tsam"",""role"":{""id"":2,""roleName"":""user""}},{""id"":9,""firstName"":""tom"",""lastName"":""sam"",""login"":""tsam"",""role"":{""id"":2,""roleName"":""user""}},{""id"":5,""firstName"":""ivan"",""lastName"":""dem"",""login"":""idem"",""role"":{""id"":2,""roleName"":""user""}}]",
+38,1,1,GET,/api/Users/,https,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzU3NjUwOSwiZXhwIjoxNTg3NjYyOTA5LCJpYXQiOjE1ODc1NzY1MDl9.kxo4U97werBrl4Pq-I0f3qPyhROxA27ikFdGEcGUN0s 
+Connection: keep-alive 
+Content-Length: 48 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 72d2aee2-8203-4c71-98b8-7546926b9620 
+",2020-04-23 11:55:44.320776,2020-04-23 11:55:44.320256,"{
+  ""Login"": ""admin"",
+  ""Password"": ""admin""
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 473 
+",9ecd0d55-fea7-4fac-8a8f-bc1e7dcbfa78,2020-04-23 11:55:45.126587,https,"[{""id"":1,""firstName"":""admin"",""lastName"":""admin"",""login"":""admin"",""role"":{""id"":1,""roleName"":""admin""}},{""id"":6,""firstName"":""sam"",""lastName"":""tom"",""login"":""stom"",""role"":{""id"":2,""roleName"":""user""}},{""id"":7,""firstName"":""tom"",""lastName"":""sam"",""login"":""tsam"",""role"":{""id"":2,""roleName"":""user""}},{""id"":9,""firstName"":""tom"",""lastName"":""sam"",""login"":""tsam"",""role"":{""id"":2,""roleName"":""user""}},{""id"":5,""firstName"":""ivan"",""lastName"":""dem"",""login"":""idem"",""role"":{""id"":2,""roleName"":""user""}}]",
+39,1,1,GET,/api/Users/,https,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzU3NjUwOSwiZXhwIjoxNTg3NjYyOTA5LCJpYXQiOjE1ODc1NzY1MDl9.kxo4U97werBrl4Pq-I0f3qPyhROxA27ikFdGEcGUN0s 
+Connection: keep-alive 
+Content-Length: 48 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 5c485caa-1448-4d7d-9b5e-b23b32809b78 
+",2020-04-23 11:57:12.801809,2020-04-23 11:57:12.801448,"{
+  ""Login"": ""admin"",
+  ""Password"": ""admin""
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 473 
+",8bf75619-4c45-41a3-9836-1cdb470784bc,2020-04-23 11:57:13.472798,80000002-0002-ff00-b63f-84710c7967bb,"[{""id"":1,""firstName"":""admin"",""lastName"":""admin"",""login"":""admin"",""role"":{""id"":1,""roleName"":""admin""}},{""id"":6,""firstName"":""sam"",""lastName"":""tom"",""login"":""stom"",""role"":{""id"":2,""roleName"":""user""}},{""id"":7,""firstName"":""tom"",""lastName"":""sam"",""login"":""tsam"",""role"":{""id"":2,""roleName"":""user""}},{""id"":9,""firstName"":""tom"",""lastName"":""sam"",""login"":""tsam"",""role"":{""id"":2,""roleName"":""user""}},{""id"":5,""firstName"":""ivan"",""lastName"":""dem"",""login"":""idem"",""role"":{""id"":2,""roleName"":""user""}}]",
+40,1,1,GET,/api/Users/,https,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzU3NjUwOSwiZXhwIjoxNTg3NjYyOTA5LCJpYXQiOjE1ODc1NzY1MDl9.kxo4U97werBrl4Pq-I0f3qPyhROxA27ikFdGEcGUN0s 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: e5dc0ef9-c827-4c3b-8183-f82e5c47d98c 
+",2020-04-23 11:59:43.204884,2020-04-23 11:59:43.204107,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 473 
+",6696c92b-357a-4a5e-8331-c95c6850f0e4,2020-04-23 11:59:43.832958,OK,"[{""id"":1,""firstName"":""admin"",""lastName"":""admin"",""login"":""admin"",""role"":{""id"":1,""roleName"":""admin""}},{""id"":6,""firstName"":""sam"",""lastName"":""tom"",""login"":""stom"",""role"":{""id"":2,""roleName"":""user""}},{""id"":7,""firstName"":""tom"",""lastName"":""sam"",""login"":""tsam"",""role"":{""id"":2,""roleName"":""user""}},{""id"":9,""firstName"":""tom"",""lastName"":""sam"",""login"":""tsam"",""role"":{""id"":2,""roleName"":""user""}},{""id"":5,""firstName"":""ivan"",""lastName"":""dem"",""login"":""idem"",""role"":{""id"":2,""roleName"":""user""}}]",
+41,,,POST,/api/Users/authenticate,/api/Users/authenticate,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 49 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 07a9d9ae-ce1e-4aef-8486-998102de4745 
+",2020-04-23 12:01:54.851317,2020-04-23 12:01:54.850970,"{
+  ""login"": ""admin"",
+  ""password"" : ""admin""
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 303 
+",1a4e11b6-3dfb-4a29-8822-f7785fd3bfb0,2020-04-23 12:01:55.771934,OK,"{""id"":1,""firstName"":""admin"",""lastName"":""admin"",""userName"":""admin admin"",""token"":""eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzYzMjUxNSwiZXhwIjoxNTg3NzE4OTE1LCJpYXQiOjE1ODc2MzI1MTV9.fcu16NkQ2GU4awGzolPuK-xzAH06VAKyNt8BQh6mLN0"",""role"":{""id"":1,""roleName"":""admin""}}",
+42,,,POST,/api/Users/authenticate,localhost:44308,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 49 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: d4f3d79c-066a-4804-9b7f-8ae8b539718b 
+",2020-04-23 12:04:18.395030,2020-04-23 12:04:18.394581,"{
+  ""login"": ""admin"",
+  ""password"" : ""admin""
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 303 
+",9f97209f-e436-41b4-854e-f4b5d4920b05,2020-04-23 12:04:19.357615,OK,"{""id"":1,""firstName"":""admin"",""lastName"":""admin"",""userName"":""admin admin"",""token"":""eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzYzMjY1OSwiZXhwIjoxNTg3NzE5MDU5LCJpYXQiOjE1ODc2MzI2NTl9.vV4hS5FRszk5FFwkgQLzy6toggOJF2O5jzUPg7_2_FY"",""role"":{""id"":1,""roleName"":""admin""}}",
+43,,,POST,/api/Users/authenticate,/api/Users/authenticate,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 49 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: e969a905-3efb-4047-bd1c-e59ef89de2c2 
+",2020-04-23 12:06:19.756554,2020-04-23 12:06:19.756085,"{
+  ""login"": ""admin"",
+  ""password"" : ""admin""
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 303 
+",5438940e-2121-41bc-84a3-8ee524e77127,2020-04-23 12:06:20.659563,OK,"{""id"":1,""firstName"":""admin"",""lastName"":""admin"",""userName"":""admin admin"",""token"":""eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzYzMjc4MCwiZXhwIjoxNTg3NzE5MTgwLCJpYXQiOjE1ODc2MzI3ODB9.NieKLAhH0Mn05uZhi1uThASydDwjzDCklN-v7Iui3LI"",""role"":{""id"":1,""roleName"":""admin""}}",
+44,,,POST,/api/Users/authenticate,/api/Users/authenticate,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 49 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 34060bbf-c13b-4022-bd0a-f2db30d2af4c 
+",2020-04-23 12:07:12.217989,2020-04-23 12:07:12.217371,"{
+  ""login"": ""admin"",
+  ""password"" : ""admin""
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 303 
+",03741477-0af2-46eb-b77a-3c010e23d58e,2020-04-23 12:07:13.140576,OK,"{""id"":1,""firstName"":""admin"",""lastName"":""admin"",""userName"":""admin admin"",""token"":""eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzYzMjgzMiwiZXhwIjoxNTg3NzE5MjMyLCJpYXQiOjE1ODc2MzI4MzJ9.SUC6gl-humq0fNu0Vn3XiPMQaKen4m8C7WqfnBIGG5E"",""role"":{""id"":1,""roleName"":""admin""}}",
+45,,,POST,/api/Users/authenticate,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 49 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: f7f398e1-719f-46d4-9ac9-07c597327269 
+",2020-04-23 12:10:24.765838,2020-04-23 12:10:24.765254,"{
+  ""login"": ""admin"",
+  ""password"" : ""admin""
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 303 
+",9cf109fe-06a1-478a-a860-da2dcf8de85c,2020-04-23 12:10:25.738072,OK,"{""id"":1,""firstName"":""admin"",""lastName"":""admin"",""userName"":""admin admin"",""token"":""eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzYzMzAyNSwiZXhwIjoxNTg3NzE5NDI1LCJpYXQiOjE1ODc2MzMwMjV9.UKExkkmZjY52cny-8h-AOXJgXt5AUxraKWNf156Ge-8"",""role"":{""id"":1,""roleName"":""admin""}}",
+46,,,POST,/api/Users/authenticate,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 49 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 5fa91438-0598-428c-a253-33ef2af8e72d 
+",2020-04-23 12:11:09.109666,2020-04-23 12:11:09.109620,"{
+  ""login"": ""admin"",
+  ""password"" : ""admin""
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 303 
+",64ac89c9-4832-4966-ab6d-423fd25c7dd0,2020-04-23 12:11:09.208246,OK,"{""id"":1,""firstName"":""admin"",""lastName"":""admin"",""userName"":""admin admin"",""token"":""eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzYzMzA2OSwiZXhwIjoxNTg3NzE5NDY5LCJpYXQiOjE1ODc2MzMwNjl9.71qEF4NfZA3pzyJM1pZERKRJyR0-BF6u6VGPHO2ieJQ"",""role"":{""id"":1,""roleName"":""admin""}}",
+47,,,POST,/api/Regions,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Content-Length: 102 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: ce514ad7-69bf-4f32-9324-04f308a0cf6f 
+",2020-04-25 12:46:46.609528,2020-04-25 12:46:46.609161,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Воронково"",
+	""Population"" : ""2000""
+}",201,"Location: PostRegion 
+Content-Type: application/json; charset=utf-8 
+Content-Length: 176 
+",508b26b9-135c-47cb-b630-3d520e3ce76a,2020-04-25 12:47:45.926522,OK,"{""id"":14,""regionId"":5,""regionTypeId"":4,""regionName"":""Воронково"",""population"":2000,""isDeleted"":false,""parentRegion"":null,""regionType"":null,""regions"":[],""pharmacies"":[]}",
+48,,,POST,/api/Regions,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Content-Length: 102 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: c5d10414-37e9-422e-85b7-76d54e8b040c 
+",2020-04-25 12:59:57.588074,2020-04-25 12:59:57.586962,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Воронково"",
+	""Population"" : ""2000""
+}",400,"Content-Type: application/json; charset=utf-8 
+Content-Length: 175 
+",8d83bf51-f80e-4121-826e-55df4f772d96,2020-04-25 13:00:15.779834,OK,"{""id"":""3725d461-6cac-49fd-bad0-7e029364e6b1"",""responseTime"":""2020-04-25T13:00:13.1460885+03:00"",""header"":""Error"",""result"":""RegionName \""Воронково\"" is already taken""}",
+49,,,POST,/api/Regions,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Content-Length: 102 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: f6edb4c9-b2fd-4032-988c-8a9fc6d5f89c 
+",2020-04-25 13:01:53.240473,2020-04-25 13:01:53.240016,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Воронково"",
+	""Population"" : ""2000""
+}",400,"Content-Type: application/json; charset=utf-8 
+Content-Length: 175 
+",33ffc4f7-02a9-46bd-8680-61b52f542f6b,2020-04-25 13:01:54.053158,OK,"{""id"":""95b0ceb7-5d50-4134-baef-ef80ba26afd6"",""responseTime"":""2020-04-25T13:01:53.9858088+03:00"",""header"":""Error"",""result"":""RegionName \""Воронково\"" is already taken""}",
+50,,,POST,/api/Regions,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Content-Length: 102 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 8188cd08-7c02-4201-a764-b16fdaeb6f27 
+",2020-04-25 13:02:33.453191,2020-04-25 13:02:33.453165,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Воронково"",
+	""Population"" : ""2000""
+}",400,"Content-Type: application/json; charset=utf-8 
+Content-Length: 175 
+",a62be876-3278-468b-8d80-4d23269f3773,2020-04-25 13:02:33.587368,OK,"{""id"":""f61ea61a-d876-4f1e-96a6-055fec082225"",""responseTime"":""2020-04-25T13:02:33.5799253+03:00"",""header"":""Error"",""result"":""RegionName \""Воронково\"" is already taken""}",
+51,,,POST,/api/Regions,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Content-Length: 102 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: f1f997fe-5080-4eef-83ac-688e34db9bf8 
+",2020-04-25 13:02:36.496911,2020-04-25 13:02:36.496878,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Воронково"",
+	""Population"" : ""2000""
+}",400,"Content-Type: application/json; charset=utf-8 
+Content-Length: 175 
+",aa6814fe-e27c-4478-9654-2e1fedfca8c8,2020-04-25 13:02:36.605376,OK,"{""id"":""a8e5657d-530e-4d32-a53a-1ea40b193150"",""responseTime"":""2020-04-25T13:02:36.5976537+03:00"",""header"":""Error"",""result"":""RegionName \""Воронково\"" is already taken""}",
+52,,,POST,/api/Regions,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Content-Length: 102 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 86950fa5-6585-4b2b-83e3-e62d15011a60 
+",2020-04-25 13:02:52.678423,2020-04-25 13:02:52.678371,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Воронково"",
+	""Population"" : ""2000""
+}",400,"Content-Type: application/json; charset=utf-8 
+Content-Length: 175 
+",c64e2a7a-b222-47e1-b8b5-fe88c3a31235,2020-04-25 13:02:52.808520,OK,"{""id"":""eb92d7ed-f486-4e9f-8b33-cef045f93552"",""responseTime"":""2020-04-25T13:02:52.8019832+03:00"",""header"":""Error"",""result"":""RegionName \""Воронково\"" is already taken""}",
+53,,,POST,/api/Regions,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Content-Length: 102 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 6b97e801-7808-4c9b-9308-dc8c3c3d4604 
+",2020-04-25 13:03:03.522699,2020-04-25 13:03:03.522650,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Воронково"",
+	""Population"" : ""2000""
+}",400,"Content-Type: application/json; charset=utf-8 
+Content-Length: 175 
+",6e536471-6c59-42ad-ae68-e62168e055f6,2020-04-25 13:03:48.627185,OK,"{""id"":""2f349a93-e2bc-4506-b3d0-6b5de3c47921"",""responseTime"":""2020-04-25T13:03:28.5276625+03:00"",""header"":""Error"",""result"":""RegionName \""Воронково\"" is already taken""}",
+54,,,POST,/api/Regions,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Content-Length: 102 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 856415ce-7831-43b1-aa1b-6a3e2d6323ff 
+",2020-04-25 13:06:22.882158,2020-04-25 13:06:22.881746,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Воронково"",
+	""Population"" : ""2000""
+}",500,"Content-Type: application/json; charset=utf-8 
+",577698e0-509d-4f61-9443-928e04fc740c,2020-04-25 13:07:19.330694,OK,"{""Id"":""f9f7184b-dde5-4784-a7d2-74ca460cf142"",""ResponseTime"":""2020-04-25T13:07:06.6796504+03:00"",""Header"":""Неизвестная ошибка!"",""Result"":""Сообщите об этой ошибке разработчику!""}","FarmAppServer.Helpers.AppException: RegionName ""Воронково"" is already taken
+   at FarmAppServer.Services.RegionService.PostRegion(Region region) in G:\disk E\Projects\FarmApp\FarmAppServer\Services\RegionService.cs:line 36
+   at FarmAppServer.Controllers.RegionsController.PostRegion(PostRegionDto model) in G:\disk E\Projects\FarmApp\FarmAppServer\Controllers\RegionsController.cs:line 132
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.Invoke(HttpContext context, FarmAppContext appContext, ICustomLogger logger) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 35"
+55,,,POST,/api/Regions,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Content-Length: 102 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 39ff1c3d-9142-42fd-9397-39f83a9c29ef 
+",2020-04-25 13:08:52.812122,2020-04-25 13:08:52.811355,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Воронково"",
+	""Population"" : ""2000""
+}",500,"Content-Type: application/json; charset=utf-8 
+",a92f3686-53f8-4bd8-a82b-3c74dc35e65f,2020-04-25 13:08:55.916102,OK,"{""Id"":""37cf5d5b-e6f8-4710-b45a-0f3a55c8c63a"",""ResponseTime"":""2020-04-25T13:08:55.8429366+03:00"",""Header"":""Неизвестная ошибка!"",""Result"":""RegionName \""Воронково\"" is already taken""}","FarmAppServer.Helpers.AppException: RegionName ""Воронково"" is already taken
+   at FarmAppServer.Services.RegionService.PostRegion(Region region) in G:\disk E\Projects\FarmApp\FarmAppServer\Services\RegionService.cs:line 36
+   at FarmAppServer.Controllers.RegionsController.PostRegion(PostRegionDto model) in G:\disk E\Projects\FarmApp\FarmAppServer\Controllers\RegionsController.cs:line 132
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.Invoke(HttpContext context, FarmAppContext appContext, ICustomLogger logger) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 35"
+85,,,GET,/api/Regions/SearchRegion,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: ed69ef85-0761-4649-9774-f7a4f3733824 
+",2020-04-26 13:58:22.386904,2020-04-26 13:58:22.386456,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 88 
+",c23d62b8-9027-4f4c-afe7-6ae97ba9f920,2020-04-26 13:58:23.221714,OK,"[{""id"":14,""parentId"":5,""name"":""Воронково"",""population"":2000,""isDeleted"":false}]",
+86,,,GET,/api/Regions/SearchRegion,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 39c8d030-b067-46a3-8132-cc7bf8790cc9 
+",2020-04-26 13:58:38.894273,2020-04-26 13:58:38.894246,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 77 
+",eec7a175-6b9f-45ba-a3dd-794705c3f1c4,2020-04-26 13:58:39.005122,OK,"[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false}]",
+56,,,POST,/api/Regions,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Content-Length: 102 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 1daad03b-9a96-410f-88ef-cb301ca8cd73 
+",2020-04-25 13:10:04.318789,2020-04-25 13:10:04.318377,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Воронково"",
+	""Population"" : ""2000""
+}",500,"Content-Type: application/json; charset=utf-8 
+",a1f64d73-2da5-46fd-860d-c4a3434396cc,2020-04-25 13:10:05.155475,OK,"{""Id"":""b9dcdc20-81c0-442d-a738-7cd8cbe4c4a0"",""ResponseTime"":""2020-04-25T13:10:05.1043994+03:00"",""Header"":""Error"",""Result"":""RegionName \""Воронково\"" is already taken""}","FarmAppServer.Helpers.AppException: RegionName ""Воронково"" is already taken
+   at FarmAppServer.Services.RegionService.PostRegion(Region region) in G:\disk E\Projects\FarmApp\FarmAppServer\Services\RegionService.cs:line 36
+   at FarmAppServer.Controllers.RegionsController.PostRegion(PostRegionDto model) in G:\disk E\Projects\FarmApp\FarmAppServer\Controllers\RegionsController.cs:line 132
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.Invoke(HttpContext context, FarmAppContext appContext, ICustomLogger logger) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 35"
+57,,,POST,/api/Regions,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Content-Length: 98 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 9146afb5-09cb-4d33-850f-88f38d862894 
+",2020-04-25 13:18:11.503466,2020-04-25 13:18:11.503118,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Гидирим"",
+	""Population"" : ""2000""
+}",201,"Location: PostRegion 
+Content-Type: application/json; charset=utf-8 
+Content-Length: 172 
+",2dcf4a9d-ab3c-41df-9d07-95c4b9480ecc,2020-04-25 13:18:12.414934,OK,"{""id"":15,""regionId"":5,""regionTypeId"":4,""regionName"":""Гидирим"",""population"":2000,""isDeleted"":false,""parentRegion"":null,""regionType"":null,""regions"":[],""pharmacies"":[]}",
+58,,,POST,/api/Regions,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Content-Length: 99 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 08a35ddf-542e-483d-bb53-232e6e8db0f1 
+",2020-04-25 13:23:43.750915,2020-04-25 13:23:43.750564,"{
+	""RegiondId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Гидирим"",
+	""Population"" : ""2000""
+}",500,"Content-Type: application/json; charset=utf-8 
+",b52a85ed-15f2-46ce-9e94-a5e86abec36b,2020-04-25 13:23:44.581028,OK,"{""Id"":""a2f3e710-3009-4148-9dbf-5b5e5b022ab1"",""ResponseTime"":""2020-04-25T13:23:44.518665+03:00"",""Header"":""Error"",""Result"":""RegionName \""Гидирим\"" is already taken""}","FarmAppServer.Helpers.AppException: RegionName ""Гидирим"" is already taken
+   at FarmAppServer.Services.RegionService.PostRegion(Region region) in G:\disk E\Projects\FarmApp\FarmAppServer\Services\RegionService.cs:line 36
+   at FarmAppServer.Controllers.RegionsController.PostRegion(PostRegionDto model) in G:\disk E\Projects\FarmApp\FarmAppServer\Controllers\RegionsController.cs:line 130
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.Invoke(HttpContext context, FarmAppContext appContext, ICustomLogger logger) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 35"
+59,,,POST,/api/Regions,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Content-Length: 98 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: f97995ca-4c40-4c5d-8358-6a8e0e30de57 
+",2020-04-25 13:29:54.914530,2020-04-25 13:29:54.914179,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Гидирим"",
+	""Population"" : ""2000""
+}",500,"Content-Type: application/json; charset=utf-8 
+",5b74b9e0-c174-44d0-9bee-3fe8a99e95d6,2020-04-25 13:29:55.758158,OK,"{""Id"":""744e9eca-abac-4372-bdda-f726f6928f8b"",""ResponseTime"":""2020-04-25T13:29:55.7025271+03:00"",""Header"":""Error"",""Result"":""RegionName \""Гидирим\"" is already taken""}","FarmAppServer.Helpers.AppException: RegionName ""Гидирим"" is already taken
+   at FarmAppServer.Services.RegionService.PostRegion(Region region) in G:\disk E\Projects\FarmApp\FarmAppServer\Services\RegionService.cs:line 36
+   at FarmAppServer.Controllers.RegionsController.PostRegion(PostRegionDto model) in G:\disk E\Projects\FarmApp\FarmAppServer\Controllers\RegionsController.cs:line 130
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.Invoke(HttpContext context, FarmAppContext appContext, ICustomLogger logger) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 35"
+87,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 100 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 2e76da81-f2ca-44b0-8e0f-7f638d136204 
+",2020-04-26 19:03:29.055713,2020-04-26 19:03:29.055360,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 6666
+}",500,"Content-Type: application/json; charset=utf-8 
+",e751d196-bb85-4b3f-b7fa-49399639e9bf,2020-04-26 19:04:46.103396,OK,"{""Id"":""bd6faeb7-8fa6-47e9-ac40-1c9f6f46340e"",""ResponseTime"":""2020-04-26T19:04:46.0212919+03:00"",""Header"":""Error"",""Result"":""The instance of entity type 'Region' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.""}","System.InvalidOperationException: The instance of entity type 'Region' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry.set_State(EntityState value)
+   at FarmAppServer.Services.RegionService.UpdateRegion(Region modelRegion) in G:\disk E\Projects\FarmApp\FarmAppServer\Services\RegionService.cs:line 64
+   at FarmAppServer.Controllers.RegionsController.PutRegion(Int32 id, UpdateRegionDto model) in G:\disk E\Projects\FarmApp\FarmAppServer\Controllers\RegionsController.cs:line 100
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.Invoke(HttpContext context, FarmAppContext appContext, ICustomLogger logger) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 35"
+113,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 18641eb3-2e36-4d39-bd09-b58b8617d6c9 
+",2020-04-28 13:12:11.237102,2020-04-28 13:12:11.237041,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 87 
+",4939cfe7-e73b-48be-9780-1350be99dcd2,2020-04-28 13:12:11.415724,OK,"[{""id"":17,""parentId"":5,""name"":""Андреевка"",""population"":430,""isDeleted"":false}]",
+60,,,GET,/api/Regions,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 5cf5c7cb-b98a-4b1a-85e9-133db1fb6327 
+",2020-04-25 13:30:09.655073,2020-04-25 13:30:09.655032,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 1391 
+",4ecb6cd5-b75d-49e1-976c-ec5ceafc4a2e,2020-04-25 13:30:09.832116,OK,"{""results"":[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false},{""id"":14,""parentId"":5,""name"":""Воронково"",""population"":2000,""isDeleted"":false},{""id"":15,""parentId"":5,""name"":""Гидирим"",""population"":2000,""isDeleted"":false},{""id"":2,""parentId"":1,""name"":""Григориопольский район"",""population"":43410,""isDeleted"":false},{""id"":3,""parentId"":1,""name"":""Дубоссарский район"",""population"":33944,""isDeleted"":false},{""id"":4,""parentId"":1,""name"":""Каменский район"",""population"":22929,""isDeleted"":false},{""id"":5,""parentId"":1,""name"":""Рыбницкий район"",""population"":72677,""isDeleted"":false},{""id"":6,""parentId"":1,""name"":""Слободзейский район"",""population"":87080,""isDeleted"":false},{""id"":8,""parentId"":1,""name"":""Бендеры"",""population"":83200,""isDeleted"":false},{""id"":9,""parentId"":2,""name"":""Григориополь"",""population"":9381,""isDeleted"":false},{""id"":10,""parentId"":3,""name"":""Дубоссары"",""population"":15060,""isDeleted"":false},{""id"":11,""parentId"":4,""name"":""Каменка"",""population"":8871,""isDeleted"":false},{""id"":12,""parentId"":5,""name"":""Рыбница"",""population"":44400,""isDeleted"":false},{""id"":13,""parentId"":6,""name"":""Слободзея"",""population"":14618,""isDeleted"":false}],""currentPage"":1,""pageCount"":1,""pageSize"":25,""rowCount"":14,""firstRowOnPage"":1,""lastRowOnPage"":14}",
+61,,,GET,/api/Regions,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 5ac2a884-151b-4ccc-860f-78d878de07e8 
+",2020-04-25 13:30:33.123591,2020-04-25 13:30:33.123540,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 1391 
+",134e8c37-7daa-42e9-a83b-b8d79a94e1aa,2020-04-25 13:30:33.160989,OK,"{""results"":[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false},{""id"":14,""parentId"":5,""name"":""Воронково"",""population"":2000,""isDeleted"":false},{""id"":15,""parentId"":5,""name"":""Гидирим"",""population"":2000,""isDeleted"":false},{""id"":2,""parentId"":1,""name"":""Григориопольский район"",""population"":43410,""isDeleted"":false},{""id"":3,""parentId"":1,""name"":""Дубоссарский район"",""population"":33944,""isDeleted"":false},{""id"":4,""parentId"":1,""name"":""Каменский район"",""population"":22929,""isDeleted"":false},{""id"":5,""parentId"":1,""name"":""Рыбницкий район"",""population"":72677,""isDeleted"":false},{""id"":6,""parentId"":1,""name"":""Слободзейский район"",""population"":87080,""isDeleted"":false},{""id"":8,""parentId"":1,""name"":""Бендеры"",""population"":83200,""isDeleted"":false},{""id"":9,""parentId"":2,""name"":""Григориополь"",""population"":9381,""isDeleted"":false},{""id"":10,""parentId"":3,""name"":""Дубоссары"",""population"":15060,""isDeleted"":false},{""id"":11,""parentId"":4,""name"":""Каменка"",""population"":8871,""isDeleted"":false},{""id"":12,""parentId"":5,""name"":""Рыбница"",""population"":44400,""isDeleted"":false},{""id"":13,""parentId"":6,""name"":""Слободзея"",""population"":14618,""isDeleted"":false}],""currentPage"":1,""pageCount"":1,""pageSize"":25,""rowCount"":14,""firstRowOnPage"":1,""lastRowOnPage"":14}",
+62,,,GET,/api/Regions/1,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 5373aa7d-b728-4b95-8e6c-0eba127221b1 
+",2020-04-25 13:30:45.991481,2020-04-25 13:30:45.991443,"",404,"Content-Type: application/problem+json; charset=utf-8 
+Content-Length: 133 
+",cddad899-5c3e-47e1-b8c5-1f4de47ec791,2020-04-25 13:30:58.375741,OK,"{""type"":""https://tools.ietf.org/html/rfc7231#section-6.5.4"",""title"":""Not Found"",""status"":404,""traceId"":""|5595534b-4211634612266e57.""}",
+63,,,GET,/api/Regions/1,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 03ad1cde-ee94-4095-b603-8de3a2d79883 
+",2020-04-25 13:37:22.693895,2020-04-25 13:37:22.693463,"",405,"Allow: DELETE, PUT 
+",9d16e893-d5e2-4d14-88fc-1e025c5b8c3b,2020-04-25 13:37:22.711437,OK,"",
+64,,,GET,/api/Regions/1,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 2590e758-8b70-45f9-ac9f-ea307e5ed138 
+",2020-04-25 13:37:35.582068,2020-04-25 13:37:35.582042,"",405,"Allow: DELETE, PUT 
+",bfc3d66e-13af-4897-98d2-6ae12394c251,2020-04-25 13:37:35.587288,OK,"",
+65,,,GET,/api/Regions/1,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 225cba7d-0e63-442c-ba9b-86e109e44baa 
+",2020-04-25 13:38:12.267724,2020-04-25 13:38:12.267397,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 145 
+",0b5eb72d-eed3-40a0-b555-a9e06d61fc05,2020-04-25 13:38:26.770119,OK,"{""id"":1,""regionId"":1,""regionTypeId"":1,""regionName"":""ПМР"",""population"":469000,""isDeleted"":false,""regionType"":null,""regions"":[],""pharmacies"":[]}",
+66,,,GET,/api/Regions/1,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: e2e763c3-acaa-46c9-a927-1f2f17e31049 
+",2020-04-25 13:48:39.929215,2020-04-25 13:48:39.928881,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 75 
+",6f575cc6-f06e-4f3a-8fc8-51164b8187fe,2020-04-25 13:48:40.730909,OK,"{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false}",
+99,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 102 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: b5262038-fd47-442d-a114-ef20c362c3bd 
+",2020-04-26 19:56:38.031110,2020-04-26 19:56:38.030374,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 100000
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 88 
+",f5b17e6a-0bfa-45c1-bb65-e3167e1617d9,2020-04-26 19:56:39.042309,OK,"{""id"":17,""parentId"":5,""name"":""Андреевка"",""population"":100000,""isDeleted"":false}",
+67,,,GET,/api/Regions/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: e7f207d1-09e4-47fc-9e9c-bd0e86e08157 
+",2020-04-26 12:01:55.412215,2020-04-26 12:01:55.411886,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 1391 
+",ccf7c588-086d-4eef-b032-a15072443537,2020-04-26 12:01:56.201699,OK,"{""results"":[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false},{""id"":14,""parentId"":5,""name"":""Воронково"",""population"":2000,""isDeleted"":false},{""id"":15,""parentId"":5,""name"":""Гидирим"",""population"":2000,""isDeleted"":false},{""id"":2,""parentId"":1,""name"":""Григориопольский район"",""population"":43410,""isDeleted"":false},{""id"":3,""parentId"":1,""name"":""Дубоссарский район"",""population"":33944,""isDeleted"":false},{""id"":4,""parentId"":1,""name"":""Каменский район"",""population"":22929,""isDeleted"":false},{""id"":5,""parentId"":1,""name"":""Рыбницкий район"",""population"":72677,""isDeleted"":false},{""id"":6,""parentId"":1,""name"":""Слободзейский район"",""population"":87080,""isDeleted"":false},{""id"":8,""parentId"":1,""name"":""Бендеры"",""population"":83200,""isDeleted"":false},{""id"":9,""parentId"":2,""name"":""Григориополь"",""population"":9381,""isDeleted"":false},{""id"":10,""parentId"":3,""name"":""Дубоссары"",""population"":15060,""isDeleted"":false},{""id"":11,""parentId"":4,""name"":""Каменка"",""population"":8871,""isDeleted"":false},{""id"":12,""parentId"":5,""name"":""Рыбница"",""population"":44400,""isDeleted"":false},{""id"":13,""parentId"":6,""name"":""Слободзея"",""population"":14618,""isDeleted"":false}],""currentPage"":1,""pageCount"":1,""pageSize"":25,""rowCount"":14,""firstRowOnPage"":1,""lastRowOnPage"":14}",
+68,,,GET,/api/Regions/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: f5f121dc-aa6a-4e36-afb7-cc5c8d34921d 
+",2020-04-26 12:02:16.862584,2020-04-26 12:02:16.862544,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 1391 
+",3435d65a-4b33-46fe-a875-4c7670904749,2020-04-26 12:02:16.943479,OK,"{""results"":[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false},{""id"":14,""parentId"":5,""name"":""Воронково"",""population"":2000,""isDeleted"":false},{""id"":15,""parentId"":5,""name"":""Гидирим"",""population"":2000,""isDeleted"":false},{""id"":2,""parentId"":1,""name"":""Григориопольский район"",""population"":43410,""isDeleted"":false},{""id"":3,""parentId"":1,""name"":""Дубоссарский район"",""population"":33944,""isDeleted"":false},{""id"":4,""parentId"":1,""name"":""Каменский район"",""population"":22929,""isDeleted"":false},{""id"":5,""parentId"":1,""name"":""Рыбницкий район"",""population"":72677,""isDeleted"":false},{""id"":6,""parentId"":1,""name"":""Слободзейский район"",""population"":87080,""isDeleted"":false},{""id"":8,""parentId"":1,""name"":""Бендеры"",""population"":83200,""isDeleted"":false},{""id"":9,""parentId"":2,""name"":""Григориополь"",""population"":9381,""isDeleted"":false},{""id"":10,""parentId"":3,""name"":""Дубоссары"",""population"":15060,""isDeleted"":false},{""id"":11,""parentId"":4,""name"":""Каменка"",""population"":8871,""isDeleted"":false},{""id"":12,""parentId"":5,""name"":""Рыбница"",""population"":44400,""isDeleted"":false},{""id"":13,""parentId"":6,""name"":""Слободзея"",""population"":14618,""isDeleted"":false}],""currentPage"":1,""pageCount"":1,""pageSize"":25,""rowCount"":14,""firstRowOnPage"":1,""lastRowOnPage"":14}",
+69,,,GET,/api/Regions/GetById/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: b475320a-0048-436f-9333-1ba726c695e0 
+",2020-04-26 12:05:03.111038,2020-04-26 12:05:03.110416,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 75 
+",9e11b051-0630-4a32-bfbc-f8083bc874cd,2020-04-26 12:05:17.764989,OK,"{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false}",
+70,,,GET,/api/Regions/GetById/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 59f6aeff-2810-451e-8ec2-5b252fa9f05a 
+",2020-04-26 12:05:30.213096,2020-04-26 12:05:30.213068,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 83 
+",4fc39052-3280-40d9-9838-da330fbb4b1b,2020-04-26 12:05:30.312520,OK,"{""id"":12,""parentId"":5,""name"":""Рыбница"",""population"":44400,""isDeleted"":false}",
+71,,,GET,/api/Regions/GetById/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 3e4c81d2-773b-4e9d-bd5e-062b5e6f48d2 
+",2020-04-26 12:05:34.219063,2020-04-26 12:05:34.218993,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 97 
+",52f65b9b-9f86-42a9-b751-8de4e7af1984,2020-04-26 12:05:34.250501,OK,"{""id"":5,""parentId"":1,""name"":""Рыбницкий район"",""population"":72677,""isDeleted"":false}",
+72,,,GET,/api/Regions/GetById/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 23ff7398-a660-4f5c-93c0-80dabc69fb08 
+",2020-04-26 12:05:50.732815,2020-04-26 12:05:50.732751,"",404,"Content-Type: application/problem+json; charset=utf-8 
+Content-Length: 133 
+",982db398-9498-40c2-88cd-d29a41ede29c,2020-04-26 12:05:50.785434,OK,"{""type"":""https://tools.ietf.org/html/rfc7231#section-6.5.4"",""title"":""Not Found"",""status"":404,""traceId"":""|4d790ba7-4f068c7ecdc1c378.""}",
+88,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 100 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 2bcf816a-e98b-4fd7-8df3-54f008b515c0 
+",2020-04-26 19:05:14.037685,2020-04-26 19:05:14.037639,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 6666
+}",500,"Content-Type: application/json; charset=utf-8 
+",b88cfe30-3aa5-4cc6-83b3-e82700918841,2020-04-26 19:07:04.209579,OK,"{""Id"":""4d61e66f-1a04-4a3a-ac4a-77c1f7cbb8f4"",""ResponseTime"":""2020-04-26T19:07:04.205193+03:00"",""Header"":""Error"",""Result"":""The instance of entity type 'Region' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.""}","System.InvalidOperationException: The instance of entity type 'Region' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry.set_State(EntityState value)
+   at FarmAppServer.Services.RegionService.UpdateRegion(Region modelRegion) in G:\disk E\Projects\FarmApp\FarmAppServer\Services\RegionService.cs:line 64
+   at FarmAppServer.Controllers.RegionsController.PutRegion(Int32 id, UpdateRegionDto model) in G:\disk E\Projects\FarmApp\FarmAppServer\Controllers\RegionsController.cs:line 100
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.Invoke(HttpContext context, FarmAppContext appContext, ICustomLogger logger) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 35"
+73,,,GET,/api/Regions/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiUm9sZUlkIjoiMSIsIm5iZiI6MTU4NzI5ODg3NCwiZXhwIjoxNTg3Mzg1Mjc0LCJpYXQiOjE1ODcyOTg4NzR9.YcKvqEvPydeZ1O8G0FQLSO41PyzwUScFcDBoQBk2TIQ 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: d0babbfb-412a-4c59-9bee-d2d1c2c6ace7 
+",2020-04-26 12:06:01.080622,2020-04-26 12:06:01.080537,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 1391 
+",c2db0ec2-2139-4476-bf6b-989942c1eef7,2020-04-26 12:06:01.209113,OK,"{""results"":[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false},{""id"":14,""parentId"":5,""name"":""Воронково"",""population"":2000,""isDeleted"":false},{""id"":15,""parentId"":5,""name"":""Гидирим"",""population"":2000,""isDeleted"":false},{""id"":2,""parentId"":1,""name"":""Григориопольский район"",""population"":43410,""isDeleted"":false},{""id"":3,""parentId"":1,""name"":""Дубоссарский район"",""population"":33944,""isDeleted"":false},{""id"":4,""parentId"":1,""name"":""Каменский район"",""population"":22929,""isDeleted"":false},{""id"":5,""parentId"":1,""name"":""Рыбницкий район"",""population"":72677,""isDeleted"":false},{""id"":6,""parentId"":1,""name"":""Слободзейский район"",""population"":87080,""isDeleted"":false},{""id"":8,""parentId"":1,""name"":""Бендеры"",""population"":83200,""isDeleted"":false},{""id"":9,""parentId"":2,""name"":""Григориополь"",""population"":9381,""isDeleted"":false},{""id"":10,""parentId"":3,""name"":""Дубоссары"",""population"":15060,""isDeleted"":false},{""id"":11,""parentId"":4,""name"":""Каменка"",""population"":8871,""isDeleted"":false},{""id"":12,""parentId"":5,""name"":""Рыбница"",""population"":44400,""isDeleted"":false},{""id"":13,""parentId"":6,""name"":""Слободзея"",""population"":14618,""isDeleted"":false}],""currentPage"":1,""pageCount"":1,""pageSize"":25,""rowCount"":14,""firstRowOnPage"":1,""lastRowOnPage"":14}",
+74,,,POST,/api/Drugs/,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 97 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 957e0eaa-077d-4dfc-ad78-f4fcdc8bab21 
+",2020-04-26 12:14:02.804496,2020-04-26 12:14:02.804445,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Строенцы"",
+	""Population"" : 565
+}",400,"Content-Type: application/problem+json; charset=utf-8 
+Content-Length: 221 
+",1639e65c-77a6-4683-98a3-3d9536302953,2020-04-26 12:14:02.879403,OK,"{""errors"":{""DrugName"":[""The DrugName field is required.""]},""type"":""https://tools.ietf.org/html/rfc7231#section-6.5.1"",""title"":""One or more validation errors occurred."",""status"":400,""traceId"":""|4d790ba9-4f068c7ecdc1c378.""}",
+75,,,POST,/api/Regions/,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 97 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: fbd1529f-6196-4b5e-9e7c-d979cf7ff384 
+",2020-04-26 12:14:29.177010,2020-04-26 12:14:29.176956,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Строенцы"",
+	""Population"" : 565
+}",201,"Location: PostRegion 
+Content-Type: application/json; charset=utf-8 
+Content-Length: 173 
+",2f94868c-0787-4bd6-bd4e-18d44ea5af36,2020-04-26 12:14:57.167086,OK,"{""id"":16,""regionId"":5,""regionTypeId"":4,""regionName"":""Строенцы"",""population"":565,""isDeleted"":false,""parentRegion"":null,""regionType"":null,""regions"":[],""pharmacies"":[]}",
+76,,,POST,/api/Regions/,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 99 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: a28915b8-8048-4c92-ae14-b04d5aab0370 
+",2020-04-26 12:19:24.764054,2020-04-26 12:19:24.763696,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 430
+}",201,"Location: PostRegion 
+Content-Type: application/json; charset=utf-8 
+Content-Length: 85 
+",b1346bb7-1aa2-4782-8e1f-f9c7c1cf736f,2020-04-26 12:19:25.789660,OK,"{""id"":17,""parentId"":5,""name"":""Андреевка"",""population"":430,""isDeleted"":false}",
+77,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 104 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: c2197927-2e93-4ea4-9fd7-9d2c55d3c9ba 
+",2020-04-26 12:59:10.965512,2020-04-26 12:59:10.965162,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 10000000
+}",200,"",dbb2732d-5aad-44bf-9792-838706a87b5f,2020-04-26 13:00:19.392188,OK,"",
+78,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 104 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: c93dfbc9-8b6e-46a2-ba5a-11fb4316d7af 
+",2020-04-26 13:11:57.066165,2020-04-26 13:11:57.065788,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 10000000
+}",200,"",65c35543-4d2d-4066-af26-10f0867a5a59,2020-04-26 13:12:15.697193,OK,"",
+79,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 99 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 41236aaa-a955-4e66-ab6b-0609986b2cc5 
+",2020-04-26 13:15:41.209585,2020-04-26 13:15:41.209555,"{
+	""RegionId"" : 1,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 430
+}",200,"",e596f3a5-c347-4cdb-a28c-4beba7261285,2020-04-26 13:15:43.682054,OK,"",
+80,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 99 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 120da26b-4ccf-41db-8328-a74d65f65db0 
+",2020-04-26 13:20:49.210346,2020-04-26 13:20:49.209998,"{
+	""RegionId"" : 1,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 430
+}",200,"",6f2e6b26-3ef5-44f6-a35d-2b9c41790dd8,2020-04-26 13:20:59.365335,OK,"",
+81,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 104 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 56dfed40-57bc-464d-84fa-e79b0d44684a 
+",2020-04-26 13:21:35.643097,2020-04-26 13:21:35.643053,"{
+	""RegionId"" : 1,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 10000000
+}",200,"",2b11872f-9fb2-45d6-9074-eb37e16c6b6a,2020-04-26 13:21:35.719445,OK,"",
+82,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 104 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: c09e6f22-5245-4bc4-87c8-b5ca096faf40 
+",2020-04-26 13:22:07.315841,2020-04-26 13:22:07.315804,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 10000000
+}",200,"",059131d0-1fb9-43fb-8581-d8dc19b443f6,2020-04-26 13:22:07.362900,OK,"",
+83,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 99 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: cbd1d18b-fb53-4415-947e-8d11a820f57d 
+",2020-04-26 13:22:22.260511,2020-04-26 13:22:22.260458,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 430
+}",200,"",2b458b9d-257f-47eb-aa16-6e463db90d71,2020-04-26 13:22:22.304554,OK,"",
+84,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 103 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: f768d627-952d-4796-8dcb-3f93c4e0994a 
+",2020-04-26 13:32:27.196437,2020-04-26 13:32:27.195543,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 1000000
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 89 
+",64263911-1826-453b-9883-c0b8a5ff2382,2020-04-26 13:33:10.062681,OK,"{""id"":17,""parentId"":5,""name"":""Андреевка"",""population"":1000000,""isDeleted"":false}",
+89,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 100 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: b69ac6c7-fa39-4701-84b3-057930df6a22 
+",2020-04-26 19:07:41.103897,2020-04-26 19:07:41.103841,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 6666
+}",500,"Content-Type: application/json; charset=utf-8 
+",ebdbc96b-414e-4eaf-99ed-2df542915858,2020-04-26 19:09:14.445297,OK,"{""Id"":""1b9d8766-dbcd-4868-b1b0-02b45fd00b53"",""ResponseTime"":""2020-04-26T19:08:28.7049721+03:00"",""Header"":""Error"",""Result"":""The instance of entity type 'Region' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.""}","System.InvalidOperationException: The instance of entity type 'Region' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry.set_State(EntityState value)
+   at FarmAppServer.Services.RegionService.UpdateRegion(Region modelRegion) in G:\disk E\Projects\FarmApp\FarmAppServer\Services\RegionService.cs:line 64
+   at FarmAppServer.Controllers.RegionsController.PutRegion(Int32 id, UpdateRegionDto model) in G:\disk E\Projects\FarmApp\FarmAppServer\Controllers\RegionsController.cs:line 100
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.Invoke(HttpContext context, FarmAppContext appContext, ICustomLogger logger) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 35"
+90,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 100 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 37b61025-4a17-4b96-b4f5-9737459b87aa 
+",2020-04-26 19:09:40.464533,2020-04-26 19:09:40.464488,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 6666
+}",500,"Content-Type: application/json; charset=utf-8 
+",f298e411-a581-45cc-b625-2d461eb9f26c,2020-04-26 19:09:44.233748,OK,"{""Id"":""21e2ac6a-5d2c-4e06-8e7a-200591fa8354"",""ResponseTime"":""2020-04-26T19:09:44.2324488+03:00"",""Header"":""Error"",""Result"":""The instance of entity type 'Region' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.""}","System.InvalidOperationException: The instance of entity type 'Region' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry.set_State(EntityState value)
+   at FarmAppServer.Services.RegionService.UpdateRegion(Region modelRegion) in G:\disk E\Projects\FarmApp\FarmAppServer\Services\RegionService.cs:line 64
+   at FarmAppServer.Controllers.RegionsController.PutRegion(Int32 id, UpdateRegionDto model) in G:\disk E\Projects\FarmApp\FarmAppServer\Controllers\RegionsController.cs:line 100
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.Invoke(HttpContext context, FarmAppContext appContext, ICustomLogger logger) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 35"
+91,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 103 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 0b03e176-d754-45e3-992f-016293ffbc4e 
+",2020-04-26 19:25:48.412080,2020-04-26 19:25:48.411554,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 1000000
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 86 
+",a4dc9d65-c078-44ed-ab2d-1fdf05969051,2020-04-26 19:26:21.655360,OK,"{""id"":17,""parentId"":5,""name"":""Андреевка"",""population"":6666,""isDeleted"":false}",
+92,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 103 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 58fcd6d6-a4df-4617-a3b1-986c4e8056d8 
+",2020-04-26 19:27:22.222037,2020-04-26 19:27:22.221638,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 1000000
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 86 
+",6abfeda2-13d4-478b-8652-c2077d2cb3ff,2020-04-26 19:27:42.277122,OK,"{""id"":17,""parentId"":5,""name"":""Андреевка"",""population"":6666,""isDeleted"":false}",
+93,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 103 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 2a71dfa7-5371-4675-81ea-d6aa7fdefe55 
+",2020-04-26 19:30:17.590741,2020-04-26 19:30:17.590363,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 1000000
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 89 
+",462750d9-6aae-4c69-9070-85c07c694fed,2020-04-26 19:30:34.002588,OK,"{""id"":17,""parentId"":5,""name"":""Андреевка"",""population"":1000000,""isDeleted"":false}",
+94,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 103 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 42bb410d-69a1-4624-acda-2e2caa569b12 
+",2020-04-26 19:31:19.535671,2020-04-26 19:31:19.535211,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 1000000
+}",500,"Content-Type: application/json; charset=utf-8 
+",d175b74f-0139-4795-a725-1f70d33a3f8b,2020-04-26 19:31:33.967078,OK,"{""Id"":""e93b0d40-f2bd-47d9-902c-61ae03c2b4d7"",""ResponseTime"":""2020-04-26T19:31:33.8554728+03:00"",""Header"":""Error"",""Result"":""The instance of entity type 'Region' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.""}","System.InvalidOperationException: The instance of entity type 'Region' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry.set_State(EntityState value)
+   at FarmAppServer.Services.RegionService.UpdateRegion(Region modelRegion) in G:\disk E\Projects\FarmApp\FarmAppServer\Services\RegionService.cs:line 68
+   at FarmAppServer.Controllers.RegionsController.PutRegion(Int32 id, UpdateRegionDto model) in G:\disk E\Projects\FarmApp\FarmAppServer\Controllers\RegionsController.cs:line 100
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.Invoke(HttpContext context, FarmAppContext appContext, ICustomLogger logger) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 35"
+95,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 100 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 9773c13c-2978-475f-aadf-f6025b50a9c1 
+",2020-04-26 19:45:40.942839,2020-04-26 19:45:40.942356,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 6666
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 86 
+",a5cdd140-04cc-4434-8b52-2b94a5f1204c,2020-04-26 19:46:00.177440,OK,"{""id"":17,""parentId"":5,""name"":""Андреевка"",""population"":6666,""isDeleted"":false}",
+96,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 100 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: b4a4a85a-56cf-4f13-a9b8-6131f25cec7b 
+",2020-04-26 19:47:59.482028,2020-04-26 19:47:59.481648,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 6666
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 86 
+",2647ae4f-8b17-48a0-8aee-41a0ba7a9dbd,2020-04-26 19:48:00.369408,OK,"{""id"":17,""parentId"":5,""name"":""Андреевка"",""population"":6666,""isDeleted"":false}",
+97,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 91 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 75625074-a43a-4011-95fa-5424e102306a 
+",2020-04-26 19:48:20.181734,2020-04-26 19:48:20.181684,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""fdgdfgdfg"",
+	""Population"" : 3333
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 77 
+",18ddf8c4-60ad-4134-8d47-7b0bde3acada,2020-04-26 19:48:20.269676,OK,"{""id"":17,""parentId"":5,""name"":""fdgdfgdfg"",""population"":3333,""isDeleted"":false}",
+98,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 100 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 96d7144a-77a0-43ed-a347-222ee9e0b7b7 
+",2020-04-26 19:53:46.070065,2020-04-26 19:53:46.069726,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 6666
+}",500,"Content-Type: application/json; charset=utf-8 
+",05fa89ec-1b62-43c0-b471-44a47f8d7950,2020-04-26 19:53:47.134662,OK,"{""Id"":""e0f8dca3-59c7-41a5-9823-34c4f289288c"",""ResponseTime"":""2020-04-26T19:53:47.0504894+03:00"",""Header"":""Error"",""Result"":""The instance of entity type 'Region' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.""}","System.InvalidOperationException: The instance of entity type 'Region' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry.set_State(EntityState value)
+   at FarmAppServer.Services.RegionService.UpdateRegion(Region modelRegion) in G:\disk E\Projects\FarmApp\FarmAppServer\Services\RegionService.cs:line 57
+   at FarmAppServer.Controllers.RegionsController.PutRegion(Int32 id, UpdateRegionDto model) in G:\disk E\Projects\FarmApp\FarmAppServer\Controllers\RegionsController.cs:line 100
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.Invoke(HttpContext context, FarmAppContext appContext, ICustomLogger logger) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 35"
+100,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 102 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 47eec110-22b8-4c62-a6ad-fd6f69b52451 
+",2020-04-26 20:07:14.114261,2020-04-26 20:07:14.113908,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 100000
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 88 
+",aa2ac4c1-94ca-4b39-847d-941b4d01d1ac,2020-04-26 20:07:14.886036,OK,"{""id"":17,""parentId"":5,""name"":""Андреевка"",""population"":100000,""isDeleted"":false}",
+101,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 102 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 85d668a9-8fa2-42bc-8559-3e70e58e4544 
+",2020-04-28 12:09:24.320313,2020-04-28 12:09:24.319920,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 100000
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 88 
+",22faa5f6-4bac-407a-a96c-cdf22dadcaf5,2020-04-28 12:09:25.392518,OK,"{""id"":18,""parentId"":5,""name"":""Андреевка"",""population"":100000,""isDeleted"":false}",
+102,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 101 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 0589845c-c4fc-44e6-b49d-ee123f297d89 
+",2020-04-28 12:09:46.693378,2020-04-28 12:09:46.693345,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 55555
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 87 
+",e822e134-811f-44a8-b304-83a2eac4d001,2020-04-28 12:09:46.778162,OK,"{""id"":19,""parentId"":5,""name"":""Андреевка"",""population"":55555,""isDeleted"":false}",
+103,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 101 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: b9a77683-c89c-48ce-a1e5-ab36e22f9427 
+",2020-04-28 12:34:46.474100,2020-04-28 12:34:46.473653,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 55555
+}",500,"Content-Type: application/json; charset=utf-8 
+",5729004f-520b-4721-804d-01aae7471de6,2020-04-28 12:35:19.035313,OK,"{""Id"":""afbfa9c1-ac23-48d5-aeb8-89178ec41744"",""ResponseTime"":""2020-04-28T12:35:16.4839502+03:00"",""Header"":""Error"",""Result"":""Missing type map configuration or unsupported mapping.\r\n\r\nMapping types:\r\nUpdateRegionDto -> ActionResult`1\r\nFarmAppServer.Models.Regions.UpdateRegionDto -> Microsoft.AspNetCore.Mvc.ActionResult`1[[FarmAppServer.Models.Regions.RegionDto, FarmAppServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]""}","AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+UpdateRegionDto -> ActionResult`1
+FarmAppServer.Models.Regions.UpdateRegionDto -> Microsoft.AspNetCore.Mvc.ActionResult`1[[FarmAppServer.Models.Regions.RegionDto, FarmAppServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+   at lambda_method(Closure , UpdateRegionDto , ActionResult`1 , ResolutionContext )
+   at FarmAppServer.Controllers.RegionsController.PutRegion(Int32 id, UpdateRegionDto model) in G:\disk E\Projects\FarmApp\FarmAppServer\Controllers\RegionsController.cs:line 100
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.Invoke(HttpContext context, FarmAppContext appContext, ICustomLogger logger) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 35"
+104,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 101 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 573b46b5-0550-44af-b240-167d1a4d195c 
+",2020-04-28 12:36:47.706365,2020-04-28 12:36:47.705879,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 55555
+}",500,"Content-Type: application/json; charset=utf-8 
+",a7f8ea66-ffbf-47e9-a3c0-ddfd678e8f20,2020-04-28 12:37:27.101102,OK,"{""Id"":""a15c070f-342d-44fd-aa20-b2e175faae9a"",""ResponseTime"":""2020-04-28T12:37:25.1000275+03:00"",""Header"":""Error"",""Result"":""The entity type 'UpdateRegionDto' was not found. Ensure that the entity type has been added to the model.""}","System.InvalidOperationException: The entity type 'UpdateRegionDto' was not found. Ensure that the entity type has been added to the model.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.GetOrCreateEntry(Object entity)
+   at Microsoft.EntityFrameworkCore.DbContext.EntryWithoutDetectChanges[TEntity](TEntity entity)
+   at Microsoft.EntityFrameworkCore.DbContext.SetEntityState[TEntity](TEntity entity, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.DbContext.Update[TEntity](TEntity entity)
+   at FarmAppServer.Controllers.RegionsController.PutRegion(Int32 id, UpdateRegionDto model) in G:\disk E\Projects\FarmApp\FarmAppServer\Controllers\RegionsController.cs:line 101
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.Invoke(HttpContext context, FarmAppContext appContext, ICustomLogger logger) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 35"
+105,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 101 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 8b90bb16-1e55-46a0-ba6b-5c55df2f6b0b 
+",2020-04-28 12:38:35.573616,2020-04-28 12:38:35.573240,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 55555
+}",204,"",1518d2fe-4b16-4135-a719-d1354ea69220,2020-04-28 12:39:20.459021,OK,"",
+106,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 99 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 591fdd08-c82c-470d-a16e-7b8399d98616 
+",2020-04-28 12:39:35.602325,2020-04-28 12:39:35.602275,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 666
+}",204,"",f54fea6f-f639-4e6a-b81c-daa51e360b37,2020-04-28 12:39:48.161301,OK,"",
+107,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 93 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: b88237c8-4429-44da-adf7-d4a5b69b84ab 
+",2020-04-28 12:43:39.717576,2020-04-28 12:43:39.717130,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""dfgdfg"",
+	""Population"" : 345345345
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 79 
+",0be06d34-e541-46d3-9471-7b7978aa5f2a,2020-04-28 12:43:40.670398,OK,"{""id"":17,""parentId"":5,""name"":""dfgdfg"",""population"":345345345,""isDeleted"":false}",
+108,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 99 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: f126646e-1ff7-4430-ac55-9931ccc3b868 
+",2020-04-28 12:43:58.395057,2020-04-28 12:43:58.394592,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 430
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 85 
+",fd07a147-ef1b-485f-b372-73e61e137017,2020-04-28 12:43:58.494375,OK,"{""id"":17,""parentId"":5,""name"":""Андреевка"",""population"":430,""isDeleted"":false}",
+109,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 99 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 5b71a804-a9d9-41d2-9849-ff83c17b23ef 
+",2020-04-28 12:44:43.636610,2020-04-28 12:44:43.636552,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 430
+}",404,"Content-Type: text/plain; charset=utf-8 
+",1fb90981-7060-4d02-918e-91dbf3be7827,2020-04-28 12:44:43.693829,OK,Region not found,
+110,,,PUT,/api/Regions/,PUT,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 99 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 4e7332e4-7267-4ba4-ba7c-3283b820a4d5 
+",2020-04-28 12:44:51.715509,2020-04-28 12:44:51.715455,"{
+	""RegionId"" : 5,
+	""RegionTypeId"" : 4,
+	""RegionName"" : ""Андреевка"",
+	""Population"" : 430
+}",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 85 
+",25dfe5e0-2586-4cc1-8b16-9bdcbc364f12,2020-04-28 12:44:51.767662,OK,"{""id"":17,""parentId"":5,""name"":""Андреевка"",""population"":430,""isDeleted"":false}",
+114,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: fd3dcc12-8cd6-4374-b9dd-2f8c504e751e 
+",2020-04-28 13:12:17.108826,2020-04-28 13:12:17.108770,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 77 
+",2344ad48-2e71-4f3b-b220-ef4686064465,2020-04-28 13:12:17.253740,OK,"[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false}]",
+115,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 40c1c6c5-c835-45c7-bdf7-6e82d7ce72f6 
+",2020-04-28 13:12:23.241996,2020-04-28 13:12:23.241953,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 85 
+",3b210b16-e00f-4d0b-af28-d96343a0a3eb,2020-04-28 13:12:23.302514,OK,"[{""id"":16,""parentId"":5,""name"":""Строенцы"",""population"":565,""isDeleted"":false}]",
+116,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 5e40e16a-79d2-43b9-a198-43e379a9a101 
+",2020-04-28 13:12:32.918332,2020-04-28 13:12:32.918291,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 85 
+",bf051edf-7acf-4d56-8b2e-ee73f74c5e1a,2020-04-28 13:12:32.960415,OK,"[{""id"":16,""parentId"":5,""name"":""Строенцы"",""population"":565,""isDeleted"":false}]",
+117,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: ef12c559-9442-4163-8fee-7fb6d843dc51 
+",2020-04-28 13:12:44.274467,2020-04-28 13:12:44.274428,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 77 
+",dd433e0b-8a28-414d-9f4b-0b12a75eb502,2020-04-28 13:12:44.317020,OK,"[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false}]",
+118,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 0204d9fe-61db-4f2f-bc9e-f19064177e54 
+",2020-04-28 13:12:52.071530,2020-04-28 13:12:52.071499,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 77 
+",090fa5a5-359a-41b5-942e-dded8a53220b,2020-04-28 13:12:52.103573,OK,"[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false}]",
+119,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 3dd25f60-34e5-4900-b4c2-380ac255bd58 
+",2020-04-28 13:15:15.289303,2020-04-28 13:15:15.288962,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 88 
+",7b6ae1fa-b337-4c10-a270-f97bb0cb3f76,2020-04-28 13:15:16.103384,OK,"[{""id"":14,""parentId"":5,""name"":""Воронково"",""population"":2000,""isDeleted"":false}]",
+120,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 2c01870a-f19a-4abc-81ef-767f4e29c246 
+",2020-04-28 13:23:54.850889,2020-04-28 13:23:54.850536,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 1294 
+",33ef9717-e218-4159-a413-29b666d22cb6,2020-04-28 13:24:36.565231,OK,"[{""id"":14,""parentId"":5,""name"":""Воронково"",""population"":2000,""isDeleted"":false},{""id"":15,""parentId"":5,""name"":""Гидирим"",""population"":2000,""isDeleted"":false},{""id"":16,""parentId"":5,""name"":""Строенцы"",""population"":565,""isDeleted"":false},{""id"":17,""parentId"":5,""name"":""Андреевка"",""population"":430,""isDeleted"":false},{""id"":2,""parentId"":1,""name"":""Григориопольский район"",""population"":43410,""isDeleted"":false},{""id"":3,""parentId"":1,""name"":""Дубоссарский район"",""population"":33944,""isDeleted"":false},{""id"":4,""parentId"":1,""name"":""Каменский район"",""population"":22929,""isDeleted"":false},{""id"":5,""parentId"":1,""name"":""Рыбницкий район"",""population"":72677,""isDeleted"":false},{""id"":6,""parentId"":1,""name"":""Слободзейский район"",""population"":87080,""isDeleted"":false},{""id"":9,""parentId"":2,""name"":""Григориополь"",""population"":9381,""isDeleted"":false},{""id"":10,""parentId"":3,""name"":""Дубоссары"",""population"":15060,""isDeleted"":false},{""id"":11,""parentId"":4,""name"":""Каменка"",""population"":8871,""isDeleted"":false},{""id"":12,""parentId"":5,""name"":""Рыбница"",""population"":44400,""isDeleted"":false},{""id"":13,""parentId"":6,""name"":""Слободзея"",""population"":14618,""isDeleted"":false}]",
+121,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: a439824f-f228-41a7-a93a-4a58dfd45fa6 
+",2020-04-28 13:25:01.124063,2020-04-28 13:25:01.124015,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 414 
+",13716c73-6194-4123-86df-dd97a8291ef6,2020-04-28 13:25:01.227672,OK,"[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false},{""id"":14,""parentId"":5,""name"":""Воронково"",""population"":2000,""isDeleted"":false},{""id"":15,""parentId"":5,""name"":""Гидирим"",""population"":2000,""isDeleted"":false},{""id"":8,""parentId"":1,""name"":""Бендеры"",""population"":83200,""isDeleted"":false},{""id"":12,""parentId"":5,""name"":""Рыбница"",""population"":44400,""isDeleted"":false}]",
+122,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 1fad8dc0-d88a-47c7-9a5d-21aca40c05d8 
+",2020-04-28 13:25:10.203195,2020-04-28 13:25:10.203141,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 171 
+",aca41a63-9e8a-40f5-9742-5d8463f56860,2020-04-28 13:25:10.234163,OK,"[{""id"":14,""parentId"":5,""name"":""Воронково"",""population"":2000,""isDeleted"":false},{""id"":15,""parentId"":5,""name"":""Гидирим"",""population"":2000,""isDeleted"":false}]",
+123,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 7ec2e88b-ed9d-4e19-bf91-a20919f32f5a 
+",2020-04-28 13:28:07.521676,2020-04-28 13:28:07.521623,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 678 
+",4b953aa5-0460-4600-9be2-7ff08b7fd410,2020-04-28 13:28:07.566454,OK,"[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false},{""id"":2,""parentId"":1,""name"":""Григориопольский район"",""population"":43410,""isDeleted"":false},{""id"":3,""parentId"":1,""name"":""Дубоссарский район"",""population"":33944,""isDeleted"":false},{""id"":4,""parentId"":1,""name"":""Каменский район"",""population"":22929,""isDeleted"":false},{""id"":5,""parentId"":1,""name"":""Рыбницкий район"",""population"":72677,""isDeleted"":false},{""id"":6,""parentId"":1,""name"":""Слободзейский район"",""population"":87080,""isDeleted"":false},{""id"":8,""parentId"":1,""name"":""Бендеры"",""population"":83200,""isDeleted"":false}]",
+134,,,GET,/api/Regions,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 70ac4707-41e2-4f59-b0ae-3854d40f0e08 
+",2020-04-28 13:42:10.131485,2020-04-28 13:42:10.131435,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 1740 
+",4af6a5e1-a544-41d6-8fee-9bf52a4f52c6,2020-04-28 13:42:10.255045,OK,"{""results"":[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false},{""id"":14,""parentId"":5,""name"":""Воронково"",""population"":2000,""isDeleted"":false},{""id"":15,""parentId"":5,""name"":""Гидирим"",""population"":2000,""isDeleted"":false},{""id"":16,""parentId"":5,""name"":""Строенцы"",""population"":565,""isDeleted"":false},{""id"":17,""parentId"":5,""name"":""Андреевка"",""population"":430,""isDeleted"":false},{""id"":7,""parentId"":1,""name"":""Тирасполь"",""population"":133807,""isDeleted"":false},{""id"":18,""parentId"":1,""name"":""Пиздюшаны"",""population"":999999999,""isDeleted"":true},{""id"":2,""parentId"":1,""name"":""Григориопольский район"",""population"":43410,""isDeleted"":false},{""id"":3,""parentId"":1,""name"":""Дубоссарский район"",""population"":33944,""isDeleted"":false},{""id"":4,""parentId"":1,""name"":""Каменский район"",""population"":22929,""isDeleted"":false},{""id"":5,""parentId"":1,""name"":""Рыбницкий район"",""population"":72677,""isDeleted"":false},{""id"":6,""parentId"":1,""name"":""Слободзейский район"",""population"":87080,""isDeleted"":false},{""id"":8,""parentId"":1,""name"":""Бендеры"",""population"":83200,""isDeleted"":false},{""id"":9,""parentId"":2,""name"":""Григориополь"",""population"":9381,""isDeleted"":false},{""id"":10,""parentId"":3,""name"":""Дубоссары"",""population"":15060,""isDeleted"":false},{""id"":11,""parentId"":4,""name"":""Каменка"",""population"":8871,""isDeleted"":false},{""id"":12,""parentId"":5,""name"":""Рыбница"",""population"":44400,""isDeleted"":false},{""id"":13,""parentId"":6,""name"":""Слободзея"",""population"":14618,""isDeleted"":false}],""currentPage"":1,""pageCount"":1,""pageSize"":25,""rowCount"":18,""firstRowOnPage"":1,""lastRowOnPage"":18}",
+124,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 746e2a3d-12b5-4839-b4eb-bf74752c33cd 
+",2020-04-28 13:30:05.279853,2020-04-28 13:30:05.279808,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 766 
+",3148a3c3-f6a7-49e8-a557-72d269c11ac5,2020-04-28 13:30:05.391090,OK,"[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false},{""id"":7,""parentId"":1,""name"":""Тирасполь"",""population"":133807,""isDeleted"":false},{""id"":2,""parentId"":1,""name"":""Григориопольский район"",""population"":43410,""isDeleted"":false},{""id"":3,""parentId"":1,""name"":""Дубоссарский район"",""population"":33944,""isDeleted"":false},{""id"":4,""parentId"":1,""name"":""Каменский район"",""population"":22929,""isDeleted"":false},{""id"":5,""parentId"":1,""name"":""Рыбницкий район"",""population"":72677,""isDeleted"":false},{""id"":6,""parentId"":1,""name"":""Слободзейский район"",""population"":87080,""isDeleted"":false},{""id"":8,""parentId"":1,""name"":""Бендеры"",""population"":83200,""isDeleted"":false}]",
+125,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: c04ca7ef-86f6-4bbf-9585-8effab81b320 
+",2020-04-28 13:31:56.944159,2020-04-28 13:31:56.943633,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 77 
+",bfbfeff3-7ce9-4832-b56e-bca56d166765,2020-04-28 13:31:57.748085,OK,"[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false}]",
+126,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 1060c0a4-3ef2-4573-9d07-9cc8b0a6b76a 
+",2020-04-28 13:32:06.191037,2020-04-28 13:32:06.191008,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 450 
+",55b19bb6-5afa-488a-8bf7-41b4563b021b,2020-04-28 13:32:06.283096,OK,"[{""id"":14,""parentId"":5,""name"":""Воронково"",""population"":2000,""isDeleted"":false},{""id"":15,""parentId"":5,""name"":""Гидирим"",""population"":2000,""isDeleted"":false},{""id"":4,""parentId"":1,""name"":""Каменский район"",""population"":22929,""isDeleted"":false},{""id"":5,""parentId"":1,""name"":""Рыбницкий район"",""population"":72677,""isDeleted"":false},{""id"":8,""parentId"":1,""name"":""Бендеры"",""population"":83200,""isDeleted"":false}]",
+127,,,GET,/api/Regions,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: c3f9b0d6-3627-4bf6-a1cb-7e814503846e 
+",2020-04-28 13:36:44.269964,2020-04-28 13:36:44.269912,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 1649 
+",f2789c33-eb6c-427e-97ef-c371336a8e5f,2020-04-28 13:36:44.355986,OK,"{""results"":[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false},{""id"":14,""parentId"":5,""name"":""Воронково"",""population"":2000,""isDeleted"":false},{""id"":15,""parentId"":5,""name"":""Гидирим"",""population"":2000,""isDeleted"":false},{""id"":16,""parentId"":5,""name"":""Строенцы"",""population"":565,""isDeleted"":false},{""id"":17,""parentId"":5,""name"":""Андреевка"",""population"":430,""isDeleted"":false},{""id"":7,""parentId"":1,""name"":""Тирасполь"",""population"":133807,""isDeleted"":false},{""id"":2,""parentId"":1,""name"":""Григориопольский район"",""population"":43410,""isDeleted"":false},{""id"":3,""parentId"":1,""name"":""Дубоссарский район"",""population"":33944,""isDeleted"":false},{""id"":4,""parentId"":1,""name"":""Каменский район"",""population"":22929,""isDeleted"":false},{""id"":5,""parentId"":1,""name"":""Рыбницкий район"",""population"":72677,""isDeleted"":false},{""id"":6,""parentId"":1,""name"":""Слободзейский район"",""population"":87080,""isDeleted"":false},{""id"":8,""parentId"":1,""name"":""Бендеры"",""population"":83200,""isDeleted"":false},{""id"":9,""parentId"":2,""name"":""Григориополь"",""population"":9381,""isDeleted"":false},{""id"":10,""parentId"":3,""name"":""Дубоссары"",""population"":15060,""isDeleted"":false},{""id"":11,""parentId"":4,""name"":""Каменка"",""population"":8871,""isDeleted"":false},{""id"":12,""parentId"":5,""name"":""Рыбница"",""population"":44400,""isDeleted"":false},{""id"":13,""parentId"":6,""name"":""Слободзея"",""population"":14618,""isDeleted"":false}],""currentPage"":1,""pageCount"":1,""pageSize"":25,""rowCount"":17,""firstRowOnPage"":1,""lastRowOnPage"":17}",
+128,,,GET,/api/Regions,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: deaabf1e-a038-4ef0-9cfd-b90ea0791405 
+",2020-04-28 13:38:20.442552,2020-04-28 13:38:20.442216,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 1740 
+",ceea28e8-9682-460a-8eec-ddbe56201e6c,2020-04-28 13:38:21.177806,OK,"{""results"":[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false},{""id"":14,""parentId"":5,""name"":""Воронково"",""population"":2000,""isDeleted"":false},{""id"":15,""parentId"":5,""name"":""Гидирим"",""population"":2000,""isDeleted"":false},{""id"":16,""parentId"":5,""name"":""Строенцы"",""population"":565,""isDeleted"":false},{""id"":17,""parentId"":5,""name"":""Андреевка"",""population"":430,""isDeleted"":false},{""id"":7,""parentId"":1,""name"":""Тирасполь"",""population"":133807,""isDeleted"":false},{""id"":18,""parentId"":1,""name"":""Пиздюшаны"",""population"":999999999,""isDeleted"":true},{""id"":2,""parentId"":1,""name"":""Григориопольский район"",""population"":43410,""isDeleted"":false},{""id"":3,""parentId"":1,""name"":""Дубоссарский район"",""population"":33944,""isDeleted"":false},{""id"":4,""parentId"":1,""name"":""Каменский район"",""population"":22929,""isDeleted"":false},{""id"":5,""parentId"":1,""name"":""Рыбницкий район"",""population"":72677,""isDeleted"":false},{""id"":6,""parentId"":1,""name"":""Слободзейский район"",""population"":87080,""isDeleted"":false},{""id"":8,""parentId"":1,""name"":""Бендеры"",""population"":83200,""isDeleted"":false},{""id"":9,""parentId"":2,""name"":""Григориополь"",""population"":9381,""isDeleted"":false},{""id"":10,""parentId"":3,""name"":""Дубоссары"",""population"":15060,""isDeleted"":false},{""id"":11,""parentId"":4,""name"":""Каменка"",""population"":8871,""isDeleted"":false},{""id"":12,""parentId"":5,""name"":""Рыбница"",""population"":44400,""isDeleted"":false},{""id"":13,""parentId"":6,""name"":""Слободзея"",""population"":14618,""isDeleted"":false}],""currentPage"":1,""pageCount"":1,""pageSize"":25,""rowCount"":18,""firstRowOnPage"":1,""lastRowOnPage"":18}",
+129,,,GET,/api/Regions,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: eb893973-7538-4385-98b1-800d77fac15a 
+",2020-04-28 13:38:41.319849,2020-04-28 13:38:41.319816,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 1740 
+",f765c505-4d7e-4438-9a50-4a01d0c7b8b1,2020-04-28 13:39:23.862063,OK,"{""results"":[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false},{""id"":14,""parentId"":5,""name"":""Воронково"",""population"":2000,""isDeleted"":false},{""id"":15,""parentId"":5,""name"":""Гидирим"",""population"":2000,""isDeleted"":false},{""id"":16,""parentId"":5,""name"":""Строенцы"",""population"":565,""isDeleted"":false},{""id"":17,""parentId"":5,""name"":""Андреевка"",""population"":430,""isDeleted"":false},{""id"":7,""parentId"":1,""name"":""Тирасполь"",""population"":133807,""isDeleted"":false},{""id"":18,""parentId"":1,""name"":""Пиздюшаны"",""population"":999999999,""isDeleted"":true},{""id"":2,""parentId"":1,""name"":""Григориопольский район"",""population"":43410,""isDeleted"":false},{""id"":3,""parentId"":1,""name"":""Дубоссарский район"",""population"":33944,""isDeleted"":false},{""id"":4,""parentId"":1,""name"":""Каменский район"",""population"":22929,""isDeleted"":false},{""id"":5,""parentId"":1,""name"":""Рыбницкий район"",""population"":72677,""isDeleted"":false},{""id"":6,""parentId"":1,""name"":""Слободзейский район"",""population"":87080,""isDeleted"":false},{""id"":8,""parentId"":1,""name"":""Бендеры"",""population"":83200,""isDeleted"":false},{""id"":9,""parentId"":2,""name"":""Григориополь"",""population"":9381,""isDeleted"":false},{""id"":10,""parentId"":3,""name"":""Дубоссары"",""population"":15060,""isDeleted"":false},{""id"":11,""parentId"":4,""name"":""Каменка"",""population"":8871,""isDeleted"":false},{""id"":12,""parentId"":5,""name"":""Рыбница"",""population"":44400,""isDeleted"":false},{""id"":13,""parentId"":6,""name"":""Слободзея"",""population"":14618,""isDeleted"":false}],""currentPage"":1,""pageCount"":1,""pageSize"":25,""rowCount"":18,""firstRowOnPage"":1,""lastRowOnPage"":18}",
+130,,,POST,/api/Regions/,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 139 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: fb773688-bb4a-4a17-89d5-b2c019faf32b 
+",2020-04-28 13:40:53.554165,2020-04-28 13:40:53.554135,"{
+	""PharmacyId"" : 1,
+	""PharmacyName"" : ""Айболит № 10"",
+	""RegionId"" : 1,
+	""IsMode"" : true,
+	""IsType"" : true,
+	""IsNetwork"" : false
+}",400,"Content-Type: application/problem+json; charset=utf-8 
+Content-Length: 225 
+",93baabbf-0b82-4344-a123-a69705cea027,2020-04-28 13:40:53.667926,OK,"{""errors"":{""RegionName"":[""The RegionName field is required.""]},""type"":""https://tools.ietf.org/html/rfc7231#section-6.5.1"",""title"":""One or more validation errors occurred."",""status"":400,""traceId"":""|b4cf6c44-4f1acaddf30c5dbd.""}",
+131,,,POST,/api/Regions/18,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 139 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 0ffad9de-142a-4547-8980-d0086f9c0d39 
+",2020-04-28 13:41:02.771066,2020-04-28 13:41:02.771010,"{
+	""PharmacyId"" : 1,
+	""PharmacyName"" : ""Айболит № 10"",
+	""RegionId"" : 1,
+	""IsMode"" : true,
+	""IsType"" : true,
+	""IsNetwork"" : false
+}",404,"",0ed7488f-6dbc-41f7-9159-40c5083e79cb,2020-04-28 13:41:02.771183,OK,"",
+132,,,POST,/api/Regions/18,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 139 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 7a3fe320-902d-48e4-8907-0ff982e621b3 
+",2020-04-28 13:41:23.125599,2020-04-28 13:41:23.125227,"{
+	""PharmacyId"" : 1,
+	""PharmacyName"" : ""Айболит № 10"",
+	""RegionId"" : 1,
+	""IsMode"" : true,
+	""IsType"" : true,
+	""IsNetwork"" : false
+}",404,"",f05bb19b-f1af-4e4a-8c7f-7fd724686095,2020-04-28 13:41:23.128564,OK,"",
+133,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 7823b0f3-7930-4037-8fe4-c68fca5e3c8d 
+",2020-04-28 13:42:02.653763,2020-04-28 13:42:02.653734,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 92 
+",0833b9f3-c48b-403b-a699-8f84b01766b8,2020-04-28 13:42:03.442323,OK,"[{""id"":18,""parentId"":1,""name"":""Пиздюшаны"",""population"":999999999,""isDeleted"":true}]",
+135,,,GET,/api/Regions,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 858e6035-d4e7-4397-9b78-bcfbc02aa151 
+",2020-04-28 16:18:45.383853,2020-04-28 16:18:45.383804,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 1740 
+",716bc89e-a9c2-415d-93a2-a7c62a16b3b9,2020-04-28 16:18:45.472205,OK,"{""results"":[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false},{""id"":14,""parentId"":5,""name"":""Воронково"",""population"":2000,""isDeleted"":false},{""id"":15,""parentId"":5,""name"":""Гидирим"",""population"":2000,""isDeleted"":false},{""id"":16,""parentId"":5,""name"":""Строенцы"",""population"":565,""isDeleted"":false},{""id"":17,""parentId"":5,""name"":""Андреевка"",""population"":430,""isDeleted"":false},{""id"":7,""parentId"":1,""name"":""Тирасполь"",""population"":133807,""isDeleted"":false},{""id"":18,""parentId"":1,""name"":""Пиздюшаны"",""population"":999999999,""isDeleted"":true},{""id"":2,""parentId"":1,""name"":""Григориопольский район"",""population"":43410,""isDeleted"":false},{""id"":3,""parentId"":1,""name"":""Дубоссарский район"",""population"":33944,""isDeleted"":false},{""id"":4,""parentId"":1,""name"":""Каменский район"",""population"":22929,""isDeleted"":false},{""id"":5,""parentId"":1,""name"":""Рыбницкий район"",""population"":72677,""isDeleted"":false},{""id"":6,""parentId"":1,""name"":""Слободзейский район"",""population"":87080,""isDeleted"":false},{""id"":8,""parentId"":1,""name"":""Бендеры"",""population"":83200,""isDeleted"":false},{""id"":9,""parentId"":2,""name"":""Григориополь"",""population"":9381,""isDeleted"":false},{""id"":10,""parentId"":3,""name"":""Дубоссары"",""population"":15060,""isDeleted"":false},{""id"":11,""parentId"":4,""name"":""Каменка"",""population"":8871,""isDeleted"":false},{""id"":12,""parentId"":5,""name"":""Рыбница"",""population"":44400,""isDeleted"":false},{""id"":13,""parentId"":6,""name"":""Слободзея"",""population"":14618,""isDeleted"":false}],""currentPage"":1,""pageCount"":1,""pageSize"":25,""rowCount"":18,""firstRowOnPage"":1,""lastRowOnPage"":18}",
+136,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: d0c6bc8c-0238-464c-a6bc-2df1a5efe5aa 
+",2020-04-28 16:19:02.216146,2020-04-28 16:19:02.216100,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 1046 
+",1035ae2d-1b30-4726-8267-7815ed76cf53,2020-04-28 16:19:02.260650,OK,"[{""id"":14,""parentId"":5,""name"":""Воронково"",""population"":2000,""isDeleted"":false},{""id"":16,""parentId"":5,""name"":""Строенцы"",""population"":565,""isDeleted"":false},{""id"":7,""parentId"":1,""name"":""Тирасполь"",""population"":133807,""isDeleted"":false},{""id"":2,""parentId"":1,""name"":""Григориопольский район"",""population"":43410,""isDeleted"":false},{""id"":3,""parentId"":1,""name"":""Дубоссарский район"",""population"":33944,""isDeleted"":false},{""id"":4,""parentId"":1,""name"":""Каменский район"",""population"":22929,""isDeleted"":false},{""id"":5,""parentId"":1,""name"":""Рыбницкий район"",""population"":72677,""isDeleted"":false},{""id"":6,""parentId"":1,""name"":""Слободзейский район"",""population"":87080,""isDeleted"":false},{""id"":9,""parentId"":2,""name"":""Григориополь"",""population"":9381,""isDeleted"":false},{""id"":10,""parentId"":3,""name"":""Дубоссары"",""population"":15060,""isDeleted"":false},{""id"":13,""parentId"":6,""name"":""Слободзея"",""population"":14618,""isDeleted"":false}]",
+137,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 0499b565-ca71-4773-9565-23cbe85d78c2 
+",2020-04-28 16:19:13.113981,2020-04-28 16:19:13.113933,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 519 
+",a849e6a5-b44e-4a13-9efa-5679a11c87d3,2020-04-28 16:19:13.161840,OK,"[{""id"":2,""parentId"":1,""name"":""Григориопольский район"",""population"":43410,""isDeleted"":false},{""id"":3,""parentId"":1,""name"":""Дубоссарский район"",""population"":33944,""isDeleted"":false},{""id"":4,""parentId"":1,""name"":""Каменский район"",""population"":22929,""isDeleted"":false},{""id"":5,""parentId"":1,""name"":""Рыбницкий район"",""population"":72677,""isDeleted"":false},{""id"":6,""parentId"":1,""name"":""Слободзейский район"",""population"":87080,""isDeleted"":false}]",
+138,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: bbaa41a3-7d2e-4051-95ec-368970c52de4 
+",2020-04-28 16:19:21.349328,2020-04-28 16:19:21.349287,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 519 
+",bc21245c-e572-4e17-8731-eaf2194a1b04,2020-04-28 16:19:21.382439,OK,"[{""id"":2,""parentId"":1,""name"":""Григориопольский район"",""population"":43410,""isDeleted"":false},{""id"":3,""parentId"":1,""name"":""Дубоссарский район"",""population"":33944,""isDeleted"":false},{""id"":4,""parentId"":1,""name"":""Каменский район"",""population"":22929,""isDeleted"":false},{""id"":5,""parentId"":1,""name"":""Рыбницкий район"",""population"":72677,""isDeleted"":false},{""id"":6,""parentId"":1,""name"":""Слободзейский район"",""population"":87080,""isDeleted"":false}]",
+139,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: dd423ccd-db3b-4857-bece-e1665086ee9f 
+",2020-04-28 16:19:41.772164,2020-04-28 16:19:41.772118,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 193 
+",b24241f7-8648-4982-a158-e3456b2c0715,2020-04-28 16:19:41.806359,OK,"[{""id"":7,""parentId"":1,""name"":""Тирасполь"",""population"":133807,""isDeleted"":false},{""id"":3,""parentId"":1,""name"":""Дубоссарский район"",""population"":33944,""isDeleted"":false}]",
+140,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 5089af35-f20c-4341-a761-4473b82cb822 
+",2020-04-28 17:13:23.991308,2020-04-28 17:13:23.990955,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 193 
+",ef84ea5f-1ca4-4d9b-8024-0260711654fe,2020-04-28 17:13:24.768573,OK,"[{""id"":7,""parentId"":1,""name"":""Тирасполь"",""population"":133807,""isDeleted"":false},{""id"":3,""parentId"":1,""name"":""Дубоссарский район"",""population"":33944,""isDeleted"":false}]",
+141,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 59e6826f-b1d9-4c5b-a0ed-c143cc7d5b6d 
+",2020-04-28 17:13:40.433573,2020-04-28 17:13:40.433527,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 2 
+",c33168b1-39b3-42c6-b6ab-0cfb910f384a,2020-04-28 17:13:40.526177,OK,[],
+142,,,GET,/api/Regions/SearchRegion/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: d814f9b4-83ba-479a-89c1-4a795d516d1b 
+",2020-04-28 17:13:50.922118,2020-04-28 17:13:50.921843,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 77 
+",b593fcc3-3e82-4d1b-b272-648ab3a8ccf7,2020-04-28 17:13:50.970064,OK,"[{""id"":1,""parentId"":1,""name"":""ПМР"",""population"":469000,""isDeleted"":false}]",
+143,,,GET,/api/RegionTypes,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 6d066213-b6bd-45e5-b6b2-894ecd0621f7 
+",2020-04-28 17:26:06.269142,2020-04-28 17:26:06.268625,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 349 
+",dc5fec36-c097-4691-8ca6-65a72ce601d1,2020-04-28 17:26:06.947625,OK,"[{""id"":1,""regionTypeName"":""Государство"",""isDeleted"":false},{""id"":2,""regionTypeName"":""Субъект(регион)"",""isDeleted"":false},{""id"":3,""regionTypeName"":""Город"",""isDeleted"":false},{""id"":4,""regionTypeName"":""Сёла, деревни и др."",""isDeleted"":false},{""id"":5,""regionTypeName"":""Микрорайон"",""isDeleted"":false}]",
+144,,,GET,/api/RegionTypes/1,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 1dabe127-2d49-4c07-a434-c6845387882d 
+",2020-04-28 17:30:22.939650,2020-04-28 17:30:22.939596,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 81 
+",bd587ffb-a429-48cf-afdc-f1a180aff045,2020-04-28 17:30:23.131567,OK,"{""id"":1,""regionTypeName"":""Государство"",""isDeleted"":false,""regions"":[]}",
+145,,,GET,/api/RegionTypes,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 41288e00-a56d-4a2a-baae-69c6427b09fa 
+",2020-04-28 18:02:55.035524,2020-04-28 18:02:55.035201,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 349 
+",4801500d-3490-4844-8886-e63e17c248c3,2020-04-28 18:02:55.721329,OK,"[{""id"":1,""regionTypeName"":""Государство"",""isDeleted"":false},{""id"":2,""regionTypeName"":""Субъект(регион)"",""isDeleted"":false},{""id"":3,""regionTypeName"":""Город"",""isDeleted"":false},{""id"":4,""regionTypeName"":""Сёла, деревни и др."",""isDeleted"":false},{""id"":5,""regionTypeName"":""Микрорайон"",""isDeleted"":false}]",
+146,,,GET,/api/RegionTypes,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 63ea0010-5eef-4185-8b1e-bb21a10dbaa1 
+",2020-04-28 18:04:12.319135,2020-04-28 18:04:12.319086,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 349 
+",b595e3e4-0621-4985-a3e5-afad74acc76c,2020-04-28 18:04:12.387346,OK,"[{""id"":1,""regionTypeName"":""Государство"",""isDeleted"":false},{""id"":2,""regionTypeName"":""Субъект(регион)"",""isDeleted"":false},{""id"":3,""regionTypeName"":""Город"",""isDeleted"":false},{""id"":4,""regionTypeName"":""Сёла, деревни и др."",""isDeleted"":false},{""id"":5,""regionTypeName"":""Микрорайон"",""isDeleted"":false}]",
+147,,,GET,/api/RegionTypes/1,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: b500d0e6-c97b-4635-8712-0568adefcf65 
+",2020-04-28 18:04:16.073947,2020-04-28 18:04:16.073899,"",404,"Content-Type: application/problem+json; charset=utf-8 
+Content-Length: 133 
+",cf2cb0ac-b6e6-485a-a9d3-7a89ca970800,2020-04-28 18:04:16.238361,OK,"{""type"":""https://tools.ietf.org/html/rfc7231#section-6.5.4"",""title"":""Not Found"",""status"":404,""traceId"":""|f9a79d13-4ae5003fa6e8359e.""}",
+148,,,GET,/api/RegionTypes/1,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: a9dfc282-3f23-4e4e-8903-399202f36b59 
+",2020-04-28 18:04:28.405731,2020-04-28 18:04:28.405677,"",404,"Content-Type: application/problem+json; charset=utf-8 
+Content-Length: 133 
+",c84ce166-9350-413f-afdb-09b60e983edc,2020-04-28 18:04:28.454881,OK,"{""type"":""https://tools.ietf.org/html/rfc7231#section-6.5.4"",""title"":""Not Found"",""status"":404,""traceId"":""|f9a79d14-4ae5003fa6e8359e.""}",
+149,,,GET,/api/RegionTypes/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 42e7a73b-d00c-446c-a20c-5b4646a0c3d7 
+",2020-04-28 18:04:47.952598,2020-04-28 18:04:47.952564,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 349 
+",a88a5697-d45c-453b-9282-054fcc489503,2020-04-28 18:04:47.981661,OK,"[{""id"":1,""regionTypeName"":""Государство"",""isDeleted"":false},{""id"":2,""regionTypeName"":""Субъект(регион)"",""isDeleted"":false},{""id"":3,""regionTypeName"":""Город"",""isDeleted"":false},{""id"":4,""regionTypeName"":""Сёла, деревни и др."",""isDeleted"":false},{""id"":5,""regionTypeName"":""Микрорайон"",""isDeleted"":false}]",
+150,,,GET,/api/RegionTypes/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: e6a8f731-ef97-40e7-8c84-6215b391af2b 
+",2020-04-28 18:04:56.926158,2020-04-28 18:04:56.926111,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 349 
+",74bb667e-014c-4b24-a906-03096eef88b6,2020-04-28 18:04:56.963425,OK,"[{""id"":1,""regionTypeName"":""Государство"",""isDeleted"":false},{""id"":2,""regionTypeName"":""Субъект(регион)"",""isDeleted"":false},{""id"":3,""regionTypeName"":""Город"",""isDeleted"":false},{""id"":4,""regionTypeName"":""Сёла, деревни и др."",""isDeleted"":false},{""id"":5,""regionTypeName"":""Микрорайон"",""isDeleted"":false}]",
+151,,,GET,/api/RegionTypes/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 2daf2352-6699-4fc6-8618-44bdedfd49f7 
+",2020-04-28 18:05:00.072329,2020-04-28 18:05:00.072038,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 349 
+",059b11ad-05e8-45b5-8081-4b45d8770964,2020-04-28 18:05:00.099524,OK,"[{""id"":1,""regionTypeName"":""Государство"",""isDeleted"":false},{""id"":2,""regionTypeName"":""Субъект(регион)"",""isDeleted"":false},{""id"":3,""regionTypeName"":""Город"",""isDeleted"":false},{""id"":4,""regionTypeName"":""Сёла, деревни и др."",""isDeleted"":false},{""id"":5,""regionTypeName"":""Микрорайон"",""isDeleted"":false}]",
+152,,,GET,/api/RegionTypes/,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: c8be342e-6e5f-4046-8784-46defe7fe21a 
+",2020-04-28 18:05:03.083251,2020-04-28 18:05:03.083203,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 349 
+",bf392a8b-b2b2-4afb-b896-9b1fad06fb89,2020-04-28 18:05:03.127279,OK,"[{""id"":1,""regionTypeName"":""Государство"",""isDeleted"":false},{""id"":2,""regionTypeName"":""Субъект(регион)"",""isDeleted"":false},{""id"":3,""regionTypeName"":""Город"",""isDeleted"":false},{""id"":4,""regionTypeName"":""Сёла, деревни и др."",""isDeleted"":false},{""id"":5,""regionTypeName"":""Микрорайон"",""isDeleted"":false}]",
+153,,,GET,/api/RegionTypes/1,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 83b4b4b0-f2ca-4263-a2e3-2b3f022c89d0 
+",2020-04-28 18:05:10.073751,2020-04-28 18:05:10.073718,"",404,"Content-Type: application/problem+json; charset=utf-8 
+Content-Length: 133 
+",d56ac16d-9693-4b5d-86da-3a146e7d9918,2020-04-28 18:05:10.109819,OK,"{""type"":""https://tools.ietf.org/html/rfc7231#section-6.5.4"",""title"":""Not Found"",""status"":404,""traceId"":""|f9a79d19-4ae5003fa6e8359e.""}",
+154,,,GET,/api/RegionTypes/1,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 7089ccc9-14d5-4887-ae72-b8c05c7d0674 
+",2020-04-28 18:05:17.265747,2020-04-28 18:05:17.265712,"",404,"Content-Type: application/problem+json; charset=utf-8 
+Content-Length: 133 
+",c7b29ed0-7828-4e45-b4a1-ab3971324e24,2020-04-28 18:05:17.300708,OK,"{""type"":""https://tools.ietf.org/html/rfc7231#section-6.5.4"",""title"":""Not Found"",""status"":404,""traceId"":""|f9a79d1a-4ae5003fa6e8359e.""}",
+155,,,GET,/api/RegionTypes/4,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: ec12329e-79f0-44e0-9d29-403925790e3e 
+",2020-04-28 18:05:20.934855,2020-04-28 18:05:20.934793,"",404,"Content-Type: application/problem+json; charset=utf-8 
+Content-Length: 133 
+",3dd937aa-1463-4dd6-b39d-0ad728844b01,2020-04-28 18:05:20.967040,OK,"{""type"":""https://tools.ietf.org/html/rfc7231#section-6.5.4"",""title"":""Not Found"",""status"":404,""traceId"":""|f9a79d1b-4ae5003fa6e8359e.""}",
+156,,,GET,/api/RegionTypes/4,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 2d6f9faf-a3c2-420d-a717-463f06e9a9ec 
+",2020-04-28 18:05:51.730447,2020-04-28 18:05:51.729956,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 79 
+",4705a6ab-9652-4307-a8cc-801e953bdebc,2020-04-28 18:06:01.515483,OK,"{""id"":4,""regionTypeName"":""Сёла, деревни и др."",""isDeleted"":false}",
+157,,,GET,/api/RegionTypes/1,GET,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 983c61b3-9cbb-482a-8e3b-5d53de3c085b 
+",2020-04-28 18:06:27.363412,2020-04-28 18:06:27.363382,"",200,"Content-Type: application/json; charset=utf-8 
+Content-Length: 68 
+",e9e678e5-f08f-43ba-a47c-1e11d181cb82,2020-04-28 18:06:29.435636,OK,"{""id"":1,""regionTypeName"":""Государство"",""isDeleted"":false}",
+158,,,POST,/api/RegionTypes/,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 33 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 20908a36-1141-4a4a-acc4-914d6b6551e6 
+",2020-04-28 18:13:36.852199,2020-04-28 18:13:36.851841,"{
+	""regionTypeName"" : ""ПГТ""
+}
+",500,"Content-Type: application/json; charset=utf-8 
+",ad5cf43c-cc91-436e-8205-8d13e71fb0fe,2020-04-28 18:13:48.952592,OK,"{""Id"":""dfabd605-b649-4025-aa6b-8e6512ac425a"",""ResponseTime"":""2020-04-28T18:13:48.8084281+03:00"",""Header"":""Error"",""Result"":""Missing type map configuration or unsupported mapping.\r\n\r\nMapping types:\r\nPostRegionTypeDto -> RegionType\r\nFarmAppServer.Models.Regions.PostRegionTypeDto -> FarmApp.Domain.Core.Entity.RegionType""}","AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+PostRegionTypeDto -> RegionType
+FarmAppServer.Models.Regions.PostRegionTypeDto -> FarmApp.Domain.Core.Entity.RegionType
+   at lambda_method(Closure , PostRegionTypeDto , RegionType , ResolutionContext )
+   at lambda_method(Closure , Object , Object , ResolutionContext )
+   at FarmAppServer.Controllers.RegionTypesController.PostRegionType(PostRegionTypeDto model) in G:\disk E\Projects\FarmApp\FarmAppServer\Controllers\RegionTypesController.cs:line 91
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at FarmAppServer.Middlewares.ErrorHandlingMiddleware.Invoke(HttpContext context, FarmAppContext appContext, ICustomLogger logger) in G:\disk E\Projects\FarmApp\FarmAppServer\Middlewares\ErrorHandlingMiddleware.cs:line 35"
+159,,,POST,/api/Regions,POST,"Accept: */* 
+Accept-Encoding: gzip, deflate, br 
+Connection: keep-alive 
+Content-Length: 99 
+Content-Type: application/json 
+Host: localhost:44308 
+User-Agent: PostmanRuntime/7.24.1 
+Postman-Token: 39b20145-9286-4be5-a5e5-af2255925fc3 
+",2020-04-28 18:21:41.150799,2020-04-28 18:21:41.150419,"{
+	""RegionId"" : 1,
+	""RegionTypeId"" : 1,
+	""RegionName"" : ""Россия"",
+	""Population"" : 140000000
+}",201,"Location: PostRegion 
+Content-Type: application/json; charset=utf-8 
+Content-Length: 85 
+",8a7aefe1-2590-48c5-b519-76dd092eb286,2020-04-28 18:22:28.363074,OK,"{""id"":20,""parentId"":1,""name"":""Россия"",""population"":140000000,""isDeleted"":false}",

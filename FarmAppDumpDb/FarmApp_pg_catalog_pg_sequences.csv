@@ -1,0 +1,13 @@
+api,ApiMethods_Id_seq,postgres,integer,1,1,2147483647,1,false,1,
+dist,CodeAthTypes_Id_seq,postgres,integer,1,1,2147483647,1,false,1,
+dist,RegionTypes_Id_seq,postgres,integer,1,1,2147483647,1,false,1,6
+dist,Roles_Id_seq,postgres,integer,1,1,2147483647,1,false,1,
+dist,Vendors_Id_seq,postgres,integer,1,1,2147483647,1,false,1,
+log,Logs_Id_seq,postgres,integer,1,1,2147483647,1,false,1,159
+dist,Regions_Id_seq,postgres,integer,1,1,2147483647,1,false,1,20
+api,ApiMethodRoles_Id_seq,postgres,integer,1,1,2147483647,1,false,1,
+dist,Users_Id_seq,postgres,integer,1,1,2147483647,1,false,1,9
+dist,Pharmacies_Id_seq,postgres,integer,1,1,2147483647,1,false,1,23
+tab,Stocks_Id_seq,postgres,integer,1,1,2147483647,1,false,1,
+tab,Drugs_Id_seq,postgres,integer,1,1,2147483647,1,false,1,4
+tab,Sales_Id_seq,postgres,bigint,1,1,9223372036854775807,1,false,1,

@@ -1,0 +1,4 @@
+80,host,{all},{all},127.0.0.1,255.255.255.255,md5,,
+82,host,{all},{all},::1,ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff,md5,,
+85,host,{replication},{all},127.0.0.1,255.255.255.255,md5,,
+86,host,{replication},{all},::1,ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff,md5,,

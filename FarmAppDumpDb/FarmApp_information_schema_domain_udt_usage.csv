@@ -1,0 +1,5 @@
+FarmApp,pg_catalog,name,FarmApp,information_schema,sql_identifier
+FarmApp,pg_catalog,int4,FarmApp,information_schema,cardinal_number
+FarmApp,pg_catalog,varchar,FarmApp,information_schema,character_data
+FarmApp,pg_catalog,varchar,FarmApp,information_schema,yes_or_no
+FarmApp,pg_catalog,timestamptz,FarmApp,information_schema,time_stamp

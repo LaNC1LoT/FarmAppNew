@@ -1,0 +1,12 @@
+10003,CATALOG NAME,,Y,
+10004,COLLATING SEQUENCE,,,
+23,CURSOR COMMIT BEHAVIOR,1,,close cursors and retain prepared statements
+2,DATA SOURCE NAME,,"",
+17,DBMS NAME,,PostgreSQL,
+26,DEFAULT TRANSACTION ISOLATION,2,,READ COMMITTED; user-settable
+28,IDENTIFIER CASE,3,,stored in mixed case - case sensitive
+85,NULL COLLATION,0,,nulls higher than non-nulls
+13,SERVER NAME,,"",
+94,SPECIAL CHARACTERS,,"",all non-ASCII characters allowed
+46,TRANSACTION CAPABLE,2,,both DML and DDL
+18,DBMS VERSION,,12.02.0000,

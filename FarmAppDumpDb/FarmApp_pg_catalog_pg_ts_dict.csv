@@ -1,0 +1,22 @@
+3765,simple,11,10,3727,
+12976,arabic_stem,11,10,12975,language = 'arabic'
+12978,danish_stem,11,10,12975,"language = 'danish', stopwords = 'danish'"
+12980,dutch_stem,11,10,12975,"language = 'dutch', stopwords = 'dutch'"
+12982,english_stem,11,10,12975,"language = 'english', stopwords = 'english'"
+12984,finnish_stem,11,10,12975,"language = 'finnish', stopwords = 'finnish'"
+12986,french_stem,11,10,12975,"language = 'french', stopwords = 'french'"
+12988,german_stem,11,10,12975,"language = 'german', stopwords = 'german'"
+12990,hungarian_stem,11,10,12975,"language = 'hungarian', stopwords = 'hungarian'"
+12992,indonesian_stem,11,10,12975,language = 'indonesian'
+12994,irish_stem,11,10,12975,language = 'irish'
+12996,italian_stem,11,10,12975,"language = 'italian', stopwords = 'italian'"
+12998,lithuanian_stem,11,10,12975,language = 'lithuanian'
+13000,nepali_stem,11,10,12975,"language = 'nepali', stopwords = 'nepali'"
+13002,norwegian_stem,11,10,12975,"language = 'norwegian', stopwords = 'norwegian'"
+13004,portuguese_stem,11,10,12975,"language = 'portuguese', stopwords = 'portuguese'"
+13006,romanian_stem,11,10,12975,language = 'romanian'
+13008,russian_stem,11,10,12975,"language = 'russian', stopwords = 'russian'"
+13010,spanish_stem,11,10,12975,"language = 'spanish', stopwords = 'spanish'"
+13012,swedish_stem,11,10,12975,"language = 'swedish', stopwords = 'swedish'"
+13014,tamil_stem,11,10,12975,language = 'tamil'
+13016,turkish_stem,11,10,12975,"language = 'turkish', stopwords = 'turkish'"

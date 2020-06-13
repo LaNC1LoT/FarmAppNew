@@ -1,0 +1,8 @@
+pg_monitor,3373,""
+pg_read_all_settings,3374,{3373}
+pg_read_all_stats,3375,{3373}
+pg_stat_scan_tables,3377,{3373}
+pg_read_server_files,4569,""
+pg_write_server_files,4570,""
+pg_execute_server_program,4571,""
+pg_signal_backend,4200,""

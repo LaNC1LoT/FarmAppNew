@@ -1,0 +1,77 @@
+,,4432,,,"",,,,2020-04-28 08:47:58.110798,,,,Activity,AutoVacuumMain,,,,"",autovacuum launcher
+,,4448,10,postgres,"",,,,2020-04-28 08:47:58.152380,,,,Activity,LogicalLauncherMain,,,,"",logical replication launcher
+13318,postgres,4888,10,postgres,"",::1,,49671,2020-04-28 08:47:58.298992,,2020-04-28 15:30:32.390073,2020-04-28 15:30:32.390367,Client,ClientRead,idle,,,SELECT J.jobid   FROM pgagent.pga_job J  WHERE jobenabled    AND jobagentid IS NULL    AND jobnextrun <= now()    AND (jobhostagent = '' OR jobhostagent = 'DESKTOP-O24KO7F') ORDER BY jobnextrun,client backend
+13318,postgres,10244,10,postgres,pgAdmin 4 - DB:postgres,::1,,50076,2020-04-28 09:07:54.304201,,2020-04-28 10:41:39.773489,2020-04-28 10:41:39.773679,Client,ClientRead,idle,,,"
+SELECT
+    db.oid as did, db.datname, db.datallowconn,
+    pg_encoding_to_char(db.encoding) AS serverencoding,
+    has_database_privilege(db.oid, 'CREATE') as cancreate, datlastsysoid
+FROM
+    pg_database db
+WHERE db.oid = 35300",client backend
+35508,API15SecondStageTS2,10456,10,postgres,pgAdmin 4 - DB:API15SecondStageTS2,::1,,50160,2020-04-28 09:08:00.315047,,2020-04-28 09:08:08.670169,2020-04-28 09:08:08.687689,Client,ClientRead,idle,,,"/*pga4dash*/
+SELECT 'session_stats' AS chart_name, row_to_json(t) AS chart_data
+FROM (SELECT
+   (SELECT count(*) FROM pg_stat_activity WHERE datname = (SELECT datname FROM pg_database WHERE oid = 35508)) AS ""Total"",
+   (SELECT count(*) FROM pg_stat_activity WHERE state = 'active' AND datname = (SELECT datname FROM pg_database WHERE oid = 35508))  AS ""Active"",
+   (SELECT count(*) FROM pg_stat_activity WHERE state = 'idle' AND datname = (SELECT datname FROM pg_database WHERE oid = 35508))  AS ""Idle""
+) t
+UNION ALL
+SELECT 'tps_stats' AS chart_name, row_to_json(t) AS chart_data
+FROM (SELECT
+   (SELECT sum(xact_commit) + sum(xact_rollback) FROM pg_stat_database WHERE datname = (SELECT datname FROM pg_database WHERE oid = 35508)) AS ""Transactions"",
+   (SELECT sum(xact_commit) FROM pg_stat_database WHERE datname = (SELECT datname FROM pg_database WHERE oid = 35508)) AS ""Commits"",
+   (SELECT sum(xact_rollback) FROM pg_stat_database WHERE datname = (SELECT datname FROM pg_database WHERE oid = 35508)) AS ""Rollbacks""
+) ",client backend
+35300,FarmApp,10392,10,postgres,pgAdmin 4 - CONN:9279731,::1,,56888,2020-04-28 10:41:44.231380,,2020-04-28 15:22:40.453691,2020-04-28 15:22:40.455463,Client,ClientRead,idle,,,"SELECT att.attname as name, att.attnum as OID, format_type(ty.oid,NULL) AS datatype,
+att.attnotnull as not_null, att.atthasdef as has_default_val
+FROM pg_attribute att
+  JOIN pg_type ty ON ty.oid=atttypid
+  JOIN pg_namespace tn ON tn.oid=ty.typnamespace
+  JOIN pg_class cl ON cl.oid=att.attrelid
+  JOIN pg_namespace na ON na.oid=cl.relnamespace
+  LEFT OUTER JOIN pg_type et ON et.oid=ty.typelem
+  LEFT OUTER JOIN pg_attrdef def ON adrelid=att.attrelid AND adnum=att.attnum
+  LEFT OUTER JOIN (pg_depend JOIN pg_class cs ON classid='pg_class'::regclass AND objid=cs.oid AND cs.relkind='S') ON refobjid=att.attrelid AND refobjsubid=att.attnum
+  LEFT OUTER JOIN pg_namespace ns ON ns.oid=cs.relnamespace
+  LEFT OUTER JOIN pg_index pi ON pi.indrelid=att.attrelid AND indisprimary
+WHERE
+    att.attrelid = 35368::oid
+    AND att.attnum > 0
+    AND att.attisdropped IS FALSE
+ORDER BY att.attnum",client backend
+35300,FarmApp,9508,10,postgres,pgAdmin 4 - DB:FarmApp,::1,,50098,2020-04-28 09:07:55.078129,,2020-04-28 15:30:35.583875,2020-04-28 15:30:35.602363,Client,ClientRead,idle,,,"/*pga4dash*/
+SELECT 'session_stats' AS chart_name, row_to_json(t) AS chart_data
+FROM (SELECT
+   (SELECT count(*) FROM pg_stat_activity WHERE datname = (SELECT datname FROM pg_database WHERE oid = 35300)) AS ""Total"",
+   (SELECT count(*) FROM pg_stat_activity WHERE state = 'active' AND datname = (SELECT datname FROM pg_database WHERE oid = 35300))  AS ""Active"",
+   (SELECT count(*) FROM pg_stat_activity WHERE state = 'idle' AND datname = (SELECT datname FROM pg_database WHERE oid = 35300))  AS ""Idle""
+) t
+UNION ALL
+SELECT 'tps_stats' AS chart_name, row_to_json(t) AS chart_data
+FROM (SELECT
+   (SELECT sum(xact_commit) + sum(xact_rollback) FROM pg_stat_database WHERE datname = (SELECT datname FROM pg_database WHERE oid = 35300)) AS ""Transactions"",
+   (SELECT sum(xact_commit) FROM pg_stat_database WHERE datname = (SELECT datname FROM pg_database WHERE oid = 35300)) AS ""Commits"",
+   (SELECT sum(xact_rollback) FROM pg_stat_database WHERE datname = (SELECT datname FROM pg_database WHERE oid = 35300)) AS ""Rollbacks""
+) ",client backend
+35300,FarmApp,12752,10,postgres,pgAdmin 4 - CONN:8311062,::1,,62354,2020-04-28 14:55:05.774148,,2020-04-28 15:30:20.856817,2020-04-28 15:30:20.859861,Client,ClientRead,idle,,,"SELECT att.attname as name, att.attnum as OID, format_type(ty.oid,NULL) AS datatype,
+att.attnotnull as not_null, att.atthasdef as has_default_val
+FROM pg_attribute att
+  JOIN pg_type ty ON ty.oid=atttypid
+  JOIN pg_namespace tn ON tn.oid=ty.typnamespace
+  JOIN pg_class cl ON cl.oid=att.attrelid
+  JOIN pg_namespace na ON na.oid=cl.relnamespace
+  LEFT OUTER JOIN pg_type et ON et.oid=ty.typelem
+  LEFT OUTER JOIN pg_attrdef def ON adrelid=att.attrelid AND adnum=att.attnum
+  LEFT OUTER JOIN (pg_depend JOIN pg_class cs ON classid='pg_class'::regclass AND objid=cs.oid AND cs.relkind='S') ON refobjid=att.attrelid AND refobjsubid=att.attnum
+  LEFT OUTER JOIN pg_namespace ns ON ns.oid=cs.relnamespace
+  LEFT OUTER JOIN pg_index pi ON pi.indrelid=att.attrelid AND indisprimary
+WHERE
+    att.attrelid = 35334::oid
+    AND att.attnum > 0
+    AND att.attisdropped IS FALSE
+ORDER BY att.attnum",client backend
+35300,FarmApp,12844,10,postgres,PostgreSQL JDBC Driver,127.0.0.1,,49846,2020-04-28 15:30:36.461310,2020-04-28 15:30:36.502094,2020-04-28 15:30:36.503307,2020-04-28 15:30:36.503307,,,active,,1239,SELECT t.* FROM pg_catalog.pg_stat_activity t,client backend
+,,4416,,,"",,,,2020-04-28 08:47:58.144603,,,,Activity,BgWriterHibernate,,,,"",background writer
+,,4408,,,"",,,,2020-04-28 08:47:58.095108,,,,Activity,CheckpointerMain,,,,"",checkpointer
+,,4424,,,"",,,,2020-04-28 08:47:58.136442,,,,Activity,WalWriterMain,,,,"",walwriter

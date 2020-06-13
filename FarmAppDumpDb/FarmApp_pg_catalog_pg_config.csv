@@ -1,0 +1,23 @@
+BINDIR,C:/PROGRA~1/POSTGR~1/12/bin
+DOCDIR,C:/PROGRA~1/POSTGR~1/12/doc
+HTMLDIR,C:/PROGRA~1/POSTGR~1/12/doc
+INCLUDEDIR,C:/PROGRA~1/POSTGR~1/12/include
+PKGINCLUDEDIR,C:/PROGRA~1/POSTGR~1/12/include
+INCLUDEDIR-SERVER,C:/PROGRA~1/POSTGR~1/12/include/server
+LIBDIR,C:/PROGRA~1/POSTGR~1/12/lib
+PKGLIBDIR,C:/PROGRA~1/POSTGR~1/12/lib
+LOCALEDIR,C:/PROGRA~1/POSTGR~1/12/share/locale
+MANDIR,C:/Program Files/PostgreSQL/12/man
+SHAREDIR,C:/PROGRA~1/POSTGR~1/12/share
+SYSCONFDIR,C:/Program Files/PostgreSQL/12/etc
+PGXS,C:/Program Files/PostgreSQL/12/lib/pgxs/src/makefiles/pgxs.mk
+CONFIGURE,--enable-thread-safety --enable-nls --with-ldap --with-openssl --with-ossp-uuid --with-libxml --with-libxslt --with-icu --with-tcl --with-perl --with-python
+CC,не записано
+CPPFLAGS,не записано
+CFLAGS,не записано
+CFLAGS_SL,не записано
+LDFLAGS,не записано
+LDFLAGS_EX,не записано
+LDFLAGS_SL,не записано
+LIBS,не записано
+VERSION,PostgreSQL 12.2

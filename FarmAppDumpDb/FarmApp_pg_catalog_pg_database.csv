@@ -1,0 +1,5 @@
+13318,postgres,10,6,Russian_Russia.1251,Russian_Russia.1251,false,true,-1,13317,480,1,1663,
+1,template1,10,6,Russian_Russia.1251,Russian_Russia.1251,true,true,-1,13317,480,1,1663,"{=c/postgres,postgres=CTc/postgres}"
+13317,template0,10,6,Russian_Russia.1251,Russian_Russia.1251,true,false,-1,13317,480,1,1663,"{=c/postgres,postgres=CTc/postgres}"
+35300,FarmApp,10,6,Russian_Russia.1251,Russian_Russia.1251,false,true,-1,13317,480,1,1663,
+35508,API15SecondStageTS2,10,6,Russian_Russia.1251,Russian_Russia.1251,false,true,-1,13317,480,1,1663,

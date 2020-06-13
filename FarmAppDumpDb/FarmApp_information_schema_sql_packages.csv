@@ -1,0 +1,10 @@
+PKG000,Core,NO,,""
+PKG001,Enhanced datetime facilities,YES,,""
+PKG002,Enhanced integrity management,NO,,""
+PKG003,OLAP facilities,NO,,""
+PKG004,PSM,NO,,PL/pgSQL is similar.
+PKG005,CLI,NO,,ODBC is similar.
+PKG006,Basic object support,NO,,""
+PKG007,Enhanced object support,NO,,""
+PKG008,Active database,NO,,""
+PKG010,OLAP,NO,,NO

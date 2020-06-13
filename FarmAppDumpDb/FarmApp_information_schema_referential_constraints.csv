@@ -1,0 +1,14 @@
+FarmApp,dist,FK_CodeAthTypes_CodeAthTypes_CodeAthId,FarmApp,dist,PK_CodeAthTypes,NONE,NO ACTION,RESTRICT
+FarmApp,dist,FK_Regions_Regions_RegionId,FarmApp,dist,PK_Regions,NONE,NO ACTION,RESTRICT
+FarmApp,dist,FK_Regions_RegionTypes_RegionTypeId,FarmApp,dist,PK_RegionTypes,NONE,NO ACTION,RESTRICT
+FarmApp,api,FK_ApiMethodRoles_ApiMethods_ApiMethodId,FarmApp,api,PK_ApiMethods,NONE,NO ACTION,RESTRICT
+FarmApp,api,FK_ApiMethodRoles_Roles_RoleId,FarmApp,dist,PK_Roles,NONE,NO ACTION,RESTRICT
+FarmApp,dist,FK_Users_Roles_RoleId,FarmApp,dist,PK_Roles,NONE,NO ACTION,RESTRICT
+FarmApp,dist,FK_Pharmacies_Pharmacies_PharmacyId,FarmApp,dist,PK_Pharmacies,NONE,NO ACTION,RESTRICT
+FarmApp,dist,FK_Pharmacies_Regions_RegionId,FarmApp,dist,PK_Regions,NONE,NO ACTION,RESTRICT
+FarmApp,tab,FK_Stocks_Pharmacies_PharmacyId,FarmApp,dist,PK_Pharmacies,NONE,NO ACTION,CASCADE
+FarmApp,tab,FK_Drugs_CodeAthTypes_CodeAthTypeId,FarmApp,dist,PK_CodeAthTypes,NONE,NO ACTION,RESTRICT
+FarmApp,tab,FK_Drugs_Stocks_StockId,FarmApp,tab,PK_Stocks,NONE,NO ACTION,RESTRICT
+FarmApp,tab,FK_Drugs_Vendors_VendorId,FarmApp,dist,PK_Vendors,NONE,NO ACTION,RESTRICT
+FarmApp,tab,FK_Sales_Drugs_DrugId,FarmApp,tab,PK_Drugs,NONE,NO ACTION,RESTRICT
+FarmApp,tab,FK_Sales_Pharmacies_PharmacyId,FarmApp,dist,PK_Pharmacies,NONE,NO ACTION,RESTRICT
