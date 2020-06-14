@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
 using FarmAppServer.Models;
+using FarmAppServer.Models.Drugs;
+using FarmAppServer.Services;
+using FarmAppServer.Services.Paging;
 
 namespace FarmAppServer.Controllers
 {
@@ -16,110 +20,94 @@ namespace FarmAppServer.Controllers
     public class ApiMethodRolesController : ControllerBase
     {
         private readonly FarmAppContext _context;
+        private readonly IMapper _mapper;
+        private readonly IApiMethodRoleService _apiMethodRoleService;
 
-        public ApiMethodRolesController(FarmAppContext context)
+        public ApiMethodRolesController(FarmAppContext context, IMapper mapper, IApiMethodRoleService apiMethodRoleService)
         {
             _context = context;
+            _mapper = mapper;
+            _apiMethodRoleService = apiMethodRoleService;
         }
 
         // GET: api/ApiMethodRoles
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ApiMethodRole>>> GetApiMethodRoles()
+        public ActionResult<IEnumerable<ApiMethodRoleDto>> GetApiMethodRoles([FromQuery]int page = 1, [FromQuery]int pageSize = 25)
         {
-            return await _context.ApiMethodRoles.Where(x => x.IsDeleted == false).ToListAsync();
+            var apiMethodRoles = _context.ApiMethodRoles;
+            var model = _mapper.ProjectTo<ApiMethodRoleDto>(apiMethodRoles);
+
+            if (model == null) return NotFound("ApiMethodRoles not found");
+
+            var query = model.GetPaged(page, pageSize);
+
+            return Ok(query);
         }
 
         // GET: api/ApiMethodRoles/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ApiMethodRole>> GetApiMethodRole(int id)
+        [HttpGet("ApiMethodRoleById")]
+        [Consumes("application/x-www-form-urlencoded")]
+        public async Task<ActionResult<ApiMethodRoleDto>> GetApiMethodRole([FromForm]int key)
         {
-            var apiMethodRole = await _context.ApiMethodRoles.FindAsync(id);
+            if (key <= 0) return BadRequest("Key must be > 0");
 
-            if (apiMethodRole == null && apiMethodRole.IsDeleted == false)
-            {
-                return NotFound();
-            }
+            var apiMethodRole = _context.Drugs.Where(x => x.Id == key && x.IsDeleted == false);
+            var data = await _mapper.ProjectTo<ApiMethodRoleDto>(apiMethodRole).FirstOrDefaultAsync();
 
-            if (apiMethodRole.IsDeleted == true)
-            {
-                return BadRequest(new ResponseBody()
-                {
-                    Header = "Error",
-                    Result = "Роль не найдена"
-                });
-            }
+            if (data == null || data.IsDeleted)
+                return NotFound("ApiMethodRole not found");
 
-            return apiMethodRole;
+            return Ok(apiMethodRole);
         }
 
         // PUT: api/ApiMethodRoles/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutApiMethodRole(int id, ApiMethodRole apiMethodRole)
+        [HttpPut]
+        [Consumes("application/x-www-form-urlencoded")]
+        public async Task<IActionResult> PutApiMethodRole([FromForm]int key, [FromForm]string values)
         {
-            if (id != apiMethodRole.Id)
-            {
-                return BadRequest(new ResponseBody()
-                {
-                    Header = "Error",
-                    Result = "Роль не найдена"
-                });
-            }
+            if (key <= 0) return BadRequest("key must be > 0");
+            if (string.IsNullOrEmpty(values)) return BadRequest("Value cannot be null or empty");
 
-            _context.Entry(apiMethodRole).State = EntityState.Modified;
+            if (key <= 0) return BadRequest("key must be > 0");
+            
+            var updated = await _apiMethodRoleService.UpdateApiMethodASync(key, values);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ApiMethodRoleExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            if (updated) return Ok();
 
-            return NoContent();
+            return NotFound(new ResponseBody()
+            {
+                Header = "Error",
+                Result = "ApiMethod/Role not found or nothing to update"
+            });
         }
 
         // POST: api/ApiMethodRoles
         [HttpPost]
-        public async Task<ActionResult<ApiMethodRole>> PostApiMethodRole(ApiMethodRole apiMethodRole)
+        [Consumes("application/x-www-form-urlencoded")]
+        public async Task<IActionResult> PostApiMethodRole([FromForm]string values)
         {
-            _context.ApiMethodRoles.Add(apiMethodRole);
-            await _context.SaveChangesAsync();
+            if (string.IsNullOrEmpty(values)) return BadRequest("Value cannot be null or empty");
 
-            return CreatedAtAction("GetApiMethodRole", new { id = apiMethodRole.Id }, apiMethodRole);
+            var request = await _apiMethodRoleService.PostApiMethodRoleAsync(values);
+
+            if (request)
+                return Ok();
+
+            return BadRequest("ApiMethod/Role not found or already have that role");
         }
 
         // DELETE: api/ApiMethodRoles/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<ApiMethodRole>> DeleteApiMethodRole(int id)
+        [HttpDelete]
+        [Consumes("application/x-www-form-urlencoded")]
+        public async Task<IActionResult> DeleteApiMethodRole([FromForm]int key)
         {
-            var apiMethodRole = await _context.ApiMethodRoles.FindAsync(id);
-            if (apiMethodRole == null)
-            {
-                return NotFound(new ResponseBody()
-                {
-                    Header = "Error",
-                    Result = "ApiMethodRoles no found!"
-                });
-            }
+            if (key <= 0) return BadRequest("key must be > 0");
 
-            //_context.ApiMethodRoles.Remove(apiMethodRole);
-            apiMethodRole.IsDeleted = true;
-            await _context.SaveChangesAsync();
+            var deleted = await _apiMethodRoleService.DeleteApiMethodRoleAsync(key);
 
-            return apiMethodRole;
-        }
+            if (deleted) return Ok();
 
-        private bool ApiMethodRoleExists(int id)
-        {
-            return _context.ApiMethodRoles.Any(e => e.Id == id && e.IsDeleted == false);
+            return NotFound("ApiMethodRole not found");
         }
     }
 }

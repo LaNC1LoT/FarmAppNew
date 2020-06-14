@@ -18,9 +18,9 @@ namespace FarmAppServer.Services
     {
         Task<bool> UpdateCodeAthTypeAsync(int key, string values);
         Task<bool> PostCodeAthTypeAsync(string values);
-        Task<CodeAthTypeDto> GetCodeAthTypeById(int id);
+        Task<CodeAthTypeDto> GetCodeAthTypeById(int key);
         IQueryable<CodeAthTypeDto> GetCodeAthTypes();
-        Task<bool> DeleteCodeAthTypeAsync(int id);
+        Task<bool> DeleteCodeAthTypeAsync(int key);
     }
     public class CodeAthService : ICodeAthService
     {
@@ -38,7 +38,7 @@ namespace FarmAppServer.Services
             if (key <= 0) return false;
             if (values.IsNullOrEmpty()) return false;
 
-            var codeAthType = _context.CodeAthTypes.First(c => c.Id == key);
+            var codeAthType = _context.CodeAthTypes.First(c => c.Id == key && c.IsDeleted == false);
 
             if (codeAthType == null) return false;
 
@@ -52,10 +52,16 @@ namespace FarmAppServer.Services
         {
             var codeAthType = new CodeAthType();
             JsonConvert.PopulateObject(values, codeAthType);
-
-            var existCodeAthType = await _context.CodeAthTypes.Where(x => x.Code == codeAthType.Code).FirstOrDefaultAsync();
-
+            var existCodeAthType = await _context.CodeAthTypes
+                .Where(x => x.Code == codeAthType.Code && x.IsDeleted == false)
+                .FirstOrDefaultAsync();
+            
             if (existCodeAthType != null) return false;
+            
+            var dto = new PostCodeAthType();
+            JsonConvert.PopulateObject(values, dto);
+            codeAthType.CodeAthId = dto.ParentCodeAthId;
+
             if (codeAthType.CodeAthId == 0) codeAthType.CodeAthId = null;
 
             _context.CodeAthTypes.Add(codeAthType);
@@ -64,9 +70,9 @@ namespace FarmAppServer.Services
             return posted > 0;
         }
 
-        public async Task<CodeAthTypeDto> GetCodeAthTypeById(int id)
+        public async Task<CodeAthTypeDto> GetCodeAthTypeById(int key)
         {
-            var codeAthType = _context.CodeAthTypes.Where(x => x.Id == id && x.IsDeleted == false);
+            var codeAthType = _context.CodeAthTypes.Where(x => x.Id == key && x.IsDeleted == false);
 
             var result = await _mapper.ProjectTo<CodeAthTypeDto>(codeAthType).FirstOrDefaultAsync();
             
@@ -85,9 +91,9 @@ namespace FarmAppServer.Services
             return result;
         }
 
-        public async Task<bool> DeleteCodeAthTypeAsync(int id)
+        public async Task<bool> DeleteCodeAthTypeAsync(int key)
         {
-            var region = await _context.CodeAthTypes.FindAsync(id);
+            var region = await _context.CodeAthTypes.FindAsync(key);
 
             if (region == null || region.IsDeleted == true) return false;
 

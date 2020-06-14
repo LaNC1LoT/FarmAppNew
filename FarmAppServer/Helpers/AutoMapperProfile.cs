@@ -98,9 +98,9 @@ namespace FarmAppServer.Helpers
                 .ForMember(x => x.VendorId,
                     o => o.MapFrom(s => s.Vendor.Id))
                 .ForMember(x => x.VendorName,
-                    o => o.MapFrom(s => s.Vendor.VendorName))
-                .ForMember(x => x.IsDomestic,
-                    o => o.MapFrom(s => s.Vendor.IsDomestic));
+                    o => o.MapFrom(s => s.Vendor.VendorName));
+                //.ForMember(x => x.IsDomestic,
+                 //   o => o.MapFrom(s => s.Vendor.IsDomestic));
             CreateMap<PostDrugDto, Drug>().ReverseMap();
 
             //sales
@@ -133,15 +133,18 @@ namespace FarmAppServer.Helpers
                 .ForMember(x => x.ParentCodeName,
                     o => o.MapFrom(s => s.CodeAth.Code));
 
-            CreateMap<PostCodeAthType, CodeAthType>()
-                .ForMember(x => x.CodeAthId, 
-                    o => o.MapFrom(s => s.ParentId));
-           
             CreateMap<UpdateRegionDto, CodeAthType>().ReverseMap();
 
             //ApiMethods
             CreateMap<ApiMethod, ApiMethodDto>().ReverseMap();
             CreateMap<ApiMethodDto, UpdateApiMethodDto>().ReverseMap();
+
+            //ApiMethodRoles
+            CreateMap<ApiMethodRole, ApiMethodRoleDto>()
+                .ForMember(x => x.ApiMethodName,
+                    o => o.MapFrom(s => s.ApiMethod.ApiMethodName))
+                .ForMember(x => x.RoleName,
+                    o => o.MapFrom(s => s.Role.RoleName));
         }
     }
 }

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
 using FarmAppServer.Models;
 using FarmAppServer.Models.Drugs;
@@ -46,9 +43,12 @@ namespace FarmAppServer.Controllers
 
         // GET: api/Drugs/5
         [HttpGet("DrugById")]
-        public async Task<ActionResult<DrugDto>> GetDrug([FromQuery]int id)
+        [Consumes("application/x-www-form-urlencoded")]
+        public async Task<ActionResult<DrugDto>> GetDrug([FromForm]int key)
         {
-            var drug = _context.Drugs.Where(x => x.Id == id);
+            if (key <= 0) return BadRequest("Key must be > 0");
+
+            var drug = _context.Drugs.Where(x => x.Id == key && x.IsDeleted == false);
             var data = await _mapper.ProjectTo<DrugDto>(drug).FirstOrDefaultAsync();
             
             if (data == null || data.IsDeleted)
@@ -62,6 +62,9 @@ namespace FarmAppServer.Controllers
         [Consumes("application/x-www-form-urlencoded")]
         public async Task<IActionResult> PutDrug([FromForm]int key, [FromForm]string values)
         {
+            if (key <= 0) return BadRequest("key must be > 0");
+            if (string.IsNullOrEmpty(values)) return BadRequest("Value cannot be null or empty");
+
             var updated = await _drugService.UpdateDrugAsync(key, values);
 
             if (updated) return Ok();
@@ -78,21 +81,24 @@ namespace FarmAppServer.Controllers
         [Consumes("application/x-www-form-urlencoded")]
         public async Task<IActionResult> PostDrug([FromForm]string values)
         {
-            if (string.IsNullOrEmpty(values)) return BadRequest("Values cannot be null or empty");
+            if (string.IsNullOrEmpty(values)) return BadRequest("Value cannot be null or empty");
 
             var request = await _drugService.PostDrugAsync(values);
 
             if (request)
                 return Ok();
 
-            return BadRequest();
+            return BadRequest("Drug is already taken");
         }
 
         // DELETE: api/Drugs/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDrug(DrugDto model)
+        [HttpDelete]
+        [Consumes("application/x-www-form-urlencoded")]
+        public async Task<IActionResult> DeleteDrug([FromForm]int key)
         {
-            var deleted = await _drugService.DeleteDrugAsync(model);
+            if (key <= 0) return BadRequest("key must be > 0");
+
+            var deleted = await _drugService.DeleteDrugAsync(key);
 
             if (deleted) return Ok();
 

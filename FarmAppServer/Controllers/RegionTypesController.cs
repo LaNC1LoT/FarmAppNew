@@ -11,6 +11,7 @@ using FarmApp.Infrastructure.Data.Contexts;
 using FarmAppServer.Models;
 using FarmAppServer.Models.Regions;
 using FarmAppServer.Services;
+using FarmAppServer.Services.Paging;
 using ServiceStack;
 
 namespace FarmAppServer.Controllers
@@ -32,115 +33,80 @@ namespace FarmAppServer.Controllers
 
         // GET: api/RegionTypes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<RegionTypeDto>>> GetRegionTypes()
+        public ActionResult<IEnumerable<RegionTypeDto>> GetRegionTypes([FromQuery]int page = 1, [FromQuery]int pageSize = 25)
         {
-            var regions = _context.RegionTypes.AsQueryable();
-            var model = await _mapper.ProjectTo<RegionTypeDto>(regions).ToListAsync();
+            var regionTypes = _context.RegionTypes;
+            var model = _mapper.ProjectTo<RegionTypeDto>(regionTypes);
 
-            return Ok(model);
+            if (model == null) return NotFound("RegionTypes not found");
+
+            var query = model.GetPaged(page, pageSize);
+
+            return Ok(query);
         }
 
         [HttpGet("RegionTypeById")]
-        public async Task<ActionResult<RegionTypeDto>> GetRegionType([FromQuery]int id)
+        public async Task<ActionResult<RegionTypeDto>> GetRegionType([FromQuery]int key)
         {
-            var regionType = await _context.RegionTypes.FindAsync(id);
+            if (key <= 0) return BadRequest("Key must be > 0");
 
-            if (regionType == null) 
-                return NotFound(new ResponseBody()
-                {
-                    Header = "Error",
-                    Result = "RegionType not found"
-                });
+            var regionTypes = _context.RegionTypes.Where(x => x.Id == key);
+            var data = await _mapper.ProjectTo<RegionTypeDto>(regionTypes).FirstOrDefaultAsync();
 
-            if (regionType.IsDeleted == true)
-                return NotFound(new ResponseBody()
-                {
-                    Header = "Error",
-                    Result = "RegionType not found"
-                });
+            if (data == null || data.IsDeleted)
+                return NotFound("RegionType not found");
 
-            var result = _mapper.Map<RegionTypeDto>(regionType);
-            
-            return result;
+            return Ok(regionTypes);
         }
 
         // PUT: api/RegionTypes/5
         [HttpPut]
-        public async Task<ActionResult<RegionTypeDto>> PutRegionType([FromQuery]int id, [FromQuery]string regionTypeName)
+        [Consumes("application/x-www-form-urlencoded")]
+        public async Task<ActionResult<RegionTypeDto>> PutRegionType([FromForm]int key, [FromForm]string values)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(new ResponseBody()
-                {
-                    Header = "Error",
-                    Result = "Bad request"
-                });
+            if (key <= 0) return BadRequest("key must be > 0");
+            if (string.IsNullOrEmpty(values)) return BadRequest("Value cannot be null or empty");
 
-            var regionType = await _context.RegionTypes.Where(rt => rt.Id == id).FirstOrDefaultAsync();
+            var updated = await _regionTypeService.UpdateRegionTypeAsync(key, values);
 
-            if (regionType == null) 
-                return NotFound(new ResponseBody()
-                {
-                    Header = "Error",
-                    Result = "RegionType not found"
-                });
+            if (updated) return Ok();
 
-            if (regionType.IsDeleted == true) 
-                return NotFound(new ResponseBody()
-                {
-                    Header = "Error",
-                    Result = "RegionType not found"
-                });
-
-            regionType.RegionTypeName = regionTypeName;
-            _context.Update(regionType);
-            await _context.SaveChangesAsync();
-
-            return Ok(_mapper.Map<RegionTypeDto>(regionType));
+            return NotFound(new ResponseBody()
+            {
+                Header = "Error",
+                Result = "RegionType not found or nothing to update"
+            });
         }
 
         // POST: api/RegionTypes
         [HttpPost]
-        public async Task<ActionResult<RegionTypeDto>> PostRegionType([FromBody]PostRegionTypeDto model)
+        [Consumes("application/x-www-form-urlencoded")]
+        public async Task<ActionResult<RegionTypeDto>> PostRegionType([FromForm]string values)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(new ResponseBody()
-                {
-                    Header = "Error",
-                    Result = "Bad request"
-                });
+            if (string.IsNullOrEmpty(values)) return BadRequest("Value cannot be null or empty");
 
-            var regionType = _mapper.Map<RegionType>(model);
-            var request = await _regionTypeService.PostRegionTypeAsync(regionType);
-            var result = _mapper.Map<RegionTypeDto>(request);
+            var request = await _regionTypeService.PostRegionTypeAsync(values);
 
-            return Created("PostRegionType", result);
+            if (request)
+                return Ok();
+
+            return BadRequest("RegionType is already taken");
         }
 
         // DELETE: api/RegionTypes/5
         [HttpDelete]
-        public async Task<ActionResult<RegionTypeDto>> DeleteRegionType([FromQuery]int id)
+        [Consumes("application/x-www-form-urlencoded")]
+        public async Task<ActionResult<RegionTypeDto>> DeleteRegionType([FromForm]int key)
         {
-            var regionType = await _context.RegionTypes.FindAsync(id);
-            
-            if (regionType == null)
-                return NotFound(new ResponseBody()
-                {
-                    Header = "Error",
-                    Result = "RegionType not found"
-                });
+            if (key <= 0) return BadRequest("key must be > 0");
 
-            regionType.IsDeleted = true;
-            await _context.SaveChangesAsync();
-            var result = _mapper.Map<RegionTypeDto>(regionType);
+            var deleted = await _regionTypeService.DeleteRegionTypeAsync(key);
 
-            return result;
+            if (deleted) return Ok();
+
+            return NotFound("Drug not found");
         }
 
-        private bool RegionTypeExists(int id)
-        {
-            return _context.RegionTypes.Any(e => e.Id == id && e.IsDeleted == false);
-        }
-        
         //Фильтр: Текстбокс по RegionTypes и IsEnabled
         [HttpGet("RegionTypeSearch")]
         public async Task<ActionResult<RegionTypeDto>> RegionTypeSearch([FromQuery]string param)

@@ -4,14 +4,16 @@ using FarmApp.Infrastructure.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FarmApp.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(FarmAppContext))]
-    partial class FarmAppContextModelSnapshot : ModelSnapshot
+    [Migration("20200531151114_Test")]
+    partial class Test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -810,11 +812,6 @@ namespace FarmApp.Infrastructure.Data.Migrations
                     b.Property<int>("CodeAthTypeId")
                         .HasColumnType("int");
 
-                    b.Property<string>("DosageForm")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
-
                     b.Property<string>("DrugName")
                         .IsRequired()
                         .HasColumnType("nvarchar(255)")
@@ -825,9 +822,6 @@ namespace FarmApp.Infrastructure.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValueSql("((0))");
-
-                    b.Property<bool>("IsDomestic")
-                        .HasColumnType("bit");
 
                     b.Property<bool?>("IsGeneric")
                         .IsRequired()
@@ -1252,6 +1246,12 @@ namespace FarmApp.Infrastructure.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool?>("IsDeleted")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<bool?>("IsDomestic")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")

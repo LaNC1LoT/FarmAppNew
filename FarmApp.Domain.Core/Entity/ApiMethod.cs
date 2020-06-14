@@ -18,7 +18,7 @@ namespace FarmApp.Domain.Core.Entity
         public string HttpMethod { get; set; }
         public bool? IsNotNullParam { get; set; }
         public bool? IsNeedAuthentication { get; set; }
-        public bool? IsDeleted { get; set; }
+        public bool? IsDeleted { get; set; } = false;
         public virtual ICollection<ApiMethodRole> ApiMethodRoles { get; set; }
     }
 }

@@ -48,11 +48,12 @@ namespace FarmAppServer.Controllers
 
         // GET: api/CodeAthTypes/5
         [HttpGet("CodeAthById")]
-        public async Task<ActionResult<CodeAthType>> GetCodeAthType([FromQuery]int id)
+        [Consumes("application/x-www-form-urlencoded")]
+        public async Task<ActionResult<CodeAthType>> GetCodeAthType([FromForm]int key)
         {
-            if (id <= 0) return BadRequest("id cannot be <= 0");
+            if (key <= 0) return BadRequest("Key must be > 0");
 
-            var codeAthType = await _codeAthService.GetCodeAthTypeById(id);
+            var codeAthType = await _codeAthService.GetCodeAthTypeById(key);
 
             if (codeAthType == null)
                 return NotFound("CodeAthType not found");
@@ -65,7 +66,8 @@ namespace FarmAppServer.Controllers
         [Consumes("application/x-www-form-urlencoded")]
         public async Task<IActionResult> PutCodeAthType([FromForm]int key, [FromForm]string values)
         {
-            if (key <= 0) return NotFound("CodeAthType not found");
+            if (key <= 0) return BadRequest("key must be > 0");
+            if (string.IsNullOrEmpty(values)) return BadRequest("Value cannot be null or empty");
 
             var updated = await _codeAthService.UpdateCodeAthTypeAsync(key, values);
 
@@ -105,11 +107,6 @@ namespace FarmAppServer.Controllers
                 Header = "Error",
                 Result = "CodeAthType not found"
             });
-        }
-
-        private bool CodeAthTypeExists(int id)
-        {
-            return _context.CodeAthTypes.Any(e => e.Id == id && e.IsDeleted == false);
         }
     }
 }

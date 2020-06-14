@@ -10,18 +10,16 @@ using FarmAppServer.Models;
 using FarmAppServer.Models.ApiMethods;
 using FarmAppServer.Models.Sales;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace FarmAppServer.Services
 {
     public interface IApiMethodService
     {
-        Task<ApiMethod> PostApiMethodAsync(ApiMethod sale);
-        Task<ApiMethodDto> GetApiMethodByIdAsync(int id);
-        IQueryable<ApiMethodDto> GetApiMethodsDto();
-        Task<bool> DeleteSaleAsync(int id);
-        Task<bool> UpdateApiMethodAsync(int id, UpdateApiMethodDto model);
+        Task<bool> PostApiMethodAsync(string values);
+        Task<bool> UpdateApiMethodAsync(int key, string values);
+        Task<bool> DeleteApiMethodAsync(int key);
         Task<IEnumerable<ApiMethodDto>> SearchAsync(string param, bool? isNotNullParam, bool? isNeedAuthentication, bool? isDeleted);
-        Task<IEnumerable<ApiMethodDto>> CheckForNullParam(bool isNotNullParam);
     }
     public class ApiMethodService : IApiMethodService
     {
@@ -33,54 +31,48 @@ namespace FarmAppServer.Services
             _context = context;
             _mapper = mapper;
         }
-        public async Task<ApiMethod> PostApiMethodAsync(ApiMethod apiMethod)
-        {
-            if (apiMethod == null) throw new ArgumentNullException(nameof(apiMethod));
 
-            if (_context.Sales.Any(x => x.Id == apiMethod.Id & x.IsDeleted == false))
-                throw new AppException("ApiMethodId \"" + apiMethod.Id + "\" is already taken");
+        public async Task<bool> PostApiMethodAsync(string values)
+        {
+            var apiMethod = new ApiMethod();
+            JsonConvert.PopulateObject(values, apiMethod);
+
+            var existApiMethod = await _context.ApiMethods
+                .Where(x => x.IsDeleted == false
+                            && x.ApiMethodName == apiMethod.ApiMethodName
+                            && x.PathUrl == apiMethod.PathUrl)
+                .FirstOrDefaultAsync();
+
+            if (existApiMethod != null) return false;
 
             _context.ApiMethods.Add(apiMethod);
-            await _context.SaveChangesAsync();
+            var posted = await _context.SaveChangesAsync();
 
-            return apiMethod;
+            return posted > 0;
         }
 
-        public async Task<ApiMethodDto> GetApiMethodByIdAsync(int id)
+        public async Task<bool> UpdateApiMethodAsync(int key, string values)
         {
-            var apiMethod = _context.ApiMethods.Where(x => x.Id == id && x.IsDeleted == false);
-
-            if (apiMethod == null)
-                throw new AppException("Api method not found!");
-
-            var result = await _mapper.ProjectTo<ApiMethodDto>(apiMethod).FirstOrDefaultAsync();
-
-            return result;
-        }
-
-        public IQueryable<ApiMethodDto> GetApiMethodsDto()
-        {
-            var apiMethod = _context.ApiMethods;
-
-            if (apiMethod == null)
-                throw new AppException("Api method not found!");
-
-            var result = _mapper.ProjectTo<ApiMethodDto>(apiMethod);
-
-            return result;
-        }
-
-        public async Task<bool> UpdateApiMethodAsync(int id, UpdateApiMethodDto model)
-        {
-            var apiMethod = await _context.ApiMethods.Where(x => x.Id == id && x.IsDeleted == false).FirstOrDefaultAsync();
+            var apiMethod = await _context.ApiMethods.FirstOrDefaultAsync(x => x.Id == key && x.IsDeleted == false);
 
             if (apiMethod == null) return false;
 
-            _mapper.Map(model, apiMethod);
-            _context.Update(apiMethod);
+            JsonConvert.PopulateObject(values, apiMethod);
             var updated = await _context.SaveChangesAsync();
 
             return updated > 0;
+        }
+
+        public async Task<bool> DeleteApiMethodAsync(int key)
+        {
+            var apiMethod = await _context.ApiMethods.Where(x => x.Id == key && x.IsDeleted == false).FirstOrDefaultAsync();
+
+            if (apiMethod.IsDeleted == true) return false;
+
+            apiMethod.IsDeleted = true;
+            var deleted = await _context.SaveChangesAsync();
+
+            return deleted > 0;
         }
 
         public async Task<IEnumerable<ApiMethodDto>> SearchAsync(string param, bool? isNotNullParam, bool? isNeedAuthentication, bool? isDeleted)
@@ -89,28 +81,9 @@ namespace FarmAppServer.Services
                                                             x.Description.Contains(param) ||
                                                             x.HttpMethod.Contains(param) ||
                                                             x.PathUrl.Contains(param) ||
-                                                            x.StoredProcedureName.Contains(param)).ToListAsync();
+                                                            x.StoredProcedureName.Contains(param) &&
+                                                            x.IsDeleted == false).ToListAsync();
 
-            var result = _mapper.Map<IEnumerable<ApiMethodDto>>(apiMethods);
-
-            return result;
-        }
-
-        public async Task<bool> DeleteSaleAsync(int id)
-        {
-            var apiMethod = await _context.Users.FindAsync(id);
-
-            if (apiMethod == null || apiMethod.IsDeleted == true) return false;
-
-            apiMethod.IsDeleted = true;
-            await _context.SaveChangesAsync();
-
-            return true;
-        }
-
-        public async Task<IEnumerable<ApiMethodDto>> CheckForNullParam(bool isNotNullParam)
-        {
-            var apiMethods = await _context.ApiMethods.Where(x => x.IsNotNullParam == true).ToListAsync();
             var result = _mapper.Map<IEnumerable<ApiMethodDto>>(apiMethods);
 
             return result;

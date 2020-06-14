@@ -16,27 +16,27 @@ namespace FarmAppServer.Services
     {
         Task<bool> PostDrugAsync(string values);
         Task<bool> UpdateDrugAsync(int key, string values);
-        Task<bool> DeleteDrugAsync(DrugDto model);
+        Task<bool> DeleteDrugAsync(int key);
     }
     public class DrugService : IDrugService
     {
         private readonly FarmAppContext _context;
-        private readonly IMapper _mapper;
 
-        public DrugService(FarmAppContext context, IMapper mapper)
+        public DrugService(FarmAppContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
         public async Task<bool> PostDrugAsync(string values)
         {
             var drug = new Drug();
-            JsonConvert.PopulateObject(values,drug);
-            var existDrug = await _context.Drugs.Where(x => x.DrugName == drug.DrugName 
-                                                            || x.CodeAthType.Code == drug.CodeAthType.Code).FirstOrDefaultAsync();
+            JsonConvert.PopulateObject(values, drug);
+            var existDrug = await _context.Drugs
+                .Where(x => x.DrugName == drug.DrugName && x.IsDeleted == false)
+                .FirstOrDefaultAsync();
 
             if (existDrug != null) return false;
+
             _context.Drugs.Add(drug);
             var posted = await _context.SaveChangesAsync();
 
@@ -45,7 +45,7 @@ namespace FarmAppServer.Services
 
         public async Task<bool> UpdateDrugAsync(int key, string values)
         {
-            var drug = await _context.Drugs.FirstOrDefaultAsync(x => x.Id == key);
+            var drug = await _context.Drugs.FirstOrDefaultAsync(x => x.Id == key && x.IsDeleted == false);
 
             if (drug == null) return false;
 
@@ -55,11 +55,12 @@ namespace FarmAppServer.Services
             return updated > 0;
         }
 
-        public async Task<bool> DeleteDrugAsync(DrugDto model)
+        public async Task<bool> DeleteDrugAsync(int key)
         {
-            if (model.IsDeleted) return false;
-            
-            var drug = await _context.Drugs.Where(x => x.Id == model.Id).FirstOrDefaultAsync();
+            var drug = await _context.Drugs.Where(x => x.Id == key && x.IsDeleted == false).FirstOrDefaultAsync();
+
+            if (drug.IsDeleted == true) return false;
+
             drug.IsDeleted = true;
             var deleted = await _context.SaveChangesAsync();
 

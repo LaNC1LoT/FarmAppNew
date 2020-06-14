@@ -11,6 +11,7 @@ namespace FarmAppServer.Models.Drugs
         public string Code { get; set; }
         public int VendorId { get; set; }
         public string VendorName { get; set; }
+        public string DosageForm { get; set; }
         public bool IsDomestic { get; set; }
         public bool IsGeneric { get; set; }
         public bool IsDeleted { get; set; }

@@ -8,7 +8,7 @@ namespace FarmAppServer.Models.Pharmacies
 {
     public class PostPharmacyDto
     {
-        public int? PharmacyId { get; set; }
+        public int? ParentPharmacyId { get; set; }
         [Required] public string PharmacyName { get; set; }
         [Required] public int RegionId { get; set; }
         /// <summary>

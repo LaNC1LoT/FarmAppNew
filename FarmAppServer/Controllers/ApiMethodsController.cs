@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
 using FarmAppServer.Models;
-using FarmAppServer.Models.ApiMethods;
-using FarmAppServer.Models.Sales;
 using FarmAppServer.Services;
 using FarmAppServer.Services.Paging;
-using Microsoft.AspNetCore.Authorization;
-using ServiceStack;
+using Microsoft.EntityFrameworkCore;
 
 namespace FarmAppServer.Controllers
 {
@@ -38,79 +32,76 @@ namespace FarmAppServer.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<ApiMethodDto>> GetApiMethods([FromQuery]int page = 1, [FromQuery]int pageSize = 20)
         {
-            var apiMethod = _apiMethodService.GetApiMethodsDto();
-            var result = apiMethod.GetPaged(page, pageSize);
+            var apiMethods = _context.ApiMethods;
+            var model = _mapper.ProjectTo<ApiMethodDto>(apiMethods);
 
-            return Ok(result);
+            if (model == null) return NotFound("ApiMethods not found");
+
+            var query = model.GetPaged(page, pageSize);
+
+            return Ok(query);
         }
 
         // GET: api/ApiMethods/5
         [HttpGet("ApiMethodById")]
-        public async Task<ActionResult<ApiMethodDto>> GetApiMethod([FromQuery]int id)
+        [Consumes("application/x-www-form-urlencoded")]
+        public async Task<ActionResult<ApiMethodDto>> GetApiMethod([FromForm]int key)
         {
-            var apiMethod = await _apiMethodService.GetApiMethodByIdAsync(id);
+            var apiMethod = _context.ApiMethods.Where(x => x.Id == key && x.IsDeleted == false);
+            var data = await _mapper.ProjectTo<ApiMethodDto>(apiMethod).FirstOrDefaultAsync();
+
+            if (data == null || data.IsDeleted)
+                return NotFound("ApiMethod not found");
 
             return Ok(apiMethod);
         }
 
         // PUT: api/ApiMethods/5
         [HttpPut]
-        public async Task<IActionResult> Update([FromQuery]int id, [FromBody]UpdateApiMethodDto apiMethodToUpdate)
+        [Consumes("application/x-www-form-urlencoded")]
+        public async Task<IActionResult> UpdateApiMethod([FromForm]int key, [FromForm]string values)
         {
-            if (!ModelState.IsValid)
-                return BadRequest();
+            if (key <= 0) return BadRequest("key must be > 0");
+            if (string.IsNullOrEmpty(values)) return BadRequest("Value cannot be null or empty");
 
-            var updated = await _apiMethodService.UpdateApiMethodAsync(id, apiMethodToUpdate);
+            var updated = await _apiMethodService.UpdateApiMethodAsync(key, values);
 
-            if (updated)
-                return Ok();
+            if (updated) return Ok();
 
             return NotFound(new ResponseBody()
             {
                 Header = "Error",
-                Result = "user not found"
+                Result = "ApiMethod not found or nothing to update"
             });
         }
 
         // POST: api/ApiMethods
         [HttpPost]
-        public async Task<ActionResult<ApiMethod>> PostApiMethod(PostApiMethodDto model)
+        [Consumes("application/x-www-form-urlencoded")]
+        public async Task<ActionResult<ApiMethod>> PostApiMethod([FromForm]string values)
         {
-            if (!ModelState.IsValid) return BadRequest();
+            if (string.IsNullOrEmpty(values)) return BadRequest("Value cannot be null or empty");
 
-            var apiMethod = _mapper.Map<ApiMethod>(model);
-            var request = await _apiMethodService.PostApiMethodAsync(apiMethod);
-            var result = _mapper.Map<ApiMethodDto>(request);
+            var request = await _apiMethodService.PostApiMethodAsync(values);
 
-            return Created("PostApiMethod", result);
+            if (request)
+                return Ok();
+
+            return BadRequest("ApiMethod is already taken");
         }
 
         // DELETE: api/ApiMethods/5
         [HttpDelete]
-        public async Task<ActionResult<ApiMethod>> DeleteApiMethod(int id)
+        [Consumes("application/x-www-form-urlencoded")]
+        public async Task<ActionResult<ApiMethod>> DeleteApiMethod([FromForm]int key)
         {
-            if (await _apiMethodService.DeleteSaleAsync(id))
-                return Ok();
+            if (key <= 0) return BadRequest("key must be > 0");
 
-            return NotFound("Sale not found");
+            var deleted = await _apiMethodService.DeleteApiMethodAsync(key);
+
+            if (deleted) return Ok();
+
+            return NotFound("ApiMethod not found");
         }
-
-
-        ///////Search!!!!!!
-    //    [HttpGet("Search")]
-    //    public async Task<ActionResult<ApiMethodDto>> SearchApiMethod(string param, bool? isNotNullParam, bool? isNeedAuthentication, bool? isDeleted)
-    //    {
-    //        if (isNotNullParam != null)
-    //        {
-    //            var result = await _apiMethodService.CheckForNullParam(isNotNullParam);
-    //        }
-
-    //        if (string.IsNullOrEmpty(param))
-    //            return BadRequest($"Value cannot be null or empty. {nameof(param)}");
-
-    //        var result = await _apiMethodService.SearchAsync(param, isNotNullParam, isNeedAuthentication, isDeleted);
-
-    //        return Ok(result);
-    //    }
     }
 }

@@ -46,14 +46,13 @@ namespace FarmAppServer.Controllers
 
         // GET: api/Logs/5
         [HttpGet("LogById")]
-        public async Task<ActionResult<Log>> GetLog([FromQuery]int id)
+        [Consumes("application/x-www-form-urlencoded")]
+        public async Task<ActionResult<Log>> GetLog([FromForm]int key)
         {
-            var log = await _context.Logs.FindAsync(id);
+            var log = await _context.Logs.FindAsync(key);
 
             if (log == null)
-            {
                 return NotFound();
-            }
 
             return log;
         }

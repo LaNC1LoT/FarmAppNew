@@ -5,6 +5,8 @@ using AutoMapper;
 using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
 using FarmAppServer.Helpers;
+using FarmAppServer.Models;
+using FarmAppServer.Models.Pharmacies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -16,7 +18,7 @@ namespace FarmAppServer.Services
     {
         Task<bool> PostPharmacyAsync(string values);
         Task<bool> UpdatePharmacyAsync(int key, string values);
-        Task<bool> DeletePharmacyAsync(int id);
+        Task<bool> DeletePharmacyAsync(int key);
         IQueryable SearchPharmacy(string pharmacyName);
     }
     public class PharmacyService : IPharmacyService
@@ -34,13 +36,19 @@ namespace FarmAppServer.Services
 
             var pharmacy = new Pharmacy();
             JsonConvert.PopulateObject(values, pharmacy);
-
-            var existPharmacy = await _context.Pharmacies.Where(x => x.PharmacyName == pharmacy.PharmacyName && x.IsDeleted == false).FirstOrDefaultAsync();
-
+            var existPharmacy = await _context.Pharmacies
+                .Where(x => x.PharmacyName == pharmacy.PharmacyName && x.IsDeleted == false)
+                .FirstOrDefaultAsync();
+            
             if (existPharmacy != null) return false;
+
+            var dto = new PostPharmacyDto();
+            JsonConvert.PopulateObject(values, dto);
+            pharmacy.PharmacyId = dto.ParentPharmacyId;
+
             if (pharmacy.PharmacyId == 0) pharmacy.PharmacyId = null;
             if (pharmacy.RegionId == 0) pharmacy.RegionId = 1;
-
+            
             _context.Pharmacies.Add(pharmacy);
             var posted = await _context.SaveChangesAsync();
 
@@ -52,7 +60,7 @@ namespace FarmAppServer.Services
             if (key <= 0) return false;
             if (values.IsNullOrEmpty()) return false;
 
-            var pharmacy = await _context.Pharmacies.FirstOrDefaultAsync(p => p.Id == key);
+            var pharmacy = await _context.Pharmacies.FirstOrDefaultAsync(p => p.Id == key && p.IsDeleted == false);
 
             if (pharmacy == null) return false;
 
@@ -62,9 +70,9 @@ namespace FarmAppServer.Services
             return updated > 0;
         }
 
-        public async Task<bool> DeletePharmacyAsync(int id)
+        public async Task<bool> DeletePharmacyAsync(int key)
         {
-            var pharmacy = await _context.Pharmacies.FindAsync(id);
+            var pharmacy = await _context.Pharmacies.FindAsync(key);
 
             if (pharmacy == null || pharmacy.IsDeleted == true) return false;
 
@@ -88,7 +96,7 @@ namespace FarmAppServer.Services
 
         public bool CheckForeignKey(Pharmacy pharmacy)
         {
-            return _context.Regions.Any(x => x.Id == pharmacy.RegionId);
+            return _context.Regions.Any(x => x.Id == pharmacy.RegionId && x.IsDeleted == false);
         }
 
     }

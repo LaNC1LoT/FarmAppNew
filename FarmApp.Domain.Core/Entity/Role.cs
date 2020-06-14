@@ -17,7 +17,7 @@ namespace FarmApp.Domain.Core.Entity
 
         public int Id { get; set; }
         public string RoleName { get; set; }
-        public bool? IsDeleted { get; set; }
+        public bool? IsDeleted { get; set; } = false;
         public virtual ICollection<User> Users { get; set; }
         public virtual ICollection<ApiMethodRole> ApiMethodRoles { get; set; }
     }

@@ -30,6 +30,12 @@ namespace FarmApp.Infrastructure.Data.Contexts
         {
             using (InitData initData = new InitData())
             {
+                modelBuilder.Entity<Stock>(entity =>
+                {
+                    entity.ToTable(Table.Stock, Schema.Tab);
+                    entity.Property(p => p.PharmacyId).IsRequired().HasMaxLength(20);
+                });
+
                 modelBuilder.Entity<Log>(entity =>
                 {
                     entity.ToTable(Table.Logs, Schema.Log);
@@ -51,6 +57,7 @@ namespace FarmApp.Infrastructure.Data.Contexts
                     entity.ToTable(Table.Role, Schema.Dist);
                     entity.Property(p => p.RoleName).IsRequired().HasMaxLength(50);
                     entity.Property(p => p.IsDeleted).IsRequired().HasDefaultValueSql(CommandSql.DefaultFalse);
+                    entity.HasData(initData.InitRoles);
                 });
 
                 modelBuilder.Entity<ApiMethod>(entity =>
@@ -65,6 +72,7 @@ namespace FarmApp.Infrastructure.Data.Contexts
                     entity.Property(p => p.IsNotNullParam).IsRequired().HasDefaultValueSql(CommandSql.DefaultFalse);
                     entity.Property(p => p.IsNeedAuthentication).IsRequired().HasDefaultValueSql(CommandSql.DefaultFalse);
                     entity.Property(p => p.IsDeleted).IsRequired().HasDefaultValueSql(CommandSql.DefaultFalse);
+                    entity.HasData(initData.InitApiMethods);
                 });
 
                 modelBuilder.Entity<ApiMethodRole>(entity =>
@@ -73,6 +81,7 @@ namespace FarmApp.Infrastructure.Data.Contexts
                     entity.Property(p => p.IsDeleted).IsRequired().HasDefaultValueSql(CommandSql.DefaultFalse);
                     entity.HasOne(p => p.Role).WithMany(w => w.ApiMethodRoles).OnDelete(DeleteBehavior.Restrict);
                     entity.HasOne(p => p.ApiMethod).WithMany(w => w.ApiMethodRoles).OnDelete(DeleteBehavior.Restrict);
+                    entity.HasData(initData.InitApitMethodRoles);
                 });
 
                 modelBuilder.Entity<User>(entity =>
@@ -86,19 +95,18 @@ namespace FarmApp.Infrastructure.Data.Contexts
                     entity.Property(p => p.PasswordSalt).IsRequired();
                     entity.Property(p => p.IsDeleted).IsRequired().HasDefaultValueSql(CommandSql.DefaultFalse);
                     entity.HasOne(h => h.Role).WithMany(w => w.Users).OnDelete(DeleteBehavior.Restrict);
+                    //entity.HasData(initData.InitUsers);
                 });
 
                 modelBuilder.Entity<Drug>(entity =>
                 {
                     entity.ToTable(Table.Drug, Schema.Tab);
                     entity.Property(p => p.DrugName).IsRequired().HasMaxLength(255);
-                    entity.Property(p => p.DosageForm).IsRequired().HasMaxLength(1000);
-                    entity.Property(p => p.IsDomestic).IsRequired().HasDefaultValueSql(CommandSql.DefaultFalse);
                     entity.Property(p => p.IsGeneric).IsRequired().HasDefaultValueSql(CommandSql.DefaultFalse);
                     entity.Property(p => p.IsDeleted).IsRequired().HasDefaultValueSql(CommandSql.DefaultFalse);
+                    entity.Property(p => p.DosageForm).IsRequired().HasMaxLength(1000);
                     entity.HasOne(h => h.CodeAthType).WithMany(w => w.Drugs).OnDelete(DeleteBehavior.Restrict);
                     entity.HasOne(h => h.Vendor).WithMany(w => w.Drugs).OnDelete(DeleteBehavior.Restrict);
-                    entity.HasOne(h => h.Stock).WithMany(w => w.Drugs).OnDelete(DeleteBehavior.Restrict);
                 });
 
                 modelBuilder.Entity<CodeAthType>(entity =>
@@ -132,7 +140,6 @@ namespace FarmApp.Infrastructure.Data.Contexts
                     entity.Property(p => p.IsDeleted).IsRequired().HasDefaultValueSql(CommandSql.DefaultFalse);
                     entity.HasOne(h => h.ParentPharmacy).WithMany(w => w.Pharmacies).OnDelete(DeleteBehavior.Restrict);
                     entity.HasOne(h => h.Region).WithMany(w => w.Pharmacies).OnDelete(DeleteBehavior.Restrict);
-                    entity.HasOne(h => h.Stock).WithMany(w => w.Pharmacies).OnDelete(DeleteBehavior.Restrict);
                 });
 
                 modelBuilder.Entity<RegionType>(entity =>
@@ -158,7 +165,7 @@ namespace FarmApp.Infrastructure.Data.Contexts
                     entity.ToTable(Table.Vendor, Schema.Dist);
                     entity.Property(p => p.VendorName).IsRequired().HasMaxLength(255);
                     entity.Property(p => p.ProducingCountry).IsRequired().HasMaxLength(255);
-                    entity.Property(p => p.IsDomestic).IsRequired().HasDefaultValueSql(CommandSql.DefaultFalse);
+                    //entity.Property(p => p.IsDomestic).IsRequired().HasDefaultValueSql(CommandSql.DefaultFalse);
                     entity.Property(p => p.IsDeleted).IsRequired().HasDefaultValueSql(CommandSql.DefaultFalse);
                 });
 
@@ -168,16 +175,6 @@ namespace FarmApp.Infrastructure.Data.Contexts
                     entity.Property(p => p.FileName).IsRequired().HasMaxLength(255);
                     entity.Property(p => p.CreateTime).IsRequired().HasColumnType(CommandSql.DateTime);
                     entity.Property(p => p.UpdateTime).IsRequired().HasColumnType(CommandSql.DateTime);
-                });
-
-                modelBuilder.Entity<Stock>(entity =>
-                {
-                    entity.ToTable(Table.Stock, Schema.Tab);
-                    entity.Property(p => p.PharmacyId).IsRequired();
-                    entity.Property(p => p.DrugId).IsRequired();
-                    entity.Property(p => p.CreateDate).IsRequired().HasDefaultValueSql(CommandSql.GetDate);
-                    entity.Property(p => p.Quantity).IsRequired().HasDefaultValueSql(CommandSql.Zero);
-                    entity.Property(p => p.IsDeleted).IsRequired().HasDefaultValueSql(CommandSql.DefaultFalse);
                 });
             }
         }

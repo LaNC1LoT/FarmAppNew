@@ -13,7 +13,7 @@ namespace FarmApp.Domain.Core.Entity
 
         public int Id { get; set; }
         public string RegionTypeName { get; set; }
-        public bool? IsDeleted { get; set; }
+        public bool? IsDeleted { get; set; } = false;
         public virtual ICollection<Region> Regions { get; set; }
     }
 }

@@ -46,9 +46,12 @@ namespace FarmAppServer.Controllers
         }
 
         [HttpGet("PharmacyById")]
-        public async Task<ActionResult<PharmacyFilterDto>> GetPharmacy([FromQuery]int id)
+        [Consumes("application/x-www-form-urlencoded")]
+        public async Task<ActionResult<PharmacyFilterDto>> GetPharmacy([FromForm]int key)
         {
-            var pharmacy = await _context.Pharmacies.FindAsync(id);
+            if (key <= 0) return BadRequest("Key must be > 0");
+
+            var pharmacy = await _context.Pharmacies.FindAsync(key);
 
             if (pharmacy == null || pharmacy.IsDeleted == true)
                 return NotFound("Pharmacy not found");
@@ -63,6 +66,9 @@ namespace FarmAppServer.Controllers
         [Consumes("application/x-www-form-urlencoded")]
         public async Task<IActionResult> PutPharmacy([FromForm]int key, [FromForm]string values)
         {
+            if (key <= 0) return BadRequest("key must be > 0");
+            if (string.IsNullOrEmpty(values)) return BadRequest("Value cannot be null or empty");
+
             var updated = await _pharmacyService.UpdatePharmacyAsync(key, values);
 
             if (updated) return Ok();
@@ -94,6 +100,7 @@ namespace FarmAppServer.Controllers
         [Consumes("application/x-www-form-urlencoded")]
         public async Task<ActionResult<Pharmacy>> DeletePharmacy([FromForm]int key)
         {
+            if (key <= 0) return BadRequest("key must be > 0");
             if (await _pharmacyService.DeletePharmacyAsync(key))
                 return Ok();
 

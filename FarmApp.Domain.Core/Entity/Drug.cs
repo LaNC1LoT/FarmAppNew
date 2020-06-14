@@ -15,12 +15,11 @@ namespace FarmApp.Domain.Core.Entity
         public int CodeAthTypeId { get; set; }
         public int VendorId { get; set; }
         public string DosageForm { get; set; }
-        public bool? IsDomestic { get; set; }
+        public bool IsDomestic { get; set; }
         public bool? IsGeneric { get; set; }
-        public bool? IsDeleted { get; set; }
+        public bool? IsDeleted { get; set; } = false;
         public virtual CodeAthType CodeAthType { get; set; }
         public virtual Vendor Vendor { get; set; }
-        public virtual Stock Stock { get; set; }
         public virtual ICollection<Sale> Sales { get; set; }
     }
 }
