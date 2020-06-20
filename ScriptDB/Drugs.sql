@@ -729,14 +729,17 @@
 --	WHERE DosageForm = ''
 --END
 
-IF OBJECT_ID('tempdb..#DosageForm') IS NOT NULL DROP TABLE #DosageForm
-GO
 
-CREATE TABLE #DosageForm
-(
-	DosaForm NVARCHAR (500)
-)
+--INSERT INTO dist.DosageFormType (DosageForm)
+--SELECT DISTINCT UPPER(LEFT(TRIM(value), 1)) + LOWER(SUBSTRING(TRIM(value), 2, LEN(TRIM(value)))) FROM #temp t
+--	CROSS APPLY string_split(DosageForm, ';')
 
-INSERT INTO #DosageForm
-SELECT DISTINCT UPPER(LEFT(TRIM(value), 1)) + LOWER(SUBSTRING(TRIM(value), 2, LEN(TRIM(value)))) FROM #temp t
+select * from tab.Stocks
+SELECT * FROM tab.Drugs
+INSERT INTO tab.Drugs (DrugName, CodeAthTypeId, VendorId, )
+SELECT cat.Id,  t.Code, t.DrugName FROM #temp t
 	CROSS APPLY string_split(DosageForm, ';')
+	INNER JOIN dist.CodeAthTypes cat ON cat.Code = t.Code
+	INNER JOIN dist.DosageFormType dft on dft.DosageForm = TRIM(value)
+
+--SELECT * FROM dist.DosageFormType

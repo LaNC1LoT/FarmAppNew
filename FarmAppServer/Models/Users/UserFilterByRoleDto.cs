@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace FarmAppServer.Models.Users
+﻿namespace FarmAppServer.Models.Users
 {
     public class UserFilterByRoleDto
     {

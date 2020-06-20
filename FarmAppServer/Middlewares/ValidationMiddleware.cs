@@ -1,5 +1,4 @@
-﻿using FarmApp.Infrastructure.Data.Contexts;
-using FarmAppServer.Models;
+﻿using FarmAppServer.Models;
 using FarmAppServer.Services;
 using Microsoft.AspNetCore.Http;
 using System.Text;

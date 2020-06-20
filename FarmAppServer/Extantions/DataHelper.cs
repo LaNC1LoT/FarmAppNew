@@ -1,10 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.IO;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace FarmAppServer.Extantions
 {
@@ -26,7 +22,7 @@ namespace FarmAppServer.Extantions
                 },
                 MissingMemberHandling = MissingMemberHandling.Error
             };
-            
+
             result = JsonConvert.DeserializeObject<T>(@this, settings);
             errorMsg = exception;
             return success;

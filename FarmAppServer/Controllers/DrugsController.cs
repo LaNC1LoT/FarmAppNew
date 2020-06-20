@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
 using FarmApp.Infrastructure.Data.Contexts;
 using FarmAppServer.Models;
 using FarmAppServer.Models.Drugs;
 using FarmAppServer.Services;
 using FarmAppServer.Services.Paging;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace FarmAppServer.Controllers
 {
@@ -29,7 +29,7 @@ namespace FarmAppServer.Controllers
 
         // GET: api/Drugs
         [HttpGet]
-        public ActionResult<IEnumerable<DrugDto>> GetDrugs([FromQuery]int page = 1 ,[FromQuery]int pageSize = 25)
+        public ActionResult<IEnumerable<DrugDto>> GetDrugs([FromQuery]int page = 1, [FromQuery]int pageSize = 25)
         {
             var drugs = _context.Drugs;
             var model = _mapper.ProjectTo<DrugDto>(drugs);
@@ -50,10 +50,10 @@ namespace FarmAppServer.Controllers
 
             var drug = _context.Drugs.Where(x => x.Id == key && x.IsDeleted == false);
             var data = await _mapper.ProjectTo<DrugDto>(drug).FirstOrDefaultAsync();
-            
+
             if (data == null || data.IsDeleted)
                 return NotFound("Drug not found");
-            
+
             return Ok(drug);
         }
 

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Collections.Generic;
 
 namespace FarmAppServer.Helpers
 {
@@ -8,9 +8,9 @@ namespace FarmAppServer.Helpers
     {
         public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
-            if(operation.Security == null)
+            if (operation.Security == null)
                 operation.Security = new List<OpenApiSecurityRequirement>();
-            
+
             var scheme = new OpenApiSecurityScheme
             {
                 Reference = new OpenApiReference
@@ -19,7 +19,7 @@ namespace FarmAppServer.Helpers
                     Type = ReferenceType.SecurityScheme,
                 }
             };
-            
+
             operation.Security.Add(new OpenApiSecurityRequirement
             {
                 [scheme] = new List<string>()

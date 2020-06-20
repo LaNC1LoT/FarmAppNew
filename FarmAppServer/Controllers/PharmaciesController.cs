@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
 using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
-using FarmAppServer.Helpers;
 using FarmAppServer.Models;
 using FarmAppServer.Models.Pharmacies;
 using FarmAppServer.Services;
 using FarmAppServer.Services.Paging;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FarmAppServer.Controllers
 {
@@ -38,7 +35,7 @@ namespace FarmAppServer.Controllers
             var pharmacies = _context.Pharmacies;
 
             if (pharmacies == null) return NotFound("Pharmacies not found");
-            
+
             var model = _mapper.ProjectTo<PharmacyFilterDto>(pharmacies);
             var query = model.GetPaged(page, pageSize);
 
@@ -86,7 +83,7 @@ namespace FarmAppServer.Controllers
         public async Task<ActionResult<Pharmacy>> PostPharmacy([FromForm]string values)
         {
             if (string.IsNullOrEmpty(values)) return BadRequest("Value cannot be null or empty");
-                
+
             var request = await _pharmacyService.PostPharmacyAsync(values);
 
             if (request)

@@ -1,17 +1,12 @@
-﻿using System;
+﻿using AutoMapper;
+using FarmApp.Infrastructure.Data.Contexts;
+using FarmAppServer.Models;
+using FarmAppServer.Services;
+using FarmAppServer.Services.Paging;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using FarmApp.Domain.Core.Entity;
-using FarmApp.Infrastructure.Data.Contexts;
-using FarmAppServer.Models;
-using FarmAppServer.Models.Vendors;
-using FarmAppServer.Services;
-using FarmAppServer.Services.Paging;
 
 namespace FarmAppServer.Controllers
 {
@@ -40,7 +35,7 @@ namespace FarmAppServer.Controllers
 
             var model = _mapper.ProjectTo<VendorDto>(vendors);
             var query = model.GetPaged(page, pageSize);
-            
+
             return Ok(query);
         }
 
@@ -48,14 +43,14 @@ namespace FarmAppServer.Controllers
         [HttpGet("VendorById")]
         public async Task<ActionResult<VendorDto>> GetVendor([FromQuery]int id)
         {
-             var vendor = await _context.Vendors.FindAsync(id);
+            var vendor = await _context.Vendors.FindAsync(id);
 
-             if (vendor == null || vendor.IsDeleted == true)
-                 return NotFound("Vendor not found");
+            if (vendor == null || vendor.IsDeleted == true)
+                return NotFound("Vendor not found");
 
-             var data = _mapper.Map<VendorDto>(vendor);
+            var data = _mapper.Map<VendorDto>(vendor);
 
-             return Ok(data);
+            return Ok(data);
         }
 
         // PUT: api/Vendors/5

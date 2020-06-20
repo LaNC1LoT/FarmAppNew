@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
+﻿using AutoMapper;
 using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
 using FarmAppServer.Helpers;
 using FarmAppServer.Models.Sales;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace FarmAppServer.Services
 {
@@ -34,9 +32,9 @@ namespace FarmAppServer.Services
         {
             if (sale == null) throw new ArgumentNullException(nameof(sale));
 
-            if(_context.Sales.Any(x => x.Id == sale.Id & x.IsDeleted == false))
+            if (_context.Sales.Any(x => x.Id == sale.Id & x.IsDeleted == false))
                 throw new AppException("SaleId \"" + sale.Id + "\" is already taken");
-            
+
             _context.Sales.Add(sale);
             await _context.SaveChangesAsync();
 
@@ -47,8 +45,8 @@ namespace FarmAppServer.Services
         {
             var sale = _context.Sales.Where(x => x.Id == id && x.IsDeleted == false);
 
-            if(sale == null)
-                throw new AppException("Sale not found!" );
+            if (sale == null)
+                throw new AppException("Sale not found!");
 
             var result = await _mapper.ProjectTo<SaleDto>(sale).FirstOrDefaultAsync();
 

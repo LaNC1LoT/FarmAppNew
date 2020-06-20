@@ -1,5 +1,4 @@
-﻿using FarmApp.Domain.Core.Entity;
-using FarmAppServer.Models.Users;
+﻿using FarmAppServer.Models.Users;
 
 namespace FarmAppServer.Models
 {

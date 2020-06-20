@@ -1,17 +1,13 @@
-﻿using System;
+﻿using AutoMapper;
+using FarmApp.Infrastructure.Data.Contexts;
+using FarmAppServer.Models;
+using FarmAppServer.Services;
+using FarmAppServer.Services.Paging;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using FarmApp.Domain.Core.Entity;
-using FarmApp.Infrastructure.Data.Contexts;
-using FarmAppServer.Models;
-using FarmAppServer.Models.Drugs;
-using FarmAppServer.Services;
-using FarmAppServer.Services.Paging;
 
 namespace FarmAppServer.Controllers
 {
@@ -69,7 +65,7 @@ namespace FarmAppServer.Controllers
             if (string.IsNullOrEmpty(values)) return BadRequest("Value cannot be null or empty");
 
             if (key <= 0) return BadRequest("key must be > 0");
-            
+
             var updated = await _apiMethodRoleService.UpdateApiMethodASync(key, values);
 
             if (updated) return Ok();

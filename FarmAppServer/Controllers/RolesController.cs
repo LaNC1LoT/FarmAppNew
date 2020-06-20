@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
 using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
-using FarmAppServer.Helpers;
 using FarmAppServer.Models;
 using FarmAppServer.Models.Roles;
 using FarmAppServer.Services;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace FarmAppServer.Controllers
 {
@@ -24,7 +22,7 @@ namespace FarmAppServer.Controllers
         private readonly IMapper _mapper;
         private readonly IRoleService _roleService;
 
-        public RolesController(FarmAppContext context,IMapper mapper, IRoleService roleService)
+        public RolesController(FarmAppContext context, IMapper mapper, IRoleService roleService)
         {
             _context = context;
             _mapper = mapper;
@@ -94,7 +92,7 @@ namespace FarmAppServer.Controllers
         public async Task<IActionResult> PostRole([FromBody]PostRoleDto model)
         {
             if (!ModelState.IsValid) return BadRequest();
-            
+
             if (RoleExists(model.RoleName))
                 return BadRequest("Username \"" + model.RoleName + "\" is already taken");
 
@@ -110,7 +108,7 @@ namespace FarmAppServer.Controllers
         public async Task<ActionResult<Role>> DeleteRole([FromQuery]int id)
         {
             var role = await _context.Roles.FindAsync(id);
-           
+
             if (role == null)
                 return NotFound();
 

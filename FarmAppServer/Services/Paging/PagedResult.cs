@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Linq;
-using Newtonsoft.Json;
 
 namespace FarmAppServer.Services.Paging
 {

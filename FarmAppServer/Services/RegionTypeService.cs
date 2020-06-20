@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FarmApp.Domain.Core.Entity;
+﻿using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
-using FarmAppServer.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace FarmAppServer.Services
 {

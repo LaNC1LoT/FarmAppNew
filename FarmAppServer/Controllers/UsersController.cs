@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using FarmApp.Domain.Core.Entity;
 using FarmAppServer.Helpers;
 using FarmAppServer.Models;
@@ -15,6 +9,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace FarmAppServer.Controllers
 {
@@ -112,7 +112,7 @@ namespace FarmAppServer.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new {e.Message, e.StackTrace});
+                return BadRequest(new { e.Message, e.StackTrace });
             }
         }
 
@@ -123,16 +123,16 @@ namespace FarmAppServer.Controllers
             {
                 var user = _userService.GetUserById(id);
                 var model = await _mapper.ProjectTo<UserModelDto>(user).FirstOrDefaultAsync();
-                
+
                 if (model == null) return NotFound("User not found");
-                
+
                 return Ok(model);
             }
             catch (Exception e)
             {
-                return BadRequest(new {e.Message, e.StackTrace});
+                return BadRequest(new { e.Message, e.StackTrace });
             }
-            
+
         }
 
         [HttpPut]

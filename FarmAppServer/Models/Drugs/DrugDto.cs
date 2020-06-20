@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace FarmAppServer.Models.Drugs
+﻿namespace FarmAppServer.Models.Drugs
 {
     public class DrugDto
     {

@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using AutoMapper;
 using FarmApp.Domain.Core.Entity;
+using FarmApp.Infrastructure.Data.Contexts;
 using FarmAppServer.Helpers;
+using FarmAppServer.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Text.Encodings;
 using System.Threading.Tasks;
-using AutoMapper;
-using FarmApp.Infrastructure.Data.Contexts;
-using FarmAppServer.Models;
-using Microsoft.AspNetCore.Mvc;
 
 namespace FarmAppServer.Services
 {
@@ -27,7 +24,7 @@ namespace FarmAppServer.Services
         IQueryable UserSearchAsync(string param);
         IQueryable IsEnabled(bool isChecked);
     }
-    
+
     public class UserService : IUserService
     {
         private readonly FarmAppContext _context;
@@ -45,8 +42,8 @@ namespace FarmAppServer.Services
 
             var users = _context.Users.Where(x => x.Login == login && x.IsDeleted == false);
             var user = await users.FirstOrDefaultAsync();
-            
-            if (user==null)
+
+            if (user == null)
                 return null;
 
             if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
@@ -64,14 +61,14 @@ namespace FarmAppServer.Services
         {
             //return await _context.Users.FindAsync(id);
             return _context.Users.Where(x => x.Id == id && x.IsDeleted == false);
-            
+
         }
 
         public async Task<User> CreateUserAsync(User user, string password)
         {
             if (string.IsNullOrEmpty(password))
                 throw new AppException("Password is required");
-            
+
             if (_context.Users.Any(x => x.Login == user.Login & x.IsDeleted == false))
                 throw new AppException("Username \"" + user.Login + "\" is already taken");
 
@@ -79,7 +76,7 @@ namespace FarmAppServer.Services
 
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
-            
+
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
 
@@ -144,7 +141,7 @@ namespace FarmAppServer.Services
             var user = await _context.Users.FindAsync(id);
 
             if (user == null || user.IsDeleted == true) return false;
-            
+
             user.IsDeleted = true;
             await _context.SaveChangesAsync();
 
@@ -176,7 +173,7 @@ namespace FarmAppServer.Services
 
             var query = _context.Users
                 .Where(x => x.FirstName.Contains(param) || x.LastName.Contains(param) || x.Role.RoleName.Contains(param)
-                || x.UserName.Contains(param) || x.Login.Contains(param)) ;
+                || x.UserName.Contains(param) || x.Login.Contains(param));
 
             return query;
         }
@@ -214,7 +211,7 @@ namespace FarmAppServer.Services
             if (password == null) throw new ArgumentNullException(nameof(password));
             if (string.IsNullOrWhiteSpace(password))
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(password));
-            
+
             if (storedHash.Length != 64) throw new ArgumentException("Invalid length of password hash (64 bytes expected).", "passwordHash");
             if (storedSalt.Length != 128) throw new ArgumentException("Invalid length of password salt (128 bytes expected).", "passwordHash");
 

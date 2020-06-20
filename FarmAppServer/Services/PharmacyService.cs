@@ -1,15 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using FarmApp.Domain.Core.Entity;
+﻿using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
-using FarmAppServer.Helpers;
-using FarmAppServer.Models;
 using FarmAppServer.Models.Pharmacies;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace FarmAppServer.Services
 {
@@ -38,7 +34,7 @@ namespace FarmAppServer.Services
             var existPharmacy = await _context.Pharmacies
                 .Where(x => x.PharmacyName == pharmacy.PharmacyName && x.IsDeleted == false)
                 .FirstOrDefaultAsync();
-            
+
             if (existPharmacy != null) return false;
 
             var dto = new PostPharmacyDto();
@@ -47,7 +43,7 @@ namespace FarmAppServer.Services
 
             if (pharmacy.PharmacyId == 0) pharmacy.PharmacyId = null;
             if (pharmacy.RegionId == 0) pharmacy.RegionId = 1;
-            
+
             _context.Pharmacies.Add(pharmacy);
             var posted = await _context.SaveChangesAsync();
 

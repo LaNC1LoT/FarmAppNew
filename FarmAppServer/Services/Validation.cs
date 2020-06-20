@@ -92,8 +92,8 @@ namespace FarmAppServer.Services
                             logger.ResponseBody = new ResponseBody { Header = "Ошибка", Result = $"Пользователь заблокирован!" };
                             return false;
                         }
-                        
-                        var  apiMethodRoles = Ctx.ApiMethodRoles.FirstOrDefault(x => x.ApiMethodId == apiMethod.Id && x.RoleId == user.RoleId);
+
+                        var apiMethodRoles = Ctx.ApiMethodRoles.FirstOrDefault(x => x.ApiMethodId == apiMethod.Id && x.RoleId == user.RoleId);
                         if (apiMethodRoles == null)
                         {
                             logger.Log.StatusCode = 403;

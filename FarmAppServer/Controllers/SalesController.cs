@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
 using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
 using FarmAppServer.Models;
 using FarmAppServer.Models.Sales;
 using FarmAppServer.Services;
 using FarmAppServer.Services.Paging;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace FarmAppServer.Controllers
 {
@@ -97,7 +96,7 @@ namespace FarmAppServer.Controllers
         [HttpGet("SaleForPeriod")]
         public IActionResult SaleForPeriod([FromQuery]DateTime start, [FromQuery]DateTime end, [FromQuery]int page = 1, [FromQuery]int pageSize = 25)
         {
-            var sales= _context.Sales.Where(x => x.SaleDate >= start && x.SaleDate <= end);
+            var sales = _context.Sales.Where(x => x.SaleDate >= start && x.SaleDate <= end);
             var result = sales.GetPaged(page, pageSize);
 
             if (result == null)

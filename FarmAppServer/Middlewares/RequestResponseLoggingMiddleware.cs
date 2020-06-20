@@ -1,14 +1,11 @@
-﻿using FarmApp.Infrastructure.Data.Contexts;
+﻿using FarmAppServer.Extantions;
+using FarmAppServer.Models;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FarmAppServer.Extantions;
-using FarmAppServer.Models;
 
 namespace FarmAppServer.Middlewares
 {
@@ -99,7 +96,7 @@ namespace FarmAppServer.Middlewares
             }
 
             _logger.Log.StatusCode = response.StatusCode;
-           
+
             if (!string.IsNullOrWhiteSpace(errorMsg))
                 _logger.Log.Exception += $"JSON parse response: {errorMsg} {Environment.NewLine}";
 
@@ -111,7 +108,7 @@ namespace FarmAppServer.Middlewares
             });
 
             _logger.Log.HeaderResponse = stringBuilder.ToString();
-            
+
             //?????await _next(context);
         }
     }

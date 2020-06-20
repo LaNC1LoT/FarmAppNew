@@ -1,10 +1,6 @@
-﻿using FarmApp.Domain.Core.Entity;
-using FarmApp.Infrastructure.Data.Contexts;
+﻿using FarmApp.Infrastructure.Data.Contexts;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FarmAppServer.Controllers
 {

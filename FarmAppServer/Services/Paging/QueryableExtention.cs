@@ -14,8 +14,8 @@ namespace FarmAppServer.Services.Paging
                 RowCount = query.Count()
             };
 
-            var pageCount = (double) result.RowCount / pageSize;
-            result.PageCount = (int) Math.Ceiling(pageCount);
+            var pageCount = (double)result.RowCount / pageSize;
+            result.PageCount = (int)Math.Ceiling(pageCount);
 
             var skip = (page - 1) * pageSize;
             result.Data = query.Skip(skip).Take(pageSize);

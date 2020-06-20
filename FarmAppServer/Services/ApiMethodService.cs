@@ -1,16 +1,12 @@
-﻿using System;
+﻿using AutoMapper;
+using FarmApp.Domain.Core.Entity;
+using FarmApp.Infrastructure.Data.Contexts;
+using FarmAppServer.Models;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
-using FarmApp.Domain.Core.Entity;
-using FarmApp.Infrastructure.Data.Contexts;
-using FarmAppServer.Helpers;
-using FarmAppServer.Models;
-using FarmAppServer.Models.ApiMethods;
-using FarmAppServer.Models.Sales;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 
 namespace FarmAppServer.Services
 {

@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
-using FarmAppServer.Helpers;
-using FarmAppServer.Models;
-using FarmAppServer.Models.Regions;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace FarmAppServer.Services
 {
@@ -32,12 +26,12 @@ namespace FarmAppServer.Services
             _context = context;
             _mapper = mapper;
         }
-        
+
         //Post region
         public async Task<bool> PostRegion(string values)
         {
             if (string.IsNullOrWhiteSpace(values)) return false;
-            
+
             var region = new Region();
             JsonConvert.PopulateObject(values, region);
             var existRegion = await _context.Regions.Where(x => x.RegionName == region.RegionName && x.IsDeleted == false).FirstOrDefaultAsync();
@@ -76,7 +70,7 @@ namespace FarmAppServer.Services
             var region = _context.Regions.First(r => r.Id == key);
 
             if (region == null) return false;
-            
+
             JsonConvert.PopulateObject(values, region);
 
 
@@ -100,7 +94,7 @@ namespace FarmAppServer.Services
 
             var regions = _context.Regions.Where(x => x.RegionName.ToUpper().Contains(request) ||
                                                       x.Population.ToString().Contains(request));// ||
-                                                      //x.ParentRegion.RegionName.ToUpper().Contains(request));
+                                                                                                 //x.ParentRegion.RegionName.ToUpper().Contains(request));
             return regions;
         }
     }

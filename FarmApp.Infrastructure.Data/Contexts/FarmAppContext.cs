@@ -102,7 +102,7 @@ namespace FarmApp.Infrastructure.Data.Contexts
                     entity.HasOne(h => h.Role).WithMany(w => w.Users).OnDelete(DeleteBehavior.Restrict);
                 });
 
-                modelBuilder.Entity<DosageFormType>(entity => 
+                modelBuilder.Entity<DosageFormType>(entity =>
                 {
                     entity.ToTable(Table.DosageFormType, Schema.Dist);
                     entity.Property(p => p.DosageForm).IsRequired().HasMaxLength(500);
@@ -115,14 +115,12 @@ namespace FarmApp.Infrastructure.Data.Contexts
                     entity.Property(p => p.CodeAthTypeId).IsRequired();
                     entity.Property(p => p.VendorId).IsRequired();
                     entity.Property(p => p.DosageFormTypeId).IsRequired();
-                    entity.Property(p => p.StockId).IsRequired();
                     entity.Property(p => p.DrugName).IsRequired().HasMaxLength(255);
                     entity.Property(p => p.IsDomestic).IsRequired().HasDefaultValueSql(CommandSql.DefaultFalse);
                     entity.Property(p => p.IsGeneric).IsRequired().HasDefaultValueSql(CommandSql.DefaultFalse);
                     entity.Property(p => p.IsDeleted).IsRequired().HasDefaultValueSql(CommandSql.DefaultFalse);
                     entity.HasOne(h => h.CodeAthType).WithMany(w => w.Drugs).OnDelete(DeleteBehavior.Restrict);
                     entity.HasOne(h => h.Vendor).WithMany(w => w.Drugs).OnDelete(DeleteBehavior.Restrict);
-                    entity.HasOne(h => h.Stock).WithMany(w => w.Drugs).OnDelete(DeleteBehavior.Restrict);
                     entity.HasOne(p => p.DosageFormType).WithMany(w => w.Drugs).OnDelete(DeleteBehavior.Restrict);
                 });
 

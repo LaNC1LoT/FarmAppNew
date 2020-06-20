@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace FarmAppServer.Models
+﻿namespace FarmAppServer.Models
 {
     public class RegionTypeDto
     {

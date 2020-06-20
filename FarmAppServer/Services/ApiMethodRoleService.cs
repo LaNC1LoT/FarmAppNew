@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using FarmApp.Domain.Core.Entity;
+﻿using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace FarmAppServer.Services
 {
@@ -29,10 +26,10 @@ namespace FarmAppServer.Services
         {
             var apiMethodRole = new ApiMethodRole();
             JsonConvert.PopulateObject(values, apiMethodRole);
-            
+
             var existApiMethod = await _context.ApiMethods
                 .Where(x => x.Id == apiMethodRole.ApiMethodId && x.IsDeleted == false).FirstOrDefaultAsync();
-            
+
             if (existApiMethod == null) return false;
 
             var existRole = await _context.Roles.Where(x => x.Id == apiMethodRole.RoleId && x.IsDeleted == false).FirstOrDefaultAsync();
@@ -54,7 +51,7 @@ namespace FarmAppServer.Services
         public async Task<bool> UpdateApiMethodASync(int key, string values)
         {
             var apiMethodRole = await _context.ApiMethodRoles.FirstOrDefaultAsync(x => x.Id == key && x.IsDeleted == false);
-            
+
             if (apiMethodRole == null) return false;
 
             JsonConvert.PopulateObject(values, apiMethodRole);

@@ -1,21 +1,21 @@
-﻿using FarmApp.Infrastructure.Data.Contexts;
+﻿using AutoMapper;
+using FarmApp.Infrastructure.Data.Contexts;
+using FarmAppServer.Helpers;
 using FarmAppServer.Middlewares;
 using FarmAppServer.Models;
 using FarmAppServer.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.CookiePolicy;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Text;
-using Microsoft.AspNetCore.CookiePolicy;
-using Microsoft.AspNetCore.Http;
 using Microsoft.OpenApi.Models;
-using FarmAppServer.Helpers;
+using System;
 using System.Linq;
-using AutoMapper;
+using System.Text;
 
 namespace FarmAppServer
 {
@@ -88,7 +88,7 @@ namespace FarmAppServer
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Farmacy app", Version = "v1" });
-                    
+
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Name = "Authorization",
@@ -123,7 +123,7 @@ namespace FarmAppServer
                 HttpOnly = HttpOnlyPolicy.Always,
                 Secure = CookieSecurePolicy.Always
             });
-            
+
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseAuthentication();
@@ -132,7 +132,7 @@ namespace FarmAppServer
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
 
-            app.UseMiddleware<ErrorHandlingMiddleware>();  
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

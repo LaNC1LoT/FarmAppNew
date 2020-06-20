@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using FarmApp.Domain.Core.Entity;
+﻿using AutoMapper;
 using FarmApp.Infrastructure.Data.Contexts;
 using FarmAppServer.Models;
 using FarmAppServer.Models.Regions;
 using FarmAppServer.Services;
 using FarmAppServer.Services.Paging;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace FarmAppServer.Controllers
 {
@@ -35,7 +32,7 @@ namespace FarmAppServer.Controllers
         public ActionResult<IEnumerable<RegionDto>> GetRegions([FromQuery]int page = 1, [FromQuery]int pageSize = 25)
         {
             var regions = _context.Regions.Include(x => x.Regions);
-            
+
             var model = _mapper.ProjectTo<RegionDto>(regions);
 
             if (model == null)
@@ -84,7 +81,7 @@ namespace FarmAppServer.Controllers
             if (string.IsNullOrWhiteSpace(values)) return BadRequest("values cannot be null or empty");
 
             var request = await _regionService.PostRegion(values);
-            
+
             //var result = _mapper.Map<RegionDto>(request);
             if (request)
                 return Ok();

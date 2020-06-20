@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
 using FarmAppServer.Helpers;
 using FarmAppServer.Models.CodeAthTypes;
-using FarmAppServer.Models.Sales;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace FarmAppServer.Services
 {
@@ -54,9 +51,9 @@ namespace FarmAppServer.Services
             var existCodeAthType = await _context.CodeAthTypes
                 .Where(x => x.Code == codeAthType.Code && x.IsDeleted == false)
                 .FirstOrDefaultAsync();
-            
+
             if (existCodeAthType != null) return false;
-            
+
             var dto = new PostCodeAthType();
             JsonConvert.PopulateObject(values, dto);
             codeAthType.CodeAthId = dto.ParentCodeAthId;
@@ -74,7 +71,7 @@ namespace FarmAppServer.Services
             var codeAthType = _context.CodeAthTypes.Where(x => x.Id == key && x.IsDeleted == false);
 
             var result = await _mapper.ProjectTo<CodeAthTypeDto>(codeAthType).FirstOrDefaultAsync();
-            
+
             return result;
         }
 

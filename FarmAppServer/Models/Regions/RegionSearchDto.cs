@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using FarmApp.Domain.Core.Entity;
+﻿using FarmApp.Domain.Core.Entity;
 
 namespace FarmAppServer.Models.Regions
 {

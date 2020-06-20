@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using AutoMapper;
+﻿using AutoMapper;
 using FarmApp.Domain.Core.Entity;
 using FarmAppServer.Models;
 using FarmAppServer.Models.ApiMethods;
@@ -22,11 +20,11 @@ namespace FarmAppServer.Helpers
         {
             //users map
             CreateMap<Role, UserRoleDto>().ReverseMap();
-            
+
             CreateMap<User, UserModelDto>()
                 .ForMember(x => x.Role,
                     o => o.MapFrom(s => s.Role));
-            
+
             CreateMap<User, AuthResponseDto>()
                 .ForMember(x => x.Role,
                     o => o.MapFrom(s => s.Role));
@@ -35,12 +33,12 @@ namespace FarmAppServer.Helpers
                 .ForMember(x => x.UserName,
                     o => o.MapFrom(s => s.FirstName + " " + s.LastName));
             CreateMap<UpdateModelDto, User>()
-                .ForMember(x => x.UserName, 
+                .ForMember(x => x.UserName,
                     o => o.MapFrom(s => s.FirstName + " " + s.LastName));
 
             //map for UserFilterByRole 
             CreateMap<User, UserFilterByRoleDto>()
-                .ForMember(x => x.UserName, 
+                .ForMember(x => x.UserName,
                     o => o.MapFrom(s => s.FirstName + " " + s.LastName));
 
             //vendor
@@ -61,7 +59,7 @@ namespace FarmAppServer.Helpers
                 .ForMember(x => x.ChildRegion,
                     o =>
                         o.MapFrom(s => s.RegionId));
-            
+
             CreateMap<Region, UpdateRegionDto>().ReverseMap();
             CreateMap<PostRegionDto, Region>()
                 .ForMember(x => x.RegionId,
@@ -70,7 +68,7 @@ namespace FarmAppServer.Helpers
             //region types
             CreateMap<RegionType, RegionTypeDto>().ReverseMap();
             CreateMap<RegionType, PostRegionTypeDto>().ReverseMap();
-            
+
             //roles
             CreateMap<Role, RoleDto>().ReverseMap();
             CreateMap<Role, UpdateRoleDto>().ReverseMap();
@@ -85,7 +83,7 @@ namespace FarmAppServer.Helpers
                     o => o.MapFrom(s => s.ParentPharmacy.PharmacyName))
                 .ForMember(x => x.RegionName,
                     o => o.MapFrom(s => s.Region.RegionName));
-            CreateMap<PharmacyFilterDto,Pharmacy>();
+            CreateMap<PharmacyFilterDto, Pharmacy>();
             CreateMap<PharmacyDto, Pharmacy>().ReverseMap();
             CreateMap<PostPharmacyDto, Pharmacy>().ReverseMap();
 
@@ -99,8 +97,8 @@ namespace FarmAppServer.Helpers
                     o => o.MapFrom(s => s.Vendor.Id))
                 .ForMember(x => x.VendorName,
                     o => o.MapFrom(s => s.Vendor.VendorName));
-                //.ForMember(x => x.IsDomestic,
-                 //   o => o.MapFrom(s => s.Vendor.IsDomestic));
+            //.ForMember(x => x.IsDomestic,
+            //   o => o.MapFrom(s => s.Vendor.IsDomestic));
             CreateMap<PostDrugDto, Drug>().ReverseMap();
 
             //sales

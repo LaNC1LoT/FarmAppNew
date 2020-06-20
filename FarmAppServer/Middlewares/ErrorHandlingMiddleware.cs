@@ -1,16 +1,13 @@
 ﻿using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
-using FarmAppServer.Extantions;
 using FarmAppServer.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FarmAppServer.Services.Paging;
 
 namespace FarmAppServer.Middlewares
 {
@@ -28,10 +25,10 @@ namespace FarmAppServer.Middlewares
             var originalBody = context.Response.Body;
             var responseBody = new MemoryStream();
             context.Response.Body = responseBody;
-            
+
             try
             {
-                await FormatRequest(context,logger.Log);
+                await FormatRequest(context, logger.Log);
                 await _next.Invoke(context);
             }
             catch (Exception ex)
@@ -55,7 +52,7 @@ namespace FarmAppServer.Middlewares
             else
             {
                 log.StatusCode = 500;
-                result = new ResponseBody { Header = "Error", Result = ex.Message }; 
+                result = new ResponseBody { Header = "Error", Result = ex.Message };
             }
 
             log.Exception += ex.ToString();
@@ -66,7 +63,7 @@ namespace FarmAppServer.Middlewares
 
             context.Response.StatusCode = log.StatusCode.Value;
             context.Response.ContentType = "application/json; charset=utf-8";
-            
+
             return context.Response.WriteAsync(result.ToString());
         }
 
@@ -77,7 +74,7 @@ namespace FarmAppServer.Middlewares
                 await FormatResponse(context.Response, log);
                 await responseBody.CopyToAsync(originalBody);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 await HandleExceptionAsync(context, ex, log);
             }
@@ -116,7 +113,7 @@ namespace FarmAppServer.Middlewares
             var request = context.Request;
             log.UserId = context.User.Claims?.FirstOrDefault(c => c.Type == "UserId")?.Value;
             log.RoleId = context.User.Claims?.FirstOrDefault(c => c.Type == "RoleId")?.Value;
-            
+
             log.HttpMethod = context.Request.Method;
             log.PathUrl = context.Request.Path;
 
