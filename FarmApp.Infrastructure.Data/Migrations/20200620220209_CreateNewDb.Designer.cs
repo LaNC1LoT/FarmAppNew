@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FarmApp.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(FarmAppContext))]
-    [Migration("20200620215601_CreateNewDb")]
+    [Migration("20200620220209_CreateNewDb")]
     partial class CreateNewDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -181,12 +181,6 @@ namespace FarmApp.Infrastructure.Data.Migrations
                         .HasMaxLength(255);
 
                     b.Property<bool?>("IsDeleted")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValueSql("((0))");
-
-                    b.Property<bool?>("IsDomestic")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
@@ -602,6 +596,12 @@ namespace FarmApp.Infrastructure.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool?>("IsDeleted")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<bool?>("IsDomestic")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")

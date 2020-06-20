@@ -11,6 +11,7 @@ namespace FarmApp.Domain.Core.Entity
         public int Id { get; set; }
         public string VendorName { get; set; }
         public int RegionId { get; set; }
+        public bool? IsDomestic { get; set; }
         public bool? IsDeleted { get; set; }
         public virtual Region Region { get; set; }
         public virtual ICollection<Drug> Drugs { get; set; }

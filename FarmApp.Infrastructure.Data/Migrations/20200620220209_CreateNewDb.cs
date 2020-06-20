@@ -289,6 +289,7 @@ namespace FarmApp.Infrastructure.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     VendorName = table.Column<string>(maxLength: 255, nullable: false),
                     RegionId = table.Column<int>(nullable: false),
+                    IsDomestic = table.Column<bool>(nullable: false, defaultValueSql: "((0))"),
                     IsDeleted = table.Column<bool>(nullable: false, defaultValueSql: "((0))")
                 },
                 constraints: table =>
@@ -314,7 +315,6 @@ namespace FarmApp.Infrastructure.Data.Migrations
                     CodeAthTypeId = table.Column<int>(nullable: false),
                     VendorId = table.Column<int>(nullable: false),
                     DosageFormTypeId = table.Column<int>(nullable: false),
-                    IsDomestic = table.Column<bool>(nullable: false, defaultValueSql: "((0))"),
                     IsGeneric = table.Column<bool>(nullable: false, defaultValueSql: "((0))"),
                     IsDeleted = table.Column<bool>(nullable: false, defaultValueSql: "((0))")
                 },

@@ -184,12 +184,6 @@ namespace FarmApp.Infrastructure.Data.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValueSql("((0))");
 
-                    b.Property<bool?>("IsDomestic")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValueSql("((0))");
-
                     b.Property<bool?>("IsGeneric")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
@@ -600,6 +594,12 @@ namespace FarmApp.Infrastructure.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool?>("IsDeleted")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<bool?>("IsDomestic")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
