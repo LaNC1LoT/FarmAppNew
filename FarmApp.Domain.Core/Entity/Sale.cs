@@ -10,8 +10,8 @@ namespace FarmApp.Domain.Core.Entity
         public int? SaleImportFileId { get; set; }
         public DateTime? SaleDate { get; set; }
         public decimal Price { get; set; }
-        public decimal Amount { get; set; }
         public int Quantity { get; set; }
+        public decimal Amount { get; set; }
         public bool? IsDiscount { get; set; }
         public bool? IsDeleted { get; set; }
         public virtual Drug Drug { get; set; }

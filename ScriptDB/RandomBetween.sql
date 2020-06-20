@@ -1,0 +1,23 @@
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE FUNCTION RandomBetween
+(
+	@FromDate DATETIME,
+	@ToDate   DATETIME
+)
+RETURNS DATETIME
+AS
+BEGIN
+	DECLARE @Result DATETIME
+	DECLARE @Seconds INT = DATEDIFF(SECOND, @FromDate, @ToDate)
+	DECLARE @Random INT = ROUND(((@Seconds-1) * RAND()), 0)
+
+	SET @Result = DATEADD(SECOND, @Random, @FromDate)
+	RETURN @Result
+	
+END
+GO
+

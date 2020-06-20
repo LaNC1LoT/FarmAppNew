@@ -8,13 +8,13 @@ namespace FarmApp.Domain.Core.Entity
         {
             Pharmacies = new HashSet<Pharmacy>();
             Sales = new HashSet<Sale>();
+            Stocks = new HashSet<Stock>();
         }
 
         public int Id { get; set; }
         public int? PharmacyId { get; set; }
         public string PharmacyName { get; set; }
         public int RegionId { get; set; }
-        public int StorkId { get; set; }
         /// <summary>
         /// Время работы
         /// </summary>
@@ -32,8 +32,8 @@ namespace FarmApp.Domain.Core.Entity
         public bool? IsDeleted { get; set; }
         public virtual Pharmacy ParentPharmacy { get; set; }
         public virtual Region Region { get; set; }
-        public virtual Stock Stock { get; set; }
         public virtual ICollection<Pharmacy> Pharmacies { get; set; }
         public virtual ICollection<Sale> Sales { get; set; }
+        public virtual ICollection<Stock> Stocks { get; set; }
     }
 }

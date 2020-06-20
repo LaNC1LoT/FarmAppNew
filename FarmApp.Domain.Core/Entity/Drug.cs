@@ -7,6 +7,7 @@ namespace FarmApp.Domain.Core.Entity
         public Drug()
         {
             Sales = new HashSet<Sale>();
+            Stocks = new HashSet<Stock>();
         }
         public int Id { get; set; }
         public string DrugName { get; set; }
@@ -20,5 +21,6 @@ namespace FarmApp.Domain.Core.Entity
         public virtual Vendor Vendor { get; set; }
         public virtual DosageFormType DosageFormType { get; set; }
         public virtual ICollection<Sale> Sales { get; set; }
+        public virtual ICollection<Stock> Stocks { get; set; }
     }
 }

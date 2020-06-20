@@ -8,6 +8,7 @@ namespace FarmApp.Domain.Core.Entity
         {
             Regions = new HashSet<Region>();
             Pharmacies = new HashSet<Pharmacy>();
+            Vendors = new HashSet<Vendor>();
         }
         public int Id { get; set; }
         public int? RegionId { get; set; }//parent region id
@@ -19,5 +20,6 @@ namespace FarmApp.Domain.Core.Entity
         public virtual RegionType RegionType { get; set; }
         public virtual ICollection<Region> Regions { get; set; }
         public virtual ICollection<Pharmacy> Pharmacies { get; set; }
+        public virtual ICollection<Vendor> Vendors { get; set; }
     }
 }
