@@ -12,7 +12,6 @@ using FarmAppServer.Models;
 using FarmAppServer.Models.Regions;
 using FarmAppServer.Services;
 using FarmAppServer.Services.Paging;
-using ServiceStack;
 
 namespace FarmAppServer.Controllers
 {

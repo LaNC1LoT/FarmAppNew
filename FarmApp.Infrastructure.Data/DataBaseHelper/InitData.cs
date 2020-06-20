@@ -9,15 +9,15 @@ namespace FarmApp.Infrastructure.Data.DataBaseHelper
     {
         public IEnumerable<Role> InitRoles { get; private set; } = new List<Role>(2)
         {
-            new Role { Id = 1, RoleName = "admin" },
-            new Role { Id = 2, RoleName = "user" },
+            new Role { Id = 1, RoleName = "Администратор" },
+            new Role { Id = 2, RoleName = "Пользователь" },
         };
 
-        // public IEnumerable<User> InitUsers { get; private set; } = new List<User>(2)
-        // {
-        //     new User { Id = 1, UserName = "Админ", UserName = "admin", Password = "123456", RoleId = 1 },
-        //     new User { Id = 2, UserName = "Пользователь", Login = "user", Password = "123456", RoleId = 2 },
-        // };
+        //public IEnumerable<User> InitUsers { get; private set; } = new List<User>(2)
+        //{
+        //    new User { Id = 1, UserName = "Админ", UserName = "admin", Password = "123456", RoleId = 1 },
+        //    new User { Id = 2, UserName = "Пользователь", Login = "user", Password = "123456", RoleId = 2 },
+        //};
 
         public IEnumerable<RegionType> InitRegionTypes { get; private set; } = new List<RegionType>(5)
         {

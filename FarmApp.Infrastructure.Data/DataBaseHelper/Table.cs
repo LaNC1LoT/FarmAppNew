@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FarmApp.Infrastructure.Data.DataBaseHelper
+﻿namespace FarmApp.Infrastructure.Data.DataBaseHelper
 {
     internal class Table
     {
+        public const string DosageFormType = "DosageFormTypes";
         public const string User = "Users";
         public const string Stock = "Stocks";
         public const string Role = "Roles";

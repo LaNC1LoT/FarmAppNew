@@ -790,14 +790,37 @@ namespace FarmApp.Infrastructure.Data.Migrations
 
                     b.Property<string>("NameAth")
                         .IsRequired()
-                        .HasColumnType("nvarchar(350)")
-                        .HasMaxLength(350);
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
 
                     b.HasKey("Id");
 
                     b.HasIndex("CodeAthId");
 
                     b.ToTable("CodeAthTypes","dist");
+                });
+
+            modelBuilder.Entity("FarmApp.Domain.Core.Entity.DosageFormType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DosageForm")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<bool?>("IsDeleted")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DosageFormType","dist");
                 });
 
             modelBuilder.Entity("FarmApp.Domain.Core.Entity.Drug", b =>
@@ -810,10 +833,8 @@ namespace FarmApp.Infrastructure.Data.Migrations
                     b.Property<int>("CodeAthTypeId")
                         .HasColumnType("int");
 
-                    b.Property<string>("DosageForm")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
+                    b.Property<int>("DosageFormTypeId")
+                        .HasColumnType("int");
 
                     b.Property<string>("DrugName")
                         .IsRequired()
@@ -826,8 +847,11 @@ namespace FarmApp.Infrastructure.Data.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValueSql("((0))");
 
-                    b.Property<bool>("IsDomestic")
-                        .HasColumnType("bit");
+                    b.Property<bool?>("IsDomestic")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
 
                     b.Property<bool?>("IsGeneric")
                         .IsRequired()
@@ -835,7 +859,7 @@ namespace FarmApp.Infrastructure.Data.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValueSql("((0))");
 
-                    b.Property<int?>("StockId")
+                    b.Property<int>("StockId")
                         .HasColumnType("int");
 
                     b.Property<int>("VendorId")
@@ -844,6 +868,8 @@ namespace FarmApp.Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CodeAthTypeId");
+
+                    b.HasIndex("DosageFormTypeId");
 
                     b.HasIndex("StockId");
 
@@ -963,11 +989,19 @@ namespace FarmApp.Infrastructure.Data.Migrations
                     b.Property<int>("RegionId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("StockId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StorkId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PharmacyId");
 
                     b.HasIndex("RegionId");
+
+                    b.HasIndex("StockId");
 
                     b.ToTable("Pharmacies","dist");
                 });
@@ -1036,31 +1070,26 @@ namespace FarmApp.Infrastructure.Data.Migrations
                         new
                         {
                             Id = 1,
-                            IsDeleted = false,
                             RegionTypeName = "Государство"
                         },
                         new
                         {
                             Id = 2,
-                            IsDeleted = false,
                             RegionTypeName = "Субъект(регион)"
                         },
                         new
                         {
                             Id = 3,
-                            IsDeleted = false,
                             RegionTypeName = "Город"
                         },
                         new
                         {
                             Id = 4,
-                            IsDeleted = false,
                             RegionTypeName = "Сёла, деревни и др."
                         },
                         new
                         {
                             Id = 5,
-                            IsDeleted = false,
                             RegionTypeName = "Микрорайон"
                         });
                 });
@@ -1091,14 +1120,12 @@ namespace FarmApp.Infrastructure.Data.Migrations
                         new
                         {
                             Id = 1,
-                            IsDeleted = false,
-                            RoleName = "admin"
+                            RoleName = "Администратор"
                         },
                         new
                         {
                             Id = 2,
-                            IsDeleted = false,
-                            RoleName = "user"
+                            RoleName = "Пользователь"
                         });
                 });
 
@@ -1136,8 +1163,11 @@ namespace FarmApp.Infrastructure.Data.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("SaleDate")
-                        .HasColumnType("datetime");
+                    b.Property<DateTime?>("SaleDate")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<int?>("SaleImportFileId")
                         .HasColumnType("int");
@@ -1183,13 +1213,28 @@ namespace FarmApp.Infrastructure.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime?>("CreateDate")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<int>("DrugId")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("IsDeleted")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
                     b.Property<int>("PharmacyId")
-                        .HasColumnType("int")
-                        .HasMaxLength(20);
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PharmacyId");
 
                     b.ToTable("Stocks","tab");
                 });
@@ -1229,8 +1274,9 @@ namespace FarmApp.Infrastructure.Data.Migrations
                         .HasColumnType("varbinary(max)");
 
                     b.Property<int>("RoleId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasMaxLength(20);
+                        .HasDefaultValueSql("((2))");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -1303,9 +1349,17 @@ namespace FarmApp.Infrastructure.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("FarmApp.Domain.Core.Entity.Stock", null)
+                    b.HasOne("FarmApp.Domain.Core.Entity.DosageFormType", "DosageFormType")
                         .WithMany("Drugs")
-                        .HasForeignKey("StockId");
+                        .HasForeignKey("DosageFormTypeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("FarmApp.Domain.Core.Entity.Stock", "Stock")
+                        .WithMany("Drugs")
+                        .HasForeignKey("StockId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("FarmApp.Domain.Core.Entity.Vendor", "Vendor")
                         .WithMany("Drugs")
@@ -1326,6 +1380,11 @@ namespace FarmApp.Infrastructure.Data.Migrations
                         .HasForeignKey("RegionId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("FarmApp.Domain.Core.Entity.Stock", "Stock")
+                        .WithMany("Pharmacies")
+                        .HasForeignKey("StockId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("FarmApp.Domain.Core.Entity.Region", b =>
@@ -1359,15 +1418,6 @@ namespace FarmApp.Infrastructure.Data.Migrations
                     b.HasOne("FarmApp.Domain.Core.Entity.SaleImportFile", "SaleImportFile")
                         .WithMany()
                         .HasForeignKey("SaleImportFileId");
-                });
-
-            modelBuilder.Entity("FarmApp.Domain.Core.Entity.Stock", b =>
-                {
-                    b.HasOne("FarmApp.Domain.Core.Entity.Pharmacy", "Pharmacy")
-                        .WithMany()
-                        .HasForeignKey("PharmacyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("FarmApp.Domain.Core.Entity.User", b =>

@@ -13,7 +13,11 @@ namespace FarmAppServer.Helpers
             
             var scheme = new OpenApiSecurityScheme
             {
-                Reference = new OpenApiReference{Type = ReferenceType.SecurityScheme, Id = "Bearer"}
+                Reference = new OpenApiReference
+                {
+                    Id = "Bearer",
+                    Type = ReferenceType.SecurityScheme,
+                }
             };
             
             operation.Security.Add(new OpenApiSecurityRequirement

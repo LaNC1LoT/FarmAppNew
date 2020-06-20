@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace FarmApp.Domain.Core.Entity
 {
@@ -13,7 +11,7 @@ namespace FarmApp.Domain.Core.Entity
 
         public int Id { get; set; }
         public string RegionTypeName { get; set; }
-        public bool? IsDeleted { get; set; } = false;
+        public bool? IsDeleted { get; set; }
         public virtual ICollection<Region> Regions { get; set; }
     }
 }

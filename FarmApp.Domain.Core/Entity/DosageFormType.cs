@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace FarmApp.Domain.Core.Entity
 {
@@ -8,11 +6,11 @@ namespace FarmApp.Domain.Core.Entity
     {
         public DosageFormType()
         {
-            Drugs = new HashSet<ApiMethodRole>();
+            Drugs = new HashSet<Drug>();
         }
         public int Id { get; set; }
         public string DosageForm { get; set; }
         public bool? IsDeleted { get; set; }
-        public virtual ICollection<ApiMethodRole> Drugs { get; set; }
+        public virtual ICollection<Drug> Drugs { get; set; }
     }
 }

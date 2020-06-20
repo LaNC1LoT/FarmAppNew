@@ -10,7 +10,6 @@ using FarmAppServer.Models.CodeAthTypes;
 using FarmAppServer.Models.Sales;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using ServiceStack;
 
 namespace FarmAppServer.Services
 {
@@ -36,7 +35,7 @@ namespace FarmAppServer.Services
         public async Task<bool> UpdateCodeAthTypeAsync(int key, string values)
         {
             if (key <= 0) return false;
-            if (values.IsNullOrEmpty()) return false;
+            if (string.IsNullOrWhiteSpace(values)) return false;
 
             var codeAthType = _context.CodeAthTypes.First(c => c.Id == key && c.IsDeleted == false);
 

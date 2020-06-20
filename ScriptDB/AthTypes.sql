@@ -1,8 +1,8 @@
---SELECT * FROM dist.CodeAthTypes
+----SELECT * FROM dist.CodeAthTypes
 
---DELETE FROM dist.CodeAthTypes
---DBCC CHECKIDENT ('dist.CodeAthTypes', RESEED, 0);
---GO
+----DELETE FROM dist.CodeAthTypes
+----DBCC CHECKIDENT ('dist.CodeAthTypes', RESEED, 0);
+----GO
 
 --INSERT INTO dist.CodeAthTypes (Code, NameAth) VALUES
 --(N'A', N'пищеварительный тракт и обмен веществ'),
@@ -584,6 +584,8 @@
 --	SET @i += 1;
 --END
 
---UPDATE dist.CodeAthTypes SET CodeAthId = NULL
 --UPDATE dist.CodeAthTypes SET CodeAthId = NULL WHERE LEN(Code) = 1
 --SELECT * FROM dist.CodeAthTypes
+
+--UPDATE dist.CodeAthTypes
+--SET NameAth = UPPER(LEFT(NameAth, 1)) + LOWER(SUBSTRING(NameAth, 2, LEN(NameAth)))

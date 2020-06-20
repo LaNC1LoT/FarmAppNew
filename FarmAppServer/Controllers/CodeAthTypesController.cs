@@ -13,7 +13,6 @@ using FarmAppServer.Models.CodeAthTypes;
 using FarmAppServer.Models.Sales;
 using FarmAppServer.Services;
 using FarmAppServer.Services.Paging;
-using ServiceStack;
 
 namespace FarmAppServer.Controllers
 {

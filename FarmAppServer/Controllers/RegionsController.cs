@@ -12,7 +12,6 @@ using FarmAppServer.Models;
 using FarmAppServer.Models.Regions;
 using FarmAppServer.Services;
 using FarmAppServer.Services.Paging;
-using ServiceStack;
 
 namespace FarmAppServer.Controllers
 {
@@ -82,7 +81,7 @@ namespace FarmAppServer.Controllers
         [Consumes("application/x-www-form-urlencoded")]
         public async Task<ActionResult<RegionDto>> PostRegion([FromForm]string values)
         {
-            if (values.IsNullOrEmpty()) return BadRequest("values cannot be null or empty");
+            if (string.IsNullOrWhiteSpace(values)) return BadRequest("values cannot be null or empty");
 
             var request = await _regionService.PostRegion(values);
             

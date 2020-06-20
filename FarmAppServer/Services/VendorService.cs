@@ -7,7 +7,6 @@ using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using ServiceStack;
 
 namespace FarmAppServer.Services
 {
@@ -41,7 +40,7 @@ namespace FarmAppServer.Services
 
         public async Task<bool> PostVendorAsync(string values)
         {
-            if (values.IsNullOrEmpty()) return false;
+            if (string.IsNullOrWhiteSpace(values)) return false;
 
             var vendor = new Vendor();
             JsonConvert.PopulateObject(values, vendor);
@@ -59,7 +58,7 @@ namespace FarmAppServer.Services
         public async Task<bool> UpdateVendorAsync(int key, string values)
         {
             if (key <= 0) return false;
-            if (values.IsNullOrEmpty()) return false;
+            if (string.IsNullOrWhiteSpace(values)) return false;
 
             var vendor = _context.Vendors.First(r => r.Id == key);
 

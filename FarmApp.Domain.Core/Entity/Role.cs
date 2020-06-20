@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace FarmApp.Domain.Core.Entity
 {
@@ -17,7 +15,7 @@ namespace FarmApp.Domain.Core.Entity
 
         public int Id { get; set; }
         public string RoleName { get; set; }
-        public bool? IsDeleted { get; set; } = false;
+        public bool? IsDeleted { get; set; }
         public virtual ICollection<User> Users { get; set; }
         public virtual ICollection<ApiMethodRole> ApiMethodRoles { get; set; }
     }

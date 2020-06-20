@@ -1,7 +1,6 @@
 ﻿using FarmApp.Infrastructure.Data.Contexts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using ServiceStack.Text;
 using System;
 using System.Collections.Generic;
 using System.IO;

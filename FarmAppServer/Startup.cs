@@ -4,26 +4,18 @@ using FarmAppServer.Models;
 using FarmAppServer.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Http;
 using Microsoft.OpenApi.Models;
 using FarmAppServer.Helpers;
-using AutoMapper;
-using FarmAppServer.Controllers;
-using Newtonsoft.Json;
 using System.Linq;
-
-//using FarmAppServer.Services.UserServices;
+using AutoMapper;
 
 namespace FarmAppServer
 {
@@ -53,18 +45,13 @@ namespace FarmAppServer
 
             //add logger
             services.AddTransient<ICustomLogger, CustomLogger>();
-            services.AddControllers().AddNewtonsoftJson(options =>
-                {
-                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-                });
+            services.AddControllers();
 
-            //configure jwt auth
+
             var appSettings = appSettingsSection.Get<AppSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
             services.AddAuthorization();
-
-
 
             services.AddAuthentication(x =>
             {
@@ -113,33 +100,14 @@ namespace FarmAppServer
                 });
                 c.OperationFilter<AuthenticationRequirementsOperationFilter>();
                 c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
-                //c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                // {
-                //     {
-                //         new OpenApiSecurityScheme
-                //         {
-                //             Reference = new OpenApiReference
-                //             {
-                //                 Type = ReferenceType.SecurityScheme,
-                //                 Id = "Bearer"
-                //             }
-                //         },
-                //         new string[] {}
-
-                //     }
-                // });
             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, FarmAppContext farmAppContext)
+        public void Configure(IApplicationBuilder app, FarmAppContext farmAppContext)
         {
-            //if (env.IsDevelopment())
-            //{
             app.UseDeveloperExceptionPage();
-            //}
 
-            //swagger
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
@@ -161,13 +129,10 @@ namespace FarmAppServer
             app.UseAuthentication();
             app.UseAuthorization();
 
-            //app.UseCors(builder => builder.WithOrigins(Configuration["ApplicationSettings:Client_URL"].ToString()).AllowAnyHeader().AllowAnyMethod());
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
 
-            app.UseMiddleware<ErrorHandlingMiddleware>();
-            //app.UseMiddleware<ValidationMiddleware>();      
-            //app.UseMiddleware<RequestResponseLoggingMiddleware>();      
+            app.UseMiddleware<ErrorHandlingMiddleware>();  
 
             app.UseEndpoints(endpoints =>
             {

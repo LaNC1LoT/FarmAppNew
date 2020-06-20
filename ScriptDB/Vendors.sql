@@ -4,7 +4,16 @@
 --DBCC CHECKIDENT ('dist.Vendors', RESEED, 0);
 --GO
 
---INSERT INTO dist.Vendors (VendorName, ProducingCountry) VALUES
+--IF OBJECT_ID('tempdb..#Vendors') IS NOT NULL DROP TABLE #Vendors
+--GO
+
+--CREATE TABLE #Vendors
+--(
+--	VendorName NVARCHAR(500),
+--	ProducingCountry NVARCHAR(500)
+--)
+
+--INSERT INTO #Vendors (VendorName, ProducingCountry) VALUES
 --(N'Актива', N'Москва'),
 --(N'Новосибхимфарм', N'Новосибирск'),
 --(N'Биотех', N'Санкт-Петербург'),
@@ -1006,7 +1015,7 @@
 --(N'Lab. Guidotti/A.Menarini', N'Дальнее зарубежье'),
 --(N'Lab. H.Faure', N'Дальнее зарубежье')
 
---INSERT INTO dist.Vendors (VendorName, ProducingCountry) VALUES
+--INSERT INTO #Vendors (VendorName, ProducingCountry) VALUES
 --(N'Lab. IMA S.A.I.C.', N'Дальнее зарубежье'),
 --(N'Lab. INIBSA', N'Дальнее зарубежье'),
 --(N'Lab. Kela', N'Дальнее зарубежье'),
@@ -1550,3 +1559,6 @@
 --(N'Шэнь Ча-Чудесный чай', N'Дальнее зарубежье'),
 --(N'Эбер Биотек', N'Дальнее зарубежье'),
 --(N'Эс Си Эй Хайджин Продакс', N'Дальнее зарубежье')
+
+--INSERT INTO dist.Vendors (VendorName, ProducingCountry)
+--SELECT * FROM #Vendors

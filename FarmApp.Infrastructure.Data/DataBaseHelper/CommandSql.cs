@@ -11,5 +11,6 @@ namespace FarmApp.Infrastructure.Data.DataBaseHelper
         public const string Money = "MONEY";
         public const string DateTime = "datetime";
         public const string Zero = "0";
+        public const string DefaultUser = "((2))";
     }
 }

@@ -12,7 +12,6 @@ using FarmAppServer.Models.Regions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using ServiceStack;
 
 namespace FarmAppServer.Services
 {
@@ -37,7 +36,7 @@ namespace FarmAppServer.Services
         //Post region
         public async Task<bool> PostRegion(string values)
         {
-            if (values.IsNullOrEmpty()) return false;
+            if (string.IsNullOrWhiteSpace(values)) return false;
             
             var region = new Region();
             JsonConvert.PopulateObject(values, region);
@@ -72,7 +71,7 @@ namespace FarmAppServer.Services
         public async Task<bool> UpdateRegionAsync(int key, string values)
         {
             if (key <= 0) return false;
-            if (values.IsNullOrEmpty()) return false;
+            if (string.IsNullOrWhiteSpace(values)) return false;
 
             var region = _context.Regions.First(r => r.Id == key);
 

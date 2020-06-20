@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FarmApp.Infrastructure.Data.Migrations
 {
-    public partial class CreateDB : Migration
+    public partial class MigrateDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,7 +49,7 @@ namespace FarmApp.Infrastructure.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CodeAthId = table.Column<int>(nullable: true),
                     Code = table.Column<string>(maxLength: 50, nullable: false),
-                    NameAth = table.Column<string>(maxLength: 350, nullable: false),
+                    NameAth = table.Column<string>(maxLength: 500, nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false, defaultValueSql: "((0))")
                 },
                 constraints: table =>
@@ -62,6 +62,21 @@ namespace FarmApp.Infrastructure.Data.Migrations
                         principalTable: "CodeAthTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DosageFormType",
+                schema: "dist",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DosageForm = table.Column<string>(maxLength: 500, nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false, defaultValueSql: "((0))")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DosageFormType", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -103,7 +118,6 @@ namespace FarmApp.Infrastructure.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     VendorName = table.Column<string>(maxLength: 255, nullable: false),
                     ProducingCountry = table.Column<string>(maxLength: 255, nullable: false),
-                    IsDomestic = table.Column<bool>(nullable: false, defaultValueSql: "((0))"),
                     IsDeleted = table.Column<bool>(nullable: false, defaultValueSql: "((0))")
                 },
                 constraints: table =>
@@ -154,6 +168,24 @@ namespace FarmApp.Infrastructure.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SaleImportFiles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Stocks",
+                schema: "tab",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PharmacyId = table.Column<int>(nullable: false),
+                    DrugId = table.Column<int>(nullable: false),
+                    CreateDate = table.Column<DateTime>(nullable: false, defaultValueSql: "GETDATE()"),
+                    Quantity = table.Column<int>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false, defaultValueSql: "((0))")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Stocks", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -231,7 +263,7 @@ namespace FarmApp.Infrastructure.Data.Migrations
                     LastName = table.Column<string>(maxLength: 20, nullable: false),
                     PasswordHash = table.Column<byte[]>(nullable: false),
                     PasswordSalt = table.Column<byte[]>(nullable: false),
-                    RoleId = table.Column<int>(maxLength: 20, nullable: false),
+                    RoleId = table.Column<int>(nullable: false, defaultValueSql: "((2))"),
                     IsDeleted = table.Column<bool>(nullable: false, defaultValueSql: "((0))")
                 },
                 constraints: table =>
@@ -247,61 +279,6 @@ namespace FarmApp.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Pharmacies",
-                schema: "dist",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PharmacyId = table.Column<int>(nullable: true),
-                    PharmacyName = table.Column<string>(nullable: true),
-                    RegionId = table.Column<int>(nullable: false),
-                    IsMode = table.Column<bool>(nullable: false, defaultValueSql: "((0))"),
-                    IsType = table.Column<bool>(nullable: false, defaultValueSql: "((0))"),
-                    IsNetwork = table.Column<bool>(nullable: false, defaultValueSql: "((0))"),
-                    IsDeleted = table.Column<bool>(nullable: false, defaultValueSql: "((0))")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Pharmacies", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Pharmacies_Pharmacies_PharmacyId",
-                        column: x => x.PharmacyId,
-                        principalSchema: "dist",
-                        principalTable: "Pharmacies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Pharmacies_Regions_RegionId",
-                        column: x => x.RegionId,
-                        principalSchema: "dist",
-                        principalTable: "Regions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Stocks",
-                schema: "tab",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PharmacyId = table.Column<int>(maxLength: 20, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Stocks", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Stocks_Pharmacies_PharmacyId",
-                        column: x => x.PharmacyId,
-                        principalSchema: "dist",
-                        principalTable: "Pharmacies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Drugs",
                 schema: "tab",
                 columns: table => new
@@ -311,9 +288,11 @@ namespace FarmApp.Infrastructure.Data.Migrations
                     DrugName = table.Column<string>(maxLength: 255, nullable: false),
                     CodeAthTypeId = table.Column<int>(nullable: false),
                     VendorId = table.Column<int>(nullable: false),
+                    StockId = table.Column<int>(nullable: false),
+                    DosageFormTypeId = table.Column<int>(nullable: false),
+                    IsDomestic = table.Column<bool>(nullable: false, defaultValueSql: "((0))"),
                     IsGeneric = table.Column<bool>(nullable: false, defaultValueSql: "((0))"),
-                    IsDeleted = table.Column<bool>(nullable: false, defaultValueSql: "((0))"),
-                    StockId = table.Column<int>(nullable: true)
+                    IsDeleted = table.Column<bool>(nullable: false, defaultValueSql: "((0))")
                 },
                 constraints: table =>
                 {
@@ -323,6 +302,13 @@ namespace FarmApp.Infrastructure.Data.Migrations
                         column: x => x.CodeAthTypeId,
                         principalSchema: "dist",
                         principalTable: "CodeAthTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Drugs_DosageFormType_DosageFormTypeId",
+                        column: x => x.DosageFormTypeId,
+                        principalSchema: "dist",
+                        principalTable: "DosageFormType",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -342,6 +328,49 @@ namespace FarmApp.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Pharmacies",
+                schema: "dist",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PharmacyId = table.Column<int>(nullable: true),
+                    PharmacyName = table.Column<string>(nullable: true),
+                    RegionId = table.Column<int>(nullable: false),
+                    StorkId = table.Column<int>(nullable: false),
+                    IsMode = table.Column<bool>(nullable: false, defaultValueSql: "((0))"),
+                    IsType = table.Column<bool>(nullable: false, defaultValueSql: "((0))"),
+                    IsNetwork = table.Column<bool>(nullable: false, defaultValueSql: "((0))"),
+                    IsDeleted = table.Column<bool>(nullable: false, defaultValueSql: "((0))"),
+                    StockId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Pharmacies", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Pharmacies_Pharmacies_PharmacyId",
+                        column: x => x.PharmacyId,
+                        principalSchema: "dist",
+                        principalTable: "Pharmacies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Pharmacies_Regions_RegionId",
+                        column: x => x.RegionId,
+                        principalSchema: "dist",
+                        principalTable: "Regions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Pharmacies_Stocks_StockId",
+                        column: x => x.StockId,
+                        principalSchema: "tab",
+                        principalTable: "Stocks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Sales",
                 schema: "tab",
                 columns: table => new
@@ -351,7 +380,7 @@ namespace FarmApp.Infrastructure.Data.Migrations
                     DrugId = table.Column<int>(nullable: false),
                     PharmacyId = table.Column<int>(nullable: false),
                     SaleImportFileId = table.Column<int>(nullable: true),
-                    SaleDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    SaleDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "GETDATE()"),
                     Price = table.Column<decimal>(type: "MONEY", nullable: false),
                     Amount = table.Column<decimal>(type: "MONEY", nullable: false),
                     Quantity = table.Column<int>(nullable: false),
@@ -453,24 +482,24 @@ namespace FarmApp.Infrastructure.Data.Migrations
             migrationBuilder.InsertData(
                 schema: "dist",
                 table: "RegionTypes",
-                columns: new[] { "Id", "IsDeleted", "RegionTypeName" },
+                columns: new[] { "Id", "RegionTypeName" },
                 values: new object[,]
                 {
-                    { 1, false, "Государство" },
-                    { 2, false, "Субъект(регион)" },
-                    { 3, false, "Город" },
-                    { 4, false, "Сёла, деревни и др." },
-                    { 5, false, "Микрорайон" }
+                    { 1, "Государство" },
+                    { 2, "Субъект(регион)" },
+                    { 3, "Город" },
+                    { 4, "Сёла, деревни и др." },
+                    { 5, "Микрорайон" }
                 });
 
             migrationBuilder.InsertData(
                 schema: "dist",
                 table: "Roles",
-                columns: new[] { "Id", "IsDeleted", "RoleName" },
+                columns: new[] { "Id", "RoleName" },
                 values: new object[,]
                 {
-                    { 1, false, "admin" },
-                    { 2, false, "user" }
+                    { 1, "Администратор" },
+                    { 2, "Пользователь" }
                 });
 
             migrationBuilder.InsertData(
@@ -529,6 +558,12 @@ namespace FarmApp.Infrastructure.Data.Migrations
                 column: "RegionId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Pharmacies_StockId",
+                schema: "dist",
+                table: "Pharmacies",
+                column: "StockId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Regions_RegionId",
                 schema: "dist",
                 table: "Regions",
@@ -551,6 +586,12 @@ namespace FarmApp.Infrastructure.Data.Migrations
                 schema: "tab",
                 table: "Drugs",
                 column: "CodeAthTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Drugs_DosageFormTypeId",
+                schema: "tab",
+                table: "Drugs",
+                column: "DosageFormTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Drugs_StockId",
@@ -581,12 +622,6 @@ namespace FarmApp.Infrastructure.Data.Migrations
                 schema: "tab",
                 table: "Sales",
                 column: "SaleImportFileId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Stocks_PharmacyId",
-                schema: "tab",
-                table: "Stocks",
-                column: "PharmacyId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -620,6 +655,10 @@ namespace FarmApp.Infrastructure.Data.Migrations
                 schema: "tab");
 
             migrationBuilder.DropTable(
+                name: "Pharmacies",
+                schema: "dist");
+
+            migrationBuilder.DropTable(
                 name: "SaleImportFiles",
                 schema: "tab");
 
@@ -628,20 +667,20 @@ namespace FarmApp.Infrastructure.Data.Migrations
                 schema: "dist");
 
             migrationBuilder.DropTable(
-                name: "Stocks",
-                schema: "tab");
+                name: "DosageFormType",
+                schema: "dist");
 
             migrationBuilder.DropTable(
                 name: "Vendors",
                 schema: "dist");
 
             migrationBuilder.DropTable(
-                name: "Pharmacies",
+                name: "Regions",
                 schema: "dist");
 
             migrationBuilder.DropTable(
-                name: "Regions",
-                schema: "dist");
+                name: "Stocks",
+                schema: "tab");
 
             migrationBuilder.DropTable(
                 name: "RegionTypes",

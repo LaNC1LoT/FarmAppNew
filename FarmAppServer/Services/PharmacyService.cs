@@ -10,7 +10,6 @@ using FarmAppServer.Models.Pharmacies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using ServiceStack;
 
 namespace FarmAppServer.Services
 {
@@ -32,7 +31,7 @@ namespace FarmAppServer.Services
 
         public async Task<bool> PostPharmacyAsync(string values)
         {
-            if (values.IsNullOrEmpty()) return false;
+            if (string.IsNullOrWhiteSpace(values)) return false;
 
             var pharmacy = new Pharmacy();
             JsonConvert.PopulateObject(values, pharmacy);
@@ -58,7 +57,7 @@ namespace FarmAppServer.Services
         public async Task<bool> UpdatePharmacyAsync(int key, string values)
         {
             if (key <= 0) return false;
-            if (values.IsNullOrEmpty()) return false;
+            if (string.IsNullOrWhiteSpace(values)) return false;
 
             var pharmacy = await _context.Pharmacies.FirstOrDefaultAsync(p => p.Id == key && p.IsDeleted == false);
 
