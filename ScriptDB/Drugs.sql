@@ -741,11 +741,13 @@ BEGIN
 	DECLARE @count INT
 	SET @count = (SELECT COUNT(*) FROM dist.Vendors)
 
-	INSERT INTO tab.Drugs (DrugName, CodeAthTypeId, VendorId, DosageFormTypeId, IsDomestic, IsGeneric)
-		SELECT t.DrugName, cat.Id, ABS(CHECKSUM(NEWID()) % @count) + 1, dft.Id, ABS(CHECKSUM(NEWID()) % 2),  ABS(CHECKSUM(NEWID()) % 2) FROM #temp t
+	INSERT INTO tab.Drugs (DrugName, CodeAthTypeId, VendorId, DosageFormTypeId, IsGeneric)
+		SELECT t.DrugName, cat.Id, ABS(CHECKSUM(NEWID()) % @count) + 1, dft.Id, ABS(CHECKSUM(NEWID()) % 2) FROM #temp t
 			CROSS APPLY string_split(DosageForm, ';')
 			INNER JOIN dist.CodeAthTypes cat ON cat.Code = t.Code
 			INNER JOIN dist.DosageFormTypes dft on dft.DosageForm = TRIM(value)
+
+	UPDATE tab.Drugs SET DrugName = UPPER(LEFT(TRIM(DrugName), 1)) + LOWER(SUBSTRING(TRIM(DrugName), 2, LEN(TRIM(DrugName))))
 END
 
 SELECT * FROM dist.DosageFormTypes

@@ -4,13 +4,10 @@ using FarmAppServer.Models;
 using FarmAppServer.Models.ApiMethods;
 using FarmAppServer.Models.CodeAthTypes;
 using FarmAppServer.Models.Drugs;
-using FarmAppServer.Models.Pharmacies;
 using FarmAppServer.Models.Regions;
 using FarmAppServer.Models.Roles;
-using FarmAppServer.Models.Sales;
 using FarmAppServer.Models.Users;
 using FarmAppServer.Models.Vendors;
-using static System.Decimal;
 
 namespace FarmAppServer.Helpers
 {
@@ -75,17 +72,8 @@ namespace FarmAppServer.Helpers
             CreateMap<Role, PostRoleDto>().ReverseMap();
 
             //pharmacies
-            CreateMap<Pharmacy, PharmacyDto>().ReverseMap();
-            CreateMap<Pharmacy, PharmacyFilterDto>()
-                .ForMember(x => x.ParentPharmacyId,
-                    o => o.MapFrom(s => s.PharmacyId))
-                .ForMember(x => x.ParentPharmacyName,
-                    o => o.MapFrom(s => s.ParentPharmacy.PharmacyName))
-                .ForMember(x => x.RegionName,
-                    o => o.MapFrom(s => s.Region.RegionName));
-            CreateMap<PharmacyFilterDto, Pharmacy>();
-            CreateMap<PharmacyDto, Pharmacy>().ReverseMap();
-            CreateMap<PostPharmacyDto, Pharmacy>().ReverseMap();
+            CreateMap<Pharmacy, PharmacyDto>().ForMember(x => x.RegionName, y => y.MapFrom(m => m.Region.RegionName));
+            CreateMap<PharmacyDto, Pharmacy>();
 
             //drugs
             CreateMap<Drug, DrugDto>()
@@ -102,27 +90,27 @@ namespace FarmAppServer.Helpers
             CreateMap<PostDrugDto, Drug>().ReverseMap();
 
             //sales
-            CreateMap<Sale, SaleDto>()
-                .ForMember(x => x.DrugName,
-                    o => o.MapFrom(s => s.Drug.DrugName))
-                .ForMember(x => x.PharmacyName,
-                    o => o.MapFrom(s => s.Pharmacy.PharmacyName))
-                .ForMember(x => x.Amount,
-                    o => o.MapFrom(s => Multiply(s.Price, s.Quantity)))
-                .ForMember(x => x.SaleImportFileName,
-                    o => o.MapFrom(s => s.SaleImportFile.FileName))
-                .ReverseMap();
+            //CreateMap<Sale, SaleDto>()
+            //    .ForMember(x => x.DrugName,
+            //        o => o.MapFrom(s => s.Drug.DrugName))
+            //    .ForMember(x => x.PharmacyName,
+            //        o => o.MapFrom(s => s.Pharmacy.PharmacyName))
+            //    .ForMember(x => x.Amount,
+            //        o => o.MapFrom(s => Multiply(s.Price, s.Quantity)))
+            //    .ForMember(x => x.SaleImportFileName,
+            //        o => o.MapFrom(s => s.SaleImportFile.FileName))
+            //    .ReverseMap();
 
-            CreateMap<Sale, UpdateSaleDto>();
-            CreateMap<UpdateSaleDto, Sale>()
-                .ForMember(x => x.Amount,
-                    o => o.MapFrom(s => Multiply(s.Price, s.Quantity)))
-                .ForMember(x => x.Price, o => o.Ignore());
+            //CreateMap<Sale, UpdateSaleDto>();
+            //CreateMap<UpdateSaleDto, Sale>()
+            //    .ForMember(x => x.Amount,
+            //        o => o.MapFrom(s => Multiply(s.Price, s.Quantity)))
+            //    .ForMember(x => x.Price, o => o.Ignore());
 
-            CreateMap<PostSaleDto, Sale>()
-                .ForMember(x => x.Amount,
-                    o => o.MapFrom(s => Multiply(s.Price, s.Quantity)))
-                .ReverseMap();
+            //CreateMap<PostSaleDto, Sale>()
+            //    .ForMember(x => x.Amount,
+            //        o => o.MapFrom(s => Multiply(s.Price, s.Quantity)))
+            //    .ReverseMap();
 
             //CodeAthType
             CreateMap<CodeAthType, CodeAthTypeDto>()

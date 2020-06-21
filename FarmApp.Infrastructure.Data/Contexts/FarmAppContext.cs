@@ -42,16 +42,16 @@ namespace FarmApp.Infrastructure.Data.Contexts
             modelBuilder.Entity<Log>(entity =>
             {
                 entity.ToTable(Table.Logs, Schema.Log);
-                entity.Property(p => p.UserId).HasMaxLength(50);
-                entity.Property(p => p.RoleId).HasMaxLength(50);
-                entity.Property(p => p.MethodRoute).HasMaxLength(255);
-                entity.Property(p => p.HeaderRequest).HasMaxLength(4000);
-                entity.Property(p => p.HttpMethod).HasMaxLength(255);
+                entity.Property(p => p.GroupLogId).IsRequired();
+                entity.Property(p => p.LogType).IsRequired().HasMaxLength(50);
+                entity.Property(p => p.CreateDate).IsRequired().HasDefaultValueSql(CommandSql.GetDate);
+                entity.Property(p => p.UserId);
+                entity.Property(p => p.RoleId);
+                entity.Property(p => p.StatusCode);
                 entity.Property(p => p.PathUrl).HasMaxLength(255);
-                entity.Property(p => p.Param).HasMaxLength(4000);
-                entity.Property(p => p.HeaderResponse).HasMaxLength(4000);
-                entity.Property(p => p.Header).HasMaxLength(255);
-                entity.Property(p => p.Result).HasMaxLength(4000);
+                entity.Property(p => p.HttpMethod).HasMaxLength(255);
+                entity.Property(p => p.Header).HasMaxLength(4000);
+                entity.Property(p => p.Body).HasMaxLength(4000);
                 entity.Property(p => p.Exception).HasMaxLength(4000);
             });
 

@@ -1,9 +1,12 @@
-﻿using FarmApp.Domain.Core.Entity;
+﻿using AutoMapper;
+using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
+using FarmAppServer.Models;
 using FarmAppServer.Models.Pharmacies;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,6 +14,7 @@ namespace FarmAppServer.Services
 {
     public interface IPharmacyService
     {
+        Task<IEnumerable<PharmacyDto>> GetPharmacies();
         Task<bool> PostPharmacyAsync(string values);
         Task<bool> UpdatePharmacyAsync(int key, string values);
         Task<bool> DeletePharmacyAsync(int key);
@@ -19,10 +23,20 @@ namespace FarmAppServer.Services
     public class PharmacyService : IPharmacyService
     {
         private readonly FarmAppContext _context;
-
-        public PharmacyService(FarmAppContext context)
+        private readonly IMapper _mapper;
+        public PharmacyService(FarmAppContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
+        }
+
+        public Task<IEnumerable<PharmacyDto>> GetPharmacies()
+        {
+            return Task.Run(() =>
+            {
+                var pharmacies = _context.Pharmacies.Where(ph => ph.IsDeleted == false).Include(x => x.Region).AsNoTracking();
+                return _mapper.Map<IEnumerable<PharmacyDto>>(pharmacies);
+            });
         }
 
         public async Task<bool> PostPharmacyAsync(string values)

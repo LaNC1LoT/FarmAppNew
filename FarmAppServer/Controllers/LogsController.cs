@@ -119,20 +119,20 @@ namespace FarmAppServer.Controllers
             return _context.Logs.Any(e => e.Id == id);
         }
 
-        [HttpGet("LogForPeriod")]
-        public IActionResult LogForPeriod([FromQuery]DateTime start, [FromQuery]DateTime end, [FromQuery]int page = 1, [FromQuery]int pageSize = 25)
-        {
-            var logs = _context.Logs.Where(x => x.RequestTime >= start && x.RequestTime <= end);
-            var result = logs.GetPaged(page, pageSize);
+        //[HttpGet("LogForPeriod")]
+        //public IActionResult LogForPeriod([FromQuery]DateTime start, [FromQuery]DateTime end, [FromQuery]int page = 1, [FromQuery]int pageSize = 25)
+        //{
+        //    var logs = _context.Logs.Where(x => x.RequestTime >= start && x.RequestTime <= end);
+        //    var result = logs.GetPaged(page, pageSize);
 
-            if (result == null)
-                return NotFound(new ResponseBody()
-                {
-                    Header = "Error",
-                    Result = "Logs not found"
-                });
+        //    if (result == null)
+        //        return NotFound(new ResponseBody()
+        //        {
+        //            Header = "Error",
+        //            Result = "Logs not found"
+        //        });
 
-            return Ok(result);
-        }
+        //    return Ok(result);
+        //}
     }
 }

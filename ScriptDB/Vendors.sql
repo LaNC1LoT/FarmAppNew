@@ -1555,10 +1555,66 @@ INSERT INTO #Vendors (VendorName, ProducingCountry) VALUES
 (N'Эс Си Эй Хайджин Продакс', N'Дальнее зарубежье')
 
 
-IF NOT EXISTS (SELECT TOP 1 1 FROM dist.Vendors)
+IF OBJECT_ID('tempdb..#Regions') IS NOT NULL DROP TABLE #Regions
+	GO
+IF OBJECT_ID('tempdb..#VendorNew') IS NOT NULL DROP TABLE #VendorNew
+	GO
+
+
+
+DECLARE @Run BIT = 0
+IF @Run = 1
 BEGIN
-	INSERT INTO dist.Vendors (VendorName, ProducingCountry)
-		SELECT * FROM #Vendors
+
+	CREATE TABLE #Regions
+	(
+		RegionId INT,
+		RegionTypeId INT,
+		RegionName NVARCHAR(500),
+		Population INT
+	)
+
+	CREATE TABLE #VendorNew
+	(
+		VendorName INT,
+		RegionId INT,
+		IsDomestic BIT
+	)
+
+	INSERT INTO #Regions
+	SELECT *, ABS(Checksum(NewID()) % (10000000 - 5000000)) + 5000000 Population FROM 
+	(
+		SELECT DISTINCT 15 ParentId, 2 TypeId, ProducingCountry FROM #Vendors
+			WHERE (ProducingCountry LIKE '%край%' OR ProducingCountry LIKE '%обл.%' OR ProducingCountry LIKE '%область%' OR ProducingCountry LIKE '%Республика%')
+			AND ProducingCountry != 'Московская обл.'
+	) obl
+		UNION ALL
+	SELECT ABS(Checksum(NewID()) % (34 - 19)) + 19, 3, ProducingCountry, ABS(Checksum(NewID()) % (1000000 - 500000)) + 500000 FROM
+	(
+		SELECT DISTINCT ProducingCountry FROM #Vendors
+			WHERE ProducingCountry NOT LIKE '%край%' AND ProducingCountry NOT LIKE '%обл.%' AND ProducingCountry NOT LIKE '%область%' AND ProducingCountry NOT LIKE '%Республика%'
+				AND ProducingCountry NOT IN ('Беларусь', 'Белоруссия', 'Дальнее зарубежье', 'СПб', 'Украина', '', 'Москва')
+	) gor
+		UNION ALL
+	SELECT NULL, 1, ProducingCountry, ABS(Checksum(NewID()) % (100000000 - 50000000)) + 50000000 FROM
+	(
+		SELECT DISTINCT ProducingCountry FROM #Vendors
+			WHERE ProducingCountry IN ('Беларусь', 'Белоруссия', 'Украина')
+	) zar
+
+	INSERT INTO dist.Regions (RegionId, RegionTypeId, RegionName, Population)
+	SELECT * FROM #Regions
+
+	INSERT INTO dist.Vendors (VendorName, RegionId, IsDomestic)
+	SELECT *, iif(RegionId > 14, 0, 1) FROM 
+	(
+		SELECT 
+			v.VendorName,
+			ABS(Checksum(NewID()) % (86 - 1)) + 1 AS RegionId
+		FROM #Vendors v
+			INNER JOIN dist.Regions r ON r.RegionName = v.ProducingCountry
+	) ven	
 END
 
+SELECT * FROM dist.Regions
 SELECT * FROM dist.Vendors

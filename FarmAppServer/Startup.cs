@@ -33,23 +33,20 @@ namespace FarmAppServer
         public void ConfigureServices(IServiceCollection services)
         {
             // configure strongly typed settings objects
-            var appSettingsSection = Configuration.GetSection("AppSettings");
-            services.Configure<AppSettings>(appSettingsSection);
+
+            //services.Configure<AppSettings>(appSettingsSection);
 
             //configure connection
+            var appSettingsSection = Configuration.GetSection("AppSettings").Get<AppSettings>();
             var connection = Configuration.GetConnectionString("FarmAppContext");
-            services.AddDbContext<FarmAppContext>(options => options.UseSqlServer(connection));
 
-            //add validator
-            services.AddTransient<IValidation, Validation>();
 
-            //add logger
-            services.AddTransient<ICustomLogger, CustomLogger>();
+            services.AddDbContext<FarmAppContext>(options => options.UseSqlServer(connection), ServiceLifetime.Scoped);
             services.AddControllers();
 
 
-            var appSettings = appSettingsSection.Get<AppSettings>();
-            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            //var appSettings = appSettingsSection.Get<AppSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettingsSection.Secret);
 
             services.AddAuthorization();
 
@@ -84,6 +81,7 @@ namespace FarmAppServer
             services.AddScoped<ICodeAthService, CodeAthService>();
             services.AddScoped<IVendorService, VendorService>();
             services.AddScoped<IApiMethodRoleService, ApiMethodRoleService>();
+            services.AddScoped<ILoggerDb, LoggerDb>();
 
             services.AddSwaggerGen(c =>
             {
@@ -130,7 +128,6 @@ namespace FarmAppServer
             app.UseAuthorization();
 
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-
 
             app.UseMiddleware<ErrorHandlingMiddleware>();
 

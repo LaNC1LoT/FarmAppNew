@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FarmAppServer.Controllers
@@ -28,18 +29,14 @@ namespace FarmAppServer.Controllers
             _pharmacyService = pharmacyService;
         }
 
-        // GET: api/Pharmacies
         [HttpGet]
-        public ActionResult<IEnumerable<PharmacyFilterDto>> GetPharmacies([FromQuery]int page = 1, [FromQuery]int pageSize = 25)
+        public async Task<IActionResult> GetPharmacies()
         {
-            var pharmacies = _context.Pharmacies;
+            var pharmacies = await _pharmacyService.GetPharmacies();
 
-            if (pharmacies == null) return NotFound("Pharmacies not found");
-
-            var model = _mapper.ProjectTo<PharmacyFilterDto>(pharmacies);
-            var query = model.GetPaged(page, pageSize);
-
-            return Ok(query);
+            if (pharmacies == null)
+                return NotFound("Pharmacies not found");
+            return Ok(pharmacies);
         }
 
         [HttpGet("PharmacyById")]
