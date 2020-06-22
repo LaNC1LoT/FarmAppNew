@@ -1,3 +1,3 @@
 DELETE FROM dist.Vendors
-DBCC CHECKIDENT ('dist.Vendors', RESEED, 0);
+DBCC CHECKIDENT (N'dist.Vendors', RESEED, 0);
 GO

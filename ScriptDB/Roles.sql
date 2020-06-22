@@ -1,7 +1,7 @@
 IF NOT EXISTS (SELECT TOP 1 1 FROM dist.Roles)
 BEGIN
 	INSERT INTO dist.Roles (RoleName) VALUES
-		('Администратор'), ('Пользователь')
+		(N'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ'), (N'РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ')
 END
 
 SELECT * FROM dist.Roles

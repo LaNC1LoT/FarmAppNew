@@ -35,7 +35,7 @@ namespace FarmAppServer.Controllers
 
         [AllowAnonymous]
         [HttpPost("authenticate")]
-        public async Task<ActionResult<AuthResponseDto>> Authenticate([FromBody]AuthenticateModelDto model)
+        public async Task<ActionResult<AuthResponseDto>> Authenticate(AuthenticateModelDto model)
         {
             if (!ModelState.IsValid)
                 return BadRequest();

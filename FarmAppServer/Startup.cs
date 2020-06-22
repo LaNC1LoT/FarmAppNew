@@ -28,25 +28,14 @@ namespace FarmAppServer
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            // configure strongly typed settings objects
-
-            //services.Configure<AppSettings>(appSettingsSection);
-
-            //configure connection
-            var appSettingsSection = Configuration.GetSection("AppSettings").Get<AppSettings>();
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             var connection = Configuration.GetConnectionString("FarmAppContext");
-
-
             services.AddDbContext<FarmAppContext>(options => options.UseSqlServer(connection), ServiceLifetime.Scoped);
             services.AddControllers();
 
-
-            //var appSettings = appSettingsSection.Get<AppSettings>();
-            var key = Encoding.ASCII.GetBytes(appSettingsSection.Secret);
+            var key = Encoding.ASCII.GetBytes(Configuration["AppSettings:Secret"].ToString());
 
             services.AddAuthorization();
 
@@ -101,7 +90,6 @@ namespace FarmAppServer
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, FarmAppContext farmAppContext)
         {
             app.UseDeveloperExceptionPage();

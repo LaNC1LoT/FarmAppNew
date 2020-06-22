@@ -694,46 +694,46 @@ INSERT INTO #temp (Code, DrugName, DosageForm) VALUES
 UPDATE t SET 
 	t.DrugName = (SELECT DrugName FROM #temp WHERE Rn = t.Rn - 1 )
 FROM #temp t
-WHERE DrugName = ''
+WHERE DrugName = N''
 WHILE @@ROWCOUNT != 0
 BEGIN
 	UPDATE t SET 
 		t.DrugName = (SELECT DrugName FROM #temp WHERE Rn = t.Rn - 1 )
 	FROM #temp t
-	WHERE DrugName = ''
+	WHERE DrugName = N''
 END
 
 
 UPDATE t SET 
 	t.Code = (SELECT Code FROM #temp WHERE Rn = t.Rn - 1 )
 FROM #temp t
-WHERE Code = ''
+WHERE Code = N''
 WHILE @@ROWCOUNT != 0
 BEGIN
 	UPDATE t SET 
 		t.Code = (SELECT Code FROM #temp WHERE Rn = t.Rn - 1 )
 	FROM #temp t
-	WHERE Code = ''
+	WHERE Code = N''
 END
 
 
 UPDATE t SET 
 	t.DosageForm = (SELECT DosageForm FROM #temp WHERE Rn = t.Rn - 1 )
 FROM #temp t
-WHERE DosageForm = ''
+WHERE DosageForm = N''
 WHILE @@ROWCOUNT != 0
 BEGIN
 	UPDATE t SET 
 		t.DosageForm = (SELECT DosageForm FROM #temp WHERE Rn = t.Rn - 1 )
 	FROM #temp t
-	WHERE DosageForm = ''
+	WHERE DosageForm = N''
 END
 
 IF NOT EXISTS (SELECT TOP 1 1 FROM dist.DosageFormTypes)
 BEGIN
 	INSERT INTO dist.DosageFormTypes (DosageForm)
 		SELECT DISTINCT UPPER(LEFT(TRIM(value), 1)) + LOWER(SUBSTRING(TRIM(value), 2, LEN(TRIM(value)))) FROM #temp t
-			CROSS APPLY string_split(DosageForm, ';')
+			CROSS APPLY string_split(DosageForm, N';')
 END
 
 IF NOT EXISTS (SELECT TOP 1 1 FROM tab.Drugs)
@@ -743,7 +743,7 @@ BEGIN
 
 	INSERT INTO tab.Drugs (DrugName, CodeAthTypeId, VendorId, DosageFormTypeId, IsGeneric)
 		SELECT t.DrugName, cat.Id, ABS(CHECKSUM(NEWID()) % @count) + 1, dft.Id, ABS(CHECKSUM(NEWID()) % 2) FROM #temp t
-			CROSS APPLY string_split(DosageForm, ';')
+			CROSS APPLY string_split(DosageForm, N';')
 			INNER JOIN dist.CodeAthTypes cat ON cat.Code = t.Code
 			INNER JOIN dist.DosageFormTypes dft on dft.DosageForm = TRIM(value)
 
