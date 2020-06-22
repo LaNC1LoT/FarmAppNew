@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FarmApp.Infrastructure.Data.Migrations
 {
-    public partial class CreateNewDb : Migration
+    public partial class CreateDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -116,21 +116,16 @@ namespace FarmApp.Infrastructure.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(maxLength: 50, nullable: true),
-                    RoleId = table.Column<string>(maxLength: 50, nullable: true),
-                    HttpMethod = table.Column<string>(maxLength: 255, nullable: true),
-                    PathUrl = table.Column<string>(maxLength: 255, nullable: true),
-                    MethodRoute = table.Column<string>(maxLength: 255, nullable: true),
-                    HeaderRequest = table.Column<string>(maxLength: 4000, nullable: true),
-                    RequestTime = table.Column<DateTime>(nullable: true),
-                    FactTime = table.Column<DateTime>(nullable: true),
-                    Param = table.Column<string>(maxLength: 4000, nullable: true),
+                    GroupLogId = table.Column<Guid>(nullable: false),
+                    LogType = table.Column<string>(maxLength: 50, nullable: false),
+                    CreateDate = table.Column<DateTime>(nullable: false, defaultValueSql: "GETDATE()"),
+                    UserId = table.Column<int>(nullable: true),
+                    RoleId = table.Column<int>(nullable: true),
                     StatusCode = table.Column<int>(nullable: true),
-                    HeaderResponse = table.Column<string>(maxLength: 4000, nullable: true),
-                    ResponseId = table.Column<Guid>(nullable: true),
-                    ResponseTime = table.Column<DateTime>(nullable: true),
-                    Header = table.Column<string>(maxLength: 255, nullable: true),
-                    Result = table.Column<string>(maxLength: 4000, nullable: true),
+                    PathUrl = table.Column<string>(maxLength: 255, nullable: true),
+                    HttpMethod = table.Column<string>(maxLength: 255, nullable: true),
+                    Header = table.Column<string>(maxLength: 4000, nullable: true),
+                    Body = table.Column<string>(maxLength: 4000, nullable: true),
                     Exception = table.Column<string>(maxLength: 4000, nullable: true)
                 },
                 constraints: table =>
