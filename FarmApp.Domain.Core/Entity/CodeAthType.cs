@@ -9,9 +9,8 @@ namespace FarmApp.Domain.Core.Entity
             CodeAthTypes = new HashSet<CodeAthType>();
             Drugs = new HashSet<Drug>();
         }
-
         public int Id { get; set; }
-        public int? CodeAthId { get; set; }//parent code id
+        public int? CodeAthId { get; set; }
         public string Code { get; set; }
         public string NameAth { get; set; }
         public bool? IsDeleted { get; set; }

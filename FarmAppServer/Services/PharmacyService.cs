@@ -14,7 +14,7 @@ namespace FarmAppServer.Services
 {
     public interface IPharmacyService
     {
-        Task<IEnumerable<PharmacyDto>> GetPharmacies();
+        Task<IEnumerable<PharmacyDto>> GetPharmaciesAsync();
         Task<bool> PostPharmacyAsync(string values);
         Task<bool> UpdatePharmacyAsync(int key, string values);
         Task<bool> DeletePharmacyAsync(int key);
@@ -30,7 +30,7 @@ namespace FarmAppServer.Services
             _mapper = mapper;
         }
 
-        public Task<IEnumerable<PharmacyDto>> GetPharmacies()
+        public Task<IEnumerable<PharmacyDto>> GetPharmaciesAsync()
         {
             return Task.Run(() =>
             {

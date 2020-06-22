@@ -4,9 +4,12 @@ using FarmApp.Infrastructure.Data.Contexts;
 using FarmAppServer.Models;
 using FarmAppServer.Models.CodeAthTypes;
 using FarmAppServer.Services;
-using FarmAppServer.Services.Paging;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FarmAppServer.Controllers
@@ -15,92 +18,76 @@ namespace FarmAppServer.Controllers
     [ApiController]
     public class CodeAthTypesController : ControllerBase
     {
-        private readonly FarmAppContext _context;
+        private readonly FarmAppContext _farmAppContext;
         private readonly IMapper _mapper;
-        private readonly ICodeAthService _codeAthService;
 
-        public CodeAthTypesController(FarmAppContext context, IMapper mapper, ICodeAthService codeAthService)
+        public CodeAthTypesController(FarmAppContext farmAppContext, IMapper mapper)
         {
-            _context = context;
+            _farmAppContext = farmAppContext;
             _mapper = mapper;
-            _codeAthService = codeAthService;
         }
 
-        // GET: api/CodeAthTypes
         [HttpGet]
-        public ActionResult<IEnumerable<CodeAthTypeDto>> GetCodeAthTypes([FromQuery]int page = 1, [FromQuery]int pageSize = 25)
+        public async Task<ActionResult<IEnumerable<CodeAthTypeDto>>> GetCodeAthTypes()
         {
-            var codesAthType = _codeAthService.GetCodeAthTypes();
-
-            var result = codesAthType.GetPaged(page, pageSize);
-
-            if (result == null)
+            var codeAthTypes = await _farmAppContext.CodeAthTypes.Where(w => w.IsDeleted == false).AsNoTracking().ToListAsync();
+            if (!codeAthTypes.Any())
                 return NotFound("CodeAthType not found");
 
-            return Ok(result);
+            return Ok(_mapper.Map<IEnumerable<CodeAthTypeDto>>(codeAthTypes));
         }
 
-        // GET: api/CodeAthTypes/5
-        [HttpGet("CodeAthById")]
-        [Consumes("application/x-www-form-urlencoded")]
-        public async Task<ActionResult<CodeAthType>> GetCodeAthType([FromForm]int key)
-        {
-            if (key <= 0) return BadRequest("Key must be > 0");
-
-            var codeAthType = await _codeAthService.GetCodeAthTypeById(key);
-
-            if (codeAthType == null)
-                return NotFound("CodeAthType not found");
-
-            return Ok(codeAthType);
-        }
-
-        // PUT: api/CodeAthTypes/5
         [HttpPut]
         [Consumes("application/x-www-form-urlencoded")]
         public async Task<IActionResult> PutCodeAthType([FromForm]int key, [FromForm]string values)
         {
-            if (key <= 0) return BadRequest("key must be > 0");
-            if (string.IsNullOrEmpty(values)) return BadRequest("Value cannot be null or empty");
+            if (key <= 0) 
+                return BadRequest("Key must be > 0");
+            if (string.IsNullOrEmpty(values)) 
+                return BadRequest("Value cannot be null or empty");
 
-            var updated = await _codeAthService.UpdateCodeAthTypeAsync(key, values);
+            var codeAthType = await _farmAppContext.CodeAthTypes.FirstOrDefaultAsync(c => c.Id == key);
+            if (codeAthType == null)
+                return NotFound($"Cannot be found Ath with key {key}");
 
-            if (updated) return Ok();
+            JsonConvert.PopulateObject(values, codeAthType);
+            await _farmAppContext.SaveChangesAsync();
 
-            return NotFound(new ResponseBody()
-            {
-                Header = "Error",
-                Result = "CodeAthType not found or nothing to update"
-            });
+            return Ok();
         }
 
-        // POST: api/CodeAthTypes
         [HttpPost]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<ActionResult<CodeAthType>> PostCodeAthType([FromForm]string values)
+        public async Task<ActionResult<CodeAthTypeDto>> PostCodeAthType([FromForm]string values)
         {
-            if (string.IsNullOrEmpty(values)) return BadRequest("Value cannot be null or empty");
+            if (string.IsNullOrEmpty(values)) 
+                return BadRequest("Value cannot be null or empty");
 
-            var request = await _codeAthService.PostCodeAthTypeAsync(values);
+            var codeAthType = new CodeAthType();
+            JsonConvert.PopulateObject(values, codeAthType);
 
-            if (request) return Ok();
+            await _farmAppContext.AddAsync(codeAthType);
+            await _farmAppContext.SaveChangesAsync();
 
-            return BadRequest();
+            return Ok(_mapper.Map<CodeAthTypeDto>(codeAthType));
         }
 
-        // DELETE: api/CodeAthTypes/5
         [HttpDelete]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<ActionResult<CodeAthType>> DeleteCodeAthType([FromForm]int key)
+        public async Task<IActionResult> DeleteCodeAthType([FromForm]int key)
         {
-            if (key <= 0) return BadRequest("key cannot be <= 0");
-            if (await _codeAthService.DeleteCodeAthTypeAsync(key)) return Ok();
+            if (key <= 0) 
+                return BadRequest("Key cannot be <= 0");
 
-            return NotFound(new ResponseBody()
-            {
-                Header = "Error",
-                Result = "CodeAthType not found"
-            });
+            var codeAthType = await _farmAppContext.CodeAthTypes.FindAsync(key);
+
+            if (codeAthType == null)
+                return NotFound($"Not found Code with key {key}");
+
+            codeAthType.IsDeleted = true;
+            await _farmAppContext.SaveChangesAsync();
+
+            return Ok();
         }
     }
 }

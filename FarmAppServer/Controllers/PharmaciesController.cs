@@ -32,9 +32,9 @@ namespace FarmAppServer.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPharmacies()
         {
-            var pharmacies = await _pharmacyService.GetPharmacies();
+            var pharmacies = await _pharmacyService.GetPharmaciesAsync();
 
-            if (pharmacies == null)
+            if (!pharmacies.Any())
                 return NotFound("Pharmacies not found");
             return Ok(pharmacies);
         }

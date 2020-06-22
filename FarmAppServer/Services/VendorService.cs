@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
+using FarmAppServer.Models;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,6 +13,7 @@ namespace FarmAppServer.Services
 {
     public interface IVendorService
     {
+        Task<IEnumerable<VendorDto>> GetVendorsAsync();
         Task<bool> DeleteVendorAsync(int key);
         Task<bool> PostVendorAsync(string values);
         Task<bool> UpdateVendorAsync(int key, string values);
@@ -24,6 +28,16 @@ namespace FarmAppServer.Services
             _context = context;
             _mapper = mapper;
         }
+
+        public Task<IEnumerable<VendorDto>> GetVendorsAsync()
+        {
+            return Task.Run(() =>
+            {
+                var vendors = _context.Vendors.Include(i => i.Region).AsNoTracking();
+                return _mapper.Map<IEnumerable<VendorDto>>(vendors);
+            });
+        }
+
         public async Task<bool> DeleteVendorAsync(int key)
         {
             var vendor = await _context.Vendors.FindAsync(key);

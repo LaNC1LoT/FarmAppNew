@@ -27,16 +27,14 @@ namespace FarmAppServer.Controllers
 
         // GET: api/Vendors
         [HttpGet]
-        public ActionResult<IEnumerable<VendorDto>> GetVendors([FromQuery]int page = 1, [FromQuery]int pageSize = 25)
+        public async Task<IActionResult> GetVendors()
         {
-            var vendors = _context.Vendors;
+            var vendors = await _vendorService.GetVendorsAsync();
 
-            if (vendors == null) return NotFound("Vendors not found");
+            if (!vendors.Any()) 
+                return NotFound("Vendors not found");
 
-            var model = _mapper.ProjectTo<VendorDto>(vendors);
-            var query = model.GetPaged(page, pageSize);
-
-            return Ok(query);
+            return Ok(vendors);
         }
 
         // GET: api/Vendors/5
@@ -98,11 +96,6 @@ namespace FarmAppServer.Controllers
                 Header = "Error",
                 Result = "User not found"
             });
-        }
-
-        private bool VendorExists(int id)
-        {
-            return _context.Vendors.Any(e => e.Id == id && e.IsDeleted == false);
         }
     }
 }

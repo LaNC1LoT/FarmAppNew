@@ -7,7 +7,6 @@ using FarmAppServer.Models.Drugs;
 using FarmAppServer.Models.Regions;
 using FarmAppServer.Models.Roles;
 using FarmAppServer.Models.Users;
-using FarmAppServer.Models.Vendors;
 
 namespace FarmAppServer.Helpers
 {
@@ -15,6 +14,18 @@ namespace FarmAppServer.Helpers
     {
         public AutoMapperProfile()
         {
+            //pharmacies
+            CreateMap<Pharmacy, PharmacyDto>().ForMember(x => x.RegionName, y => y.MapFrom(m => m.Region.RegionName));
+            CreateMap<PharmacyDto, Pharmacy>();
+
+            //vendor
+            CreateMap<Vendor, VendorDto>().ForMember(x => x.RegionName, y => y.MapFrom(m => m.Region.RegionName));
+            CreateMap<VendorDto, Vendor>();
+
+            //CodeAthType
+            CreateMap<CodeAthType, CodeAthTypeDto>();
+            CreateMap<CodeAthTypeDto, CodeAthType>();
+
             //users map
             CreateMap<Role, UserRoleDto>().ReverseMap();
 
@@ -38,10 +49,7 @@ namespace FarmAppServer.Helpers
                 .ForMember(x => x.UserName,
                     o => o.MapFrom(s => s.FirstName + " " + s.LastName));
 
-            //vendor
-            CreateMap<Vendor, VendorDto>().ReverseMap();
-            CreateMap<Vendor, PostVendorDto>().ReverseMap();
-            CreateMap<Vendor, UpdateVendorDto>().ReverseMap();
+
 
             //regions
             CreateMap<Region, RegionDto>()
@@ -71,9 +79,7 @@ namespace FarmAppServer.Helpers
             CreateMap<Role, UpdateRoleDto>().ReverseMap();
             CreateMap<Role, PostRoleDto>().ReverseMap();
 
-            //pharmacies
-            CreateMap<Pharmacy, PharmacyDto>().ForMember(x => x.RegionName, y => y.MapFrom(m => m.Region.RegionName));
-            CreateMap<PharmacyDto, Pharmacy>();
+
 
             //drugs
             CreateMap<Drug, DrugDto>()
@@ -112,14 +118,7 @@ namespace FarmAppServer.Helpers
             //        o => o.MapFrom(s => Multiply(s.Price, s.Quantity)))
             //    .ReverseMap();
 
-            //CodeAthType
-            CreateMap<CodeAthType, CodeAthTypeDto>()
-                .ForMember(x => x.ParentCodeAthId,
-                    o => o.MapFrom(s => s.CodeAthId))
-                .ForMember(x => x.ParentCodeName,
-                    o => o.MapFrom(s => s.CodeAth.Code));
 
-            CreateMap<UpdateRegionDto, CodeAthType>().ReverseMap();
 
             //ApiMethods
             CreateMap<ApiMethod, ApiMethodDto>().ReverseMap();

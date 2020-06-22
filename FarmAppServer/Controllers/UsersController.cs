@@ -102,7 +102,7 @@ namespace FarmAppServer.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserModelDto>>> GetAll([FromQuery]int page = 1, [FromQuery]int pageSize = 25)
+        public async Task<ActionResult<IEnumerable<UserModelDto>>> GetAll()
         {
             try
             {
