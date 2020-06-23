@@ -14,17 +14,38 @@ namespace FarmAppServer.Helpers
     {
         public AutoMapperProfile()
         {
-            //pharmacies
             CreateMap<Pharmacy, PharmacyDto>().ForMember(x => x.RegionName, y => y.MapFrom(m => m.Region.RegionName));
             CreateMap<PharmacyDto, Pharmacy>();
 
-            //vendor
             CreateMap<Vendor, VendorDto>().ForMember(x => x.RegionName, y => y.MapFrom(m => m.Region.RegionName));
             CreateMap<VendorDto, Vendor>();
 
-            //CodeAthType
-            CreateMap<CodeAthType, CodeAthTypeDto>();
-            CreateMap<CodeAthTypeDto, CodeAthType>();
+            CreateMap<CodeAthType, CodeAthTypeDto>().ReverseMap();
+
+            CreateMap<RegionType, RegionTypeDto>().ReverseMap();
+
+            CreateMap<Region, RegionDto>().ForMember(x => x.RegionTypeName, y => y.MapFrom(m => m.RegionType.RegionTypeName));
+            CreateMap<RegionDto, Region>();
+
+            CreateMap<Role, RoleDto>().ReverseMap();
+
+            CreateMap<Drug, DrugDto>().ForMember(x => x.Code, o => o.MapFrom(s => s.CodeAthType.Code))
+                .ForMember(x => x.VendorName, o => o.MapFrom(s => s.Vendor.VendorName))
+                .ForMember(x => x.DosageForm, o => o.MapFrom(s => s.DosageFormType.DosageForm)).
+                ForMember(x => x.IsDomestic, o => o.MapFrom(s => s.Vendor.IsDomestic));
+            CreateMap<PostDrugDto, Drug>().ReverseMap();
+
+
+
+
+
+
+
+
+
+
+
+
 
             //users map
             CreateMap<Role, UserRoleDto>().ReverseMap();
@@ -51,49 +72,19 @@ namespace FarmAppServer.Helpers
 
 
 
-            //regions
-            CreateMap<Region, RegionDto>()
-                .ForMember(x => x.ParentRegionName,
-                    o => o.MapFrom(s => s.ParentRegion.RegionName))
-                .ForMember(x => x.RegionTypeName,
-                    o => o.MapFrom(s => s.RegionType.RegionTypeName))
-                .ForMember(x => x.RegionTypeId,
-                    o => o.MapFrom(s => s.RegionType.Id));
 
-            CreateMap<Region, RegionSearchDto>()
-                .ForMember(x => x.ChildRegion,
-                    o =>
-                        o.MapFrom(s => s.RegionId));
+  
 
-            CreateMap<Region, UpdateRegionDto>().ReverseMap();
-            CreateMap<PostRegionDto, Region>()
-                .ForMember(x => x.RegionId,
-                    o => o.MapFrom(s => s.ParentId));
 
-            //region types
-            CreateMap<RegionType, RegionTypeDto>().ReverseMap();
-            CreateMap<RegionType, PostRegionTypeDto>().ReverseMap();
 
             //roles
-            CreateMap<Role, RoleDto>().ReverseMap();
+            
             CreateMap<Role, UpdateRoleDto>().ReverseMap();
             CreateMap<Role, PostRoleDto>().ReverseMap();
 
 
 
             //drugs
-            CreateMap<Drug, DrugDto>()
-                .ForMember(x => x.CodeAthTypeName,
-                    o => o.MapFrom(s => s.CodeAthType.NameAth))
-                .ForMember(x => x.Code,
-                    o => o.MapFrom(s => s.CodeAthType.Code))
-                .ForMember(x => x.VendorId,
-                    o => o.MapFrom(s => s.Vendor.Id))
-                .ForMember(x => x.VendorName,
-                    o => o.MapFrom(s => s.Vendor.VendorName));
-            //.ForMember(x => x.IsDomestic,
-            //   o => o.MapFrom(s => s.Vendor.IsDomestic));
-            CreateMap<PostDrugDto, Drug>().ReverseMap();
 
             //sales
             //CreateMap<Sale, SaleDto>()

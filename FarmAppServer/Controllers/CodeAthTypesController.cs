@@ -1,15 +1,13 @@
 ﻿using AutoMapper;
 using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
-using FarmAppServer.Models;
 using FarmAppServer.Models.CodeAthTypes;
-using FarmAppServer.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FarmAppServer.Controllers
@@ -28,64 +26,63 @@ namespace FarmAppServer.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CodeAthTypeDto>>> GetCodeAthTypes()
+        public async Task<ActionResult<IEnumerable<CodeAthTypeDto>>> GetCodeAthTypesAsync(CancellationToken cancellationToken = default)
         {
-            var codeAthTypes = await _farmAppContext.CodeAthTypes.Where(w => w.IsDeleted == false).AsNoTracking().ToListAsync();
+            var codeAthTypes = await _farmAppContext.CodeAthTypes.Where(w => w.IsDeleted == false).AsNoTracking().ToListAsync(cancellationToken);
             if (!codeAthTypes.Any())
-                return NotFound("CodeAthType not found");
+                return BadRequest("CodeAthType not found");
 
             return Ok(_mapper.Map<IEnumerable<CodeAthTypeDto>>(codeAthTypes));
         }
 
         [HttpPut]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<IActionResult> PutCodeAthType([FromForm]int key, [FromForm]string values)
+        public async Task<IActionResult> PutCodeAthTypeAsync([FromForm]int key, [FromForm]string values, CancellationToken cancellationToken = default)
         {
             if (key <= 0) 
                 return BadRequest("Key must be > 0");
             if (string.IsNullOrEmpty(values)) 
                 return BadRequest("Value cannot be null or empty");
 
-            var codeAthType = await _farmAppContext.CodeAthTypes.FirstOrDefaultAsync(c => c.Id == key);
+            var codeAthType = await _farmAppContext.CodeAthTypes.FirstOrDefaultAsync(c => c.Id == key, cancellationToken);
             if (codeAthType == null)
-                return NotFound($"Cannot be found Ath with key {key}");
+                return BadRequest($"Cannot be found Ath with key {key}");
 
             JsonConvert.PopulateObject(values, codeAthType);
-            await _farmAppContext.SaveChangesAsync();
+            await _farmAppContext.SaveChangesAsync(cancellationToken);
 
             return Ok();
         }
 
         [HttpPost]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<ActionResult<CodeAthTypeDto>> PostCodeAthType([FromForm]string values)
+        public async Task<ActionResult<CodeAthTypeDto>> PostCodeAthTypeAsync([FromForm]string values, CancellationToken cancellationToken = default)
         {
-            if (string.IsNullOrEmpty(values)) 
+            if (string.IsNullOrEmpty(values))
                 return BadRequest("Value cannot be null or empty");
 
             var codeAthType = new CodeAthType();
             JsonConvert.PopulateObject(values, codeAthType);
 
-            await _farmAppContext.AddAsync(codeAthType);
-            await _farmAppContext.SaveChangesAsync();
+            await _farmAppContext.AddAsync(codeAthType, cancellationToken);
+            await _farmAppContext.SaveChangesAsync(cancellationToken);
 
             return Ok(_mapper.Map<CodeAthTypeDto>(codeAthType));
         }
 
         [HttpDelete]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<IActionResult> DeleteCodeAthType([FromForm]int key)
+        public async Task<IActionResult> DeleteCodeAthTypeAsync([FromForm]int key, CancellationToken cancellationToken = default)
         {
             if (key <= 0) 
                 return BadRequest("Key cannot be <= 0");
 
-            var codeAthType = await _farmAppContext.CodeAthTypes.FindAsync(key);
-
+            var codeAthType = await _farmAppContext.CodeAthTypes.FirstOrDefaultAsync(f => f.Id == key, cancellationToken);
             if (codeAthType == null)
-                return NotFound($"Not found Code with key {key}");
+                return BadRequest($"Not found Code with key {key}");
 
             codeAthType.IsDeleted = true;
-            await _farmAppContext.SaveChangesAsync();
+            await _farmAppContext.SaveChangesAsync(cancellationToken);
 
             return Ok();
         }
