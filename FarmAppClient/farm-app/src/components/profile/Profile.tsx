@@ -5,8 +5,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { Typography, makeStyles, Theme, createStyles, Button } from '@material-ui/core';
 import { logout } from '../../store/auth/authActions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { IAppState } from '../../core/mainReducer';
+import { User } from '../../store/auth/authState';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -21,7 +23,12 @@ const useStyles = makeStyles((theme: Theme) =>
         }
     }))
 
-export const Profile = () => {
+
+interface ProfileProps {
+    user: User | null
+}
+
+const Profile = ({ user }: ProfileProps) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
@@ -34,9 +41,11 @@ export const Profile = () => {
     const dispath = useDispatch();
     const history = useHistory();
     const logoutHandler = () => {
+        localStorage.clear();
         dispath(logout())
         history.push('/farm-app/auth/')
     }
+
     const classes = useStyles();
 
     return (
@@ -68,11 +77,21 @@ export const Profile = () => {
             >
                 <div className={classes.card}>
                     <MenuItem className={classes.img} onClick={handleClose}><AccountCircle /></MenuItem>
-                    <MenuItem onClick={handleClose}>Чолак Александр</MenuItem>
-                    <MenuItem onClick={handleClose}>Админ</MenuItem>
+                    <MenuItem onClick={handleClose}>{user?.firstName} {user?.lastName}</MenuItem>
+                    <MenuItem onClick={handleClose}>{user?.role?.roleName}</MenuItem>
                     <Button onClick={logoutHandler} color="inherit">Выйти</Button>
                 </div>
             </Menu>
         </div>
     )
+};
+
+const mapStateToProps = (state: IAppState) => {
+    return {
+        user: state.auth.user,
+    }
 }
+
+
+
+export default connect(mapStateToProps)(Profile)

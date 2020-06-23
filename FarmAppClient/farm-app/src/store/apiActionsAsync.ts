@@ -12,15 +12,15 @@ export const callApi = <P, R>(
   params: P,
   { url, method = "GET", usePublicToken, headers }: IFetchParams,
   actions: AsyncActionCreators<P, R | null, Error>,
-  onSuccess?: () => void
+  onSuccess?: (result?:R|null) => void
 ): IThunkAction => {
   return async (dispatch, getState) => {
     dispatch(actions.started(params));
     try {
       let token = process.env.REACT_APP_PUBLIC_TOKEN || "";
       if (!usePublicToken) {
-        // const account = getState().auth.account;
-        // token = account ? account.MobileServiceAuthenticationToken : "";
+        const account = getState().auth.user;
+        token = account ? account.token : "";
       }
       const { status, message, result: result } = await baseFetch<P, R>(
         url,
@@ -40,7 +40,7 @@ export const callApi = <P, R>(
       } else {
         dispatch(actions.done({ params, result }));
         if (onSuccess != null) {
-          onSuccess();
+          onSuccess(result);
         }
       }
     } catch (error) {

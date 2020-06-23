@@ -7,12 +7,12 @@ export interface IProps {
     open: boolean;
 }
 
-export const PositionedSnackbar: FC<IProps> = ({ text, handleClose, open }) => {
+export const PositionedSnackbar: FC<IProps> = ({ text, handleClose, open,children }) => {
     return (
         <Snackbar
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            anchorOrigin={{ vertical: 'top', horizontal: 'center', }}
             open={open}
-            autoHideDuration={3}
+            autoHideDuration={3000}
             onClose={handleClose}
             message={text}
         />

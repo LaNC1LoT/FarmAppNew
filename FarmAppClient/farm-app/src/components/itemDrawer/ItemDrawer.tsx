@@ -8,12 +8,14 @@ import { Link, useLocation, matchPath } from "react-router-dom";
 interface IProps {
     title: string;
     link: string;
+    svg?: string;
 }
 
-export const ItemDrawer: FC<IProps> = ({ title, link }) => {
+export const ItemDrawer: FC<IProps> = ({ title, link,svg }) => {
     const classes = useStylesDrawer();
     const links = LinkStyles();
     const location = useLocation();
+
 
     return (
         <List
@@ -22,10 +24,13 @@ export const ItemDrawer: FC<IProps> = ({ title, link }) => {
             className={classes.root}
         >
             <Link className={links.link} to={`/farm-app/${link}`}>
+
                 <ListItem
                     button
-                    selected={!!matchPath(location.pathname, `/${link}`)}>
+                    selected={!!matchPath(location.pathname, `/farm-app/${link}`)}>
+
                     <ListItemText primary={title} />
+                  {svg && <img style={{height: '30px'}} src={svg} alt={`${svg}`} />}
                 </ListItem>
             </Link>
         </List>
