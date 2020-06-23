@@ -356,7 +356,6 @@ class ChartComp extends React.Component<{}, {
           showRowTotals={false}
           showRowGrandTotals={true}
 
-
           //@ts-ignore
           ref={(ref) => {
             if (ref?.instance) {
