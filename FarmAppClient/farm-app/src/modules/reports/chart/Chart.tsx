@@ -376,7 +376,7 @@ class ChartComp extends React.Component<{}, {
 
           />
           <Export enabled={true} fileName="Sales"/>
-          <FieldChooser enabled={false}/>
+          <FieldChooser enabled={true}/>
 
           <Scrolling mode="virtual" />
         </PivotGrid>
