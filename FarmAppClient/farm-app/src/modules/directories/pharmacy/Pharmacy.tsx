@@ -51,7 +51,7 @@ const Pharmacy = ({user}: { user: any }) => {
         keyExpr="id"
         rootValue={0}
         // autoExpandAll={true}
-        parentIdExpr="parentPharmacyId"
+        parentIdExpr="pharmacyId"
         // wordWrapEnabled={true}
         // columnHidingEnabled={true}
       >

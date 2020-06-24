@@ -23,7 +23,7 @@ const expandedRowKeys = [1];
 
 
 const FormDosage = ({ user }: { user: any }) => {
-  const url = `${BASE_URL}api/dosageforms`;
+  const url = `${BASE_URL}api/DosageForms`;
 
   const regionType = AspNetData.createStore({
     key: 'id',
@@ -90,7 +90,7 @@ const FormDosage = ({ user }: { user: any }) => {
           alignment={"left"}
           caption={"Форма выпуска"}
           dataType={"string"}
-          dataField={"FormDosage"}>
+          dataField={"dosageForm"}>
           <RequiredRule />
         </Column>
 

@@ -45,17 +45,18 @@ import ruCldrData from 'devextreme-cldr-data/ru.json';
 import supplementalCldrData from 'devextreme-cldr-data/supplemental.json';
 import { BASE_URL } from '../../../core/constants';
 import { createStore } from 'devextreme-aspnet-data-nojquery';
+import TreeList from 'devextreme-react/tree-list';
 
 
 const summaryDisplayModes = [
-  { text: 'None', value: 'none' },
-  { text: 'Absolute Variation', value: 'absoluteVariation' },
-  { text: 'Percent Variation', value: 'percentVariation' },
-  { text: 'Percent of Column Total', value: 'percentOfColumnTotal' },
-  { text: 'Percent of Row Total', value: 'percentOfRowTotal' },
-  { text: 'Percent of Column Grand Total', value: 'percentOfColumnGrandTotal' },
-  { text: 'Percent of Row Grand Total', value: 'percentOfRowGrandTotal' },
-  { text: 'Percent of Grand Total', value: 'percentOfGrandTotal' },
+  { text: 'Нет', value: 'none' },
+  { text: 'Абсолютная вариация', value: 'absoluteVariation' },
+  { text: 'Процентное отклонение', value: 'percentVariation' },
+  { text: 'Процент от общего столбца', value: 'percentOfColumnTotal' },
+  { text: 'Процент строки итого', value: 'percentOfRowTotal' },
+  { text: 'Процент от общего итога колонки', value: 'percentOfColumnGrandTotal' },
+  { text: 'Процент строки итогового итога', value: 'percentOfRowGrandTotal' },
+  { text: 'Процент от общего итога', value: 'percentOfGrandTotal' },
 ];
 
 
@@ -154,44 +155,44 @@ class ChartComp extends React.Component<{}, {
       });
     }
 
-    if (sourceField) {
-      if (!sourceField.groupName || sourceField.groupIndex === 0) {
-        e.items.push({
-          text: 'Hide field',
-          onItemClick: function() {
-            var fieldIndex;
-            if (sourceField.groupName) {
-              fieldIndex = this.state.dataSource.getAreaFields(sourceField.area, true)[sourceField.areaIndex].index;
-            } else {
-              fieldIndex = sourceField.index;
-            }
-
-            this.state.dataSource.field(fieldIndex, {
-              area: null,
-            });
-            this.state.dataSource.load();
-          },
-        });
-      }
-
-      if (sourceField.dataType === 'number') {
-        var menuItems: any = [];
-
-        e.items.push({ text: 'Summary Type', items: menuItems });
-        ['Sum', 'Avg', 'Min', 'Max'].forEach(summaryType => {
-          var summaryTypeValue = summaryType.toLowerCase();
-
-          menuItems.push({
-            text: summaryType,
-            value: summaryType.toLowerCase(),
-            onItemClick: function(args: any) {
-              this.setSummaryType(args, sourceField);
-            },
-            selected: e.field.summaryType === summaryTypeValue,
-          });
-        });
-      }
-    }
+    // if (sourceField) {
+    //   if (!sourceField.groupName || sourceField.groupIndex === 0) {
+    //     e.items.push({
+    //       text: 'Hide field',
+    //       onItemClick: function() {
+    //         var fieldIndex;
+    //         if (sourceField.groupName) {
+    //           fieldIndex = this.state.dataSource.getAreaFields(sourceField.area, true)[sourceField.areaIndex].index;
+    //         } else {
+    //           fieldIndex = sourceField.index;
+    //         }
+    //
+    //         this.state.dataSource.field(fieldIndex, {
+    //           area: null,
+    //         });
+    //         this.state.dataSource.load();
+    //       },
+    //     });
+    //   }
+    //
+    //   if (sourceField.dataType === 'number') {
+    //     var menuItems: any = [];
+    //
+    //     e.items.push({ text: 'Summary Type', items: menuItems });
+    //     ['Sum', 'Avg', 'Min', 'Max'].forEach(summaryType => {
+    //       var summaryTypeValue = summaryType.toLowerCase();
+    //
+    //       menuItems.push({
+    //         text: summaryType,
+    //         value: summaryType.toLowerCase(),
+    //         onItemClick: function(args: any) {
+    //           this.setSummaryType(args, sourceField);
+    //         },
+    //         selected: e.field.summaryType === summaryTypeValue,
+    //       });
+    //     });
+    //   }
+    // }
   }
 
   getLocale() {
@@ -225,28 +226,27 @@ class ChartComp extends React.Component<{}, {
     let response: any = await fetch(`${BASE_URL}api/Sales?page=1&pageSize=1000`);
     if (response.ok) {
       let json = await response.json();
-      this.setState({
-        store: json,
+
+      console.log(json);
+      await this.setState({
         dataSource: new PivotGridDataSource({
           fields: [
             {
-              caption: 'Название препарата',
-              dataField: 'drugName',
-
-            },
-            {
               caption: 'Название аптеки',
               dataField: 'pharmacyName',
-              //@ts-ignore
               area: 'row',
-
+              width: 120,
             },
+            {
+              caption: 'Название препарата',
+              dataField: 'drugName',
+              width: 150,
+            },
+
             {
               caption: 'Дата продажи',
               dataField: 'saleDate',
-              //@ts-ignore
               dataType: 'date',
-              //@ts-ignore
               area: 'column',
             },
             {
@@ -254,31 +254,31 @@ class ChartComp extends React.Component<{}, {
               dataField: 'price',
               summaryType: 'sum',
               format: '#,##0.00',
-              selector: function(data: any) {
-                return data.price;
-              },
+              // selector: function(data: any) {
+              //   return data.price;
+              // },
 
             },
             {
               caption: 'Кол-во',
               dataField: 'quantity',
-              summaryType: 'sum',
-              format: '#,##0.00',
-              selector: function(data: any) {
-                return data.quantity;
-              },
+              // summaryType: 'sum',
+              // format: '#,##0.00',
+              // selector: function(data: any) {
+              //   return data.quantity;
+              // },
 
             },
             {
               caption: 'Сумма',
               dataField: 'amount',
-              summaryType: 'sum',
               format: '#,##0.00',
-              selector: function(data: any) {
-                return data.amount;
-              },
+              // selector: function(data: any) {
+              //   return data.amount;
+              // },
 
-              //@ts-ignore
+              dataType: 'number',
+              summaryType: 'sum',
               area: 'data',
 
             },
@@ -289,32 +289,32 @@ class ChartComp extends React.Component<{}, {
               dataType: 'boolean',
 
             },
-            {
-              dataField: 'Id',
-              visible: false,
-            },
-            {
-              dataField: 'drugId',
-              visible: false,
-            },
+            // {
+            //   dataField: 'Id',
+            //   visible: false,
+            // },
+            // {
+            //   dataField: 'drugId',
+            //   visible: false,
+            // },
             {
               dataField: 'id',
               visible: false,
             },
-            {
-              dataField: 'isDeleted',
-              visible: false,
-            },
+            // {
+            //   dataField: 'isDeleted',
+            //   visible: false,
+            // },
             {
               dataField: 'pharmacyId',
               visible: false,
             },
             {
-              dataField: 'saleImportFileName',
+              dataField: 'saleImportFileId',
               visible: false,
             },
           ],
-          store: json?.data,
+          store: json,
         }),
       });
     }
@@ -332,30 +332,32 @@ class ChartComp extends React.Component<{}, {
           if (ref?.instance) {
             this._chart = ref.instance;
           }
-        }}>
-          <Size height={200}/>
 
+        }}
+        >
+          <Size height={200}/>
           <CommonSeriesSettings type="bar"/>
-          <AdaptiveLayout width={450}/>
+          <AdaptiveLayout />
         </Chart>
 
         <PivotGrid
-          id="pivotgrid"
+          id="charId"
           //@ts-ignore
-          dataSource={
-            this.state.dataSource}
+          dataSource={this.state.dataSource}
           allowSorting={true}
           allowSortingBySummary={true}
           allowFiltering={true}
-          height={620}
           showBorders={true}
+          allowExpandAll={true}
           rowHeaderLayout="tree"
+          style={{ maxWeight: '100vh' }}
+          height={560}
 
           showColumnTotals={false}
           showColumnGrandTotals={true}
           showRowTotals={false}
           showRowGrandTotals={true}
-
+          onContextMenuPreparing={this.onContextMenuPreparing}
           //@ts-ignore
           ref={(ref) => {
             if (ref?.instance) {
@@ -374,11 +376,11 @@ class ChartComp extends React.Component<{}, {
 
           />
           <Export enabled={true} fileName="Sales"/>
-          <FieldChooser enabled={true}/>
-          <Scrolling mode="virtual"/>
+          <FieldChooser enabled={false}/>
+
+          <Scrolling mode="virtual" />
         </PivotGrid>
         <div className={styles.options}>
-          <div className={styles.caption}>Опции</div>
           <div className={styles.option}>
             <CheckBox id="show-data-fields"
                       value={this.state.showColumnFields}
@@ -404,6 +406,7 @@ class ChartComp extends React.Component<{}, {
                       text="Показать поле строк" />
           </div>
         </div>
+
       </React.Fragment>
     );
   }
