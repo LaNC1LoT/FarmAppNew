@@ -54,6 +54,11 @@ export const Preparations = ({ user }: { user: any }) => {
     loadUrl: `${BASE_URL}api/Vendors?page=1&pageSize=2000`
   });
 
+  const dosageData = AspNetData.createStore({
+    key: 'id',
+    loadUrl: `${BASE_URL}api/DosageForms?page=1&pageSize=2000`
+  });
+
 
   return (
     <Typography>
@@ -117,6 +122,14 @@ export const Preparations = ({ user }: { user: any }) => {
           <RequiredRule />
           <Lookup dataSource={vendorData} valueExpr="id" displayExpr="vendorName" />
         </Column>
+
+        <Column
+          caption={"Форма выпуска"}
+          dataField={"dosageFormTypeId"}>
+          <RequiredRule />
+          <Lookup dataSource={dosageData} valueExpr="id" displayExpr="dosageForm" />
+        </Column>
+
 
         <Column
           alignment={'left'}

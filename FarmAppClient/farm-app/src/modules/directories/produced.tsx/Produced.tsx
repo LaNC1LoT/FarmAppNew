@@ -9,7 +9,7 @@ import TreeList, {
   Sorting,
   Scrolling,
   Paging,
-  Pager, HeaderFilter, FilterRow,
+  Pager, HeaderFilter, FilterRow, Lookup,
 } from 'devextreme-react/tree-list';
 import { vendors } from '../../../api/mock/vendors';
 import { BASE_URL } from '../../../core/constants';
@@ -40,6 +40,12 @@ const Produced = ({ user }: { user: any }) => {
     onBeforeSend: function(method, ajaxOptions) {
       ajaxOptions.xhrFields = { withCredentials: false };
     },
+  });
+
+
+  const regionData = AspNetData.createStore({
+    key: 'id',
+    loadUrl: `${BASE_URL}api/Regions?page=1&pageSize=2000`
   });
 
   return (
@@ -89,11 +95,21 @@ const Produced = ({ user }: { user: any }) => {
           dataField={'vendorName'}>
           <RequiredRule/>
         </Column>
+        {/*<Column*/}
+        {/*  caption={'Страна производителя'}*/}
+        {/*  dataField={'regionName'}>*/}
+        {/*  <RequiredRule/>*/}
+        {/*</Column>*/}
+
         <Column
-          caption={'Страна производителя'}
-          dataField={'regionName'}>
-          <RequiredRule/>
+          caption={"Страна производителя"}
+          dataField={"regionId"}>
+          <RequiredRule />
+          <Lookup dataSource={regionData} valueExpr="id" displayExpr="regionName" />
         </Column>
+
+
+
         <Column
           alignment={'left'}
           caption={'Отечесвтенный'}
