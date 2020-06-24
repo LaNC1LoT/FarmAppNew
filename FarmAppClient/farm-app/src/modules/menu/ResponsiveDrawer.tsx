@@ -24,7 +24,7 @@ import Preparations from '../directories/preparation/Preparations';
 import ATH from '../directories/ath/ATH';
 import Produced from '../directories/produced.tsx/Produced';
 import Region from '../directories/region/Region';
-import { User } from '../administration/user/User';
+import  User  from '../administration/user/User';
 import Method from '../administration/method/Method';
 import AccessRole from '../administration/accessRoles/AccessRole';
 import { connect } from 'react-redux';
