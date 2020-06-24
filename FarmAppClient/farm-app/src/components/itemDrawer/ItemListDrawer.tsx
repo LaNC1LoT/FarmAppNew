@@ -8,6 +8,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import { useStylesDrawer, LinkStyles } from "./ItemDrawerStyles";
 import { Link, matchPath, useLocation } from "react-router-dom";
 import { IDictionary } from "../../utils/interfaces";
+import { Button } from '@material-ui/core';
 
 interface IProps {
   title: string;
@@ -38,7 +39,11 @@ export const ItemListDrawer: FC<IProps> = ({ title, listItems }) => {
       <Collapse in={open} timeout="auto" unmountOnExit>
         {listItems.map((item, index) => (
           <List key={index} component="div" disablePadding>
-            <Link className={links.link} to={`/farm-app/${Object.keys(item)[0]}`}>
+            <Link
+              className={links.link}
+              to={`/farm-app/${Object.keys(item)[0]}`}
+              onClick={() => localStorage.setItem('lastUrl', Object.keys(item)[0])}
+            >
               <ListItem
                 button
                 className={classes.nested}
@@ -47,6 +52,7 @@ export const ItemListDrawer: FC<IProps> = ({ title, listItems }) => {
                 {Object.values(item)[1] && <img style={{height: '30px'}} src={Object.values(item)[1]} alt={`${Object.values(item)[1]}`} />}
               </ListItem>
             </Link>
+
           </List>
         ))}
       </Collapse>

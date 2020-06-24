@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
+import React, { useState } from 'react';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -8,45 +8,45 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import {Hidden} from '@material-ui/core';
-import classnames from "classnames";
-import {ItemListDrawer} from '../../components/itemDrawer/ItemListDrawer';
-import {ItemDrawer} from '../../components/itemDrawer/ItemDrawer';
-import {IDictionary} from '../../utils/interfaces';
+import { Hidden } from '@material-ui/core';
+import classnames from 'classnames';
+import { ItemListDrawer } from '../../components/itemDrawer/ItemListDrawer';
+import { ItemDrawer } from '../../components/itemDrawer/ItemDrawer';
+import { IDictionary } from '../../utils/interfaces';
 import Profile from '../../components/profile/Profile';
 import Sales from '../sales/Sales';
-import {Route, Redirect, Switch} from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import Role from '../administration/role/Role';
-import {Greeting} from '../greeting/Greeting';
+import { Greeting } from '../greeting/Greeting';
 import ChartComp from '../reports/chart/Chart';
 import Pharmacy from '../directories/pharmacy/Pharmacy';
 import Preparations from '../directories/preparation/Preparations';
 import ATH from '../directories/ath/ATH';
 import Produced from '../directories/produced.tsx/Produced';
 import Region from '../directories/region/Region';
-import {User} from '../administration/user/User';
+import { User } from '../administration/user/User';
 import Method from '../administration/method/Method';
 import AccessRole from '../administration/accessRoles/AccessRole';
-import {connect} from "react-redux";
-import {IAppState} from "../../core/mainReducer";
+import { connect } from 'react-redux';
+import { IAppState } from '../../core/mainReducer';
 import RegionTypes from '../directories/regionTypes/RegionTypes';
 import FormDosage from '../directories/ formDosage/FormDosage';
 
-const logo = require('../../logo.png')
-const folder = require('../../svg/folder.svg')
-const money = require('../../svg/money.svg')
-const charts = require('../../svg/charts.svg')
-const code = require('../../svg/code.svg')
-const medicains = require('../../svg/medicains.svg')
-const meeting = require('../../svg/meeting.svg')
-const profile = require('../../svg/profile.svg')
-const pharmacy = require('../../svg/pharmacy.svg')
-const proiz = require('../../svg/proiz.svg')
-const regions = require('../../svg/regions.svg')
-const network = require('../../svg/network.svg')
-const settings = require('../../svg/settings.svg')
-const typeRegion = require('../../svg/typeRegion.svg')
-const form = require('../../svg/form.svg')
+const logo = require('../../logo.png');
+const folder = require('../../svg/folder.svg');
+const money = require('../../svg/money.svg');
+const charts = require('../../svg/charts.svg');
+const code = require('../../svg/code.svg');
+const medicains = require('../../svg/medicains.svg');
+const meeting = require('../../svg/meeting.svg');
+const profile = require('../../svg/profile.svg');
+const pharmacy = require('../../svg/pharmacy.svg');
+const proiz = require('../../svg/proiz.svg');
+const regions = require('../../svg/regions.svg');
+const network = require('../../svg/network.svg');
+const settings = require('../../svg/settings.svg');
+const typeRegion = require('../../svg/typeRegion.svg');
+const form = require('../../svg/form.svg');
 
 
 const drawerWidth = 240;
@@ -100,7 +100,7 @@ interface ResponsiveDrawerProps {
 }
 
 const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
-  const {container, user} = props;
+  const { container, user } = props;
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -112,107 +112,112 @@ const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
   const directories: IDictionary<string>[] = [
     {
       'pharmacy': 'Аптеки',
-      'svg': pharmacy
+      'svg': pharmacy,
     },
     {
       'preparations': 'Препараты',
-      'svg': medicains
+      'svg': medicains,
     },
     {
       'code': 'Код АТХ',
-      'svg': code
+      'svg': code,
     },
     {
       'produced': 'Производители',
-      'svg': proiz
+      'svg': proiz,
     },
     {
       'region': 'Регионы',
-      'svg': regions
+      'svg': regions,
     },
     {
       'regionTypes': 'Тип региона',
-      'svg': typeRegion
+      'svg': typeRegion,
     },
     {
       'formDosage': 'Форма выпуска',
-      'svg': form
+      'svg': form,
     },
 
-  ]
+  ];
   const administration: IDictionary<string>[] = [
     {
       'users': 'Пользователи',
-      'svg': network
+      'svg': network,
     },
     {
       'roles': 'Роли',
-      'svg': meeting
+      'svg': meeting,
     },
     {
       'methods': 'Методы',
-      'svg': folder
+      'svg': folder,
     },
     {
       'access': 'Доступ по ролям',
-      'svg': settings
-    },]
+      'svg': settings,
+    }];
   const reports: IDictionary<string>[] = [
     {
       'charts': 'Графики',
-      'svg': charts
-    }]
-  const id = user?.role?.id
+      'svg': charts,
+    }];
+  const id = user?.role?.id;
   const drawer = id === 1 ? (
     <div>
       <div className={classnames(classes.toolbar, classes.toolbarLogo)}>
-        <img style={{height: '40px'}} src={logo} alt="logo"/>
+        <img style={{ height: '40px' }} src={logo} alt="logo"/>
       </div>
       <Divider/>
       <ItemDrawer
         svg={profile}
-        title={"Главная"}
-        link={"main"}
+        title={'Главная'}
+        link={'main'}
       />
       <ItemDrawer
         svg={money}
-        title={"Продажи"}
-        link={"sales"}
+        title={'Продажи'}
+        link={'sales'}
       />
-      <ItemListDrawer title={"Отчеты"} listItems={reports}/>
-      <ItemListDrawer title={"Справочники"} listItems={directories}/>
-      <ItemListDrawer title={"Администрирование"} listItems={administration}/>
+      <ItemListDrawer title={'Отчеты'} listItems={reports}/>
+      <ItemListDrawer title={'Справочники'} listItems={directories}/>
+      <ItemListDrawer title={'Администрирование'} listItems={administration}/>
     </div>
   ) : (
     <div>
       <div className={classnames(classes.toolbar, classes.toolbarLogo)}>
-        <img style={{height: '40px'}} src={logo} alt="logo"/>
+        <img style={{ height: '40px' }} src={logo} alt="logo"/>
       </div>
       <Divider/>
       <ItemDrawer
         svg={profile}
-        title={"Главная"}
-        link={"main"}
+        title={'Главная'}
+        link={'main'}
       />
       <ItemDrawer
         svg={money}
-        title={"Продажи"}
-        link={"sales"}
+        title={'Продажи'}
+        link={'sales'}
       />
-      <ItemListDrawer title={"Отчеты"} listItems={reports}/>
-      <ItemListDrawer title={"Справочники"} listItems={directories}/>
+      <ItemListDrawer title={'Отчеты'} listItems={reports}/>
+      <ItemListDrawer title={'Справочники'} listItems={directories}/>
     </div>
-  )
+  );
 
-  const rememberMe = localStorage.getItem('auth')
+  const rememberMe = localStorage.getItem('auth');
 
   const NotFoundRedirect = () => {
     if (rememberMe !== null) {
-      return <Redirect to='/farm-app/main/'/>
+      const lastUrl = localStorage.getItem('lastUrl');
+      if (lastUrl) {
+        return <Redirect to={`/farm-app/${lastUrl}`} />
+      } else {
+        return <Redirect to='/farm-app/main/'/>;
+      }
     } else {
-      return <Redirect to='/auth/'/>
+      return <Redirect to='/auth/'/>;
     }
-  }
+  };
 
 
   return (
@@ -270,47 +275,47 @@ const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
       <main className={classes.content}>
         <div className={classes.toolbar}/>
         <Typography paragraph>
-          <Route path={"/farm-app/main/"}>
+          <Route path={'/farm-app/main/'}>
             <Greeting/>
           </Route>
-          <Route path={"/farm-app/sales/"}>
+          <Route path={'/farm-app/sales/'}>
             <Sales/>
           </Route>
-          <Route path={"/farm-app/charts/"}>
+          <Route path={'/farm-app/charts/'}>
             <ChartComp/>
           </Route>
-          <Route path={"/farm-app/pharmacy/"}>
+          <Route path={'/farm-app/pharmacy/'}>
             <Pharmacy/>
           </Route>
-          <Route path={"/farm-app/preparations/"}>
+          <Route path={'/farm-app/preparations/'}>
             <Preparations/>
           </Route>
-          <Route path={"/farm-app/code/"}>
+          <Route path={'/farm-app/code/'}>
             <ATH/>
           </Route>
-          <Route path={"/farm-app/produced/"}>
+          <Route path={'/farm-app/produced/'}>
             <Produced/>
           </Route>
-          <Route path={"/farm-app/region/"}>
+          <Route path={'/farm-app/region/'}>
             <Region/>
           </Route>
-          <Route path={"/farm-app/regionTypes/"}>
+          <Route path={'/farm-app/regionTypes/'}>
             <RegionTypes/>
           </Route>
-          <Route path={"/farm-app/formDosage/"}>
+          <Route path={'/farm-app/formDosage/'}>
             <FormDosage/>
           </Route>
 
-          <Route path={"/farm-app/users/"}>
+          <Route path={'/farm-app/users/'}>
             <User/>
           </Route>
-          <Route path={"/farm-app/roles/"}>
+          <Route path={'/farm-app/roles/'}>
             <Role/>
           </Route>
-          <Route path={"/farm-app/methods/"}>
+          <Route path={'/farm-app/methods/'}>
             <Method/>
           </Route>
-          <Route path={"/farm-app/access/"}>
+          <Route path={'/farm-app/access/'}>
             <AccessRole/>
           </Route>
           <Route component={NotFoundRedirect}/>
@@ -319,12 +324,12 @@ const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
     </div>
 
   );
-}
+};
 
 
 export default connect((state: IAppState) => {
-  const {auth} = state;
+  const { auth } = state;
   return {
     user: auth.user,
-  }
-})(ResponsiveDrawer)
+  };
+})(ResponsiveDrawer);
