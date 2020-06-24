@@ -29,6 +29,8 @@ namespace FarmAppServer.Helpers
 
             CreateMap<Role, RoleDto>().ReverseMap();
 
+            CreateMap<DosageFormType, DosageFormDto>().ReverseMap();
+
             CreateMap<Drug, DrugDto>().ForMember(x => x.Code, o => o.MapFrom(s => s.CodeAthType.Code))
                 .ForMember(x => x.VendorName, o => o.MapFrom(s => s.Vendor.VendorName))
                 .ForMember(x => x.DosageForm, o => o.MapFrom(s => s.DosageFormType.DosageForm)).

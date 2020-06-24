@@ -50,7 +50,7 @@ namespace FarmAppServer.Controllers
             var apiMethodRole = _context.Drugs.Where(x => x.Id == key && x.IsDeleted == false);
             var data = await _mapper.ProjectTo<ApiMethodRoleDto>(apiMethodRole).FirstOrDefaultAsync();
 
-            if (data == null || data.IsDeleted)
+            if (data == null)
                 return NotFound("ApiMethodRole not found");
 
             return Ok(apiMethodRole);
@@ -66,15 +66,9 @@ namespace FarmAppServer.Controllers
 
             if (key <= 0) return BadRequest("key must be > 0");
 
-            var updated = await _apiMethodRoleService.UpdateApiMethodASync(key, values);
+            await _apiMethodRoleService.UpdateApiMethodASync(key, values);
 
-            if (updated) return Ok();
-
-            return NotFound(new ResponseBody()
-            {
-                Header = "Error",
-                Result = "ApiMethod/Role not found or nothing to update"
-            });
+            return Ok();
         }
 
         // POST: api/ApiMethodRoles

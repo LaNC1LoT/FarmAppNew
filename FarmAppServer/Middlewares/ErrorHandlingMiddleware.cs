@@ -47,7 +47,7 @@ namespace FarmAppServer.Middlewares
         {
             context.Response.StatusCode = 500;
             context.Response.ContentType = "application/json; charset=utf-8";
-            log.Body = JsonSerializer.Serialize(new { error = ex.Message });
+            log.Body = JsonSerializer.Serialize(new { Error = ex.Message });
             log.Exception += ex.ToString();
             loggerDb.WriteException(log);
 

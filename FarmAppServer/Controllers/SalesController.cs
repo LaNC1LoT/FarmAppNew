@@ -2,14 +2,12 @@
 using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
 using FarmAppServer.Models;
-using FarmAppServer.Models.Sales;
-using FarmAppServer.Services;
-using FarmAppServer.Services.Paging;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FarmAppServer.Controllers
@@ -18,95 +16,73 @@ namespace FarmAppServer.Controllers
     [ApiController]
     public class SalesController : ControllerBase
     {
-        private readonly FarmAppContext _context;
+        private readonly FarmAppContext _farmAppContext;
         private readonly IMapper _mapper;
-        private readonly ISaleService _saleService;
 
-        public SalesController(FarmAppContext context, IMapper mapper, ISaleService saleService)
+        public SalesController(FarmAppContext farmAppContext, IMapper mapper)
         {
-            _context = context;
+            _farmAppContext = farmAppContext;
             _mapper = mapper;
-            _saleService = saleService;
         }
 
-        // GET: api/Sales
         [HttpGet]
-        public ActionResult<IEnumerable<SaleDto>> GetSales([FromQuery]int page = 1, [FromQuery]int pageSize = 25)
+        public async Task<ActionResult<IEnumerable<SaleDto>>> GetAsync(CancellationToken cancellationToken = default)
         {
-            var sales = _saleService.GetSales();
-            var result = sales.GetPaged(page, pageSize);
+            var sales = await _farmAppContext.Sales.Where(w => w.IsDeleted == false).Include(d => d.Drug)
+                                    .Include(p => p.Pharmacy).AsNoTracking().ToListAsync(cancellationToken);
+            if (!sales.Any())
+                return BadRequest("CodeAthType not found");
 
-            return Ok(result);
+            return Ok(_mapper.Map<IEnumerable<SaleDto>>(sales));
         }
 
-        // GET: api/Sales/5
-        [HttpGet("SaleById")]
-        public async Task<ActionResult<SaleDto>> GetSale([FromQuery]int id)
-        {
-            var sale = await _saleService.GetSaleById(id);
-
-            return Ok(sale);
-        }
-
-        // PUT: api/Sales/5
         [HttpPut]
-        public async Task<IActionResult> PutSale([FromQuery]int id, [FromBody]UpdateSaleDto model)
+        public async Task<IActionResult> PutAsync([FromForm]int key, [FromForm]string values, CancellationToken cancellationToken = default)
         {
-            if (!ModelState.IsValid)
-                return BadRequest();
+            if (key <= 0)
+                return BadRequest("Key must be > 0");
+            if (string.IsNullOrEmpty(values))
+                return BadRequest("Value cannot be null or empty");
 
-            var sale = await _context.Sales.Where(x => x.Id == id).FirstOrDefaultAsync();
-
+            var sale = await _farmAppContext.Sales.FirstOrDefaultAsync(c => c.Id == key, cancellationToken);
             if (sale == null)
-                return NotFound("Sale no found");
+                return BadRequest($"Cannot be found Sale with key {key}");
 
-            _mapper.Map(model, sale);
-            _context.Update(sale);
-            await _context.SaveChangesAsync();
+            JsonConvert.PopulateObject(values, sale);
+            await _farmAppContext.SaveChangesAsync(cancellationToken);
 
-            //var result = _mapper.Map<SaleDto>(sale);
-
-            return NoContent();
+            return Ok();
         }
 
-        // POST: api/Sales
         [HttpPost]
-        public async Task<ActionResult<SaleDto>> PostSale([FromBody]PostSaleDto model)
+        public async Task<ActionResult<SaleDto>> PostAsync([FromForm]string values, CancellationToken cancellationToken = default)
         {
-            if (!ModelState.IsValid) return BadRequest();
+            if (string.IsNullOrEmpty(values))
+                return BadRequest("Value cannot be null or empty");
 
-            var sale = _mapper.Map<Sale>(model);
-            var request = await _saleService.PostSale(sale);
-            var result = _mapper.Map<SaleDto>(request);
+            var sale = new Sale();
+            JsonConvert.PopulateObject(values, sale);
 
-            return Created("PostSale", result);
+            await _farmAppContext.AddAsync(sale, cancellationToken);
+            await _farmAppContext.SaveChangesAsync(cancellationToken);
+
+            return Ok(_mapper.Map<SaleDto>(sale));
         }
 
-        // DELETE: api/Sales/5
         [HttpDelete]
-        public async Task<ActionResult> DeleteSale([FromQuery]int id)
+        public async Task<IActionResult> DeleteAsync([FromForm]int key, CancellationToken cancellationToken = default)
         {
-            if (await _saleService.DeleteSaleAsync(id))
-                return Ok();
+            if (key <= 0)
+                return BadRequest("Key cannot be <= 0");
 
-            return NotFound("Sale not found");
-        }
+            var sale = await _farmAppContext.Sales.FirstOrDefaultAsync(f => f.Id == key, cancellationToken);
+            if (sale == null)
+                return BadRequest($"Not found Sale with key {key}");
 
-        // GET: api/Sales/SaleForPeriod
-        [HttpGet("SaleForPeriod")]
-        public IActionResult SaleForPeriod([FromQuery]DateTime start, [FromQuery]DateTime end, [FromQuery]int page = 1, [FromQuery]int pageSize = 25)
-        {
-            var sales = _context.Sales.Where(x => x.SaleDate >= start && x.SaleDate <= end);
-            var result = sales.GetPaged(page, pageSize);
+            sale.IsDeleted = true;
+            await _farmAppContext.SaveChangesAsync(cancellationToken);
 
-            if (result == null)
-                return NotFound(new ResponseBody()
-                {
-                    Header = "Error",
-                    Result = "Logs not found"
-                });
-
-            return Ok(result);
+            return Ok();
         }
     }
 }

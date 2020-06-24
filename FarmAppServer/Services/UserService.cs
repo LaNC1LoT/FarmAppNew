@@ -67,10 +67,10 @@ namespace FarmAppServer.Services
         public async Task<User> CreateUserAsync(User user, string password)
         {
             if (string.IsNullOrEmpty(password))
-                throw new AppException("Password is required");
+                throw new Exception("Password is required");
 
             if (_context.Users.Any(x => x.Login == user.Login & x.IsDeleted == false))
-                throw new AppException("Username \"" + user.Login + "\" is already taken");
+                throw new Exception("Username \"" + user.Login + "\" is already taken");
 
             CreatePasswordHash(password, out var passwordHash, out var passwordSalt);
 
@@ -160,7 +160,7 @@ namespace FarmAppServer.Services
             }
             catch (Exception e)
             {
-                throw new AppException(e.Message);
+                throw new Exception(e.Message);
             }
         }
 
@@ -200,11 +200,9 @@ namespace FarmAppServer.Services
             if (string.IsNullOrWhiteSpace(password))
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(password));
 
-            using (var hmac = new HMACSHA512())
-            {
-                passwordSalt = hmac.Key;
-                passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
-            }
+            using var hmac = new HMACSHA512();
+            passwordSalt = hmac.Key;
+            passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
         }
         private static bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
         {

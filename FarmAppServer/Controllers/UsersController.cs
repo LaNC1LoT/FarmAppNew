@@ -47,15 +47,15 @@ namespace FarmAppServer.Controllers
             var users = await _userService.AuthenticateUserAsync(model.Login, model.Password);
 
             if (users == null)
-                return BadRequest(new ResponseBody { Result = "Login or password is incorrect", Header = "Authenticate" });
+                return BadRequest(/*new ResponseBody { Result = "Login or password is incorrect", Header = "Authenticate" }*/);
 
             var user = await users.SingleOrDefaultAsync();
 
             if (user == null)
-                return BadRequest(new ResponseBody { Result = "Login or password is incorrect", Header = "Authenticate" });
+                return BadRequest(/*new ResponseBody { Result = "Login or password is incorrect", Header = "Authenticate" }*/);
 
             if (user.IsDeleted ?? true)
-                return BadRequest(new ResponseBody { Result = "Пользователь заблокирован!", Header = "Authenticate" });
+                return BadRequest(/*new ResponseBody { Result = "Пользователь заблокирован!", Header = "Authenticate" }*/);
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
@@ -94,7 +94,7 @@ namespace FarmAppServer.Controllers
                 await _userService.CreateUserAsync(user, model.Password);
                 return Ok();
             }
-            catch (AppException ex)
+            catch (Exception ex)
             {
                 // return error message if there was an exception
                 return BadRequest(new { message = ex.Message });
@@ -146,11 +146,7 @@ namespace FarmAppServer.Controllers
             if (updated)
                 return Ok();
 
-            return NotFound(new ResponseBody()
-            {
-                Header = "Error",
-                Result = "user not found"
-            });
+            return NotFound();
         }
 
         [HttpDelete]
@@ -159,11 +155,7 @@ namespace FarmAppServer.Controllers
             if (await _userService.DeleteUserAsync(id))
                 return Ok();
 
-            return NotFound(new ResponseBody()
-            {
-                Header = "Error",
-                Result = "User not found"
-            });
+            return NotFound();
         }
 
 
@@ -193,17 +185,13 @@ namespace FarmAppServer.Controllers
         public async Task<ActionResult<UserFilterByRoleDto>> SearchUser([FromQuery] string param)
         {
             if (string.IsNullOrEmpty(param))
-                return BadRequest(new ResponseBody { Result = "param cannot be null or empty", Header = "Search" });
+                return BadRequest(/*new ResponseBody { Result = "param cannot be null or empty", Header = "Search" }*/);
 
             var users = _userService.UserSearchAsync(param);
             var model = await _mapper.ProjectTo<UserFilterByRoleDto>(users).ToListAsync();
 
             if (model.Count == 0)
-                return NotFound(new ResponseBody()
-                {
-                    Header = "Error",
-                    Result = "User not found"
-                });
+                return NotFound();
 
             return Ok(model);
         }

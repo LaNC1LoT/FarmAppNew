@@ -32,13 +32,9 @@ namespace FarmAppServer.Controllers
 
                 return Ok(query);
             }
-            catch (Exception e)
+            catch
             {
-                return BadRequest(new ResponseBody()
-                {
-                    Header = "Error",
-                    Result = $"{e.Message}"
-                });
+                return BadRequest();
             }
         }
 

@@ -68,11 +68,8 @@ namespace FarmAppServer.Controllers
 
             if (updated) return Ok();
 
-            return NotFound(new ResponseBody()
-            {
-                Header = "Error",
-                Result = "ApiMethod not found or nothing to update"
-            });
+            return NotFound();
+  
         }
 
         // POST: api/ApiMethods

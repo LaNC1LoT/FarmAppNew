@@ -1,4 +1,4 @@
-﻿namespace FarmAppServer.Models.Regions
+﻿namespace FarmAppServer.Models
 {
     public class RegionDto
     {

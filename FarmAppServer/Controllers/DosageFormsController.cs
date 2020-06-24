@@ -14,41 +14,41 @@ namespace FarmAppServer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RegionsController : ControllerBase
+    public class DosageFormsController : ControllerBase
     {
         private readonly FarmAppContext _farmAppContext;
         private readonly IMapper _mapper;
 
-        public RegionsController(FarmAppContext farmAppContext, IMapper mapper)
+        public DosageFormsController(FarmAppContext farmAppContext, IMapper mapper)
         {
             _farmAppContext = farmAppContext;
             _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<RegionDto>>> GetRegionsAsync(CancellationToken cancellationToken = default)
+        public async Task<ActionResult<IEnumerable<DosageFormDto>>> GetAsync(CancellationToken cancellationToken = default)
         {
-            var regions = await _farmAppContext.Regions.Include(r => r.RegionType).Where(w => w.IsDeleted == false).AsNoTracking().ToListAsync(cancellationToken);
-            if (!regions.Any())
-                return BadRequest("Regions not found");
+            var dosageFormTypes = await _farmAppContext.DosageFormTypes.Where(w => w.IsDeleted == false).AsNoTracking().ToListAsync(cancellationToken);
+            if (!dosageFormTypes.Any())
+                return BadRequest("DosageForms not found");
 
-            return Ok(_mapper.Map<IEnumerable<RegionDto>>(regions));
+            return Ok(_mapper.Map<IEnumerable<DosageFormDto>>(dosageFormTypes));
         }
 
         [HttpPut]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<IActionResult> PutRegionAsync([FromForm]int key, [FromForm]string values, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> PutAsync([FromForm]int key, [FromForm]string values, CancellationToken cancellationToken = default)
         {
             if (key <= 0)
                 return BadRequest("Key must be > 0");
             if (string.IsNullOrEmpty(values))
                 return BadRequest("Value cannot be null or empty");
 
-            var region = await _farmAppContext.Regions.FirstOrDefaultAsync(c => c.Id == key, cancellationToken);
-            if (region == null)
+            var dosageFormType = await _farmAppContext.DosageFormTypes.FirstOrDefaultAsync(c => c.Id == key, cancellationToken);
+            if (dosageFormType == null)
                 return BadRequest($"Cannot be found Ath with key {key}");
 
-            JsonConvert.PopulateObject(values, region);
+            JsonConvert.PopulateObject(values, dosageFormType);
             await _farmAppContext.SaveChangesAsync(cancellationToken);
 
             return Ok();
@@ -56,32 +56,32 @@ namespace FarmAppServer.Controllers
 
         [HttpPost]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<ActionResult<RegionDto>> PostRegionAsync([FromForm]string values, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<DosageFormDto>> PostAsync([FromForm]string values, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(values))
                 return BadRequest("Value cannot be null or empty");
 
-            var region = new Region();
-            JsonConvert.PopulateObject(values, region);
+            var dosageFormType = new DosageFormType();
+            JsonConvert.PopulateObject(values, dosageFormType);
 
-            await _farmAppContext.AddAsync(region, cancellationToken);
+            await _farmAppContext.AddAsync(dosageFormType, cancellationToken);
             await _farmAppContext.SaveChangesAsync(cancellationToken);
 
-            return Ok(_mapper.Map<RegionDto>(region));
+            return Ok(_mapper.Map<DosageFormDto>(dosageFormType));
         }
 
         [HttpDelete]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<IActionResult> DeleteRegionAsync([FromForm]int key, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> DeleteAsync([FromForm]int key, CancellationToken cancellationToken = default)
         {
             if (key <= 0)
                 return BadRequest("Key cannot be <= 0");
 
-            var region = await _farmAppContext.Regions.FirstOrDefaultAsync(f => f.Id == key, cancellationToken);
-            if (region == null)
+            var dosageFormType = await _farmAppContext.DosageFormTypes.FirstOrDefaultAsync(f => f.Id == key, cancellationToken);
+            if (dosageFormType == null)
                 return BadRequest($"Not found Code with key {key}");
 
-            region.IsDeleted = true;
+            dosageFormType.IsDeleted = true;
             await _farmAppContext.SaveChangesAsync(cancellationToken);
 
             return Ok();
