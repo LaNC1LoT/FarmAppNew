@@ -26,7 +26,7 @@ namespace FarmAppServer.Middlewares
             context.Response.Body = responseBody;
             context.Request.EnableBuffering();
 
-            
+
             int.TryParse(context.User.Claims?.FirstOrDefault(c => c.Type == "UserId")?.Value, out var userId);
             int.TryParse(context.User.Claims?.FirstOrDefault(c => c.Type == "RoleId")?.Value, out var roleId);
             Log log = new Log
@@ -80,7 +80,7 @@ namespace FarmAppServer.Middlewares
                 stringBuilder.Append($"{row.Key}: {row.Value} {Environment.NewLine}");
             });
             var result = stringBuilder?.ToString();
-            return  string.IsNullOrWhiteSpace(result) ? null : result.Length > 4000 ? result.Substring(0, 4000) : result;
+            return string.IsNullOrWhiteSpace(result) ? null : result.Length > 4000 ? result.Substring(0, 4000) : result;
         }
 
         public async Task<string> GetBodyAsync(Stream stream)

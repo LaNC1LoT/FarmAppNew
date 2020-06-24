@@ -24,9 +24,6 @@
   <ItemGroup>
     <Compile Remove="Models\ApplicationSettings.cs" />
     <Compile Remove="Services\AuthOperationAttribute.cs" />
-    <Compile Remove="Models\Regions\ChildrenRegions.cs" />
-    <Compile Remove="Models\Regions\ParenRegionDto.cs" />
-    <Compile Remove="Models\Regions\RegionWithoutRegions.cs" />
   </ItemGroup>
 
   <ItemGroup>

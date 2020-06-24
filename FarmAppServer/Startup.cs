@@ -58,17 +58,6 @@ namespace FarmAppServer
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IRegionService, RegionService>();
-            services.AddScoped<IRegionTypeService, RegionTypeService>();
-            services.AddScoped<IRoleService, RoleService>();
-            services.AddScoped<IPharmacyService, PharmacyService>();
-            services.AddScoped<IDrugService, DrugService>();
-            services.AddScoped<ISaleService, SaleService>();
-            services.AddScoped<IApiMethodService, ApiMethodService>();
-            services.AddScoped<ICodeAthService, CodeAthService>();
-            services.AddScoped<IVendorService, VendorService>();
-            services.AddScoped<IApiMethodRoleService, ApiMethodRoleService>();
             services.AddScoped<ILoggerDb, LoggerDb>();
 
             services.AddSwaggerGen(c =>

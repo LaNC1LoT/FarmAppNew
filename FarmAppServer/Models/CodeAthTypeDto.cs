@@ -1,4 +1,4 @@
-﻿namespace FarmAppServer.Models.CodeAthTypes
+﻿namespace FarmAppServer.Models
 {
     public class CodeAthTypeDto
     {

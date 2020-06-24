@@ -2,9 +2,6 @@
 using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
 using FarmAppServer.Models;
-using FarmAppServer.Models.Drugs;
-using FarmAppServer.Services;
-using FarmAppServer.Services.Paging;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;

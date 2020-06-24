@@ -2,8 +2,6 @@
 using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
 using FarmAppServer.Models;
-using FarmAppServer.Services;
-using FarmAppServer.Services.Paging;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -31,6 +29,7 @@ namespace FarmAppServer.Controllers
         public async Task<ActionResult<IEnumerable<ApiMethodRoleDto>>> GetAsync(CancellationToken cancellationToken = default)
         {
             var apiMethodRoles = await _farmAppContext.ApiMethodRoles.Where(w => w.IsDeleted == false).AsNoTracking().ToListAsync(cancellationToken);
+
             if (!apiMethodRoles.Any())
                 return BadRequest("ApiMethodRoles not found");
 
