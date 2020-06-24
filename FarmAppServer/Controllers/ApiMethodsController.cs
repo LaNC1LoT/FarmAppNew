@@ -1,104 +1,89 @@
 ﻿using AutoMapper;
-using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
 using FarmAppServer.Models;
-using FarmAppServer.Services;
-using FarmAppServer.Services.Paging;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FarmAppServer.Controllers
 {
-    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ApiMethodsController : ControllerBase
     {
-        private readonly FarmAppContext _context;
-        private readonly IApiMethodService _apiMethodService;
+        private readonly FarmAppContext _farmAppContext;
         private readonly IMapper _mapper;
 
-        public ApiMethodsController(FarmAppContext context, IApiMethodService apiMethodService, IMapper mapper)
+        public ApiMethodsController(FarmAppContext farmAppContext, IMapper mapper)
         {
-            _context = context;
-            _apiMethodService = apiMethodService;
+            _farmAppContext = farmAppContext;
             _mapper = mapper;
         }
 
-        // GET: api/ApiMethods
         [HttpGet]
-        public ActionResult<IEnumerable<ApiMethodDto>> GetApiMethods([FromQuery]int page = 1, [FromQuery]int pageSize = 20)
+        public async Task<ActionResult<IEnumerable<ApiMethodDto>>> GetAsync(CancellationToken cancellationToken = default)
         {
-            var apiMethods = _context.ApiMethods;
-            var model = _mapper.ProjectTo<ApiMethodDto>(apiMethods);
+            var apiMethods = await _farmAppContext.ApiMethods.Where(w => w.IsDeleted == false).AsNoTracking().ToListAsync(cancellationToken);
+            if (!apiMethods.Any())
+                return BadRequest("ApiMethods not found");
 
-            if (model == null) return NotFound("ApiMethods not found");
-
-            var query = model.GetPaged(page, pageSize);
-
-            return Ok(query);
+            return Ok(_mapper.Map<IEnumerable<ApiMethodDto>>(apiMethods));
         }
 
-        // GET: api/ApiMethods/5
-        [HttpGet("ApiMethodById")]
-        [Consumes("application/x-www-form-urlencoded")]
-        public async Task<ActionResult<ApiMethodDto>> GetApiMethod([FromForm]int key)
-        {
-            var apiMethod = _context.ApiMethods.Where(x => x.Id == key && x.IsDeleted == false);
-            var data = await _mapper.ProjectTo<ApiMethodDto>(apiMethod).FirstOrDefaultAsync();
-
-            if (data == null || data.IsDeleted)
-                return NotFound("ApiMethod not found");
-
-            return Ok(apiMethod);
-        }
-
-        // PUT: api/ApiMethods/5
         [HttpPut]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<IActionResult> UpdateApiMethod([FromForm]int key, [FromForm]string values)
+        public async Task<IActionResult> PutAsync([FromForm]int key, [FromForm]string values, CancellationToken cancellationToken = default)
         {
-            if (key <= 0) return BadRequest("key must be > 0");
-            if (string.IsNullOrEmpty(values)) return BadRequest("Value cannot be null or empty");
+            if (key <= 0)
+                return BadRequest("Key must be > 0");
+            if (string.IsNullOrEmpty(values))
+                return BadRequest("Value cannot be null or empty");
 
-            var updated = await _apiMethodService.UpdateApiMethodAsync(key, values);
+            var apiMethod = await _farmAppContext.ApiMethods.FirstOrDefaultAsync(c => c.Id == key, cancellationToken);
+            if (apiMethod == null)
+                return BadRequest($"Cannot be found ApiMethod with key {key}");
 
-            if (updated) return Ok();
+            JsonConvert.PopulateObject(values, apiMethod);
+            await _farmAppContext.SaveChangesAsync(cancellationToken);
 
-            return NotFound();
-  
+            return Ok();
         }
 
-        // POST: api/ApiMethods
-        [HttpPost]
-        [Consumes("application/x-www-form-urlencoded")]
-        public async Task<ActionResult<ApiMethod>> PostApiMethod([FromForm]string values)
-        {
-            if (string.IsNullOrEmpty(values)) return BadRequest("Value cannot be null or empty");
+        //[HttpPost]
+        //[Consumes("application/x-www-form-urlencoded")]
+        //public async Task<ActionResult<RoleDto>> PostAsync([FromForm]string values, CancellationToken cancellationToken = default)
+        //{
+        //    if (string.IsNullOrEmpty(values))
+        //        return BadRequest("Value cannot be null or empty");
 
-            var request = await _apiMethodService.PostApiMethodAsync(values);
+        //    var apiMethod = new ApiMethod();
+        //    JsonConvert.PopulateObject(values, apiMethod);
 
-            if (request)
-                return Ok();
+        //    await _farmAppContext.AddAsync(apiMethod, cancellationToken);
+        //    await _farmAppContext.SaveChangesAsync(cancellationToken);
 
-            return BadRequest("ApiMethod is already taken");
-        }
+        //    return Ok(_mapper.Map<RoleDto>(apiMethod));
+        //}
 
-        // DELETE: api/ApiMethods/5
         [HttpDelete]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<ActionResult<ApiMethod>> DeleteApiMethod([FromForm]int key)
+        public async Task<IActionResult> DeleteAsync([FromForm]int key, CancellationToken cancellationToken = default)
         {
-            if (key <= 0) return BadRequest("key must be > 0");
+            if (key <= 0)
+                return BadRequest("Key cannot be <= 0");
 
-            var deleted = await _apiMethodService.DeleteApiMethodAsync(key);
+            var apiMethod = await _farmAppContext.ApiMethods.FirstOrDefaultAsync(f => f.Id == key, cancellationToken);
+            if (apiMethod == null)
+                return BadRequest($"Not found ApiMethod with key {key}");
 
-            if (deleted) return Ok();
+            apiMethod.IsDeleted = true;
+            await _farmAppContext.SaveChangesAsync(cancellationToken);
 
-            return NotFound("ApiMethod not found");
+            return Ok();
         }
     }
 }

@@ -1,9 +1,6 @@
 ﻿using FarmApp.Domain.Core.Entity;
-using FarmApp.Infrastructure.Data.Contexts;
-using FarmAppServer.Models;
 using FarmAppServer.Services;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.IO;
 using System.Linq;
@@ -60,7 +57,7 @@ namespace FarmAppServer.Middlewares
 
         private Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
-            context.Response.StatusCode = 500;
+            context.Response.StatusCode = 400;
             context.Response.ContentType = "application/json; charset=utf-8";
             return context.Response.WriteAsync(JsonSerializer.Serialize(new { Error = ex.Message }));
         }
