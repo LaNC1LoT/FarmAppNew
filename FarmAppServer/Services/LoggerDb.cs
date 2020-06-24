@@ -41,6 +41,7 @@ namespace FarmAppServer.Services
 
         private void SaveLog(Log log)
         {
+            log.Id = 0;
             log.CreateDate = DateTime.Now;
             log.GroupLogId = _groupLogId;
             _farmAppContext.Add(log);

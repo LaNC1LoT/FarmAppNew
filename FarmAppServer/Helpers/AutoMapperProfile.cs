@@ -4,8 +4,6 @@ using FarmAppServer.Models;
 using FarmAppServer.Models.ApiMethods;
 using FarmAppServer.Models.CodeAthTypes;
 using FarmAppServer.Models.Drugs;
-using FarmAppServer.Models.Regions;
-using FarmAppServer.Models.Roles;
 using FarmAppServer.Models.Users;
 
 namespace FarmAppServer.Helpers
@@ -32,12 +30,15 @@ namespace FarmAppServer.Helpers
             CreateMap<DosageFormType, DosageFormDto>().ReverseMap();
 
             CreateMap<Drug, DrugDto>().ForMember(x => x.Code, o => o.MapFrom(s => s.CodeAthType.Code))
-                .ForMember(x => x.VendorName, o => o.MapFrom(s => s.Vendor.VendorName))
-                .ForMember(x => x.DosageForm, o => o.MapFrom(s => s.DosageFormType.DosageForm)).
-                ForMember(x => x.IsDomestic, o => o.MapFrom(s => s.Vendor.IsDomestic));
+                                      .ForMember(x => x.VendorName, o => o.MapFrom(s => s.Vendor.VendorName))
+                                      .ForMember(x => x.DosageForm, o => o.MapFrom(s => s.DosageFormType.DosageForm))
+                                      .ForMember(x => x.IsDomestic, o => o.MapFrom(s => s.Vendor.IsDomestic));
             CreateMap<PostDrugDto, Drug>().ReverseMap();
 
-
+            CreateMap<Sale, SaleDto>().ForMember(x => x.DrugName, o => o.MapFrom(s => s.Drug.DrugName))
+                                      .ForMember(x => x.PharmacyName, o => o.MapFrom(s => s.Pharmacy.PharmacyName));
+            CreateMap<SaleDto, Sale>();
+                
 
 
 
@@ -79,10 +80,7 @@ namespace FarmAppServer.Helpers
 
 
 
-            //roles
-            
-            CreateMap<Role, UpdateRoleDto>().ReverseMap();
-            CreateMap<Role, PostRoleDto>().ReverseMap();
+
 
 
 

@@ -26,7 +26,7 @@ namespace FarmAppServer.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<RegionDto>>> GetRegionsAsync(CancellationToken cancellationToken = default)
+        public async Task<ActionResult<IEnumerable<RegionDto>>> GetAsync(CancellationToken cancellationToken = default)
         {
             var regions = await _farmAppContext.Regions.Include(r => r.RegionType).Where(w => w.IsDeleted == false).AsNoTracking().ToListAsync(cancellationToken);
             if (!regions.Any())
@@ -37,7 +37,7 @@ namespace FarmAppServer.Controllers
 
         [HttpPut]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<IActionResult> PutRegionAsync([FromForm]int key, [FromForm]string values, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> PutAsync([FromForm]int key, [FromForm]string values, CancellationToken cancellationToken = default)
         {
             if (key <= 0)
                 return BadRequest("Key must be > 0");
@@ -46,7 +46,7 @@ namespace FarmAppServer.Controllers
 
             var region = await _farmAppContext.Regions.FirstOrDefaultAsync(c => c.Id == key, cancellationToken);
             if (region == null)
-                return BadRequest($"Cannot be found Ath with key {key}");
+                return BadRequest($"Cannot be Region Ath with key {key}");
 
             JsonConvert.PopulateObject(values, region);
             await _farmAppContext.SaveChangesAsync(cancellationToken);
@@ -56,13 +56,16 @@ namespace FarmAppServer.Controllers
 
         [HttpPost]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<ActionResult<RegionDto>> PostRegionAsync([FromForm]string values, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<RegionDto>> PostAsync([FromForm]string values, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(values))
                 return BadRequest("Value cannot be null or empty");
 
             var region = new Region();
             JsonConvert.PopulateObject(values, region);
+
+            if (region.RegionId == 0)
+                region.RegionId = null;
 
             await _farmAppContext.AddAsync(region, cancellationToken);
             await _farmAppContext.SaveChangesAsync(cancellationToken);
@@ -72,14 +75,14 @@ namespace FarmAppServer.Controllers
 
         [HttpDelete]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<IActionResult> DeleteRegionAsync([FromForm]int key, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> DeleteAsync([FromForm]int key, CancellationToken cancellationToken = default)
         {
             if (key <= 0)
                 return BadRequest("Key cannot be <= 0");
 
             var region = await _farmAppContext.Regions.FirstOrDefaultAsync(f => f.Id == key, cancellationToken);
             if (region == null)
-                return BadRequest($"Not found Code with key {key}");
+                return BadRequest($"Not found Region with key {key}");
 
             region.IsDeleted = true;
             await _farmAppContext.SaveChangesAsync(cancellationToken);
