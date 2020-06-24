@@ -35,7 +35,15 @@ const FormDosage = ({ user }: { user: any }) => {
       ajaxOptions.xhrFields = { withCredentials: false };
     }
   });
+  const onCellPrepared = (e: any) => {
+    if (e.column.command === 'edit') {
+      let addLink = e.cellElement.querySelector('.dx-link-add');
 
+      if (addLink) {
+        addLink.remove();
+      }
+    }
+  };
 
   // const regionTypeData = AspNetData.createStore({
   //   key: 'id',
@@ -57,6 +65,7 @@ const FormDosage = ({ user }: { user: any }) => {
         style={{ maxHeight: '85vh' }}
         keyExpr="id"
         columnHidingEnabled={true}
+        onCellPrepared={onCellPrepared}
       >
         <Scrolling mode="standard" />
         <Paging

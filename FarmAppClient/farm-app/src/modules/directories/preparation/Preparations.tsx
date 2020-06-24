@@ -66,9 +66,9 @@ export const Preparations = ({ user }: { user: any }) => {
         columnAutoWidth={true}
         style={{ height: '85vh' }}
         columnHidingEnabled={true}
+        onCellPrepared={onCellPrepared}
       // keyExpr="id"
       // parentIdExpr="codeAthTypeId"
-      // onCellPrepared={onCellPrepared}
       >
 
         <Scrolling mode="standard" />
@@ -121,7 +121,10 @@ export const Preparations = ({ user }: { user: any }) => {
         <Column
           alignment={'left'}
           caption={"Отечественный"}
-          dataField={"isDomestic"}>
+          dataField={"isDomestic"}
+          allowEditing={false}
+        >
+
         </Column>
         <Column
           alignment={'left'}

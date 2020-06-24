@@ -1,5 +1,5 @@
-import React from "react"
-import { Typography } from "@material-ui/core"
+import React from 'react';
+import { Typography } from '@material-ui/core';
 import TreeList, {
   Editing,
   SearchPanel,
@@ -9,13 +9,13 @@ import TreeList, {
   Sorting,
   Scrolling,
   Paging,
-  Pager, HeaderFilter, FilterRow
-} from "devextreme-react/tree-list"
-import { vendors } from "../../../api/mock/vendors"
-import { BASE_URL } from "../../../core/constants";
-import AspNetData from "devextreme-aspnet-data-nojquery";
-import { connect } from "react-redux";
-import { IAppState } from "../../../core/mainReducer";
+  Pager, HeaderFilter, FilterRow,
+} from 'devextreme-react/tree-list';
+import { vendors } from '../../../api/mock/vendors';
+import { BASE_URL } from '../../../core/constants';
+import AspNetData from 'devextreme-aspnet-data-nojquery';
+import { connect } from 'react-redux';
+import { IAppState } from '../../../core/mainReducer';
 
 const Produced = ({ user }: { user: any }) => {
   const allowedPageSizes = [20, 50, 100];
@@ -27,7 +27,7 @@ const Produced = ({ user }: { user: any }) => {
         addLink.remove();
       }
     }
-  }
+  };
 
 
   const url = `${BASE_URL}api/Vendors`;
@@ -37,9 +37,9 @@ const Produced = ({ user }: { user: any }) => {
     insertUrl: `${url}`,
     updateUrl: `${url}`,
     deleteUrl: `${url}`,
-    onBeforeSend: function (method, ajaxOptions) {
+    onBeforeSend: function(method, ajaxOptions) {
       ajaxOptions.xhrFields = { withCredentials: false };
-    }
+    },
   });
 
   return (
@@ -56,46 +56,48 @@ const Produced = ({ user }: { user: any }) => {
         onCellPrepared={onCellPrepared}
         columnHidingEnabled={true}
       >
-        <Scrolling mode="standard" />
+        <Scrolling mode="standard"/>
         <Paging
           enabled={true}
-        defaultPageSize={20}
+          defaultPageSize={20}
         />
         <Pager
           showPageSizeSelector={true}
           allowedPageSizes={allowedPageSizes}
-          showInfo={true} />
-        <FilterRow visible={true} />
-        <Sorting mode="multiple" />
-        <Selection mode="single" />
-        <SearchPanel visible={true} />
-        <HeaderFilter visible={true} />
+          showInfo={true}/>
+        <FilterRow visible={true}/>
+        <Sorting mode="multiple"/>
+        <Selection mode="single"/>
+        <SearchPanel visible={true}/>
+        <HeaderFilter visible={true}/>
+
         {user?.role?.id === 1 && <Editing
+          allowAdding={true}
           allowUpdating={true}
           allowDeleting={true}
-          allowAdding={true}
           mode="row"
         />
+
         }
         <Column
-          caption={"Номер"}
+          caption={'Номер'}
           visible={false}
-          dataField={"id"}>
+          dataField={'id'}>
         </Column>
         <Column
-          caption={"Имя производителя"}
-          dataField={"vendorName"}>
-          <RequiredRule />
+          caption={'Имя производителя'}
+          dataField={'vendorName'}>
+          <RequiredRule/>
         </Column>
         <Column
-          caption={"Страна производителя"}
-          dataField={"regionName"}>
-          <RequiredRule />
+          caption={'Страна производителя'}
+          dataField={'regionName'}>
+          <RequiredRule/>
         </Column>
         <Column
-          alignment={"left"}
-          caption={"Отечесвтенный"}
-          dataField={"isDomestic"}>
+          alignment={'left'}
+          caption={'Отечесвтенный'}
+          dataField={'isDomestic'}>
         </Column>
         {/*<Column*/}
         {/*  caption={"Удалена"}*/}
@@ -104,12 +106,12 @@ const Produced = ({ user }: { user: any }) => {
         {/*</Column>*/}
       </TreeList>
     </Typography>
-  )
-}
+  );
+};
 
 export default connect((state: IAppState) => {
   const { auth } = state;
   return {
-    user: auth.user
-  }
-})(Produced)
+    user: auth.user,
+  };
+})(Produced);

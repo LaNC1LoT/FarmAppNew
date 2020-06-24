@@ -41,6 +41,15 @@ const RegionTypes = ({ user }: { user: any }) => {
   //   key: 'id',
   //   loadUrl: `${BASE_URL}api/regionTypes?page=1&pageSize=2000`
   // });
+  const onCellPrepared = (e: any) => {
+    if (e.column.command === 'edit') {
+      let addLink = e.cellElement.querySelector('.dx-link-add');
+
+      if (addLink) {
+        addLink.remove();
+      }
+    }
+  };
 
   return (
     <Typography>
@@ -57,6 +66,7 @@ const RegionTypes = ({ user }: { user: any }) => {
         style={{ maxHeight: '85vh' }}
         keyExpr="id"
         columnHidingEnabled={true}
+        onCellPrepared={onCellPrepared}
       >
         <Scrolling mode="standard" />
         <Paging

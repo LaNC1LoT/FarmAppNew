@@ -45,6 +45,8 @@ const proiz = require('../../svg/proiz.svg')
 const regions = require('../../svg/regions.svg')
 const network = require('../../svg/network.svg')
 const settings = require('../../svg/settings.svg')
+const typeRegion = require('../../svg/typeRegion.svg')
+const form = require('../../svg/form.svg')
 
 
 const drawerWidth = 240;
@@ -117,7 +119,7 @@ const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
       'svg': medicains
     },
     {
-      'code': 'Код АТН',
+      'code': 'Код АТХ',
       'svg': code
     },
     {
@@ -130,11 +132,11 @@ const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
     },
     {
       'regionTypes': 'Тип региона',
-      // 'svg': regions
+      'svg': typeRegion
     },
     {
       'formDosage': 'Форма выпуска',
-      // 'svg': regions
+      'svg': form
     },
 
   ]
