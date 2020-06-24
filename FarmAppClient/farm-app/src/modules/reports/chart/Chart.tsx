@@ -350,7 +350,6 @@ class ChartComp extends React.Component<{}, {
           showBorders={true}
           allowExpandAll={true}
           rowHeaderLayout="tree"
-          style={{ maxWeight: '100vh' }}
           height={560}
 
           showColumnTotals={false}
@@ -365,7 +364,7 @@ class ChartComp extends React.Component<{}, {
             }
           }}
         >
-
+          <AdaptiveLayout />
           <FieldPanel
             showColumnFields={this.state.showColumnFields}
             showDataFields={this.state.showDataFields}

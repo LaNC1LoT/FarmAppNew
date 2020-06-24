@@ -31,6 +31,7 @@ import { connect } from 'react-redux';
 import { IAppState } from '../../core/mainReducer';
 import RegionTypes from '../directories/regionTypes/RegionTypes';
 import FormDosage from '../directories/ formDosage/FormDosage';
+import Logs from '../administration/logs/Logs';
 
 const logo = require('../../logo.png');
 const folder = require('../../svg/folder.svg');
@@ -156,7 +157,12 @@ const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
     {
       'access': 'Доступ по ролям',
       'svg': settings,
-    }];
+    },
+    {
+      'logs':'Логи',
+      'svg': settings,
+    }
+  ];
   const reports: IDictionary<string>[] = [
     {
       'charts': 'Графики',
@@ -317,6 +323,9 @@ const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
           </Route>
           <Route path={'/farm-app/access/'}>
             <AccessRole/>
+          </Route>
+          <Route path={'/farm-app/logs/'}>
+            <Logs/>
           </Route>
           <Route component={NotFoundRedirect}/>
         </Typography>
