@@ -26,7 +26,7 @@ namespace FarmAppServer.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<RoleDto>>> RolesAsync(CancellationToken cancellationToken = default)
+        public async Task<ActionResult<IEnumerable<RoleDto>>> GetAsync(CancellationToken cancellationToken = default)
         {
             var roles = await _farmAppContext.Roles.Where(w => w.IsDeleted == false).AsNoTracking().ToListAsync(cancellationToken);
             if (!roles.Any())
@@ -37,7 +37,7 @@ namespace FarmAppServer.Controllers
 
         [HttpPut]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<IActionResult> RoleAsync([FromForm]int key, [FromForm]string values, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> PutAsync([FromForm]int key, [FromForm]string values, CancellationToken cancellationToken = default)
         {
             if (key <= 0)
                 return BadRequest("Key must be > 0");
@@ -56,7 +56,7 @@ namespace FarmAppServer.Controllers
 
         [HttpPost]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<ActionResult<RoleDto>> RoleAsync([FromForm]string values, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<RoleDto>> PostAsync([FromForm]string values, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(values))
                 return BadRequest("Value cannot be null or empty");
@@ -72,7 +72,7 @@ namespace FarmAppServer.Controllers
 
         [HttpDelete]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<IActionResult> RoleAsync([FromForm]int key, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> DeleteAsync([FromForm]int key, CancellationToken cancellationToken = default)
         {
             if (key <= 0)
                 return BadRequest("Key cannot be <= 0");

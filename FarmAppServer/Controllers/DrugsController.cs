@@ -2,9 +2,6 @@
 using FarmApp.Domain.Core.Entity;
 using FarmApp.Infrastructure.Data.Contexts;
 using FarmAppServer.Models;
-using FarmAppServer.Models.Drugs;
-using FarmAppServer.Services;
-using FarmAppServer.Services.Paging;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -29,7 +26,7 @@ namespace FarmAppServer.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<DrugDto>>> GetDrugAsync(CancellationToken cancellationToken = default)
+        public async Task<ActionResult<IEnumerable<DrugDto>>> GetAsync(CancellationToken cancellationToken = default)
         {
             var drugs = await _farmAppContext.Drugs.Where(w => w.IsDeleted == false).Include(c => c.CodeAthType)
                 .Include(v => v.Vendor)
@@ -43,7 +40,7 @@ namespace FarmAppServer.Controllers
 
         [HttpPut]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<IActionResult> PutDrugAsync([FromForm]int key, [FromForm]string values, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> PutAsync([FromForm]int key, [FromForm]string values, CancellationToken cancellationToken = default)
         {
             if (key <= 0)
                 return BadRequest("Key must be > 0");
@@ -52,7 +49,7 @@ namespace FarmAppServer.Controllers
 
             var drug = await _farmAppContext.Drugs.FirstOrDefaultAsync(c => c.Id == key, cancellationToken);
             if (drug == null)
-                return BadRequest($"Cannot be found Ath with key {key}");
+                return BadRequest($"Cannot be found Drug with key {key}");
 
             JsonConvert.PopulateObject(values, drug);
             await _farmAppContext.SaveChangesAsync(cancellationToken);
@@ -62,7 +59,7 @@ namespace FarmAppServer.Controllers
 
         [HttpPost]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<ActionResult<DrugDto>> PostDrugAsync([FromForm]string values, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<DrugDto>> PostAsync([FromForm]string values, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(values))
                 return BadRequest("Value cannot be null or empty");
@@ -78,14 +75,14 @@ namespace FarmAppServer.Controllers
 
         [HttpDelete]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<IActionResult> DeleteDrugAsync([FromForm]int key, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> DeleteAsync([FromForm]int key, CancellationToken cancellationToken = default)
         {
             if (key <= 0)
                 return BadRequest("Key cannot be <= 0");
 
             var drug = await _farmAppContext.Drugs.FirstOrDefaultAsync(f => f.Id == key, cancellationToken);
             if (drug == null)
-                return BadRequest($"Not found drug with key {key}");
+                return BadRequest($"Not found Drug with key {key}");
 
             drug.IsDeleted = true;
             await _farmAppContext.SaveChangesAsync(cancellationToken);

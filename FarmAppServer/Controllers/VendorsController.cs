@@ -58,7 +58,7 @@ namespace FarmAppServer.Controllers
         [Consumes("application/x-www-form-urlencoded")]
         public async Task<ActionResult<VendorDto>> PostVendorAsync([FromForm]string values, CancellationToken cancellationToken = default)
         {
-            if (string.IsNullOrWhiteSpace(values)) 
+            if (string.IsNullOrWhiteSpace(values))
                 return BadRequest("Values cannot be null or empty");
 
             var vendor = new Vendor();

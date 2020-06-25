@@ -1,61 +1,57 @@
 ﻿using AutoMapper;
 using FarmApp.Domain.Core.Entity;
+using FarmApp.Infrastructure.Data.Contexts;
 using FarmAppServer.Helpers;
 using FarmAppServer.Models;
-using FarmAppServer.Models.Users;
-using FarmAppServer.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FarmAppServer.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly FarmAppContext _farmAppContext;
         private readonly IMapper _mapper;
         private readonly AppSettings _appSettings;
-        public UsersController(IUserService userService, IMapper mapper, IOptions<AppSettings> appSettings)
+        public UsersController(FarmAppContext farmAppContext, IMapper mapper, IOptions<AppSettings> appSettings)
         {
-            _userService = userService;
+            _farmAppContext = farmAppContext;
             _mapper = mapper;
             _appSettings = appSettings.Value;
         }
 
-        [AllowAnonymous]
-        [HttpPost("authenticate")]
-        public async Task<ActionResult<AuthResponseDto>> Authenticate(AuthenticateModelDto model)
+        [HttpPost("Authenticate")]
+        public async Task<ActionResult<UserResponseDto>> AuthenticateAsync(UserAuntificationDto model, CancellationToken cancellationToken = default)
         {
-            if (!ModelState.IsValid)
-                return BadRequest();
+            if (string.IsNullOrEmpty(model.Login) || string.IsNullOrEmpty(model.Password))
+                return BadRequest("Не заполнен логин или пароль!");
 
-            //var model = JsonConvert.DeserializeObject<AuthenticateModelDto>(requestBody.Param);
-
-            if (model == null) throw new ArgumentNullException(nameof(model));
-
-            var users = await _userService.AuthenticateUserAsync(model.Login, model.Password);
-
-            if (users == null)
-                return BadRequest(new ResponseBody { Result = "Login or password is incorrect", Header = "Authenticate" });
-
-            var user = await users.SingleOrDefaultAsync();
-
+            var user = await _farmAppContext.Users.Include(i => i.Role).FirstOrDefaultAsync(f => f.Login == model.Login, cancellationToken);
             if (user == null)
-                return BadRequest(new ResponseBody { Result = "Login or password is incorrect", Header = "Authenticate" });
+                return BadRequest("Пользователь не найден!");
 
-            if (user.IsDeleted ?? true)
-                return BadRequest(new ResponseBody { Result = "Пользователь заблокирован!", Header = "Authenticate" });
+            if (user.IsDeleted == true)
+                return BadRequest("Пользователь заблокирован!");
+
+            if (user.Role.IsDeleted == true)
+                return BadRequest("Роль заблокирована!");
+
+            if (!VerifyPasswordHash(model.Password, user.PasswordHash, user.PasswordSalt))
+                return BadRequest("Неверный логин или пароль!");
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
@@ -72,152 +68,110 @@ namespace FarmAppServer.Controllers
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
 
-            // return basic user info and authentication token
 
-            var response = await _mapper.ProjectTo<AuthResponseDto>(users).FirstOrDefaultAsync();
+            var response = _mapper.Map<UserResponseDto>(user);
             response.Token = tokenString;
 
             return Ok(response);
         }
 
-        [AllowAnonymous]
-        [Authorize(Roles = "admin")]
-        [HttpPost("register")]
-        public async Task<ActionResult> Register([FromBody]RegisterModelDto model)
+        [HttpPost("Register")]
+        public async Task<IActionResult> RegisterAsync(UserRegisterDto model, CancellationToken cancellationToken = default)
         {
-            // map model to entity
-            var user = _mapper.Map<User>(model);
+            if (!ModelState.IsValid)
+                return BadRequest("Все поля обязательны к заполнению!");
 
-            try
+            var user = await _farmAppContext.Users.FirstOrDefaultAsync(f => f.Login == model.Login);
+
+            if (user != null)
+                return BadRequest("Пользователь с таким Login занят!");
+
+            CreatePasswordHash(model.Password, out var passwordHash, out var passwordSalt);
+
+            var newUser = new User
             {
-                // create user
-                await _userService.CreateUserAsync(user, model.Password);
-                return Ok();
-            }
-            catch (AppException ex)
-            {
-                // return error message if there was an exception
-                return BadRequest(new { message = ex.Message });
-            }
+                Login = model.Login,
+                UserName = model.FirstName + " " + model.LastName,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt
+            };
+
+            await _farmAppContext.Users.AddAsync(user, cancellationToken);
+            await _farmAppContext.SaveChangesAsync(cancellationToken);
+
+            return Ok();
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserModelDto>>> GetAll()
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetAll(CancellationToken cancellationToken = default)
         {
-            try
-            {
-                var users = _userService.GetAllUsers();
-                var model = await _mapper.ProjectTo<UserModelDto>(users).ToListAsync();
-                return Ok(model);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(new { e.Message, e.StackTrace });
-            }
-        }
+            var users = await _farmAppContext.Users.Include(i => i.Role).AsNoTracking().ToListAsync(cancellationToken);
 
-        [HttpGet("UserById")]
-        public async Task<ActionResult<UserModelDto>> GetById([FromQuery]int id)
-        {
-            try
-            {
-                var user = _userService.GetUserById(id);
-                var model = await _mapper.ProjectTo<UserModelDto>(user).FirstOrDefaultAsync();
+            if (!users.Any())
+                return BadRequest("Users not found!");
 
-                if (model == null) return NotFound("User not found");
-
-                return Ok(model);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(new { e.Message, e.StackTrace });
-            }
-
+            return Ok(_mapper.Map<IEnumerable<UserDto>>(users));
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromQuery]int id, [FromBody]UpdateModelDto userToUpdate)
+        public async Task<IActionResult> PutAsync([FromForm]int key, [FromForm]string values, CancellationToken cancellationToken = default)
         {
-            if (!ModelState.IsValid)
-                return BadRequest();
+            if (key <= 0)
+                return BadRequest("Key must be > 0");
+            if (string.IsNullOrEmpty(values))
+                return BadRequest("Value cannot be null or empty");
 
-            var updated = await _userService.UpdateUserAsync(id, userToUpdate);
+            var user = await _farmAppContext.Users.FirstOrDefaultAsync(x => x.Id == key);
+            if (user == null)
+                return BadRequest($"Cannot be found user with key {key}");
 
-            if (updated)
-                return Ok();
+            UserDto userDto = new UserDto();
+            JsonConvert.PopulateObject(values, userDto);
 
-            return NotFound(new ResponseBody()
+            CreatePasswordHash(userDto.Password, out var passwordHash, out var passwordSalt);
+
+            user = _mapper.Map<User>(userDto);
+            user.UserName = user.FirstName + " " + user.LastName;
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+            await _farmAppContext.SaveChangesAsync(cancellationToken);
+            return Ok();
+        }
+
+        private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            if (password == null) throw new ArgumentNullException(nameof(password));
+            if (string.IsNullOrWhiteSpace(password))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(password));
+
+            using var hmac = new HMACSHA512();
+            passwordSalt = hmac.Key;
+            passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+        }
+
+        private static bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
+        {
+            if (password == null) throw new ArgumentNullException(nameof(password));
+            if (string.IsNullOrWhiteSpace(password))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(password));
+
+            if (storedHash.Length != 64) throw new ArgumentException("Invalid length of password hash (64 bytes expected).", "passwordHash");
+            if (storedSalt.Length != 128) throw new ArgumentException("Invalid length of password salt (128 bytes expected).", "passwordHash");
+
+            using (var hmac = new HMACSHA512(storedSalt))
             {
-                Header = "Error",
-                Result = "user not found"
-            });
-        }
+                var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
 
-        [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery]int id)
-        {
-            if (await _userService.DeleteUserAsync(id))
-                return Ok();
-
-            return NotFound(new ResponseBody()
-            {
-                Header = "Error",
-                Result = "User not found"
-            });
-        }
-
-
-
-        //use User service UserFilterByRole
-        //⦁	Combobox -> По ролям (Админ, пользователь …)
-        [HttpGet]
-        [NonAction]
-        [Route("RoleName")]
-        public async Task<ActionResult<IEnumerable<UserFilterByRoleDto>>> GetUsersByRoleAsync([FromQuery]string role)
-        {
-            if (string.IsNullOrEmpty(role))
-                return BadRequest(new
+                for (int i = 0; i < computedHash.Length; i++)
                 {
-                    Message = $"Value cannot be null or empty.  {nameof(role)}"
-                });
+                    if (computedHash[i] != storedHash[i])
+                        return false;
+                }
+            }
 
-            var users = _userService.UsersByRoleAsync(role);
-            var model = await _mapper.ProjectTo<UserFilterByRoleDto>(users).ToListAsync();
-            return Ok(model);
-        }
-
-        //search by Login or UserName
-        //⦁	TextBox  -> По Login, UserName
-        [HttpGet]
-        [Route("Search")]
-        public async Task<ActionResult<UserFilterByRoleDto>> SearchUser([FromQuery] string param)
-        {
-            if (string.IsNullOrEmpty(param))
-                return BadRequest(new ResponseBody { Result = "param cannot be null or empty", Header = "Search" });
-
-            var users = _userService.UserSearchAsync(param);
-            var model = await _mapper.ProjectTo<UserFilterByRoleDto>(users).ToListAsync();
-
-            if (model.Count == 0)
-                return NotFound(new ResponseBody()
-                {
-                    Header = "Error",
-                    Result = "User not found"
-                });
-
-            return Ok(model);
-        }
-
-        //checkbox switch
-        [HttpGet]
-        [NonAction]
-        [Route("CheckBox")]
-        public async Task<ActionResult<IEnumerable<UserFilterByRoleDto>>> CheckBoxFilter([FromQuery] bool isChecked)
-        {
-            var users = _userService.IsEnabled(isChecked);
-            var model = await _mapper.ProjectTo<UserFilterByRoleDto>(users).ToListAsync();
-
-            return model;
+            return true;
         }
     }
 }

@@ -2,7 +2,6 @@
 using FarmApp.Infrastructure.Data.Contexts;
 using FarmAppServer.Helpers;
 using FarmAppServer.Middlewares;
-using FarmAppServer.Models;
 using FarmAppServer.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -21,12 +20,12 @@ namespace FarmAppServer
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-         
-        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -59,17 +58,6 @@ namespace FarmAppServer
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IRegionService, RegionService>();
-            services.AddScoped<IRegionTypeService, RegionTypeService>();
-            services.AddScoped<IRoleService, RoleService>();
-            services.AddScoped<IPharmacyService, PharmacyService>();
-            services.AddScoped<IDrugService, DrugService>();
-            services.AddScoped<ISaleService, SaleService>();
-            services.AddScoped<IApiMethodService, ApiMethodService>();
-            services.AddScoped<ICodeAthService, CodeAthService>();
-            services.AddScoped<IVendorService, VendorService>();
-            services.AddScoped<IApiMethodRoleService, ApiMethodRoleService>();
             services.AddScoped<ILoggerDb, LoggerDb>();
 
             services.AddSwaggerGen(c =>

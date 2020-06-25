@@ -1,4 +1,4 @@
-﻿namespace FarmAppServer.Models.Drugs
+﻿namespace FarmAppServer.Models
 {
     public class DrugDto
     {

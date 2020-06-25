@@ -14,26 +14,25 @@ namespace FarmAppServer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ApiMethodRolesController : ControllerBase
+    public class DosageFormsController : ControllerBase
     {
         private readonly FarmAppContext _farmAppContext;
         private readonly IMapper _mapper;
 
-        public ApiMethodRolesController(FarmAppContext farmAppContext, IMapper mapper)
+        public DosageFormsController(FarmAppContext farmAppContext, IMapper mapper)
         {
             _farmAppContext = farmAppContext;
             _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ApiMethodRoleDto>>> GetAsync(CancellationToken cancellationToken = default)
+        public async Task<ActionResult<IEnumerable<DosageFormDto>>> GetAsync(CancellationToken cancellationToken = default)
         {
-            var apiMethodRoles = await _farmAppContext.ApiMethodRoles.Where(w => w.IsDeleted == false).AsNoTracking().ToListAsync(cancellationToken);
+            var dosageFormTypes = await _farmAppContext.DosageFormTypes.Where(w => w.IsDeleted == false).AsNoTracking().ToListAsync(cancellationToken);
+            if (!dosageFormTypes.Any())
+                return BadRequest("DosageForms not found");
 
-            if (!apiMethodRoles.Any())
-                return BadRequest("ApiMethodRoles not found");
-
-            return Ok(_mapper.Map<IEnumerable<ApiMethodRoleDto>>(apiMethodRoles));
+            return Ok(_mapper.Map<IEnumerable<DosageFormDto>>(dosageFormTypes));
         }
 
         [HttpPut]
@@ -45,11 +44,11 @@ namespace FarmAppServer.Controllers
             if (string.IsNullOrEmpty(values))
                 return BadRequest("Value cannot be null or empty");
 
-            var apiMethodRole = await _farmAppContext.ApiMethodRoles.FirstOrDefaultAsync(c => c.Id == key, cancellationToken);
-            if (apiMethodRole == null)
-                return BadRequest($"Cannot be found ApiMethodRole with key {key}");
+            var dosageFormType = await _farmAppContext.DosageFormTypes.FirstOrDefaultAsync(c => c.Id == key, cancellationToken);
+            if (dosageFormType == null)
+                return BadRequest($"Cannot be found Ath with key {key}");
 
-            JsonConvert.PopulateObject(values, apiMethodRole);
+            JsonConvert.PopulateObject(values, dosageFormType);
             await _farmAppContext.SaveChangesAsync(cancellationToken);
 
             return Ok();
@@ -57,18 +56,18 @@ namespace FarmAppServer.Controllers
 
         [HttpPost]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<ActionResult<ApiMethodRoleDto>> PostAsync([FromForm]string values, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<DosageFormDto>> PostAsync([FromForm]string values, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(values))
                 return BadRequest("Value cannot be null or empty");
 
-            var apiMethodRole = new ApiMethodRole();
-            JsonConvert.PopulateObject(values, apiMethodRole);
+            var dosageFormType = new DosageFormType();
+            JsonConvert.PopulateObject(values, dosageFormType);
 
-            await _farmAppContext.AddAsync(apiMethodRole, cancellationToken);
+            await _farmAppContext.AddAsync(dosageFormType, cancellationToken);
             await _farmAppContext.SaveChangesAsync(cancellationToken);
 
-            return Ok(_mapper.Map<ApiMethodRoleDto>(apiMethodRole));
+            return Ok(_mapper.Map<DosageFormDto>(dosageFormType));
         }
 
         [HttpDelete]
@@ -78,11 +77,11 @@ namespace FarmAppServer.Controllers
             if (key <= 0)
                 return BadRequest("Key cannot be <= 0");
 
-            var apiMethodRole = await _farmAppContext.ApiMethodRoles.FirstOrDefaultAsync(f => f.Id == key, cancellationToken);
-            if (apiMethodRole == null)
-                return BadRequest($"Not found ApiMethodRole with key {key}");
+            var dosageFormType = await _farmAppContext.DosageFormTypes.FirstOrDefaultAsync(f => f.Id == key, cancellationToken);
+            if (dosageFormType == null)
+                return BadRequest($"Not found Code with key {key}");
 
-            apiMethodRole.IsDeleted = true;
+            dosageFormType.IsDeleted = true;
             await _farmAppContext.SaveChangesAsync(cancellationToken);
 
             return Ok();
