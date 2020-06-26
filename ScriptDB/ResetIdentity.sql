@@ -1,3 +1,3 @@
-DELETE FROM dist.Vendors
-DBCC CHECKIDENT (N'dist.Vendors', RESEED, 0);
+DELETE FROM api.ApiMethods
+DBCC CHECKIDENT (N'api.ApiMethods', RESEED, 0);
 GO

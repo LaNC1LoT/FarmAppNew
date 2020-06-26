@@ -57,7 +57,7 @@ namespace FarmAppServer.Helpers
             /// User
             CreateMap<User, UserResponseDto>().ForMember(x => x.Role, o => o.MapFrom(s => s.Role));
             CreateMap<User, UserDto>().ForMember(x => x.RoleName, o => o.MapFrom(s => s.Role.RoleName))
-                                      .ForMember(x => x.Password, o => o.MapFrom(o => "Secret password"));
+                                      .ForMember(x => x.Password, o => o.MapFrom(o => "******"));
             CreateMap<UserDto, User>();
         }
     }

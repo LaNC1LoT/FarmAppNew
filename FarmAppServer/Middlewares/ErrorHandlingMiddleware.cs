@@ -1,4 +1,6 @@
 ﻿using FarmApp.Domain.Core.Entity;
+using FarmAppServer.Helpers;
+using FarmAppServer.Models;
 using FarmAppServer.Services;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -19,26 +21,25 @@ namespace FarmAppServer.Middlewares
             _next = next;
         }
 
-        public async Task Invoke(HttpContext context, ILoggerDb loggerDb)
+        public async Task Invoke(HttpContext context, AuthenticateDto authenticateDto, ILoggerDb loggerDb)
         {
             var originalBody = context.Response.Body;
             var responseBody = new MemoryStream();
             context.Response.Body = responseBody;
             context.Request.EnableBuffering();
 
-
-            int.TryParse(context.User.Claims?.FirstOrDefault(c => c.Type == "UserId")?.Value, out var userId);
-            int.TryParse(context.User.Claims?.FirstOrDefault(c => c.Type == "RoleId")?.Value, out var roleId);
-            Log log = new Log
-            {
-                UserId = userId,
-                RoleId = roleId
-            };
+            Log log = new Log();
+            if (int.TryParse(context.User.Claims?.FirstOrDefault(c => c.Type == "UserId")?.Value, out var userId))
+                log.UserId = userId;
+            if (int.TryParse(context.User.Claims?.FirstOrDefault(c => c.Type == "RoleId")?.Value, out var roleId))
+                log.RoleId = roleId;
 
             try
             {
                 log = await GetLogAsync(context, context.Request.Headers, context.Request.Body, log);
                 loggerDb.WriteRequest(log);
+
+
                 await _next.Invoke(context);
             }
             catch (Exception ex)

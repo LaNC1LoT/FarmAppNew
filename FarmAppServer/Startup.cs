@@ -2,6 +2,7 @@
 using FarmApp.Infrastructure.Data.Contexts;
 using FarmAppServer.Helpers;
 using FarmAppServer.Middlewares;
+using FarmAppServer.Models;
 using FarmAppServer.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -59,6 +60,7 @@ namespace FarmAppServer
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<ILoggerDb, LoggerDb>();
+            services.AddScoped<AuthenticateDto>();
 
             services.AddSwaggerGen(c =>
             {
@@ -106,6 +108,7 @@ namespace FarmAppServer
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             app.UseMiddleware<ErrorHandlingMiddleware>();
+            app.UseMiddleware<AuthenticateMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
