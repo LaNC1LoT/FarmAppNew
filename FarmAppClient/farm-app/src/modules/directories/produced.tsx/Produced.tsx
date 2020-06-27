@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Typography } from '@material-ui/core';
 import TreeList, {
   Editing,
@@ -28,7 +28,9 @@ const Produced = ({ user }: { user: any }) => {
       }
     }
   };
-
+  useEffect(() => {
+    document.title = 'Производители'
+  })
 
   const url = `${BASE_URL}api/Vendors`;
   const vendorData = AspNetData.createStore({
@@ -37,8 +39,11 @@ const Produced = ({ user }: { user: any }) => {
     insertUrl: `${url}`,
     updateUrl: `${url}`,
     deleteUrl: `${url}`,
-    onBeforeSend: function(method, ajaxOptions) {
-      ajaxOptions.xhrFields = { withCredentials: false };
+    onBeforeSend: function (method, ajaxOptions) {
+      // ajaxOptions.xhrFields = { withCredentials: false };
+      ajaxOptions.headers = {
+        Authorization: 'Bearer ' + user.token,
+      };
     },
   });
 
@@ -62,7 +67,7 @@ const Produced = ({ user }: { user: any }) => {
         onCellPrepared={onCellPrepared}
         columnHidingEnabled={true}
       >
-        <Scrolling mode="standard"/>
+        <Scrolling mode="standard" />
         <Paging
           enabled={true}
           defaultPageSize={20}
@@ -70,12 +75,12 @@ const Produced = ({ user }: { user: any }) => {
         <Pager
           showPageSizeSelector={true}
           allowedPageSizes={allowedPageSizes}
-          showInfo={true}/>
-        <FilterRow visible={true}/>
-        <Sorting mode="multiple"/>
-        <Selection mode="single"/>
-        <SearchPanel visible={true}/>
-        <HeaderFilter visible={true}/>
+          showInfo={true} />
+        <FilterRow visible={true} />
+        <Sorting mode="multiple" />
+        <Selection mode="single" />
+        <SearchPanel visible={true} />
+        <HeaderFilter visible={true} />
 
         {user?.role?.id === 1 && <Editing
           allowAdding={true}
@@ -93,7 +98,7 @@ const Produced = ({ user }: { user: any }) => {
         <Column
           caption={'Имя производителя'}
           dataField={'vendorName'}>
-          <RequiredRule/>
+          <RequiredRule />
         </Column>
         {/*<Column*/}
         {/*  caption={'Страна производителя'}*/}

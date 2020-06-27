@@ -15,7 +15,7 @@ import { ItemDrawer } from '../../components/itemDrawer/ItemDrawer';
 import { IDictionary } from '../../utils/interfaces';
 import Profile from '../../components/profile/Profile';
 import Sales from '../sales/Sales';
-import { Route, Redirect, Switch } from 'react-router-dom';
+import { Route, Redirect, Switch, Link } from 'react-router-dom';
 import Role from '../administration/role/Role';
 import { Greeting } from '../greeting/Greeting';
 import ChartComp from '../reports/chart/Chart';
@@ -24,7 +24,7 @@ import Preparations from '../directories/preparation/Preparations';
 import ATH from '../directories/ath/ATH';
 import Produced from '../directories/produced.tsx/Produced';
 import Region from '../directories/region/Region';
-import  User  from '../administration/user/User';
+import User from '../administration/user/User';
 import Method from '../administration/method/Method';
 import AccessRole from '../administration/accessRoles/AccessRole';
 import { connect } from 'react-redux';
@@ -159,7 +159,7 @@ const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
       'svg': settings,
     },
     {
-      'logs':'Логи',
+      'logs': 'Логи',
       'svg': settings,
     }
   ];
@@ -171,10 +171,12 @@ const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
   const id = user?.role?.id;
   const drawer = id === 1 ? (
     <div>
-      <div className={classnames(classes.toolbar, classes.toolbarLogo)}>
-        <img style={{ height: '40px' }} src={logo} alt="logo"/>
+      <div className={classnames(classes.toolbar, classes.toolbarLogo)}
+
+      >
+        <Link to="/farm-app/main/"><img style={{ height: '40px' }} src={logo} alt="logo" /></Link>
       </div>
-      <Divider/>
+      <Divider />
       <ItemDrawer
         svg={profile}
         title={'Главная'}
@@ -185,30 +187,30 @@ const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
         title={'Продажи'}
         link={'sales'}
       />
-      <ItemListDrawer title={'Отчеты'} listItems={reports}/>
-      <ItemListDrawer title={'Справочники'} listItems={directories}/>
-      <ItemListDrawer title={'Администрирование'} listItems={administration}/>
+      <ItemListDrawer title={'Отчеты'} listItems={reports} />
+      <ItemListDrawer title={'Справочники'} listItems={directories} />
+      <ItemListDrawer title={'Администрирование'} listItems={administration} />
     </div>
   ) : (
-    <div>
-      <div className={classnames(classes.toolbar, classes.toolbarLogo)}>
-        <img style={{ height: '40px' }} src={logo} alt="logo"/>
+      <div>
+        <div className={classnames(classes.toolbar, classes.toolbarLogo)}>
+          <img style={{ height: '40px' }} src={logo} alt="logo" />
+        </div>
+        <Divider />
+        <ItemDrawer
+          svg={profile}
+          title={'Главная'}
+          link={'main'}
+        />
+        <ItemDrawer
+          svg={money}
+          title={'Продажи'}
+          link={'sales'}
+        />
+        <ItemListDrawer title={'Отчеты'} listItems={reports} />
+        <ItemListDrawer title={'Справочники'} listItems={directories} />
       </div>
-      <Divider/>
-      <ItemDrawer
-        svg={profile}
-        title={'Главная'}
-        link={'main'}
-      />
-      <ItemDrawer
-        svg={money}
-        title={'Продажи'}
-        link={'sales'}
-      />
-      <ItemListDrawer title={'Отчеты'} listItems={reports}/>
-      <ItemListDrawer title={'Справочники'} listItems={directories}/>
-    </div>
-  );
+    );
 
   const rememberMe = localStorage.getItem('auth');
 
@@ -218,17 +220,17 @@ const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
       if (lastUrl) {
         return <Redirect to={`/farm-app/${lastUrl}`} />
       } else {
-        return <Redirect to='/farm-app/main/'/>;
+        return <Redirect to='/farm-app/main/' />;
       }
     } else {
-      return <Redirect to='/auth/'/>;
+      return <Redirect to='/auth/' />;
     }
   };
 
 
   return (
     <div className={classes.root}>
-      <CssBaseline/>
+      <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
@@ -238,13 +240,13 @@ const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
             onClick={handleDrawerToggle}
             className={classes.menuButton}
           >
-            <MenuIcon/>
+            <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
 
           </Typography>
           <Typography className={classes.profile}>
-            <Profile/>
+            <Profile />
           </Typography>
         </Toolbar>
       </AppBar>
@@ -279,55 +281,55 @@ const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
         </Hidden>
       </nav>
       <main className={classes.content}>
-        <div className={classes.toolbar}/>
+        <div className={classes.toolbar} />
         <Typography paragraph>
           <Route path={'/farm-app/main/'}>
-            <Greeting/>
+            <Greeting />
           </Route>
           <Route path={'/farm-app/sales/'}>
-            <Sales/>
+            <Sales />
           </Route>
           <Route path={'/farm-app/charts/'}>
-            <ChartComp/>
+            <ChartComp />
           </Route>
           <Route path={'/farm-app/pharmacy/'}>
-            <Pharmacy/>
+            <Pharmacy />
           </Route>
           <Route path={'/farm-app/preparations/'}>
-            <Preparations/>
+            <Preparations />
           </Route>
           <Route path={'/farm-app/code/'}>
-            <ATH/>
+            <ATH />
           </Route>
           <Route path={'/farm-app/produced/'}>
-            <Produced/>
+            <Produced />
           </Route>
           <Route path={'/farm-app/region/'}>
-            <Region/>
+            <Region />
           </Route>
           <Route path={'/farm-app/regionTypes/'}>
-            <RegionTypes/>
+            <RegionTypes />
           </Route>
           <Route path={'/farm-app/formDosage/'}>
-            <FormDosage/>
+            <FormDosage />
           </Route>
 
           <Route path={'/farm-app/users/'}>
-            <User/>
+            <User />
           </Route>
           <Route path={'/farm-app/roles/'}>
-            <Role/>
+            <Role />
           </Route>
           <Route path={'/farm-app/methods/'}>
-            <Method/>
+            <Method />
           </Route>
           <Route path={'/farm-app/access/'}>
-            <AccessRole/>
+            <AccessRole />
           </Route>
           <Route path={'/farm-app/logs/'}>
-            <Logs/>
+            <Logs />
           </Route>
-          <Route component={NotFoundRedirect}/>
+          <Route component={NotFoundRedirect} />
         </Typography>
       </main>
     </div>

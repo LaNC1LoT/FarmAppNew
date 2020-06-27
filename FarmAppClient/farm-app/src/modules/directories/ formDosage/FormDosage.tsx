@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Typography } from "@material-ui/core"
 import TreeList, {
   Column,
@@ -24,7 +24,9 @@ const expandedRowKeys = [1];
 
 const FormDosage = ({ user }: { user: any }) => {
   const url = `${BASE_URL}api/DosageForms`;
-
+  useEffect(() => {
+    document.title = 'Форма выпуска'
+  })
   const regionType = AspNetData.createStore({
     key: 'id',
     loadUrl: `${url}?page=1&pageSize=2000`,
@@ -32,7 +34,10 @@ const FormDosage = ({ user }: { user: any }) => {
     updateUrl: `${url}`,
     deleteUrl: `${url}`,
     onBeforeSend: function (method, ajaxOptions) {
-      ajaxOptions.xhrFields = { withCredentials: false };
+      // ajaxOptions.xhrFields = { withCredentials: false };
+      ajaxOptions.headers = {
+        Authorization: 'Bearer ' + user.token,
+      };
     }
   });
   const onCellPrepared = (e: any) => {
@@ -70,7 +75,7 @@ const FormDosage = ({ user }: { user: any }) => {
         <Scrolling mode="standard" />
         <Paging
           enabled={true}
-        defaultPageSize={20}
+          defaultPageSize={20}
         />
         <Pager
           showPageSizeSelector={true}

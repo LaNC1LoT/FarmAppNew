@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Typography } from '@material-ui/core';
 import TreeList, {
   Editing,
@@ -29,8 +29,11 @@ const Method = ({ user }: { user: any }) => {
     insertUrl: `${BASE_URL}api/ApiMethods`,
     updateUrl: `${BASE_URL}api/ApiMethods`,
     deleteUrl: `${BASE_URL}api/ApiMethods`,
-    onBeforeSend: function(method, ajaxOptions) {
-      ajaxOptions.xhrFields = { withCredentials: false };
+    onBeforeSend: function (method, ajaxOptions) {
+      // ajaxOptions.xhrFields = { withCredentials: false };
+      ajaxOptions.headers = {
+        Authorization: 'Bearer ' + user.token,
+      };
     },
   });
 
@@ -43,6 +46,10 @@ const Method = ({ user }: { user: any }) => {
       }
     }
   };
+
+  useEffect(() => {
+    document.title = 'Методы'
+  })
   return (
     <Typography>
       <TreeList
@@ -54,18 +61,18 @@ const Method = ({ user }: { user: any }) => {
         keyExpr="id"
         onCellPrepared={onCellPrepared}
       >
-        <Scrolling mode="standard"/>
+        <Scrolling mode="standard" />
         <Paging
           enabled={true}
-          defaultPageSize={5}/>
+          defaultPageSize={5} />
         <Pager
           showPageSizeSelector={true}
           allowedPageSizes={allowedPageSizes}
-          showInfo={true}/>
-        <FilterRow visible={true}/>
-        <Sorting mode="multiple"/>
-        <Selection mode="single"/>
-        <SearchPanel visible={true}/>
+          showInfo={true} />
+        <FilterRow visible={true} />
+        <Sorting mode="multiple" />
+        <Selection mode="single" />
+        <SearchPanel visible={true} />
         {user?.role?.id === 1 && <Editing
           allowUpdating={true}
           allowDeleting={true}
@@ -83,35 +90,35 @@ const Method = ({ user }: { user: any }) => {
           caption={'Имя метода'}
           dataType={'string'}
           dataField={'apiMethodName'}>
-          <RequiredRule/>
+          <RequiredRule />
         </Column>
         <Column
           caption={'Описание'}
           dataType={'string'}
           dataField={'description'}>
-          <RequiredRule/>
+          <RequiredRule />
         </Column>
         <Column
           caption={'Короткий адрес'}
           dataType={'string'}
           dataField={'pathUrl'}>
-          <RequiredRule/>
+          <RequiredRule />
         </Column>
         <Column
           caption={'Http Метод'}
           dataType={'string'}
           dataField={'httpMethod'}>
-          <RequiredRule/>
+          <RequiredRule />
         </Column>
         <Column
           caption={'Параметры'}
           dataField={'isNotNullParam'}>
-          <RequiredRule/>
+          <RequiredRule />
         </Column>
         <Column
           caption={'Аунтификация'}
           dataField={'isNeedAuthentication'}>
-          <RequiredRule/>
+          <RequiredRule />
         </Column>
         <Column
           caption={'Удалена'}

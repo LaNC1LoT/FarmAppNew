@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Typography } from "@material-ui/core"
 import TreeList, {
   Column,
@@ -32,10 +32,15 @@ const Region = ({ user }: { user: any }) => {
     updateUrl: `${url}`,
     deleteUrl: `${url}`,
     onBeforeSend: function (method, ajaxOptions) {
-      ajaxOptions.xhrFields = { withCredentials: false };
+      // ajaxOptions.xhrFields = { withCredentials: false };
+      ajaxOptions.headers = {
+        Authorization: 'Bearer ' + user.token,
+      };
     }
   });
-
+  useEffect(() => {
+    document.title = 'Регионы'
+  })
 
   const regionTypeData = AspNetData.createStore({
     key: 'id',
@@ -61,7 +66,7 @@ const Region = ({ user }: { user: any }) => {
         <Scrolling mode="standard" />
         <Paging
           enabled={true}
-        defaultPageSize={20}
+          defaultPageSize={20}
         />
         <Pager
           showPageSizeSelector={true}

@@ -12,7 +12,7 @@ export const callApi = <P, R>(
   params: P,
   { url, method = "GET", usePublicToken, headers }: IFetchParams,
   actions: AsyncActionCreators<P, R | null, Error>,
-  onSuccess?: (result?:R|null) => void
+  onSuccess?: (result?: R | null) => void
 ): IThunkAction => {
   return async (dispatch, getState) => {
     dispatch(actions.started(params));
@@ -31,10 +31,14 @@ export const callApi = <P, R>(
       );
 
       if (status >= 400) {
+        console.log("message", message);
+        console.log("message", message);
+        const error: any = result;
+
         dispatch(
           actions.failed({
             params,
-            error: { name: status.toString(), message: message ? message : "" },
+            error: { name: status.toString(), message: error ? error : "" },
           })
         );
       } else {

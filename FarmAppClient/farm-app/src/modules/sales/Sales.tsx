@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Typography } from "@material-ui/core"
 import TreeList, {
     Editing,
@@ -23,6 +23,9 @@ import { connect } from "react-redux";
 const allowedPageSizes = [20, 50, 100];
 
 const Sales = ({ user }: { user: any }) => {
+    useEffect(() => {
+        document.title = 'Продажи'
+    })
     // const allowedPageSizes = [5, 10, 20];
     // const onCellPrepared = (e: any) => {
     //     if (e.column.command === 'edit') {
@@ -42,7 +45,10 @@ const Sales = ({ user }: { user: any }) => {
         updateUrl: `${BASE_URL}api/Sales`,
         deleteUrl: `${BASE_URL}api/Sales`,
         onBeforeSend: function (method, ajaxOptions) {
-            ajaxOptions.xhrFields = { withCredentials: false };
+            // ajaxOptions.xhrFields = { withCredentials: false };
+            ajaxOptions.headers = {
+                Authorization: 'Bearer ' + user.token,
+            };
         }
     });
 
@@ -76,7 +82,7 @@ const Sales = ({ user }: { user: any }) => {
                 <FilterRow visible={true} />
                 <Paging
                     enabled={true}
-                defaultPageSize={20}
+                    defaultPageSize={20}
                 />
                 <Pager
                     showPageSizeSelector={true}

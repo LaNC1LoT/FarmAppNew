@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Typography } from '@material-ui/core';
 import TreeList, {
   Editing,
@@ -29,8 +29,11 @@ const Logs = ({ user }: { user: any }) => {
     // insertUrl: `${BASE_URL}api/ApiMethods`,
     // updateUrl: `${BASE_URL}api/ApiMethods`,
     // deleteUrl: `${BASE_URL}api/ApiMethods`,
-    onBeforeSend: function(method, ajaxOptions) {
-      ajaxOptions.xhrFields = { withCredentials: false };
+    onBeforeSend: function (method, ajaxOptions) {
+      // ajaxOptions.xhrFields = { withCredentials: false };
+      ajaxOptions.headers = {
+        Authorization: 'Bearer ' + user.token,
+      };
     },
   });
 
@@ -43,111 +46,115 @@ const Logs = ({ user }: { user: any }) => {
       }
     }
   };
+
+  useEffect(() => {
+    document.title = 'Логи'
+  })
   return (
-      <Typography
+    <Typography
+    >
+      <TreeList
+        id="apimethods"
+        dataSource={logsData}
+        showRowLines={true}
+        showBorders={true}
+        columnAutoWidth={true}
+        keyExpr="id"
+        onCellPrepared={onCellPrepared}
+        columnHidingEnabled={true}
       >
-        <TreeList
-          id="apimethods"
-          dataSource={logsData}
-          showRowLines={true}
-          showBorders={true}
-          columnAutoWidth={true}
-          keyExpr="id"
-          onCellPrepared={onCellPrepared}
-          columnHidingEnabled={true}
-        >
-          <Scrolling mode="standard"/>
-          <Paging
-            enabled={true}
-            defaultPageSize={5}/>
-          <Pager
-            showPageSizeSelector={true}
-            allowedPageSizes={allowedPageSizes}
-            showInfo={true}/>
-          <FilterRow visible={true}/>
-          <Sorting mode="multiple"/>
-          <Selection mode="single"/>
-          <SearchPanel visible={true}/>
-          {/*{user?.role?.id === 1 && <Editing*/}
-          {/*  allowUpdating={true}*/}
-          {/*  allowDeleting={true}*/}
-          {/*  allowAdding={true}*/}
-          {/*  mode="row"*/}
-          {/*/>*/}
-          {/*}*/}
-          <Column
-            caption={'Номер'}
-            dataType={'number'}
-            visible={false}
-            dataField={'id'}>
-          </Column>
-          <Column
-            caption={'Тип лога'}
-            dataType={'string'}
-            dataField={'logType'}>
-          </Column>
-          <Column
-            caption={'Дата'}
-            // dataType={'data'}
-            dataField={'createDate'}>
-          </Column>
-          <Column
-            caption={'Id пользователя'}
-            dataType={'number'}
-            dataField={'userId'}>
-          </Column>
-          <Column
-            caption={'Роль пользователя'}
-            dataType={'number'}
-            dataField={'roleId'}>
-          </Column>
-          <Column
-            caption={'Код статуса'}
-            dataType={'string'}
-            dataField={'statusCode'}>
-          </Column>
-          <Column
-            caption={'Код статуса'}
-            dataType={'string'}
-            dataField={'pathUrl'}>
-          </Column>
-          <Column
-            caption={'HTTP метод'}
-            dataType={'string'}
-            dataField={'httpMethod'}>
-          </Column>
-          <Column
-            caption={'Header'}
-            dataType={'string'}
-            dataField={'header'}>
-          </Column>
-          <Column
-            caption={'Body'}
-            dataType={'string'}
-            dataField={'body'}>
-          </Column>
-          <Column
-            caption={'Exception'}
-            dataType={'string'}
-            dataField={'exception'}>
-          </Column>
-          {/*<Column*/}
-          {/*  caption={'Параметры'}*/}
-          {/*  dataField={'isNotNullParam'}>*/}
-          {/*  <RequiredRule/>*/}
-          {/*</Column>*/}
-          {/*<Column*/}
-          {/*  caption={'Аунтификация'}*/}
-          {/*  dataField={'isNeedAuthentication'}>*/}
-          {/*  <RequiredRule/>*/}
-          {/*</Column>*/}
-          {/*<Column*/}
-          {/*  caption={'Удалена'}*/}
-          {/*  dataType="boolean"*/}
-          {/*  dataField={'isDeleted'}>*/}
-          {/*</Column>*/}
-        </TreeList>
-      </Typography>
+        <Scrolling mode="standard" />
+        <Paging
+          enabled={true}
+          defaultPageSize={5} />
+        <Pager
+          showPageSizeSelector={true}
+          allowedPageSizes={allowedPageSizes}
+          showInfo={true} />
+        <FilterRow visible={true} />
+        <Sorting mode="multiple" />
+        <Selection mode="single" />
+        <SearchPanel visible={true} />
+        {/*{user?.role?.id === 1 && <Editing*/}
+        {/*  allowUpdating={true}*/}
+        {/*  allowDeleting={true}*/}
+        {/*  allowAdding={true}*/}
+        {/*  mode="row"*/}
+        {/*/>*/}
+        {/*}*/}
+        <Column
+          caption={'Номер'}
+          dataType={'number'}
+          visible={false}
+          dataField={'id'}>
+        </Column>
+        <Column
+          caption={'Тип лога'}
+          dataType={'string'}
+          dataField={'logType'}>
+        </Column>
+        <Column
+          caption={'Дата'}
+          // dataType={'data'}
+          dataField={'createDate'}>
+        </Column>
+        <Column
+          caption={'Id пользователя'}
+          dataType={'number'}
+          dataField={'userId'}>
+        </Column>
+        <Column
+          caption={'Роль пользователя'}
+          dataType={'number'}
+          dataField={'roleId'}>
+        </Column>
+        <Column
+          caption={'Код статуса'}
+          dataType={'string'}
+          dataField={'statusCode'}>
+        </Column>
+        <Column
+          caption={'Код статуса'}
+          dataType={'string'}
+          dataField={'pathUrl'}>
+        </Column>
+        <Column
+          caption={'HTTP метод'}
+          dataType={'string'}
+          dataField={'httpMethod'}>
+        </Column>
+        <Column
+          caption={'Header'}
+          dataType={'string'}
+          dataField={'header'}>
+        </Column>
+        <Column
+          caption={'Body'}
+          dataType={'string'}
+          dataField={'body'}>
+        </Column>
+        <Column
+          caption={'Exception'}
+          dataType={'string'}
+          dataField={'exception'}>
+        </Column>
+        {/*<Column*/}
+        {/*  caption={'Параметры'}*/}
+        {/*  dataField={'isNotNullParam'}>*/}
+        {/*  <RequiredRule/>*/}
+        {/*</Column>*/}
+        {/*<Column*/}
+        {/*  caption={'Аунтификация'}*/}
+        {/*  dataField={'isNeedAuthentication'}>*/}
+        {/*  <RequiredRule/>*/}
+        {/*</Column>*/}
+        {/*<Column*/}
+        {/*  caption={'Удалена'}*/}
+        {/*  dataType="boolean"*/}
+        {/*  dataField={'isDeleted'}>*/}
+        {/*</Column>*/}
+      </TreeList>
+    </Typography>
 
   );
 };

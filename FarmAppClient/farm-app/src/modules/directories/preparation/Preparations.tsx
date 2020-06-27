@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Typography } from "@material-ui/core"
 import TreeList, {
   Editing,
@@ -31,7 +31,9 @@ export const Preparations = ({ user }: { user: any }) => {
     }
   }
 
-
+  useEffect(() => {
+    document.title = 'Препараты'
+  })
   const url = `${BASE_URL}api/Drugs`;
   const drugsData = AspNetData.createStore({
     key: 'id',
@@ -40,7 +42,10 @@ export const Preparations = ({ user }: { user: any }) => {
     updateUrl: `${url}`,
     deleteUrl: `${url}`,
     onBeforeSend: function (method, ajaxOptions) {
-      ajaxOptions.xhrFields = { withCredentials: false };
+      // ajaxOptions.xhrFields = { withCredentials: false };
+      ajaxOptions.headers = {
+        Authorization: 'Bearer ' + user.token,
+      };
     }
   });
 
@@ -79,7 +84,7 @@ export const Preparations = ({ user }: { user: any }) => {
         <Scrolling mode="standard" />
         <Paging
           enabled={true}
-        defaultPageSize={20}
+          defaultPageSize={20}
         />
         <Pager
           showPageSizeSelector={true}

@@ -1,21 +1,21 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 // import boy from "../../resources/boy.svg"
 import boy from "./boy.svg"
-import {connect, useDispatch, useSelector} from 'react-redux';
-import {authSelector} from '../../store/auth/authSelector';
-import {callApiLogin} from '../../store/auth/authStateActionsAsync';
-import {useHistory} from 'react-router-dom';
-import {CircularProgress} from '@material-ui/core';
-import {PositionedSnackbar} from '../../components/snackbar/SnackbarResult';
-import {useSnackbar, VariantType} from 'notistack';
-import {logout, restoreAuth, RESTORE_AUTH} from '../../store/auth/authActions';
-import {IAppState} from "../../core/mainReducer";
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { authSelector } from '../../store/auth/authSelector';
+import { callApiLogin } from '../../store/auth/authStateActionsAsync';
+import { useHistory } from 'react-router-dom';
+import { CircularProgress } from '@material-ui/core';
+import { PositionedSnackbar } from '../../components/snackbar/SnackbarResult';
+import { useSnackbar, VariantType } from 'notistack';
+import { logout, restoreAuth, RESTORE_AUTH } from '../../store/auth/authActions';
+import { IAppState } from "../../core/mainReducer";
 
 
 var validator = require('validator');
@@ -55,8 +55,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const SignIn = ({error}:{
-  error:null|Error
+const SignIn = ({ error }: {
+  error: null | Error
 }) => {
   const [login_text, setLogin] = useState('');
   const [pass_text, setPass] = useState('');
@@ -67,7 +67,7 @@ const SignIn = ({error}:{
   const dispatch = useDispatch();
   const selector = useSelector(authSelector);
 
-  const {enqueueSnackbar} = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
   const submitButton = useRef(null);
 
 
@@ -87,7 +87,7 @@ const SignIn = ({error}:{
     history.push('/farm-app/main/')
   }
 
-  const  downHandler=({ key }:{key:any})=> {
+  const downHandler = ({ key }: { key: any }) => {
     if (key === "Enter") {
       // @ts-ignore
       submitButton?.current?.click()
@@ -95,6 +95,9 @@ const SignIn = ({error}:{
   }
 
   useEffect(() => {
+
+    document.title = 'Авторизация'
+
     //проверка если мы уже были авторизованны ранее
     const rememberMe = localStorage.getItem('auth')
     const tokenLife = localStorage.getItem('getTokenTime')
@@ -113,33 +116,33 @@ const SignIn = ({error}:{
     }
 
 
-      window.addEventListener('keydown', downHandler);
-      // Remove event listeners on cleanup
-      return () => {
-        window.removeEventListener('keydown', downHandler);
-      };
+    window.addEventListener('keydown', downHandler);
+    // Remove event listeners on cleanup
+    return () => {
+      window.removeEventListener('keydown', downHandler);
+    };
 
   }, [])
 
   useEffect(() => {
-    if(error?.message){
+    if (error?.message) {
       setMessage(error.message)
       handleOpen();
     }
-  },[error])
+  }, [error])
 
   const handleClick = () => {
     handleClose()
     if (login_text?.length !== 0 && validator.isEmail(login_text) && pass_text?.length !== 0) {
-      dispatch(callApiLogin({login: login_text, password: pass_text}, onSuccess))
+      dispatch(callApiLogin({ login: login_text, password: pass_text }, onSuccess))
     } else {
       setMessage('Логин или пароль введен неверно.')
       handleOpen();
     }
   }
 
-  const register=()=>{
-      history.push('/farm-app/reg/')
+  const register = () => {
+    history.push('/farm-app/reg/')
   }
 
   return (
@@ -152,9 +155,9 @@ const SignIn = ({error}:{
       <div>
 
         <Container component="main" maxWidth="xs">
-          <CssBaseline/>
+          <CssBaseline />
           <div className={classes.paper}>
-            <img className={classes.img} src={boy} alt="boy"/>
+            <img className={classes.img} src={boy} alt="boy" />
             <Typography className={classes.authText} component="h1" variant="h4">
               Авторизация
             </Typography>
@@ -187,7 +190,7 @@ const SignIn = ({error}:{
 
             {
               selector.loadState ?
-                <CircularProgress className={classes.centerScreen}/>
+                <CircularProgress className={classes.centerScreen} />
                 :
                 <Button
                   onClick={handleClick}
@@ -210,7 +213,7 @@ const SignIn = ({error}:{
 }
 
 export default connect((state: IAppState) => {
-  const {auth} = state;
+  const { auth } = state;
   return {
     error: auth.error
   }

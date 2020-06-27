@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { IAppState } from '../../../core/mainReducer';
 // import Chart, {
 //   ArgumentAxis,
 //   CommonSeriesSettings,
@@ -46,6 +46,7 @@ import supplementalCldrData from 'devextreme-cldr-data/supplemental.json';
 import { BASE_URL } from '../../../core/constants';
 import { createStore } from 'devextreme-aspnet-data-nojquery';
 import TreeList from 'devextreme-react/tree-list';
+import { connect } from 'react-redux';
 
 
 const summaryDisplayModes = [
@@ -60,7 +61,7 @@ const summaryDisplayModes = [
 ];
 
 
-class ChartComp extends React.Component<{}, {
+class ChartComp extends React.Component<{ user: any }, {
   store: any,
   locale: any,
   showColumnFields: any,
@@ -217,13 +218,23 @@ class ChartComp extends React.Component<{}, {
   }
 
   async componentDidMount() {
+
+
+    document.title = 'Графики'
+
     //@ts-ignore
     this._pivotGrid.bindChart(this._chart, {
       dataFieldsDisplayMode: 'splitPanes',
       alternateDataFields: false,
     });
 
-    let response: any = await fetch(`${BASE_URL}api/Sales?page=1&pageSize=1000`);
+    let response: any = await fetch(`${BASE_URL}api/Sales?page=1&pageSize=1000`,
+      {
+        headers: {
+          'Authorization': 'Bearer ' + this.props.user.token
+        },
+      }
+    );
     if (response.ok) {
       let json = await response.json();
 
@@ -234,6 +245,7 @@ class ChartComp extends React.Component<{}, {
             {
               caption: 'Название аптеки',
               dataField: 'pharmacyName',
+              //@ts-ignore
               area: 'row',
               width: 120,
             },
@@ -246,7 +258,9 @@ class ChartComp extends React.Component<{}, {
             {
               caption: 'Дата продажи',
               dataField: 'saleDate',
+              //@ts-ignore
               dataType: 'date',
+              //@ts-ignore
               area: 'column',
             },
             {
@@ -276,9 +290,10 @@ class ChartComp extends React.Component<{}, {
               // selector: function(data: any) {
               //   return data.amount;
               // },
-
+              //@ts-ignore
               dataType: 'number',
               summaryType: 'sum',
+              //@ts-ignore
               area: 'data',
 
             },
@@ -335,8 +350,8 @@ class ChartComp extends React.Component<{}, {
 
         }}
         >
-          <Size height={200}/>
-          <CommonSeriesSettings type="bar"/>
+          <Size height={200} />
+          <CommonSeriesSettings type="bar" />
           <AdaptiveLayout />
         </Chart>
 
@@ -374,35 +389,35 @@ class ChartComp extends React.Component<{}, {
             visible={true}
 
           />
-          <Export enabled={true} fileName="Sales"/>
-          <FieldChooser enabled={true}/>
+          <Export enabled={true} fileName="Sales" />
+          <FieldChooser enabled={true} />
 
           <Scrolling mode="virtual" />
         </PivotGrid>
         <div className={styles.options}>
           <div className={styles.option}>
             <CheckBox id="show-data-fields"
-                      value={this.state.showColumnFields}
-                      onValueChanged={this.onShowColumnFieldsChanged}
-                      text="Показать поле колонок" />
+              value={this.state.showColumnFields}
+              onValueChanged={this.onShowColumnFieldsChanged}
+              text="Показать поле колонок" />
           </div>
           <div className={styles.option}>
             <CheckBox id="show-row-fields"
-                      value={this.state.showDataFields}
-                      onValueChanged={this.onShowDataFieldsChanged}
-                      text="Показать поле данных" />
+              value={this.state.showDataFields}
+              onValueChanged={this.onShowDataFieldsChanged}
+              text="Показать поле данных" />
           </div>
           <div className={styles.option}>
             <CheckBox id="show-column-fields"
-                      value={this.state.showFilterFields}
-                      onValueChanged={this.onShowFilterFieldsChanged}
-                      text="Показать поле фильтров" />
+              value={this.state.showFilterFields}
+              onValueChanged={this.onShowFilterFieldsChanged}
+              text="Показать поле фильтров" />
           </div>
           <div className={styles.option}>
             <CheckBox id="show-filter-fields"
-                      value={this.state.showRowFields}
-                      onValueChanged={this.onShowRowFieldsChanged}
-                      text="Показать поле строк" />
+              value={this.state.showRowFields}
+              onValueChanged={this.onShowRowFieldsChanged}
+              text="Показать поле строк" />
           </div>
         </div>
 
@@ -411,4 +426,10 @@ class ChartComp extends React.Component<{}, {
   }
 }
 
-export default ChartComp;
+
+export default connect((state: IAppState) => {
+  const { auth } = state;
+  return {
+    user: auth.user,
+  };
+})(ChartComp);

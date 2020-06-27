@@ -1,21 +1,21 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 // import boy from "../../resources/boy.svg"
 import boy from "./boy.svg"
-import {connect, useDispatch, useSelector} from 'react-redux';
-import {authSelector} from '../../store/auth/authSelector';
-import {callApiLogin} from '../../store/auth/authStateActionsAsync';
-import {useHistory} from 'react-router-dom';
-import {CircularProgress} from '@material-ui/core';
-import {PositionedSnackbar} from '../../components/snackbar/SnackbarResult';
-import {useSnackbar, VariantType} from 'notistack';
-import {logout, restoreAuth, registration} from '../../store/auth/authActions';
-import {IAppState} from "../../core/mainReducer";
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { authSelector } from '../../store/auth/authSelector';
+import { callApiLogin } from '../../store/auth/authStateActionsAsync';
+import { useHistory } from 'react-router-dom';
+import { CircularProgress } from '@material-ui/core';
+import { PositionedSnackbar } from '../../components/snackbar/SnackbarResult';
+import { useSnackbar, VariantType } from 'notistack';
+import { logout, restoreAuth, registration } from '../../store/auth/authActions';
+import { IAppState } from "../../core/mainReducer";
 
 
 var validator = require('validator');
@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const SignUp = ({error, preloader}: {
+const SignUp = ({ error, preloader }: {
   error: any | null,
   preloader: boolean
 }) => {
@@ -71,14 +71,14 @@ const SignUp = ({error, preloader}: {
   const dispatch = useDispatch();
   const selector = useSelector(authSelector);
   const submitButton = useRef(null);
-  const {enqueueSnackbar} = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
 
 
   // const handleClickVariant = (variant: VariantType) => () => {
   //     enqueueSnackbar('Логин или пароль введен неверно.', { variant });
   // };
   const handleClickVariant = (message: string, variant: VariantType) => {
-    enqueueSnackbar(message, {variant});
+    enqueueSnackbar(message, { variant });
   };
 
   const handleOpen = () => {
@@ -88,14 +88,14 @@ const SignUp = ({error, preloader}: {
     setOpen(false);
   }
 
-  const downHandler = ({key}: { key: any }) => {
+  const downHandler = ({ key }: { key: any }) => {
     if (key === "Enter") {
       // @ts-ignore
       submitButton?.current?.click()
     }
   }
   useEffect(() => {
-
+    document.title = 'Регистрация'
 
     window.addEventListener('keydown', downHandler);
     // Remove event listeners on cleanup
@@ -134,7 +134,7 @@ const SignUp = ({error, preloader}: {
 
     handleClose()
     if (login?.length !== 0 && validator.isEmail(login) && password?.length !== 0 && lastName?.length != 0 && firstName?.length != 0) {
-      dispatch(registration({login, password, firstName, lastName}))
+      dispatch(registration({ login, password, firstName, lastName }))
       setFirstStep(true)
     } else {
       setMessage('Данные введены неверно.')
@@ -151,9 +151,9 @@ const SignUp = ({error, preloader}: {
       />
       <div>
         <Container component="main" maxWidth="xs">
-          <CssBaseline/>
+          <CssBaseline />
           <div className={classes.paper}>
-            <img className={classes.img} src={boy} alt="boy"/>
+            <img className={classes.img} src={boy} alt="boy" />
             <Typography className={classes.authText} component="h1" variant="h4">
               Регистрация
             </Typography>
@@ -212,7 +212,7 @@ const SignUp = ({error, preloader}: {
             />
             {
               selector.isFetchReg ?
-                <CircularProgress className={classes.centerScreen}/>
+                <CircularProgress className={classes.centerScreen} />
                 :
                 <Button
                   onClick={handleClick}
@@ -243,7 +243,7 @@ const SignUp = ({error, preloader}: {
 }
 
 export default connect((state: IAppState) => {
-  const {auth} = state;
+  const { auth } = state;
   return {
     preloader: auth.isFetchReg,
     error: auth.errorReg

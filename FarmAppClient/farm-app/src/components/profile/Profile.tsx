@@ -3,7 +3,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { Typography, makeStyles, Theme, createStyles, Button } from '@material-ui/core';
+import { Typography, makeStyles, Theme, createStyles, Button, ListItem } from '@material-ui/core';
 import { logout } from '../../store/auth/authActions';
 import { useDispatch, connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -76,10 +76,19 @@ const Profile = ({ user }: ProfileProps) => {
 
             >
                 <div className={classes.card}>
-                    <MenuItem className={classes.img} onClick={handleClose}><AccountCircle /></MenuItem>
-                    <MenuItem onClick={handleClose}>{user?.firstName} {user?.lastName}</MenuItem>
-                    <MenuItem onClick={handleClose}>{user?.role?.roleName}</MenuItem>
-                    <Button onClick={logoutHandler} color="inherit">Выйти</Button>
+                    <MenuItem className={classes.img}
+                        onClick={handleClose}><AccountCircle
+                            fontSize={'large'}
+                        /></MenuItem>
+                    <ListItem  >{user?.firstName} {user?.lastName}</ListItem  >
+                    <ListItem   >{user?.role?.roleName}</ListItem  >
+
+                    <Button onClick={logoutHandler}
+
+                        variant="contained"
+                        color="primary"
+                        fullWidth
+                    >Выйти</Button>
                 </div>
             </Menu>
         </div>
