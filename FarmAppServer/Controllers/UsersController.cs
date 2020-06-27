@@ -98,7 +98,7 @@ namespace FarmAppServer.Controllers
                 PasswordSalt = passwordSalt
             };
 
-            await _farmAppContext.Users.AddAsync(user, cancellationToken);
+            await _farmAppContext.Users.AddAsync(newUser, cancellationToken);
             await _farmAppContext.SaveChangesAsync(cancellationToken);
 
             return Ok();

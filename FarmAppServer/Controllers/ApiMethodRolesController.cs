@@ -28,7 +28,7 @@ namespace FarmAppServer.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ApiMethodRoleDto>>> GetAsync(CancellationToken cancellationToken = default)
         {
-            var apiMethodRoles = await _farmAppContext.ApiMethodRoles.Where(w => w.IsDeleted == false).AsNoTracking().ToListAsync(cancellationToken);
+            var apiMethodRoles = await _farmAppContext.ApiMethodRoles.Include(a => a.ApiMethod).Include(r => r.Role).AsNoTracking().ToListAsync(cancellationToken);
 
             if (!apiMethodRoles.Any())
                 return BadRequest("ApiMethodRoles not found");

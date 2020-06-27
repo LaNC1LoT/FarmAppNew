@@ -8,5 +8,6 @@
         public string PathUrl { get; set; }
         public string HttpMethod { get; set; }
         public bool? IsNeedAuthentication { get; set; }
+        public bool? IsDeleted { get; set; }
     }
 }

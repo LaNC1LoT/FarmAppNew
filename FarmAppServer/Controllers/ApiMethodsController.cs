@@ -27,7 +27,7 @@ namespace FarmAppServer.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ApiMethodDto>>> GetAsync(CancellationToken cancellationToken = default)
         {
-            var apiMethods = await _farmAppContext.ApiMethods.Where(w => w.IsDeleted == false).AsNoTracking().ToListAsync(cancellationToken);
+            var apiMethods = await _farmAppContext.ApiMethods.AsNoTracking().ToListAsync(cancellationToken);
             if (!apiMethods.Any())
                 return BadRequest("ApiMethods not found");
 
