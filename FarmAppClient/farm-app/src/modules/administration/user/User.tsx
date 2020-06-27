@@ -63,7 +63,9 @@ const User = ({ user }: { user: any }) => {
         columnAutoWidth={true}
         keyExpr="id"
         onCellPrepared={onCellPrepared}
+        style={{ height: '85vh' }}
       >
+
         <Scrolling mode="standard" />
 
         <SearchPanel visible={true} />

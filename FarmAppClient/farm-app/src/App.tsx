@@ -1,28 +1,26 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import SignIn from "./modules/auth/SignIn";
 import SignUp from "./modules/auth/SignUp";
 import ResponsiveDrawer from "./modules/menu/ResponsiveDrawer";
-import {BrowserRouter, Switch, Route, Redirect, useLocation, useHistory} from "react-router-dom";
-import {logout, restoreAuth} from "./store/auth/authActions";
-import {useDispatch} from "react-redux";
+import { BrowserRouter, Switch, Route, Redirect, useLocation, useHistory } from "react-router-dom";
+import { logout, restoreAuth } from "./store/auth/authActions";
+import { useDispatch } from "react-redux";
 
 const NotFoundRedirect = () => {
   const rememberMe = localStorage.getItem('auth')
   if (rememberMe !== null) {
-    return <Redirect to='/farm-app/main/'/>
+    return <Redirect to='/farm-app/main/' />
   } else {
-    return <Redirect to='/farm-app/auth/'/>
+    return <Redirect to='/farm-app/auth/' />
   }
 }
 
 const App = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  let rememberMe = localStorage.getItem('auth')
   useEffect(() => {
-    rememberMe = localStorage.getItem('auth')
-    console.log("rememberMe", rememberMe)
+    let rememberMe = localStorage.getItem('auth')
     if (rememberMe !== null) {
       const response = JSON.parse(rememberMe)
       dispatch(restoreAuth(response))
@@ -37,16 +35,16 @@ const App = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/farm-app/auth/">
-          <SignIn/>
+          <SignIn />
         </Route>
         <Route exact path="/farm-app/reg/">
-          <SignUp/>
+          <SignUp />
         </Route>
-            <Route path="/farm-app/">
-              <ResponsiveDrawer/>
-            </Route>
+        <Route path="/farm-app/">
+          <ResponsiveDrawer />
+        </Route>
 
-        <Route component={NotFoundRedirect}/>
+        <Route component={NotFoundRedirect} />
       </Switch>
 
     </BrowserRouter>

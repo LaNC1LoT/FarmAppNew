@@ -31,7 +31,7 @@ import { sales } from './newData';
 import Globalize from 'globalize';
 import { loadMessages } from 'devextreme/localization';
 import CheckBox from 'devextreme-react/check-box';
-import styles from './Chart.module.css';
+import styles from './StockChart.module.css';
 import 'devextreme/localization/globalize/number';
 import 'devextreme/localization/globalize/date';
 import 'devextreme/localization/globalize/currency';
@@ -61,7 +61,7 @@ const summaryDisplayModes = [
 ];
 
 
-class ChartComp extends React.Component<{ user: any }, {
+class StockChart extends React.Component<{ user: any }, {
   store: any,
   locale: any,
   showColumnFields: any,
@@ -220,7 +220,7 @@ class ChartComp extends React.Component<{ user: any }, {
   async componentDidMount() {
 
 
-    document.title = 'График продаж'
+    document.title = 'График склада'
 
     //@ts-ignore
     this._pivotGrid.bindChart(this._chart, {
@@ -228,7 +228,8 @@ class ChartComp extends React.Component<{ user: any }, {
       alternateDataFields: false,
     });
     let user: any = localStorage.getItem('auth')
-    let response: any = await fetch(`${BASE_URL}api/Charts/Sales?page=1&pageSize=1000`,
+
+    let response: any = await fetch(`${BASE_URL}api/Charts/Stocks?page=1&pageSize=1000`,
       {
         headers: {
           'Authorization': `Bearer ${user ? JSON.parse(user).token : this.props.user?.token ?? ""}`
@@ -243,39 +244,64 @@ class ChartComp extends React.Component<{ user: any }, {
         dataSource: new PivotGridDataSource({
           fields: [
             {
-              caption: 'Название аптеки',
-              dataField: 'pharmacyName',
+              caption: 'Страна',
+              dataField: 'country',
               //@ts-ignore
               area: 'row',
               width: 120,
             },
             {
-              caption: 'Название препарата',
-              dataField: 'drugName',
+              caption: 'Регион',
+              dataField: 'region',
+              //@ts-ignore
+              area: 'row',
+              width: 120,
+            },
+            {
+              caption: 'Город',
+              dataField: 'city',
               width: 150,
+              //@ts-ignore
+              area: 'row'
             },
 
             {
               caption: 'Дата продажи',
-              dataField: 'saleDate',
+              dataField: 'createDate',
               //@ts-ignore
               dataType: 'date',
               //@ts-ignore
               area: 'column',
             },
+            // {
+            //   caption: 'Количество',
+            //   dataField: 'quantity',
+            //   // summaryType: 'sum',
+            //   // format: '#,##0.00',
+            //   // selector: function(data: any) {
+            //   //   return data.price;
+            //   // },
+
+            // },
             {
-              caption: 'Цена за ед.',
-              dataField: 'price',
-              summaryType: 'sum',
-              format: '#,##0.00',
+              caption: 'Название препарата',
+              dataField: 'drugName',
+              // format: '#,##0.00',
               // selector: function(data: any) {
-              //   return data.price;
+              //   return data.amount;
               // },
+              //@ts-ignore
+              dataType: 'string',
+              // summaryType: 'sum',
+              //@ts-ignore
+              area: 'row',
 
             },
             {
               caption: 'Кол-во',
               dataField: 'quantity',
+              //@ts-ignore
+              area: 'data',
               // summaryType: 'sum',
               // format: '#,##0.00',
               // selector: function(data: any) {
@@ -283,25 +309,40 @@ class ChartComp extends React.Component<{ user: any }, {
               // },
 
             },
+
+            // {
+            //   caption: 'Сумма',
+            //   dataField: 'amount',
+            //   format: '#,##0.00',
+            //   // selector: function(data: any) {
+            //   //   return data.amount;
+            //   // },
+            //   //@ts-ignore
+            //   dataType: 'number',
+            //   summaryType: 'sum',
+            //   //@ts-ignore
+            //   area: 'data',
+
+            // },
             {
-              caption: 'Сумма',
-              dataField: 'amount',
-              format: '#,##0.00',
-              // selector: function(data: any) {
-              //   return data.amount;
-              // },
+              caption: 'Дисконт',
+              dataField: 'isGeneric',
               //@ts-ignore
-              dataType: 'number',
-              summaryType: 'sum',
-              //@ts-ignore
-              area: 'data',
+              dataType: 'boolean',
 
             },
             {
-              caption: 'Дисконт',
-              dataField: 'isDiscount',
+              caption: 'Производитель',
+              dataField: 'parentPharmacy',
               //@ts-ignore
-              dataType: 'boolean',
+              // dataType: 'boolean',
+
+            },
+            {
+              caption: 'Аптека',
+              dataField: 'pharmacyName',
+              //@ts-ignore
+              // dataType: 'boolean',
 
             },
             // {
@@ -312,22 +353,22 @@ class ChartComp extends React.Component<{ user: any }, {
             //   dataField: 'drugId',
             //   visible: false,
             // },
-            {
-              dataField: 'id',
-              visible: false,
-            },
+            // {
+            //   dataField: 'id',
+            //   visible: false,
+            // },
             // {
             //   dataField: 'isDeleted',
             //   visible: false,
             // },
-            {
-              dataField: 'pharmacyId',
-              visible: false,
-            },
-            {
-              dataField: 'saleImportFileId',
-              visible: false,
-            },
+            // {
+            //   dataField: 'pharmacyId',
+            //   visible: false,
+            // },
+            // {
+            //   dataField: 'saleImportFileId',
+            //   visible: false,
+            // },
           ],
           store: json,
         }),
@@ -530,4 +571,4 @@ export default connect((state: IAppState) => {
   return {
     user: auth.user,
   };
-})(ChartComp);
+})(StockChart);

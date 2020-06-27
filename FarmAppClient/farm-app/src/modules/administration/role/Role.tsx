@@ -55,6 +55,7 @@ const Role = ({ user }: { user: any }) => {
         showBorders={true}
         columnAutoWidth={true}
         keyExpr="id"
+        style={{ height: '85vh' }}
       >
         <Scrolling mode="standard" />
 

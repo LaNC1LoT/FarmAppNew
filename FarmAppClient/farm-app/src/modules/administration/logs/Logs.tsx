@@ -61,6 +61,7 @@ const Logs = ({ user }: { user: any }) => {
         columnAutoWidth={true}
         keyExpr="id"
         onCellPrepared={onCellPrepared}
+        style={{ height: '85vh' }}
         columnHidingEnabled={true}
       >
         <Scrolling mode="standard" />

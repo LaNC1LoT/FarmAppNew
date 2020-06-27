@@ -33,6 +33,7 @@ import RegionTypes from '../directories/regionTypes/RegionTypes';
 import FormDosage from '../directories/ formDosage/FormDosage';
 import Logs from '../administration/logs/Logs';
 import Stock from '../stock/Stock';
+import StockChart from '../reports/stockChart/StockChart';
 
 const logo = require('../../logo.png');
 const folder = require('../../svg/folder.svg');
@@ -49,8 +50,9 @@ const network = require('../../svg/network.svg');
 const settings = require('../../svg/settings.svg');
 const typeRegion = require('../../svg/typeRegion.svg');
 const form = require('../../svg/form.svg');
-
-
+const api = require('../../svg/api.svg');
+const stock = require('../../svg/stock.svg');
+const stockChart = require('../../svg/stockChart.svg');
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -161,14 +163,19 @@ const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
     },
     {
       'logs': 'Логи',
-      'svg': settings,
+      'svg': api,
     }
   ];
   const reports: IDictionary<string>[] = [
     {
-      'charts': 'Графики',
+      'charts': 'График продаж',
       'svg': charts,
-    }];
+    },
+    {
+      'stockChart': 'График склада',
+      'svg': stockChart,
+    },
+  ];
   const id = user?.role?.id;
   const drawer = id === 1 ? (
     <div>
@@ -189,7 +196,7 @@ const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
         link={'sales'}
       />
       <ItemDrawer
-        svg={money}
+        svg={stock}
         title={'Склад'}
         link={'stock'}
       />
@@ -223,9 +230,10 @@ const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
       </div>
     );
 
-  const rememberMe = localStorage.getItem('auth');
 
   const NotFoundRedirect = () => {
+    const rememberMe = localStorage.getItem('auth');
+
     if (rememberMe !== null) {
       const lastUrl = localStorage.getItem('lastUrl');
       if (lastUrl) {
@@ -305,6 +313,9 @@ const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
           </Route>
           <Route path={'/farm-app/charts/'}>
             <ChartComp />
+          </Route>
+          <Route path={'/farm-app/stockChart/'}>
+            <StockChart />
           </Route>
           <Route path={'/farm-app/pharmacy/'}>
             <Pharmacy />

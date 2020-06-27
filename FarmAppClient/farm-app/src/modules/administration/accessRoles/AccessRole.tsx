@@ -63,6 +63,7 @@ const AccessRole = ({ user }: { user: any }) => {
         showBorders={true}
         columnAutoWidth={true}
         keyExpr="id"
+        style={{ height: '85vh' }}
         onCellPrepared={onCellPrepared}
       >
         <Scrolling mode="standard" />

@@ -59,6 +59,7 @@ const Method = ({ user }: { user: any }) => {
         showBorders={true}
         columnAutoWidth={true}
         keyExpr="id"
+        style={{ height: '85vh' }}
         onCellPrepared={onCellPrepared}
       >
         <Scrolling mode="standard" />
@@ -110,21 +111,21 @@ const Method = ({ user }: { user: any }) => {
           dataField={'httpMethod'}>
           <RequiredRule />
         </Column>
-        <Column
+        {/* <Column
           caption={'Параметры'}
           dataField={'isNotNullParam'}>
           <RequiredRule />
-        </Column>
+        </Column> */}
         <Column
           caption={'Аунтификация'}
           dataField={'isNeedAuthentication'}>
           <RequiredRule />
         </Column>
-        <Column
+        {/* <Column
           caption={'Удалена'}
           dataType="boolean"
           dataField={'isDeleted'}>
-        </Column>
+        </Column> */}
       </TreeList>
     </Typography>
   );
