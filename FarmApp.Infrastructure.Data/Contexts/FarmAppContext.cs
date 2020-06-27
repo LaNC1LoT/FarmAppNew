@@ -1,4 +1,5 @@
 ﻿using FarmApp.Domain.Core.Entity;
+using FarmApp.Domain.Core.StoredProcedure;
 using FarmApp.Infrastructure.Data.DataBaseHelper;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,8 @@ namespace FarmApp.Infrastructure.Data.Contexts
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<SaleImportFile> SaleImportFiles { get; set; }
         public virtual DbSet<DosageFormType> DosageFormTypes { get; set; }
+        public virtual DbSet<ChartSale> ChartSales { get; set; }
+        public virtual DbSet<ChartStock> ChartStocks { get; set; }
 
         public FarmAppContext(DbContextOptions<FarmAppContext> options)
             : base(options)
@@ -28,6 +31,38 @@ namespace FarmApp.Infrastructure.Data.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ChartSale>(entity =>
+            {
+                entity.HasNoKey();
+                entity.Property(p => p.Country);
+                entity.Property(p => p.Region);
+                entity.Property(p => p.City);
+                entity.Property(p => p.ParentPharmacy);
+                entity.Property(p => p.PharmacyName);
+                entity.Property(p => p.DrugName);
+                entity.Property(p => p.Code);
+                entity.Property(p => p.IsGeneric);
+                entity.Property(p => p.SaleDate).HasColumnType(CommandSql.DateTime);
+                entity.Property(p => p.Price).HasColumnType(CommandSql.Money);
+                entity.Property(p => p.Quantity);
+                entity.Property(p => p.Amount).HasColumnType(CommandSql.Money);
+                entity.Property(p => p.IsDiscount);
+            });
+
+            modelBuilder.Entity<ChartStock>(entity =>
+            {
+                entity.HasNoKey();
+                entity.Property(p => p.Country);
+                entity.Property(p => p.Region);
+                entity.Property(p => p.City);
+                entity.Property(p => p.ParentPharmacy);
+                entity.Property(p => p.PharmacyName);
+                entity.Property(p => p.DrugName);
+                entity.Property(p => p.IsGeneric);
+                entity.Property(p => p.CreateDate).HasColumnType(CommandSql.DateTime);
+                entity.Property(p => p.Quantity);
+            });
+
             modelBuilder.Entity<Stock>(entity =>
             {
                 entity.ToTable(Table.Stock, Schema.Tab);
@@ -48,11 +83,11 @@ namespace FarmApp.Infrastructure.Data.Contexts
                 entity.Property(p => p.UserId);
                 entity.Property(p => p.RoleId);
                 entity.Property(p => p.StatusCode);
-                entity.Property(p => p.PathUrl).HasMaxLength(255);
-                entity.Property(p => p.HttpMethod).HasMaxLength(255);
-                entity.Property(p => p.Header).HasMaxLength(4000);
-                entity.Property(p => p.Body).HasMaxLength(4000);
-                entity.Property(p => p.Exception).HasMaxLength(4000);
+                entity.Property(p => p.PathUrl).HasColumnType("nvarchar(255)");
+                entity.Property(p => p.HttpMethod).HasColumnType("nvarchar(255)");
+                entity.Property(p => p.Header).HasColumnType("nvarchar(4000)");
+                entity.Property(p => p.Body).HasColumnType("nvarchar(4000)");
+                entity.Property(p => p.Exception).HasColumnType("nvarchar(4000)");
             });
 
             modelBuilder.Entity<Role>(entity =>
@@ -69,8 +104,8 @@ namespace FarmApp.Infrastructure.Data.Contexts
                 entity.HasIndex(p => p.ApiMethodName).IsUnique();
                 entity.Property(p => p.Description).IsRequired().HasMaxLength(4000);
                 entity.Property(p => p.StoredProcedureName).HasMaxLength(350);
-                entity.Property(p => p.PathUrl).IsRequired().HasMaxLength(350);
-                entity.Property(p => p.HttpMethod).IsRequired().HasMaxLength(350);
+                entity.Property(p => p.PathUrl).IsRequired().HasColumnType("varchar(350)");
+                entity.Property(p => p.HttpMethod).IsRequired().HasColumnType("varchar(350)");
                 entity.Property(p => p.IsNotNullParam).IsRequired().HasDefaultValueSql(CommandSql.DefaultFalse);
                 entity.Property(p => p.IsNeedAuthentication).IsRequired().HasDefaultValueSql(CommandSql.DefaultFalse);
                 entity.Property(p => p.IsDeleted).IsRequired().HasDefaultValueSql(CommandSql.DefaultFalse);

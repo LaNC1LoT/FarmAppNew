@@ -1,3 +1,3 @@
-DELETE FROM api.ApiMethods
-DBCC CHECKIDENT (N'api.ApiMethods', RESEED, 0);
+DELETE FROM api.ApiMethodRoles
+DBCC CHECKIDENT (N'api.ApiMethodRoles', RESEED, 0);
 GO

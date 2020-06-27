@@ -4,14 +4,16 @@ using FarmApp.Infrastructure.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FarmApp.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(FarmAppContext))]
-    partial class FarmAppContextModelSnapshot : ModelSnapshot
+    [Migration("20200627104350_TypeNVarChar")]
+    partial class TypeNVarChar
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,7 +40,7 @@ namespace FarmApp.Infrastructure.Data.Migrations
 
                     b.Property<string>("HttpMethod")
                         .IsRequired()
-                        .HasColumnType("varchar(350)");
+                        .HasColumnType("nvarchar(350)");
 
                     b.Property<bool?>("IsDeleted")
                         .IsRequired()
@@ -60,7 +62,7 @@ namespace FarmApp.Infrastructure.Data.Migrations
 
                     b.Property<string>("PathUrl")
                         .IsRequired()
-                        .HasColumnType("varchar(350)");
+                        .HasColumnType("nvarchar(350)");
 
                     b.Property<string>("StoredProcedureName")
                         .HasColumnType("nvarchar(350)")
@@ -595,52 +597,6 @@ namespace FarmApp.Infrastructure.Data.Migrations
                     b.HasIndex("RegionId");
 
                     b.ToTable("Vendors","dist");
-                });
-
-            modelBuilder.Entity("FarmApp.Domain.Core.StoredProcedure.ChartSale", b =>
-                {
-                    b.Property<decimal?>("Amount")
-                        .HasColumnType("MONEY");
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DrugName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("IsDiscount")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("IsGeneric")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ParentPharmacy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PharmacyName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal?>("Price")
-                        .HasColumnType("MONEY");
-
-                    b.Property<int?>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Region")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("SaleDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValueSql("GETDATE()");
-
-                    b.ToTable("ChartSales");
                 });
 
             modelBuilder.Entity("FarmApp.Domain.Core.Entity.ApiMethodRole", b =>

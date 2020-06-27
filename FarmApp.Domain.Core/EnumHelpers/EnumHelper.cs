@@ -15,7 +15,7 @@
         DeleteApiMethodRoles = 4,
         GetApiMethods = 5,
         PutApiMethods = 6,
-        PostApiMethods = 7, 
+        PostApiMethods = 7,
         DeleteApiMethods = 8,
         GetCodeAthTypes = 9,
         PutCodeAthTypes = 10,

@@ -63,16 +63,16 @@ namespace FarmAppServer.Middlewares
 
         private async Task<bool> HandleErrorAutorizationAsync(HttpContext context, FarmAppContext farmAppContext, Log log)
         {
-            var method = await farmAppContext.ApiMethodRoles.Include(i => i.ApiMethod).Where(x => x.ApiMethod.HttpMethod == log.HttpMethod 
+            var method = await farmAppContext.ApiMethodRoles.Include(i => i.ApiMethod).Where(x => x.ApiMethod.HttpMethod == log.HttpMethod
                                                                         && x.ApiMethod.PathUrl == log.PathUrl).AsNoTracking().ToListAsync();
             if (!method.Any())
-            { 
+            {
                 await WriteStatusAndBody(context, 404, "Метод не найден!");
                 return false;
             }
             if (method.Any(x => x.ApiMethod.IsNeedAuthentication == true))
                 if (method.FirstOrDefault(x => x.RoleId == log.RoleId)?.IsDeleted ?? true == true)
-                { 
+                {
                     await WriteStatusAndBody(context, 403, "Доступ запрещен!");
                     return false;
                 }

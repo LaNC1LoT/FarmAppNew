@@ -35,6 +35,11 @@ namespace FarmAppServer.Helpers
             CreateMap<RegionDto, Region>();
             CreateMap<Region, RegionDto>().ForMember(x => x.RegionTypeName, y => y.MapFrom(m => m.RegionType.RegionTypeName));
 
+            /// Stock
+            CreateMap<StockDto, Stock>();
+            CreateMap<Stock, StockDto>().ForMember(x => x.PharmacyName, y => y.MapFrom(m => m.Pharmacy.PharmacyName))
+                                        .ForMember(x => x.DrugName, y => y.MapFrom(m => m.Drug.DrugName));
+
             /// DosageFormType
             CreateMap<DosageFormType, DosageFormDto>().ReverseMap();
 
