@@ -11,7 +11,7 @@ interface IProps {
     svg?: string;
 }
 
-export const ItemDrawer: FC<IProps> = ({ title, link,svg }) => {
+export const ItemDrawer: FC<IProps> = ({ title, link, svg }) => {
     const classes = useStylesDrawer();
     const links = LinkStyles();
     const location = useLocation();
@@ -23,14 +23,16 @@ export const ItemDrawer: FC<IProps> = ({ title, link,svg }) => {
             aria-labelledby="nested-list-subheader"
             className={classes.root}
         >
-            <Link className={links.link} to={`/farm-app/${link}`}>
+            <Link className={links.link} to={`/farm-app/${link}`}
+                onClick={() => localStorage.setItem('lastUrl', link)}
+            >
 
                 <ListItem
                     button
                     selected={!!matchPath(location.pathname, `/farm-app/${link}`)}>
 
                     <ListItemText primary={title} />
-                  {svg && <img style={{height: '30px'}} src={svg} alt={`${svg}`} />}
+                    {svg && <img style={{ height: '30px' }} src={svg} alt={`${svg}`} />}
                 </ListItem>
             </Link>
         </List>

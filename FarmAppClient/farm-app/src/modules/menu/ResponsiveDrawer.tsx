@@ -32,6 +32,7 @@ import { IAppState } from '../../core/mainReducer';
 import RegionTypes from '../directories/regionTypes/RegionTypes';
 import FormDosage from '../directories/ formDosage/FormDosage';
 import Logs from '../administration/logs/Logs';
+import Stock from '../stock/Stock';
 
 const logo = require('../../logo.png');
 const folder = require('../../svg/folder.svg');
@@ -187,6 +188,11 @@ const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
         title={'Продажи'}
         link={'sales'}
       />
+      <ItemDrawer
+        svg={money}
+        title={'Склад'}
+        link={'stock'}
+      />
       <ItemListDrawer title={'Отчеты'} listItems={reports} />
       <ItemListDrawer title={'Справочники'} listItems={directories} />
       <ItemListDrawer title={'Администрирование'} listItems={administration} />
@@ -206,6 +212,11 @@ const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
           svg={money}
           title={'Продажи'}
           link={'sales'}
+        />
+        <ItemDrawer
+          svg={money}
+          title={'Склад'}
+          link={'stock'}
         />
         <ItemListDrawer title={'Отчеты'} listItems={reports} />
         <ItemListDrawer title={'Справочники'} listItems={directories} />
@@ -288,6 +299,9 @@ const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
           </Route>
           <Route path={'/farm-app/sales/'}>
             <Sales />
+          </Route>
+          <Route path={'/farm-app/stock/'}>
+            <Stock />
           </Route>
           <Route path={'/farm-app/charts/'}>
             <ChartComp />

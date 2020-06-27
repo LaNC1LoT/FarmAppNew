@@ -228,10 +228,10 @@ class ChartComp extends React.Component<{ user: any }, {
       alternateDataFields: false,
     });
 
-    let response: any = await fetch(`${BASE_URL}api/Sales?page=1&pageSize=1000`,
+    let response: any = await fetch(`${BASE_URL}api/Charts/Sales?page=1&pageSize=1000`,
       {
         headers: {
-          'Authorization': 'Bearer ' + this.props.user.token
+          'Authorization': 'Bearer ' + this.props?.user?.token
         },
       }
     );
@@ -333,6 +333,104 @@ class ChartComp extends React.Component<{ user: any }, {
         }),
       });
     }
+    // if (response.ok) {
+    //   let json = await response.json();
+
+    //   console.log(json);
+    //   await this.setState({
+    //     dataSource: new PivotGridDataSource({
+    //       fields: [
+    //         {
+    //           caption: 'Название аптеки',
+    //           dataField: 'pharmacyName',
+    //           //@ts-ignore
+    //           area: 'row',
+    //           width: 120,
+    //         },
+    //         {
+    //           caption: 'Название препарата',
+    //           dataField: 'drugName',
+    //           width: 150,
+    //         },
+
+    //         {
+    //           caption: 'Дата продажи',
+    //           dataField: 'saleDate',
+    //           //@ts-ignore
+    //           dataType: 'date',
+    //           //@ts-ignore
+    //           area: 'column',
+    //         },
+    //         {
+    //           caption: 'Цена за ед.',
+    //           dataField: 'price',
+    //           summaryType: 'sum',
+    //           format: '#,##0.00',
+    //           // selector: function(data: any) {
+    //           //   return data.price;
+    //           // },
+
+    //         },
+    //         {
+    //           caption: 'Кол-во',
+    //           dataField: 'quantity',
+    //           // summaryType: 'sum',
+    //           // format: '#,##0.00',
+    //           // selector: function(data: any) {
+    //           //   return data.quantity;
+    //           // },
+
+    //         },
+    //         {
+    //           caption: 'Сумма',
+    //           dataField: 'amount',
+    //           format: '#,##0.00',
+    //           // selector: function(data: any) {
+    //           //   return data.amount;
+    //           // },
+    //           //@ts-ignore
+    //           dataType: 'number',
+    //           summaryType: 'sum',
+    //           //@ts-ignore
+    //           area: 'data',
+
+    //         },
+    //         {
+    //           caption: 'Дисконт',
+    //           dataField: 'isDiscount',
+    //           //@ts-ignore
+    //           dataType: 'boolean',
+
+    //         },
+    //         // {
+    //         //   dataField: 'Id',
+    //         //   visible: false,
+    //         // },
+    //         // {
+    //         //   dataField: 'drugId',
+    //         //   visible: false,
+    //         // },
+    //         {
+    //           dataField: 'id',
+    //           visible: false,
+    //         },
+    //         // {
+    //         //   dataField: 'isDeleted',
+    //         //   visible: false,
+    //         // },
+    //         {
+    //           dataField: 'pharmacyId',
+    //           visible: false,
+    //         },
+    //         {
+    //           dataField: 'saleImportFileId',
+    //           visible: false,
+    //         },
+    //       ],
+    //       store: json,
+    //     }),
+    //   });
+    // }
     // setTimeout(function() {
     //   dataSource.expandHeaderItem('row', ['North America']);
     //   dataSource.expandHeaderItem('column', [2013]);
