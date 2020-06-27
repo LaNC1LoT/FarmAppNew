@@ -1,8 +1,8 @@
 ﻿using FarmApp.Domain.Core.Entity;
-using FarmAppServer.Helpers;
-using FarmAppServer.Models;
+using FarmApp.Infrastructure.Data.Contexts;
 using FarmAppServer.Services;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.IO;
 using System.Linq;
@@ -21,7 +21,7 @@ namespace FarmAppServer.Middlewares
             _next = next;
         }
 
-        public async Task Invoke(HttpContext context, AuthenticateDto authenticateDto, ILoggerDb loggerDb)
+        public async Task Invoke(HttpContext context, FarmAppContext farmAppContext, ILoggerDb loggerDb)
         {
             var originalBody = context.Response.Body;
             var responseBody = new MemoryStream();
@@ -39,8 +39,8 @@ namespace FarmAppServer.Middlewares
                 log = await GetLogAsync(context, context.Request.Headers, context.Request.Body, log);
                 loggerDb.WriteRequest(log);
 
-
-                await _next.Invoke(context);
+                if (await HandleErrorAutorizationAsync(context, farmAppContext, log))
+                    await _next.Invoke(context);
             }
             catch (Exception ex)
             {
@@ -58,9 +58,33 @@ namespace FarmAppServer.Middlewares
 
         private Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
-            context.Response.StatusCode = 400;
+            return WriteStatusAndBody(context, 400, ex?.InnerException.Message ?? ex.Message);
+        }
+
+        private async Task<bool> HandleErrorAutorizationAsync(HttpContext context, FarmAppContext farmAppContext, Log log)
+        {
+            var method = await farmAppContext.ApiMethodRoles.Include(i => i.ApiMethod).Where(x => x.ApiMethod.HttpMethod == log.HttpMethod 
+                                                                        && x.ApiMethod.PathUrl == log.PathUrl).AsNoTracking().ToListAsync();
+            if (!method.Any())
+            { 
+                await WriteStatusAndBody(context, 404, "Метод не найден!");
+                return false;
+            }
+            if (method.Any(x => x.ApiMethod.IsNeedAuthentication == true))
+                if (method.FirstOrDefault(x => x.RoleId == log.RoleId)?.IsDeleted ?? true == true)
+                { 
+                    await WriteStatusAndBody(context, 403, "Доступ запрещен!");
+                    return false;
+                }
+
+            return true;
+        }
+
+        private Task WriteStatusAndBody(HttpContext context, int statusCode, string message)
+        {
+            context.Response.StatusCode = statusCode;
             context.Response.ContentType = "application/json; charset=utf-8";
-            return context.Response.WriteAsync(JsonSerializer.Serialize(new { Error = ex.Message }));
+            return context.Response.WriteAsync(JsonSerializer.Serialize(new { Error = message }));
         }
 
         private async Task<Log> GetLogAsync(HttpContext context, IHeaderDictionary header, Stream body, Log log)
