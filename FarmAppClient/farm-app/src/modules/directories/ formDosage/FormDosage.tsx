@@ -97,7 +97,9 @@ const FormDosage = ({ user }: { user: any }) => {
           caption={"Номер"}
           dataType={"number"}
           visible={false}
-          dataField={"id"}>
+          dataField={"id"}
+          alignment={'left'}
+        >
         </Column>
 
         <Column

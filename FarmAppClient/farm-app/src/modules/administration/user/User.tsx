@@ -61,6 +61,7 @@ const User = ({ user }: { user: any }) => {
         showRowLines={true}
         showBorders={true}
         columnAutoWidth={true}
+        columnHidingEnabled={true}
         keyExpr="id"
         onCellPrepared={onCellPrepared}
         style={{ height: '85vh' }}
@@ -101,12 +102,16 @@ const User = ({ user }: { user: any }) => {
         </Column>
         <Column
           caption={"Фамилия"}
-          dataField={"lastName"}>
+          dataField={"lastName"}
+          alignment={'left'}
+        >
           <RequiredRule />
         </Column>
         <Column
           caption={"Имя"}
-          dataField={"firstName"}>
+          dataField={"firstName"}
+          alignment={'left'}
+        >
           <RequiredRule />
         </Column>
         {/*<Column*/}
@@ -116,7 +121,9 @@ const User = ({ user }: { user: any }) => {
         {/*</Column>*/}
         <Column
           caption={"Имя роли"}
-          dataField={"roleId"}>
+          dataField={"roleId"}
+          alignment={'left'}
+        >
           <RequiredRule />
           <Lookup dataSource={rolesData} valueExpr="id" displayExpr="roleName" />
         </Column>
@@ -131,6 +138,7 @@ const User = ({ user }: { user: any }) => {
           dataType="boolean"
           dataField={"isDeleted"}
           visible={true}
+          alignment={'left'}
         >
         </Column>
       </TreeList>

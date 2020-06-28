@@ -65,11 +65,14 @@ const AccessRole = ({ user }: { user: any }) => {
         keyExpr="id"
         style={{ height: '85vh' }}
         onCellPrepared={onCellPrepared}
+        columnHidingEnabled={true}
       >
         <Scrolling mode="standard" />
         <Paging
           enabled={true}
-          defaultPageSize={5} />
+          defaultPageSize={5}
+
+        />
         <Pager
           showPageSizeSelector={true}
           allowedPageSizes={allowedPageSizes}
@@ -89,21 +92,36 @@ const AccessRole = ({ user }: { user: any }) => {
           caption={"Номер"}
           dataType={"number"}
           visible={false}
-          dataField={"id"}>
+          dataField={"id"}
+          alignment={'left'}
+        >
         </Column>
         <Column
           caption={"Метод"}
           dataType={"string"}
-          dataField={"apiMethodId"}>
+          dataField={"apiMethodId"}
+          alignment={'left'}
+        >
           <RequiredRule />
           <Lookup dataSource={methodsData} valueExpr="id" displayExpr="apiMethodName" />
         </Column>
         <Column
           caption={"Роль"}
           dataType={"string"}
-          dataField={"roleId"}>
+          dataField={"roleId"}
+          alignment={'left'}
+        >
           <RequiredRule />
           <Lookup dataSource={rolesData} valueExpr="id" displayExpr="roleName" />
+        </Column>
+
+        <Column
+          caption={'Заблокировано'}
+          dataField={'isDeleted'}
+          dataType="boolean"
+          alignment={'left'}
+        >
+
         </Column>
         {/*<Column*/}
         {/*    caption={"Удалена"}*/}

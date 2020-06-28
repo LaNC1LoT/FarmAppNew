@@ -56,6 +56,7 @@ const Role = ({ user }: { user: any }) => {
         columnAutoWidth={true}
         keyExpr="id"
         style={{ height: '85vh' }}
+        columnHidingEnabled={true}
       >
         <Scrolling mode="standard" />
 
@@ -95,7 +96,8 @@ const Role = ({ user }: { user: any }) => {
           caption={"Имя роли"}
           dataType={"string"}
           alignment={'left'}
-          dataField={"roleName"}>
+          dataField={"roleName"}
+        >
           <RequiredRule />
         </Column>
         {/*<Column*/}

@@ -90,6 +90,7 @@ const ATH = ({ user }: { user: any }) => {
           dataType={"string"}
           dataField={"parentCodeName"}
           visible={false}
+          alignment={'left'}
         >
         </Column>
         <Column
@@ -97,13 +98,16 @@ const ATH = ({ user }: { user: any }) => {
           dataType={"string"}
           dataField={"code"}
           visible={true}
+          alignment={'left'}
         >
           <RequiredRule />
         </Column>
         <Column
           caption={"Название группы"}
           dataType={"string"}
-          dataField={"nameAth"}>
+          dataField={"nameAth"}
+          alignment={'left'}
+        >
           <RequiredRule />
         </Column>
 

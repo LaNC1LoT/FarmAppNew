@@ -54,12 +54,24 @@ const Stock = ({ user }: { user: any }) => {
 
     const drugsData = AspNetData.createStore({
         key: 'id',
-        loadUrl: `${BASE_URL}api/Drugs?page=1&pageSize=2000`
+        loadUrl: `${BASE_URL}api/Drugs?page=1&pageSize=2000`,
+        onBeforeSend: function (method, ajaxOptions) {
+            // ajaxOptions.xhrFields = { withCredentials: false };
+            ajaxOptions.headers = {
+                Authorization: `Bearer ${user.token}`
+            };
+        }
     });
 
     const pharmacyData = AspNetData.createStore({
         key: 'id',
-        loadUrl: `${BASE_URL}api/Pharmacies?page=1&pageSize=2000`
+        loadUrl: `${BASE_URL}api/Pharmacies?page=1&pageSize=2000`,
+        onBeforeSend: function (method, ajaxOptions) {
+            // ajaxOptions.xhrFields = { withCredentials: false };
+            ajaxOptions.headers = {
+                Authorization: `Bearer ${user.token}`
+            };
+        }
     });
 
 
@@ -101,17 +113,24 @@ const Stock = ({ user }: { user: any }) => {
                 <Column
                     caption={"Номер"}
                     visible={false}
-                    dataField={"id"}>
+                    dataField={"id"}
+                    alignment={'left'}
+
+                >
                 </Column>
                 <Column
                     caption={"Название препарата"}
-                    dataField={"drugId"}>
+                    dataField={"drugId"}
+                    alignment={'left'}
+                >
                     <Lookup dataSource={drugsData} valueExpr="id" displayExpr="drugName" />
                     <RequiredRule />
                 </Column>
                 <Column
                     caption={"Название аптеки"}
-                    dataField={"pharmacyId"}>
+                    dataField={"pharmacyId"}
+                    alignment={'left'}
+                >
                     <Lookup dataSource={pharmacyData} valueExpr="id" displayExpr="pharmacyName" />
                     <RequiredRule />
                 </Column>
@@ -123,6 +142,7 @@ const Stock = ({ user }: { user: any }) => {
                     caption={"Дата поступления"}
                     dataField={"createDate"}
                     format={'dd.MM.YYYY HH:mm'}
+                    alignment={'left'}
                 >
                     <RequiredRule />
                 </Column>

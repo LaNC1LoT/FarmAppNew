@@ -61,6 +61,7 @@ const Method = ({ user }: { user: any }) => {
         keyExpr="id"
         style={{ height: '85vh' }}
         onCellPrepared={onCellPrepared}
+        columnHidingEnabled={true}
       >
         <Scrolling mode="standard" />
         <Paging
@@ -85,30 +86,40 @@ const Method = ({ user }: { user: any }) => {
           caption={'Номер'}
           dataType={'number'}
           visible={false}
-          dataField={'id'}>
+          dataField={'id'}
+          alignment={'left'}
+        >
         </Column>
         <Column
           caption={'Имя метода'}
           dataType={'string'}
-          dataField={'apiMethodName'}>
+          dataField={'apiMethodName'}
+          alignment={'left'}
+        >
           <RequiredRule />
         </Column>
         <Column
           caption={'Описание'}
           dataType={'string'}
-          dataField={'description'}>
+          dataField={'description'}
+          alignment={'left'}
+        >
           <RequiredRule />
         </Column>
         <Column
           caption={'Короткий адрес'}
           dataType={'string'}
-          dataField={'pathUrl'}>
+          dataField={'pathUrl'}
+          alignment={'left'}
+        >
           <RequiredRule />
         </Column>
         <Column
           caption={'Http Метод'}
           dataType={'string'}
-          dataField={'httpMethod'}>
+          dataField={'httpMethod'}
+          alignment={'left'}
+        >
           <RequiredRule />
         </Column>
         {/* <Column
@@ -118,8 +129,18 @@ const Method = ({ user }: { user: any }) => {
         </Column> */}
         <Column
           caption={'Аунтификация'}
-          dataField={'isNeedAuthentication'}>
+          dataField={'isNeedAuthentication'}
+          alignment={'left'}
+        >
           <RequiredRule />
+        </Column>
+        <Column
+          caption={'Заблокировано'}
+          dataField={'isDeleted'}
+          dataType="boolean"
+          alignment={'left'}
+        >
+
         </Column>
         {/* <Column
           caption={'Удалена'}

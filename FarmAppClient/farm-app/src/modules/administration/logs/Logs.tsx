@@ -63,6 +63,7 @@ const Logs = ({ user }: { user: any }) => {
         onCellPrepared={onCellPrepared}
         style={{ height: '85vh' }}
         columnHidingEnabled={true}
+
       >
         <Scrolling mode="standard" />
         <Paging
@@ -87,57 +88,80 @@ const Logs = ({ user }: { user: any }) => {
           caption={'Номер'}
           dataType={'number'}
           visible={false}
-          dataField={'id'}>
+          dataField={'id'}
+          alignment={'left'}
+        >
         </Column>
         <Column
           caption={'Тип лога'}
           dataType={'string'}
-          dataField={'logType'}>
+          dataField={'logType'}
+          alignment={'left'}
+        >
         </Column>
         <Column
           caption={'Дата'}
           // dataType={'data'}
-          dataField={'createDate'}>
+          dataField={'createDate'}
+          alignment={'left'}
+        >
         </Column>
         <Column
           caption={'Id пользователя'}
           dataType={'number'}
-          dataField={'userId'}>
+          dataField={'userId'}
+          alignment={'left'}
+        >
         </Column>
         <Column
           caption={'Роль пользователя'}
           dataType={'number'}
-          dataField={'roleId'}>
+          dataField={'roleId'}
+          alignment={'left'}
+        >
         </Column>
         <Column
           caption={'Код статуса'}
           dataType={'string'}
-          dataField={'statusCode'}>
+          dataField={'statusCode'}
+          alignment={'left'}
+        >
         </Column>
         <Column
           caption={'Код статуса'}
           dataType={'string'}
-          dataField={'pathUrl'}>
+          dataField={'pathUrl'}
+          alignment={'left'}
+        >
         </Column>
         <Column
           caption={'HTTP метод'}
           dataType={'string'}
-          dataField={'httpMethod'}>
+          dataField={'httpMethod'}
+          alignment={'left'}
+        >
         </Column>
         <Column
           caption={'Header'}
           dataType={'string'}
-          dataField={'header'}>
+          dataField={'header'}
+          alignment={'left'}
+        >
         </Column>
         <Column
           caption={'Body'}
           dataType={'string'}
-          dataField={'body'}>
+          dataField={'body'}
+          alignment={'left'}
+
+        >
         </Column>
         <Column
           caption={'Exception'}
           dataType={'string'}
-          dataField={'exception'}>
+          dataField={'exception'}
+          alignment={'left'}
+        >
         </Column>
         {/*<Column*/}
         {/*  caption={'Параметры'}*/}

@@ -34,6 +34,8 @@ export const Preparations = ({ user }: { user: any }) => {
   useEffect(() => {
     document.title = 'Препараты'
   })
+
+
   const url = `${BASE_URL}api/Drugs`;
   const drugsData = AspNetData.createStore({
     key: 'id',
@@ -44,26 +46,47 @@ export const Preparations = ({ user }: { user: any }) => {
     onBeforeSend: function (method, ajaxOptions) {
       // ajaxOptions.xhrFields = { withCredentials: false };
       ajaxOptions.headers = {
-        Authorization: 'Bearer ' + user.token,
+        Authorization: `Bearer ${user.token}`
       };
     }
   });
 
-  const AthData = AspNetData.createStore({
-    key: 'id',
-    loadUrl: `${BASE_URL}api/CodeAthTypes?page=1&pageSize=2000`
-  });
+
+
 
   const vendorData = AspNetData.createStore({
     key: 'id',
-    loadUrl: `${BASE_URL}api/Vendors?page=1&pageSize=2000`
+    loadUrl: `${BASE_URL}api/Vendors?page=1&pageSize=2000`,
+    onBeforeSend: function (method, ajaxOptions) {
+      // ajaxOptions.xhrFields = { withCredentials: false };
+      ajaxOptions.headers = {
+        Authorization: `Bearer ${user.token}`
+      };
+    }
   });
 
   const dosageData = AspNetData.createStore({
     key: 'id',
-    loadUrl: `${BASE_URL}api/DosageForms?page=1&pageSize=2000`
+    loadUrl: `${BASE_URL}api/DosageForms?page=1&pageSize=2000`,
+    onBeforeSend: function (method, ajaxOptions) {
+      // ajaxOptions.xhrFields = { withCredentials: false };
+      ajaxOptions.headers = {
+        Authorization: `Bearer ${user.token}`
+      };
+    }
   });
 
+
+  const AthData = AspNetData.createStore({
+    key: 'id',
+    loadUrl: `${BASE_URL}api/CodeAthTypes?page=1&pageSize=2000`,
+    onBeforeSend: function (method, ajaxOptions) {
+      // ajaxOptions.xhrFields = { withCredentials: false };
+      ajaxOptions.headers = {
+        Authorization: `Bearer ${user.token}`
+      };
+    }
+  });
 
   return (
     <Typography>
@@ -111,26 +134,34 @@ export const Preparations = ({ user }: { user: any }) => {
 
         <Column
           caption={"Название препарата"}
-          dataField={"drugName"}>
+          dataField={"drugName"}
+          alignment={'left'}
+        >
           <RequiredRule />
         </Column>
 
         <Column
           caption={"Код группы Атх"}
-          dataField={"codeAthTypeId"}>
+          dataField={"codeAthTypeId"}
+          alignment={'left'}
+        >
           <Lookup dataSource={AthData} valueExpr="id" displayExpr="code" />
         </Column>
 
         <Column
           caption={"Имя производителя"}
-          dataField={"vendorId"}>
+          dataField={"vendorId"}
+          alignment={'left'}
+        >
           <RequiredRule />
           <Lookup dataSource={vendorData} valueExpr="id" displayExpr="vendorName" />
         </Column>
 
         <Column
           caption={"Форма выпуска"}
-          dataField={"dosageFormTypeId"}>
+          dataField={"dosageFormTypeId"}
+          alignment={'left'}
+        >
           <RequiredRule />
           <Lookup dataSource={dosageData} valueExpr="id" displayExpr="dosageForm" />
         </Column>

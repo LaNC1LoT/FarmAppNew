@@ -93,11 +93,15 @@ const Produced = ({ user }: { user: any }) => {
         <Column
           caption={'Номер'}
           visible={false}
-          dataField={'id'}>
+          dataField={'id'}
+          alignment={'left'}
+        >
         </Column>
         <Column
           caption={'Имя производителя'}
-          dataField={'vendorName'}>
+          dataField={'vendorName'}
+          alignment={'left'}
+        >
           <RequiredRule />
         </Column>
         {/*<Column*/}
@@ -108,7 +112,9 @@ const Produced = ({ user }: { user: any }) => {
 
         <Column
           caption={"Страна производителя"}
-          dataField={"regionId"}>
+          dataField={"regionId"}
+          alignment={'left'}
+        >
           <RequiredRule />
           <Lookup dataSource={regionData} valueExpr="id" displayExpr="regionName" />
         </Column>
@@ -118,7 +124,9 @@ const Produced = ({ user }: { user: any }) => {
         <Column
           alignment={'left'}
           caption={'Отечесвтенный'}
-          dataField={'isDomestic'}>
+          dataField={'isDomestic'}
+
+        >
         </Column>
         {/*<Column*/}
         {/*  caption={"Удалена"}*/}

@@ -40,7 +40,13 @@ const Pharmacy = ({ user }: { user: any }) => {
 
   const regionData = AspNetData.createStore({
     key: 'id',
-    loadUrl: `${BASE_URL}api/Regions?page=1&pageSize=2000`
+    loadUrl: `${BASE_URL}api/Regions?page=1&pageSize=2000`,
+    onBeforeSend: function (method, ajaxOptions) {
+      // ajaxOptions.xhrFields = { withCredentials: false };
+      ajaxOptions.headers = {
+        Authorization: `Bearer ${user.token}`
+      };
+    }
   });
 
   return (
@@ -103,7 +109,9 @@ const Pharmacy = ({ user }: { user: any }) => {
           caption={"Номер"}
           dataType={"number"}
           visible={false}
-          dataField={"id"}>
+          dataField={"id"}
+          alignment={'left'}
+        >
         </Column>
         <Column
           alignment={"left"}
@@ -114,7 +122,9 @@ const Pharmacy = ({ user }: { user: any }) => {
         <Column
           caption={"Имя региона"}
           dataType={"string"}
-          dataField={"regionId"}>
+          dataField={"regionId"}
+          alignment={'left'}
+        >
           <Lookup dataSource={regionData} valueExpr="id" displayExpr="regionName" />
           <RequiredRule />
         </Column>
