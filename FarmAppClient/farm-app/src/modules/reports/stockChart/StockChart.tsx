@@ -268,7 +268,7 @@ class StockChart extends React.Component<{ user: any }, {
             },
 
             {
-              caption: 'Дата продажи',
+              caption: 'Дата поступления',
               dataField: 'createDate',
               //@ts-ignore
               dataType: 'date',
@@ -334,7 +334,7 @@ class StockChart extends React.Component<{ user: any }, {
 
             },
             {
-              caption: 'Производитель',
+              caption: 'Сеть аптек',
               dataField: 'parentPharmacy',
               //@ts-ignore
               // dataType: 'boolean',

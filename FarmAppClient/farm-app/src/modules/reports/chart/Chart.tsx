@@ -329,6 +329,39 @@ class ChartComp extends React.Component<{ user: any }, {
               dataField: 'saleImportFileId',
               visible: false,
             },
+            {
+              caption: 'Страна',
+              dataField: 'country',
+
+            },
+            {
+              caption: 'Регион',
+              dataField: 'region',
+
+            },
+            {
+              caption: 'Город',
+              dataField: 'city',
+
+            },
+            {
+              caption: 'Сеть аптек',
+              dataField: 'parentPharmacy',
+
+
+            },
+            {
+              caption: 'Код группы',
+              dataField: 'code',
+
+
+            },
+            {
+              caption: 'Отечественный',
+              dataField: 'isGeneric',
+              visible: false
+
+            },
           ],
           store: json,
         }),
