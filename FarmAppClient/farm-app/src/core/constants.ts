@@ -1,1 +1,1 @@
-export const BASE_URL = 'http://farm-app.eastus.cloudapp.azure.com/farmappservice/';
+export const BASE_URL = 'http://localhost/farmappservice/';
