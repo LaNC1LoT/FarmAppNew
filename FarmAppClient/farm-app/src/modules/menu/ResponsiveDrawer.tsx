@@ -221,7 +221,7 @@ const ResponsiveDrawer = (props: ResponsiveDrawerProps) => {
           link={'sales'}
         />
         <ItemDrawer
-          svg={money}
+          svg={stock}
           title={'Склад'}
           link={'stock'}
         />

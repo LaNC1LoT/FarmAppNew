@@ -84,7 +84,7 @@ const FormDosage = ({ user }: { user: any }) => {
         <Selection mode="single" />
         <SearchPanel visible={true} />
         <HeaderFilter visible={true} />
-        {user?.role?.id === 1 && <Editing
+        {user?.role?.id !== 2 && <Editing
           allowUpdating={true}
           allowDeleting={true}
           allowAdding={true}

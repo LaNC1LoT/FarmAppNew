@@ -107,7 +107,7 @@ const Stock = ({ user }: { user: any }) => {
                 <Sorting mode="multiple" />
                 <Selection mode="single" />
                 <SearchPanel visible={true} />
-                {user?.role?.id === 1 && <Editing
+                {user?.role?.id !== 2 && <Editing
                     allowUpdating={true}
                     allowDeleting={true}
                     allowAdding={true}
