@@ -9,9 +9,13 @@ import { IAppDispatch } from './core/mainReducer';
 import { configureStore } from './core/configureStore';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Router } from 'react-router-dom';
+import 'typeface-roboto';
+
+import { SnackbarProvider } from 'notistack';
+
 
 export const history = createBrowserHistory({ basename: process.env.PUBLIC_URL });
-export const { store, persistor } = configureStore();
+export const { store } = configureStore();
 export const dispatch: IAppDispatch = store.dispatch;
 
 
@@ -20,7 +24,9 @@ ReactDOM.render(
     <Router history={history}>
       <Provider store={store}>
         {/* <PersistGate loading={null} persistor={persistor}> */}
-        <App />
+        <SnackbarProvider maxSnack={3}>
+          <App />
+        </SnackbarProvider>
         {/* </PersistGate> */}
       </Provider>
     </Router>
