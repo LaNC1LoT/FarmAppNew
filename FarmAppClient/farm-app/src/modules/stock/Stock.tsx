@@ -38,6 +38,10 @@ const Stock = ({ user }: { user: any }) => {
     // }
 
 
+    const userData: any = localStorage.getItem('auth')
+    const token: any = userData ? JSON.parse(userData).token : user?.token ?? ""
+
+
     const salesData = AspNetData.createStore({
         key: 'id',
         loadUrl: `${BASE_URL}api/Stocks?page=1&pageSize=10000`,
@@ -47,7 +51,7 @@ const Stock = ({ user }: { user: any }) => {
         onBeforeSend: function (method, ajaxOptions) {
             // ajaxOptions.xhrFields = { withCredentials: false };
             ajaxOptions.headers = {
-                Authorization: 'Bearer ' + user.token,
+                Authorization: 'Bearer ' + token,
             };
         }
     });
@@ -58,7 +62,7 @@ const Stock = ({ user }: { user: any }) => {
         onBeforeSend: function (method, ajaxOptions) {
             // ajaxOptions.xhrFields = { withCredentials: false };
             ajaxOptions.headers = {
-                Authorization: `Bearer ${user.token}`
+                Authorization: `Bearer ${token}`
             };
         }
     });

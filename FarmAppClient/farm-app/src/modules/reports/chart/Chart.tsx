@@ -227,11 +227,12 @@ class ChartComp extends React.Component<{ user: any }, {
       dataFieldsDisplayMode: 'splitPanes',
       alternateDataFields: false,
     });
-    let user: any = localStorage.getItem('auth')
+    const userData: any = localStorage.getItem('auth')
+    const token: any = userData ? JSON.parse(userData).token : this.props?.user?.token ?? ""
     let response: any = await fetch(`${BASE_URL}api/Charts/Sales?page=1&pageSize=1000`,
       {
         headers: {
-          'Authorization': `Bearer ${user ? JSON.parse(user).token : this.props.user?.token ?? ""}`
+          'Authorization': `Bearer ${token}`
         },
       }
     );

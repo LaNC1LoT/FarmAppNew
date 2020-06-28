@@ -24,6 +24,10 @@ const Pharmacy = ({ user }: { user: any }) => {
   useEffect(() => {
     document.title = 'Аптеки'
   })
+
+  const userData: any = localStorage.getItem('auth')
+  const token: any = userData ? JSON.parse(userData).token : user?.token ?? ""
+
   const tasksData = AspNetData.createStore({
     key: 'id',
     loadUrl: `${BASE_URL}api/Pharmacies?page=1&pageSize=2000`,
@@ -33,7 +37,7 @@ const Pharmacy = ({ user }: { user: any }) => {
     onBeforeSend: function (method, ajaxOptions) {
       // ajaxOptions.xhrFields = { withCredentials: false };
       ajaxOptions.headers = {
-        Authorization: 'Bearer ' + user.token,
+        Authorization: 'Bearer ' + token,
       };
     }
   });
@@ -44,7 +48,7 @@ const Pharmacy = ({ user }: { user: any }) => {
     onBeforeSend: function (method, ajaxOptions) {
       // ajaxOptions.xhrFields = { withCredentials: false };
       ajaxOptions.headers = {
-        Authorization: `Bearer ${user.token}`
+        Authorization: 'Bearer ' + token,
       };
     }
   });

@@ -37,6 +37,8 @@ export const Preparations = ({ user }: { user: any }) => {
 
 
   const url = `${BASE_URL}api/Drugs`;
+  const userData: any = localStorage.getItem('auth')
+  const token: any = userData ? JSON.parse(userData).token : user?.token ?? ""
   const drugsData = AspNetData.createStore({
     key: 'id',
     loadUrl: `${url}?page=1&pageSize=2000`,
@@ -46,7 +48,7 @@ export const Preparations = ({ user }: { user: any }) => {
     onBeforeSend: function (method, ajaxOptions) {
       // ajaxOptions.xhrFields = { withCredentials: false };
       ajaxOptions.headers = {
-        Authorization: `Bearer ${user.token}`
+        Authorization: `Bearer ${token}`
       };
     }
   });
@@ -60,7 +62,7 @@ export const Preparations = ({ user }: { user: any }) => {
     onBeforeSend: function (method, ajaxOptions) {
       // ajaxOptions.xhrFields = { withCredentials: false };
       ajaxOptions.headers = {
-        Authorization: `Bearer ${user.token}`
+        Authorization: `Bearer ${token}`
       };
     }
   });
@@ -71,7 +73,7 @@ export const Preparations = ({ user }: { user: any }) => {
     onBeforeSend: function (method, ajaxOptions) {
       // ajaxOptions.xhrFields = { withCredentials: false };
       ajaxOptions.headers = {
-        Authorization: `Bearer ${user.token}`
+        Authorization: `Bearer ${token}`
       };
     }
   });
@@ -83,7 +85,7 @@ export const Preparations = ({ user }: { user: any }) => {
     onBeforeSend: function (method, ajaxOptions) {
       // ajaxOptions.xhrFields = { withCredentials: false };
       ajaxOptions.headers = {
-        Authorization: `Bearer ${user.token}`
+        Authorization: `Bearer ${token}`
       };
     }
   });

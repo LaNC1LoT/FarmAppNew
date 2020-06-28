@@ -25,6 +25,8 @@ const expandedRowKeys = [1];
 const Region = ({ user }: { user: any }) => {
   const url = `${BASE_URL}api/Regions`;
 
+  const userData: any = localStorage.getItem('auth')
+  const token: any = userData ? JSON.parse(userData).token : user?.token ?? ""
   const tasksData = AspNetData.createStore({
     key: 'id',
     loadUrl: `${url}?page=1&pageSize=2000`,
@@ -34,7 +36,7 @@ const Region = ({ user }: { user: any }) => {
     onBeforeSend: function (method, ajaxOptions) {
       // ajaxOptions.xhrFields = { withCredentials: false };
       ajaxOptions.headers = {
-        Authorization: 'Bearer ' + user.token,
+        Authorization: 'Bearer ' + token,
       };
     }
   });
@@ -44,7 +46,13 @@ const Region = ({ user }: { user: any }) => {
 
   const regionTypeData = AspNetData.createStore({
     key: 'id',
-    loadUrl: `${BASE_URL}api/RegionTypes?page=1&pageSize=2000`
+    loadUrl: `${BASE_URL}api/RegionTypes?page=1&pageSize=2000`,
+    onBeforeSend: function (method, ajaxOptions) {
+      // ajaxOptions.xhrFields = { withCredentials: false };
+      ajaxOptions.headers = {
+        Authorization: 'Bearer ' + token,
+      };
+    }
   });
 
   return (

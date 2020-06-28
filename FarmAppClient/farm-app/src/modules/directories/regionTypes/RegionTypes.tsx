@@ -24,7 +24,8 @@ const expandedRowKeys = [1];
 
 const RegionTypes = ({ user }: { user: any }) => {
   const url = `${BASE_URL}api/RegionTypes`;
-
+  const userData: any = localStorage.getItem('auth')
+  const token: any = userData ? JSON.parse(userData).token : user?.token ?? ""
   const regionType = AspNetData.createStore({
     key: 'id',
     loadUrl: `${url}?page=1&pageSize=2000`,
@@ -34,7 +35,7 @@ const RegionTypes = ({ user }: { user: any }) => {
     onBeforeSend: function (method, ajaxOptions) {
       // ajaxOptions.xhrFields = { withCredentials: false };
       ajaxOptions.headers = {
-        Authorization: 'Bearer ' + user.token,
+        Authorization: 'Bearer ' + token,
       };
     }
   });

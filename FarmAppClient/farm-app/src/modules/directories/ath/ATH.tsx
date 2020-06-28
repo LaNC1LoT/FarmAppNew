@@ -22,6 +22,8 @@ import { IAppState } from "../../../core/mainReducer";
 const allowedPageSizes = [20, 50, 100];
 
 const ATH = ({ user }: { user: any }) => {
+  const userData: any = localStorage.getItem('auth')
+  const token: any = userData ? JSON.parse(userData).token : user?.token ?? ""
 
   const url = `${BASE_URL}api/CodeAthTypes`;
   const atxData = AspNetData.createStore({
@@ -33,7 +35,7 @@ const ATH = ({ user }: { user: any }) => {
     onBeforeSend: function (method, ajaxOptions) {
       // ajaxOptions.xhrFields = { withCredentials: false };
       ajaxOptions.headers = {
-        Authorization: 'Bearer ' + user.token,
+        Authorization: 'Bearer ' + token,
       };
     }
   });

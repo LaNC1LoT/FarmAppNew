@@ -17,7 +17,8 @@ import { IAppState } from '../../../core/mainReducer';
 
 const Role = ({ user }: { user: any }) => {
   const allowedPageSizes = [20, 50, 100];
-
+  const userData: any = localStorage.getItem('auth')
+  const token: any = userData ? JSON.parse(userData).token : user?.token ?? ""
   const rolesData: any = AspNetData.createStore({
     key: 'id',
     loadUrl: `${BASE_URL}api/Roles?page=1&pageSize=2000`,
@@ -27,7 +28,7 @@ const Role = ({ user }: { user: any }) => {
     onBeforeSend: function (method, ajaxOptions) {
       // ajaxOptions.xhrFields = { withCredentials: false };
       ajaxOptions.headers = {
-        Authorization: 'Bearer ' + user.token,
+        Authorization: 'Bearer ' + token,
       };
     }
   });

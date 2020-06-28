@@ -132,7 +132,7 @@ class StockChart extends React.Component<{ user: any }, {
   onContextMenuPreparing(e: any) {
     var sourceField = e.field;
 
-    if (e.field && e.field.dataField === 'amount') {
+    if (e.field && e.field.dataField === 'quantity') {
       summaryDisplayModes.forEach(mode => {
         e.items.push({
           text: mode.text,
@@ -227,12 +227,14 @@ class StockChart extends React.Component<{ user: any }, {
       dataFieldsDisplayMode: 'splitPanes',
       alternateDataFields: false,
     });
-    let user: any = localStorage.getItem('auth')
+
+    const userData: any = localStorage.getItem('auth')
+    const token: any = userData ? JSON.parse(userData).token : this.props?.user?.token ?? ""
 
     let response: any = await fetch(`${BASE_URL}api/Charts/Stocks?page=1&pageSize=1000`,
       {
         headers: {
-          'Authorization': `Bearer ${user ? JSON.parse(user).token : this.props.user?.token ?? ""}`
+          'Authorization': `Bearer ${token}`
         },
       }
     );

@@ -20,6 +20,7 @@ import { IAppState } from '../../../core/mainReducer';
 
 
 const User = ({ user }: { user: any }) => {
+
   const onCellPrepared = (e: any) => {
     if (e.column.command === 'edit') {
       let addLink = e.cellElement.querySelector('.dx-link-add');
@@ -31,7 +32,8 @@ const User = ({ user }: { user: any }) => {
   }
 
   const allowedPageSizes = [20, 50, 100];
-
+  const userData: any = localStorage.getItem('auth')
+  const token: any = userData ? JSON.parse(userData).token : user?.token ?? ""
   const usersData: any = AspNetData.createStore({
     key: 'id',
     loadUrl: `${BASE_URL}api/Users?page=1&pageSize=2000`,
@@ -41,16 +43,22 @@ const User = ({ user }: { user: any }) => {
     onBeforeSend: function (method, ajaxOptions) {
       // ajaxOptions.xhrFields = { withCredentials: false };
       ajaxOptions.headers = {
-        Authorization: 'Bearer ' + user.token,
+        Authorization: 'Bearer ' + token,
       };
     }
   });
   useEffect(() => {
     document.title = 'Пользователи'
   })
+
   const rolesData = AspNetData.createStore({
     key: 'id',
-    loadUrl: `${BASE_URL}api/Roles?page=1&pageSize=2000`
+    loadUrl: `${BASE_URL}api/Roles?page=1&pageSize=2000`,
+    onBeforeSend: function (method, ajaxOptions) {
+      ajaxOptions.headers = {
+        Authorization: `Bearer ${token}`,
+      };
+    }
   });
 
   return (

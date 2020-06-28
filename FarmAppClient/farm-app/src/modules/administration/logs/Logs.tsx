@@ -23,6 +23,9 @@ import { IAppState } from '../../../core/mainReducer';
 
 const Logs = ({ user }: { user: any }) => {
   const allowedPageSizes = [20, 50, 100];
+
+  const userData: any = localStorage.getItem('auth')
+  const token: any = userData ? JSON.parse(userData).token : user?.token ?? ""
   const logsData: any = AspNetData.createStore({
     key: 'id',
     loadUrl: `${BASE_URL}api/Logs?page=1&pageSize=2000`,
@@ -32,7 +35,7 @@ const Logs = ({ user }: { user: any }) => {
     onBeforeSend: function (method, ajaxOptions) {
       // ajaxOptions.xhrFields = { withCredentials: false };
       ajaxOptions.headers = {
-        Authorization: 'Bearer ' + user.token,
+        Authorization: 'Bearer ' + token,
       };
     },
   });

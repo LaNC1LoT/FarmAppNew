@@ -33,6 +33,8 @@ const Produced = ({ user }: { user: any }) => {
   })
 
   const url = `${BASE_URL}api/Vendors`;
+  const userData: any = localStorage.getItem('auth')
+  const token: any = userData ? JSON.parse(userData).token : user?.token ?? ""
   const vendorData = AspNetData.createStore({
     key: 'id',
     loadUrl: `${url}?page=1&pageSize=2000`,
@@ -42,7 +44,7 @@ const Produced = ({ user }: { user: any }) => {
     onBeforeSend: function (method, ajaxOptions) {
       // ajaxOptions.xhrFields = { withCredentials: false };
       ajaxOptions.headers = {
-        Authorization: 'Bearer ' + user.token,
+        Authorization: 'Bearer ' + token,
       };
     },
   });
@@ -50,7 +52,13 @@ const Produced = ({ user }: { user: any }) => {
 
   const regionData = AspNetData.createStore({
     key: 'id',
-    loadUrl: `${BASE_URL}api/Regions?page=1&pageSize=2000`
+    loadUrl: `${BASE_URL}api/Regions?page=1&pageSize=2000`,
+    onBeforeSend: function (method, ajaxOptions) {
+      // ajaxOptions.xhrFields = { withCredentials: false };
+      ajaxOptions.headers = {
+        Authorization: 'Bearer ' + token,
+      };
+    },
   });
 
   return (

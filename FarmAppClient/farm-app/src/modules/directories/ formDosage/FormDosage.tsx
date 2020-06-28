@@ -27,6 +27,9 @@ const FormDosage = ({ user }: { user: any }) => {
   useEffect(() => {
     document.title = 'Форма выпуска'
   })
+
+  const userData: any = localStorage.getItem('auth')
+  const token: any = userData ? JSON.parse(userData).token : user?.token ?? ""
   const regionType = AspNetData.createStore({
     key: 'id',
     loadUrl: `${url}?page=1&pageSize=2000`,
@@ -36,7 +39,7 @@ const FormDosage = ({ user }: { user: any }) => {
     onBeforeSend: function (method, ajaxOptions) {
       // ajaxOptions.xhrFields = { withCredentials: false };
       ajaxOptions.headers = {
-        Authorization: 'Bearer ' + user.token,
+        Authorization: 'Bearer ' + token,
       };
     }
   });
@@ -49,11 +52,6 @@ const FormDosage = ({ user }: { user: any }) => {
       }
     }
   };
-
-  // const regionTypeData = AspNetData.createStore({
-  //   key: 'id',
-  //   loadUrl: `${BASE_URL}api/regionTypes?page=1&pageSize=2000`
-  // });
 
   return (
     <Typography>
