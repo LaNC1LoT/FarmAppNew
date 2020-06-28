@@ -130,12 +130,26 @@ namespace FarmAppServer.Controllers
             UserDto userDto = new UserDto();
             JsonConvert.PopulateObject(values, userDto);
 
-            CreatePasswordHash(userDto.Password, out var passwordHash, out var passwordSalt);
+            if (!string.IsNullOrWhiteSpace(userDto.Password))
+            {
+                CreatePasswordHash(userDto.Password, out var passwordHash, out var passwordSalt);
+                user.PasswordHash = passwordHash;
+                user.PasswordSalt = passwordSalt;
+            }
+            if (!string.IsNullOrWhiteSpace(userDto.FirstName))
+                user.FirstName = userDto.FirstName;
 
-            user = _mapper.Map<User>(userDto);
+            if (!string.IsNullOrWhiteSpace(userDto.LastName))
+                user.LastName = userDto.LastName;
+
+            if (userDto.IsDeleted.HasValue)
+                user.IsDeleted = userDto.IsDeleted;
+
+            if (userDto.RoleId != 0)
+                user.RoleId = userDto.RoleId;
+
             user.UserName = user.FirstName + " " + user.LastName;
-            user.PasswordHash = passwordHash;
-            user.PasswordSalt = passwordSalt;
+
             await _farmAppContext.SaveChangesAsync(cancellationToken);
             return Ok();
         }
